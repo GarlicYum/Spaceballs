@@ -54,6 +54,7 @@ void Game::UpdateModel()
 	{
 		ship.x += 5;
 	}
+	ship.ClampScreen(gfx);
 }
 
 void Game::ComposeFrame()

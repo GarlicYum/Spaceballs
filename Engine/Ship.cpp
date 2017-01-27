@@ -3757,3 +3757,28 @@ void Ship::Draw(Graphics& gfx)
 
 }
 
+void Ship::ClampScreen(Graphics& gfx)
+{
+	int right = x + width;
+	int bottom = y + height;
+	if (x < 0)
+	{
+		x = 0;
+	}
+	if (right >= gfx.ScreenWidth)
+	{
+		x = gfx.ScreenWidth - width;
+	}
+	if (y < 0)
+	{
+		y = 0;
+	}
+	if (bottom >= gfx.ScreenHeight)
+	{
+		y = gfx.ScreenHeight - height;
+	}
+
+	
+		
+}
+
