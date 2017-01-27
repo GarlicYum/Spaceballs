@@ -38,8 +38,25 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	if (wnd.kbd.KeyIsPressed(VK_UP))
+	{
+		ship.y -= 5;
+	}
+	if (wnd.kbd.KeyIsPressed(VK_DOWN))
+	{
+		ship.y += 5;
+	}
+	if (wnd.kbd.KeyIsPressed(VK_LEFT))
+	{
+		ship.x -= 5;
+	}
+	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
+	{
+		ship.x += 5;
+	}
 }
 
 void Game::ComposeFrame()
 {
+	ship.Draw(gfx);
 }

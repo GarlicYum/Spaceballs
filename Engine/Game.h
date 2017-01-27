@@ -23,6 +23,7 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
+#include "Ship.h"
 
 class Game
 {
@@ -42,5 +43,6 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
+	Ship ship;
 	/********************************/
 };
