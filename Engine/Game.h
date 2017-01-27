@@ -24,6 +24,8 @@
 #include "Mouse.h"
 #include "Graphics.h"
 #include "Ship.h"
+#include "Star.h"
+#include <random>
 
 class Game
 {
@@ -44,5 +46,9 @@ private:
 	/********************************/
 	/*  User Variables              */
 	Ship ship;
+	static constexpr int nStars = 100;
+	Star star[nStars];
+	int starX = 300;
+	int starY = 2;
 	/********************************/
 };

@@ -26,6 +26,14 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd )
 {
+	std::mt19937 rng;
+	std::uniform_int_distribution<int> xDist(0, 790);
+	std::uniform_int_distribution<int> yDist(0, 590);
+	for (int i = 0; i < nStars; i++)
+	{
+		star[i].x = xDist(rng);
+		star[i].y = yDist(rng);
+	}
 }
 
 void Game::Go()
@@ -55,9 +63,26 @@ void Game::UpdateModel()
 		ship.x += 5;
 	}
 	ship.ClampScreen(gfx);
+	
+	for (int i = 0; i < nStars; i++)
+	{
+		if (star[i].y + 3 >= gfx.ScreenHeight)
+		{
+			star[i].y = 2;
+		}
+		else
+		{
+			star[i].y++;
+		}
+	}	
 }
 
 void Game::ComposeFrame()
 {
+	for (int i = 0; i < nStars; i++)
+	{
+		star[i].DrawMid(gfx);
+	}
+	
 	ship.Draw(gfx);
 }
