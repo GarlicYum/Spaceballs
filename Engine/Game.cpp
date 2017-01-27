@@ -62,6 +62,15 @@ void Game::UpdateModel()
 	{
 		ship.x += 5;
 	}
+	if (wnd.kbd.KeyIsPressed(VK_SPACE))
+	{
+		ship.Shoot(gfx);
+	}
+	else 
+	{
+		ship.vy = 0;
+	}
+
 	ship.ClampScreen(gfx);
 	
 	for (int i = 0; i < nStars; i++)
