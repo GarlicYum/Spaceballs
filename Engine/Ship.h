@@ -1,5 +1,6 @@
 #pragma once
 #include "Graphics.h"
+#include "Bullet.h"
 
 class Ship
 {
@@ -9,9 +10,9 @@ public:
 	void Shoot(Graphics& gfx);
 	int x = 300;
 	int y = 300;
-	int vy = 0;
 private:
 	int width = 100;
 	int height = 100;
-	int bulletSize = 7;
+	int canonPos = 50;
+	Bullet bullet;
 };

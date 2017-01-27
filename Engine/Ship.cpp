@@ -3784,18 +3784,7 @@ void Ship::ClampScreen(Graphics& gfx)
 
 void Ship::Shoot(Graphics & gfx)
 {
-	int canonX = x + 50;
-	int canonY = y + vy;
-
-	if (canonY - bulletSize > 0)
-	{
-		gfx.DrawCircle(canonX, canonY, bulletSize, Colors::Magenta);
-	}
-	
-	if (canonY - bulletSize <= 0)
-	{
-		vy = 0;
-	}
-	vy-=20;
+	int canonX = x + canonPos;
+	bullet.Draw(canonX, y, gfx);
 }
 

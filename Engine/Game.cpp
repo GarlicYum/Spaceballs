@@ -66,10 +66,7 @@ void Game::UpdateModel()
 	{
 		ship.Shoot(gfx);
 	}
-	else 
-	{
-		ship.vy = 0;
-	}
+	
 
 	ship.ClampScreen(gfx);
 	
@@ -90,7 +87,7 @@ void Game::ComposeFrame()
 {
 	for (int i = 0; i < nStars; i++)
 	{
-		star[i].DrawMid(gfx);
+		star[i].Draw(gfx);
 	}
 	
 	ship.Draw(gfx);
