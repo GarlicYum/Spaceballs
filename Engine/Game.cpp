@@ -62,6 +62,13 @@ void Game::UpdateModel()
 	{
 		ship.x += 5;
 	}
+
+	/*
+	NOTES TO SELF
+	1. make the bullets finish going off screen even if player let's go of space bar
+	2. Make it so a fired bullet doesn't follow the ships x position
+	*/
+
 	if (wnd.kbd.KeyIsPressed(VK_SPACE))
 	{
 		ship.Shoot(gfx);
