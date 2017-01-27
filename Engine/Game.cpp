@@ -34,6 +34,11 @@ Game::Game( MainWindow& wnd )
 		star[i].x = xDist(rng);
 		star[i].y = yDist(rng);
 	}
+	for (int i = 0; i < nBigStars; i++)
+	{
+		starB[i].x = xDist(rng);
+		starB[i].y = yDist(rng);
+	}
 }
 
 void Game::Go()
@@ -87,7 +92,19 @@ void Game::UpdateModel()
 		{
 			star[i].y++;
 		}
-	}	
+	}
+
+	for (int i = 0; i < nBigStars; i++)
+	{
+		if (starB[i].y + 6 >= gfx.ScreenHeight)
+		{
+			starB[i].y = 3;
+		}
+		else
+		{
+			starB[i].y++;
+		}
+	}
 }
 
 void Game::ComposeFrame()
@@ -95,6 +112,10 @@ void Game::ComposeFrame()
 	for (int i = 0; i < nStars; i++)
 	{
 		star[i].Draw(gfx);
+	}
+	for (int i = 0; i < nBigStars; i++)
+	{
+		starB[i].DrawBig(gfx);
 	}
 	
 	ship.Draw(gfx);

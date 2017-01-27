@@ -50,5 +50,7 @@ private:
 	Star star[nStars];
 	int starX = 300;
 	int starY = 2;
+	static constexpr int nBigStars = 20;
+	Star starB[nBigStars];
 	/********************************/
 };
