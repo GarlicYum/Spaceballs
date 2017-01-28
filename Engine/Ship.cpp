@@ -3757,7 +3757,7 @@ void Ship::Draw(Graphics& gfx)
 
 }
 
-void Ship::ClampScreen(Graphics& gfx)
+void Ship::ClampScreen()
 {
 	int right = x + width;
 	int bottom = y + height;
@@ -3765,26 +3765,39 @@ void Ship::ClampScreen(Graphics& gfx)
 	{
 		x = 0;
 	}
-	if (right >= gfx.ScreenWidth)
+	if (right >= Graphics::ScreenWidth)
 	{
-		x = gfx.ScreenWidth - width;
+		x = Graphics::ScreenWidth - width;
 	}
 	if (y < 0)
 	{
 		y = 0;
 	}
-	if (bottom >= gfx.ScreenHeight)
+	if (bottom >= Graphics::ScreenHeight)
 	{
-		y = gfx.ScreenHeight - height;
+		y = Graphics::ScreenHeight - height;
 	}
-
-	
-		
 }
 
-void Ship::Shoot(Graphics & gfx)
+int Ship::GetCannonX() const
 {
-	int canonX = x + canonPos;
-	bullet.Draw(canonX, y, gfx);
+	return x + canonPos;
+}
+
+int Ship::GetCannonY() const
+{
+	return y;
+}
+
+void Ship::SetVelocity(int X, int Y)
+{
+	vx = X;
+	vy = Y;
+}
+
+void Ship::Update()
+{
+	x += vx;
+	y += vy;
 }
 

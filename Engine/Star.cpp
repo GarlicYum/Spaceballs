@@ -1,5 +1,21 @@
 #include "Star.h"
 
+void Star::Spawn(int X, int Y, int Size)
+{
+	x = X;
+	y = Y;
+	size = Size;
+}
+
+void Star::Update()
+{
+	y++;
+	if (y + size >= Graphics::ScreenHeight)
+	{
+		y = 3;
+	}
+}
+
 void Star::Draw(Graphics & gfx)
 {
 	gfx.PutPixel(x, y, Colors::Cyan);

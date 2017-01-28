@@ -1,17 +1,33 @@
 #include "Bullet.h"
 
-void Bullet::Draw(int in_x, int y, Graphics & gfx)
+void Bullet::Spawn(int X, int Y)
 {
-	int height = y - bulletSize -vy;
-	x = in_x;
+	if (!hasSpawned)
+	{
+		x = X;
+		y = Y - bulletSize;
+		vy = 15;
+		hasSpawned = true;
+	}
+}
 
-	if (height - bulletSize >= 0)
+void Bullet::Update()
+{
+	y -= vy;
+
+	if (y - bulletSize < 0)
 	{
-		gfx.DrawCircle(x, height, bulletSize, Colors::Magenta);
+		y = 0;
+		hasSpawned = false;
 	}
-	else
-	{
-		vy = 0;
-	}
-	vy += 15;	
+}
+
+bool Bullet::HasSpawned() const
+{
+	return hasSpawned;
+}
+
+void Bullet::Draw(Graphics& gfx)
+{
+	gfx.DrawCircle(x, y, bulletSize, Colors::Magenta);
 }

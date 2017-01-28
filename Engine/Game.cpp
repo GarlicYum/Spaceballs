@@ -31,13 +31,11 @@ Game::Game( MainWindow& wnd )
 	std::uniform_int_distribution<int> yDist(0, 590);
 	for (int i = 0; i < nStars; i++)
 	{
-		star[i].x = xDist(rng);
-		star[i].y = yDist(rng);
+		star[i].Spawn(xDist(rng), yDist(rng), 3);
 	}
 	for (int i = 0; i < nBigStars; i++)
 	{
-		starB[i].x = xDist(rng);
-		starB[i].y = yDist(rng);
+		starB[i].Spawn(xDist(rng), yDist(rng), 6);
 	}
 }
 
@@ -51,59 +49,65 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	int vx = 0;
+	int vy = 0;
 	if (wnd.kbd.KeyIsPressed(VK_UP))
 	{
-		ship.y -= 5;
+		vy -= 5;
 	}
 	if (wnd.kbd.KeyIsPressed(VK_DOWN))
 	{
-		ship.y += 5;
+		vy += 5;
 	}
 	if (wnd.kbd.KeyIsPressed(VK_LEFT))
 	{
-		ship.x -= 5;
+		vx -= 5;
 	}
 	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
 	{
-		ship.x += 5;
+		vx += 5;
 	}
+	ship.SetVelocity(vx, vy);
 
-	/*
-	NOTES TO SELF
-	1. make the bullets finish going off screen even if player let's go of space bar
-	2. Make it so a fired bullet doesn't follow the ships x position
-	*/
 
 	if (wnd.kbd.KeyIsPressed(VK_SPACE))
 	{
-		ship.Shoot(gfx);
+		if (shotsFired == false)
+		{
+			bullet[bulletCounter].Spawn(ship.GetCannonX(), ship.GetCannonY());
+			++bulletCounter;
+			if (bulletCounter > 2)
+			{
+				bulletCounter = 0;
+			}
+			shotsFired = true;
+		}
+	}
+	else
+	{
+		shotsFired = false;
+	}
+
+	ship.Update();
+	ship.ClampScreen();
+
+	for (int i = 0; i < nBullets; i++)
+	{
+		if (bullet[i].HasSpawned())
+		{
+			bullet[i].Update();
+		}
 	}
 	
-
-	ship.ClampScreen(gfx);
 	
 	for (int i = 0; i < nStars; i++)
 	{
-		if (star[i].y + 3 >= gfx.ScreenHeight)
-		{
-			star[i].y = 2;
-		}
-		else
-		{
-			star[i].y++;
-		}
+		star[i].Update();
 	}
 
 	for (int i = 0; i < nBigStars; i++)
 	{
-		if (starB[i].y + 6 >= gfx.ScreenHeight)
-		{
-			starB[i].y = 3;
-		}
-		else
-		{
-			starB[i].y++;
-		}
+		starB[i].Update();
 	}
 }
 
@@ -119,4 +123,12 @@ void Game::ComposeFrame()
 	}
 	
 	ship.Draw(gfx);
+
+	for (int i = 0; i < nBullets; i++)
+	{
+		if (bullet[i].HasSpawned())
+		{
+			bullet[i].Draw(gfx);
+		}
+	}
 }

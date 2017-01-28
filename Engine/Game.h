@@ -26,6 +26,7 @@
 #include "Ship.h"
 #include "Star.h"
 #include <random>
+#include "Bullet.h"
 
 class Game
 {
@@ -39,6 +40,7 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
+	
 	/********************************/
 private:
 	MainWindow& wnd;
@@ -46,11 +48,16 @@ private:
 	/********************************/
 	/*  User Variables              */
 	Ship ship;
+	static constexpr int nBullets = 3;
+	int bulletCounter = 0;
+	Bullet bullet[nBullets];
 	static constexpr int nStars = 100;
 	Star star[nStars];
 	int starX = 300;
 	int starY = 2;
 	static constexpr int nBigStars = 20;
 	Star starB[nBigStars];
+	bool isShooting = false;
+	bool shotsFired = false;
 	/********************************/
 };

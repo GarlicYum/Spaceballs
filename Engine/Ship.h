@@ -6,13 +6,17 @@ class Ship
 {
 public:
 	void Draw(Graphics& gfx);
-	void ClampScreen(Graphics& gfx);
-	void Shoot(Graphics& gfx);
+	void ClampScreen();
+	int GetCannonX() const;
+	int GetCannonY() const;
+	void SetVelocity(int X, int Y);
+	void Update();
 	int x = 300;
 	int y = 300;
 private:
 	int width = 100;
 	int height = 100;
 	int canonPos = 50;
-	Bullet bullet;
+	int vx = 0;
+	int vy = 0;
 };
