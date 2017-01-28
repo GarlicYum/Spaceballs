@@ -49,28 +49,7 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	int vx = 0;
-	int vy = 0;
-	if (wnd.kbd.KeyIsPressed(VK_UP))
-	{
-		vy -= 5;
-	}
-	if (wnd.kbd.KeyIsPressed(VK_DOWN))
-	{
-		vy += 5;
-	}
-	if (wnd.kbd.KeyIsPressed(VK_LEFT))
-	{
-		vx -= 5;
-	}
-	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
-	{
-		vx += 5;
-	}
-	ship.SetVelocity(vx, vy);
-
-	ship.FireBullet(wnd);
-	ship.Update();
+	ship.Update(wnd);
 	UpdateStars();
 }
 

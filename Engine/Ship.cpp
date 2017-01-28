@@ -3763,24 +3763,19 @@ void Ship::Draw(Graphics& gfx)
 	}
 }
 
-void Ship::FireBullet(MainWindow& wnd)
+void Ship::FireBullet()
 {
-	if (wnd.kbd.KeyIsPressed(VK_SPACE))
+	
+	
+	if (shotsFired == false)
 	{
-		if (shotsFired == false)
+		bullet[bulletCounter].Spawn(x + canonPos, y);
+		++bulletCounter;
+		if (bulletCounter > 2)
 		{
-			bullet[bulletCounter].Spawn(x + canonPos, y);
-			++bulletCounter;
-			if (bulletCounter > 2)
-			{
-				bulletCounter = 0;
-			}
-			shotsFired = true;
+			bulletCounter = 0;
 		}
-	}
-	else
-	{
-		shotsFired = false;
+		shotsFired = true;
 	}
 }
 
@@ -3806,26 +3801,34 @@ void Ship::ClampScreen()
 	}
 }
 
-int Ship::GetCannonX() const
+void Ship::Update(MainWindow& wnd)
 {
-	return x + canonPos;
-}
-
-int Ship::GetCannonY() const
-{
-	return y;
-}
-
-void Ship::SetVelocity(int X, int Y)
-{
-	vx = X;
-	vy = Y;
-}
-
-void Ship::Update()
-{
-	x += vx;
-	y += vy;
+	
+	if (wnd.kbd.KeyIsPressed(VK_UP))
+	{
+		y -= vy;
+	}
+	if (wnd.kbd.KeyIsPressed(VK_DOWN))
+	{
+		y += vy;
+	}
+	if (wnd.kbd.KeyIsPressed(VK_LEFT))
+	{
+		x -= vx;
+	}
+	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
+	{
+		x += vx;
+	}
+	if (wnd.kbd.KeyIsPressed(VK_SPACE))
+	{
+		FireBullet();
+	}
+	else
+	{
+		shotsFired = false;
+	}
+	
 
 	for (int i = 0; i < nBullets; i++)
 	{

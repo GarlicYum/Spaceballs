@@ -55,7 +55,5 @@ private:
 	int starY = 2;
 	static constexpr int nBigStars = 20;
 	Star starB[nBigStars];
-	bool isShooting = false;
-	
 	/********************************/
 };
