@@ -18,7 +18,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 7, y + 92, 31, 73, 31);
 	gfx.PutPixel(x + 7, y + 93, 0, 2, 0);
 	gfx.PutPixel(x + 7, y + 94, 140, 11, 140);
-	gfx.PutPixel(x + 7, y + 95, 255, 1, 255);
+	
 	gfx.PutPixel(x + 8, y + 82, 178, 0, 178);
 	gfx.PutPixel(x + 8, y + 83, 135, 35, 135);
 	gfx.PutPixel(x + 8, y + 84, 119, 100, 119);
@@ -30,7 +30,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 8, y + 90, 173, 193, 173);
 	gfx.PutPixel(x + 8, y + 91, 53, 65, 53);
 	gfx.PutPixel(x + 8, y + 92, 142, 0, 142);
-	gfx.PutPixel(x + 8, y + 93, 255, 3, 255);
+	
 	gfx.PutPixel(x + 9, y + 79, 168, 0, 168);
 	gfx.PutPixel(x + 9, y + 80, 136, 78, 136);
 	gfx.PutPixel(x + 9, y + 81, 125, 154, 125);
@@ -227,7 +227,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 18, y + 87, 170, 0, 170);
 	gfx.PutPixel(x + 18, y + 88, 201, 2, 201);
 	gfx.PutPixel(x + 18, y + 89, 231, 2, 231);
-	gfx.PutPixel(x + 18, y + 91, 255, 6, 255);
+	
 	gfx.PutPixel(x + 19, y + 60, 242, 0, 239);
 	gfx.PutPixel(x + 19, y + 61, 124, 113, 123);
 	gfx.PutPixel(x + 19, y + 62, 212, 255, 255);
@@ -247,7 +247,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 19, y + 77, 10, 13, 21);
 	gfx.PutPixel(x + 19, y + 78, 0, 5, 0);
 	gfx.PutPixel(x + 19, y + 79, 207, 13, 207);
-	gfx.PutPixel(x + 19, y + 86, 255, 9, 255);
+	
 	gfx.PutPixel(x + 19, y + 87, 247, 0, 247);
 	gfx.PutPixel(x + 19, y + 88, 209, 5, 209);
 	gfx.PutPixel(x + 19, y + 89, 178, 7, 178);
@@ -260,7 +260,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 20, y + 61, 218, 255, 255);
 	gfx.PutPixel(x + 20, y + 62, 58, 94, 63);
 	gfx.PutPixel(x + 20, y + 63, 119, 0, 114);
-	gfx.PutPixel(x + 20, y + 65, 255, 5, 255);
+	
 	gfx.PutPixel(x + 20, y + 66, 77, 13, 76);
 	gfx.PutPixel(x + 20, y + 67, 0, 0, 0);
 	gfx.PutPixel(x + 20, y + 68, 0, 4, 5);
@@ -291,7 +291,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 21, y + 59, 86, 160, 110);
 	gfx.PutPixel(x + 21, y + 60, 150, 226, 190);
 	gfx.PutPixel(x + 21, y + 61, 120, 74, 112);
-	gfx.PutPixel(x + 21, y + 63, 255, 3, 255);
+	
 	gfx.PutPixel(x + 21, y + 64, 114, 12, 114);
 	gfx.PutPixel(x + 21, y + 65, 0, 2, 0);
 	gfx.PutPixel(x + 21, y + 66, 0, 4, 0);
@@ -444,7 +444,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 25, y + 80, 15, 18, 57);
 	gfx.PutPixel(x + 25, y + 81, 0, 0, 0);
 	gfx.PutPixel(x + 25, y + 82, 74, 8, 73);
-	gfx.PutPixel(x + 25, y + 83, 255, 8, 255);
+	
 	gfx.PutPixel(x + 26, y + 43, 253, 0, 253);
 	gfx.PutPixel(x + 26, y + 44, 146, 0, 146);
 	gfx.PutPixel(x + 26, y + 45, 93, 23, 92);
@@ -487,7 +487,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 26, y + 82, 0, 6, 17);
 	gfx.PutPixel(x + 26, y + 83, 0, 0, 0);
 	gfx.PutPixel(x + 26, y + 84, 139, 14, 140);
-	gfx.PutPixel(x + 26, y + 85, 255, 2, 255);
+	
 	gfx.PutPixel(x + 27, y + 42, 117, 0, 117);
 	gfx.PutPixel(x + 27, y + 43, 105, 148, 105);
 	gfx.PutPixel(x + 27, y + 44, 210, 230, 210);
@@ -582,7 +582,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 28, y + 85, 17, 21, 9);
 	gfx.PutPixel(x + 28, y + 86, 0, 0, 0);
 	gfx.PutPixel(x + 28, y + 87, 53, 8, 50);
-	gfx.PutPixel(x + 28, y + 88, 255, 5, 255);
+	
 	gfx.PutPixel(x + 29, y + 35, 198, 0, 198);
 	gfx.PutPixel(x + 29, y + 36, 76, 2, 76);
 	gfx.PutPixel(x + 29, y + 37, 77, 109, 77);
@@ -693,7 +693,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 30, y + 86, 32, 34, 47);
 	gfx.PutPixel(x + 30, y + 87, 38, 46, 133);
 	gfx.PutPixel(x + 30, y + 88, 0, 26, 0);
-	gfx.PutPixel(x + 30, y + 89, 255, 1, 255);
+	
 	gfx.PutPixel(x + 31, y + 30, 246, 0, 246);
 	gfx.PutPixel(x + 31, y + 31, 87, 0, 87);
 	gfx.PutPixel(x + 31, y + 32, 40, 65, 40);
@@ -1073,7 +1073,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 36, y + 84, 108, 109, 108);
 	gfx.PutPixel(x + 36, y + 85, 52, 74, 52);
 	gfx.PutPixel(x + 36, y + 86, 22, 2, 22);
-	gfx.PutPixel(x + 36, y + 87, 255, 5, 255);
+	
 	gfx.PutPixel(x + 37, y + 18, 180, 25, 180);
 	gfx.PutPixel(x + 37, y + 19, 64, 77, 64);
 	gfx.PutPixel(x + 37, y + 20, 217, 238, 217);
@@ -1302,11 +1302,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 40, y + 26, 187, 3, 187);
 	gfx.PutPixel(x + 40, y + 27, 223, 0, 223);
 	gfx.PutPixel(x + 40, y + 28, 247, 11, 247);
-	gfx.PutPixel(x + 40, y + 29, 255, 10, 255);
-	gfx.PutPixel(x + 40, y + 30, 255, 7, 255);
-	gfx.PutPixel(x + 40, y + 31, 255, 8, 255);
-	gfx.PutPixel(x + 40, y + 32, 255, 7, 255);
-	gfx.PutPixel(x + 40, y + 33, 255, 14, 255);
+	
 	gfx.PutPixel(x + 40, y + 34, 234, 7, 219);
 	gfx.PutPixel(x + 40, y + 35, 200, 10, 195);
 	gfx.PutPixel(x + 40, y + 36, 157, 11, 168);
@@ -1329,7 +1325,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 40, y + 53, 47, 47, 47);
 	gfx.PutPixel(x + 40, y + 54, 0, 0, 0);
 	gfx.PutPixel(x + 40, y + 55, 0, 1, 0);
-	gfx.PutPixel(x + 40, y + 56, 255, 11, 255);
+	
 	gfx.PutPixel(x + 40, y + 61, 37, 15, 35);
 	gfx.PutPixel(x + 40, y + 62, 28, 36, 30);
 	gfx.PutPixel(x + 40, y + 63, 22, 24, 28);
@@ -1358,7 +1354,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 40, y + 86, 2, 17, 2);
 	gfx.PutPixel(x + 40, y + 87, 67, 1, 67);
 	gfx.PutPixel(x + 40, y + 88, 166, 7, 166);
-	gfx.PutPixel(x + 40, y + 89, 255, 6, 255);
+	
 	gfx.PutPixel(x + 41, y + 11, 230, 0, 230);
 	gfx.PutPixel(x + 41, y + 12, 108, 105, 108);
 	gfx.PutPixel(x + 41, y + 13, 168, 187, 168);
@@ -1370,7 +1366,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 41, y + 19, 20, 13, 20);
 	gfx.PutPixel(x + 41, y + 20, 99, 0, 99);
 	gfx.PutPixel(x + 41, y + 21, 183, 0, 183);
-	gfx.PutPixel(x + 41, y + 39, 255, 10, 255);
+	
 	gfx.PutPixel(x + 41, y + 40, 155, 10, 148);
 	gfx.PutPixel(x + 41, y + 41, 30, 11, 27);
 	gfx.PutPixel(x + 41, y + 42, 0, 0, 0);
@@ -1423,7 +1419,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 42, y + 16, 23, 0, 23);
 	gfx.PutPixel(x + 42, y + 17, 139, 5, 139);
 	gfx.PutPixel(x + 42, y + 18, 249, 6, 249);
-	gfx.PutPixel(x + 42, y + 42, 255, 8, 255);
+	
 	gfx.PutPixel(x + 42, y + 43, 75, 19, 73);
 	gfx.PutPixel(x + 42, y + 44, 0, 0, 0);
 	gfx.PutPixel(x + 42, y + 45, 0, 2, 13);
@@ -1439,7 +1435,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 42, y + 55, 25, 25, 25);
 	gfx.PutPixel(x + 42, y + 56, 20, 35, 20);
 	gfx.PutPixel(x + 42, y + 57, 29, 10, 29);
-	gfx.PutPixel(x + 42, y + 58, 255, 9, 255);
+	
 	gfx.PutPixel(x + 42, y + 59, 56, 7, 48);
 	gfx.PutPixel(x + 42, y + 60, 27, 55, 71);
 	gfx.PutPixel(x + 42, y + 61, 61, 63, 61);
@@ -1466,7 +1462,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 43, y + 13, 0, 0, 0);
 	gfx.PutPixel(x + 43, y + 14, 110, 2, 110);
 	gfx.PutPixel(x + 43, y + 15, 245, 7, 245);
-	gfx.PutPixel(x + 43, y + 24, 255, 3, 255);
+	
 	gfx.PutPixel(x + 43, y + 38, 251, 9, 251);
 	gfx.PutPixel(x + 43, y + 39, 181, 4, 181);
 	gfx.PutPixel(x + 43, y + 40, 116, 2, 116);
@@ -1510,14 +1506,13 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 43, y + 78, 0, 2, 0);
 	gfx.PutPixel(x + 43, y + 79, 106, 3, 106);
 	gfx.PutPixel(x + 43, y + 80, 180, 8, 180);
-	gfx.PutPixel(x + 43, y + 81, 255, 7, 255);
+	
 	gfx.PutPixel(x + 44, y + 8, 80, 14, 80);
 	gfx.PutPixel(x + 44, y + 9, 0, 13, 0);
 	gfx.PutPixel(x + 44, y + 10, 0, 7, 0);
 	gfx.PutPixel(x + 44, y + 11, 36, 3, 36);
 	gfx.PutPixel(x + 44, y + 12, 178, 6, 178);
-	gfx.PutPixel(x + 44, y + 13, 255, 2, 255);
-	gfx.PutPixel(x + 44, y + 33, 255, 4, 255);
+	
 	gfx.PutPixel(x + 44, y + 34, 183, 2, 183);
 	gfx.PutPixel(x + 44, y + 35, 113, 0, 113);
 	gfx.PutPixel(x + 44, y + 36, 45, 0, 45);
@@ -1568,13 +1563,12 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 44, y + 81, 0, 1, 0);
 	gfx.PutPixel(x + 44, y + 82, 51, 2, 51);
 	gfx.PutPixel(x + 44, y + 83, 169, 6, 169);
-	gfx.PutPixel(x + 44, y + 84, 255, 1, 255);
-	gfx.PutPixel(x + 45, y + 6, 255, 3, 255);
+	
 	gfx.PutPixel(x + 45, y + 7, 13, 12, 13);
 	gfx.PutPixel(x + 45, y + 8, 0, 5, 0);
 	gfx.PutPixel(x + 45, y + 9, 129, 11, 129);
 	gfx.PutPixel(x + 45, y + 10, 254, 9, 254);
-	gfx.PutPixel(x + 45, y + 29, 255, 3, 255);
+	
 	gfx.PutPixel(x + 45, y + 30, 170, 4, 170);
 	gfx.PutPixel(x + 45, y + 31, 82, 0, 82);
 	gfx.PutPixel(x + 45, y + 32, 6, 6, 6);
@@ -1634,7 +1628,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 45, y + 86, 239, 12, 239);
 	gfx.PutPixel(x + 46, y + 6, 234, 9, 234);
 	gfx.PutPixel(x + 46, y + 7, 196, 9, 196);
-	gfx.PutPixel(x + 46, y + 8, 255, 1, 255);
+	
 	gfx.PutPixel(x + 46, y + 25, 253, 2, 253);
 	gfx.PutPixel(x + 46, y + 26, 166, 0, 166);
 	gfx.PutPixel(x + 46, y + 27, 82, 0, 82);
@@ -1756,7 +1750,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 47, y + 76, 24, 34, 180);
 	gfx.PutPixel(x + 47, y + 77, 6, 18, 85);
 	gfx.PutPixel(x + 47, y + 78, 40, 8, 32);
-	gfx.PutPixel(x + 47, y + 88, 255, 9, 255);
+	
 	gfx.PutPixel(x + 48, y + 21, 87, 39, 87);
 	gfx.PutPixel(x + 48, y + 22, 11, 22, 11);
 	gfx.PutPixel(x + 48, y + 23, 29, 51, 29);
@@ -2056,10 +2050,10 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 52, y + 76, 24, 34, 180);
 	gfx.PutPixel(x + 52, y + 77, 6, 18, 85);
 	gfx.PutPixel(x + 52, y + 78, 40, 8, 32);
-	gfx.PutPixel(x + 52, y + 88, 255, 9, 255);
+	
 	gfx.PutPixel(x + 53, y + 6, 234, 9, 234);
 	gfx.PutPixel(x + 53, y + 7, 196, 9, 196);
-	gfx.PutPixel(x + 53, y + 8, 255, 1, 255);
+	
 	gfx.PutPixel(x + 53, y + 25, 253, 2, 253);
 	gfx.PutPixel(x + 53, y + 26, 166, 0, 166);
 	gfx.PutPixel(x + 53, y + 27, 82, 0, 82);
@@ -2124,12 +2118,12 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 53, y + 86, 0, 6, 0);
 	gfx.PutPixel(x + 53, y + 87, 27, 19, 27);
 	gfx.PutPixel(x + 53, y + 88, 200, 14, 200);
-	gfx.PutPixel(x + 54, y + 6, 255, 3, 255);
+	
 	gfx.PutPixel(x + 54, y + 7, 13, 12, 13);
 	gfx.PutPixel(x + 54, y + 8, 0, 5, 0);
 	gfx.PutPixel(x + 54, y + 9, 129, 11, 129);
 	gfx.PutPixel(x + 54, y + 10, 254, 9, 254);
-	gfx.PutPixel(x + 54, y + 29, 255, 3, 255);
+	
 	gfx.PutPixel(x + 54, y + 30, 170, 4, 170);
 	gfx.PutPixel(x + 54, y + 31, 82, 0, 82);
 	gfx.PutPixel(x + 54, y + 32, 6, 6, 6);
@@ -2192,8 +2186,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 55, y + 10, 0, 7, 0);
 	gfx.PutPixel(x + 55, y + 11, 36, 3, 36);
 	gfx.PutPixel(x + 55, y + 12, 178, 6, 178);
-	gfx.PutPixel(x + 55, y + 13, 255, 2, 255);
-	gfx.PutPixel(x + 55, y + 33, 255, 4, 255);
+	
 	gfx.PutPixel(x + 55, y + 34, 183, 2, 183);
 	gfx.PutPixel(x + 55, y + 35, 113, 0, 113);
 	gfx.PutPixel(x + 55, y + 36, 45, 0, 45);
@@ -2244,7 +2237,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 55, y + 81, 0, 1, 0);
 	gfx.PutPixel(x + 55, y + 82, 51, 2, 51);
 	gfx.PutPixel(x + 55, y + 83, 169, 6, 169);
-	gfx.PutPixel(x + 55, y + 84, 255, 1, 255);
+	
 	gfx.PutPixel(x + 56, y + 9, 124, 5, 124);
 	gfx.PutPixel(x + 56, y + 10, 37, 71, 37);
 	gfx.PutPixel(x + 56, y + 11, 78, 86, 78);
@@ -2252,7 +2245,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 56, y + 13, 0, 0, 0);
 	gfx.PutPixel(x + 56, y + 14, 110, 2, 110);
 	gfx.PutPixel(x + 56, y + 15, 245, 7, 245);
-	gfx.PutPixel(x + 56, y + 24, 255, 3, 255);
+	
 	gfx.PutPixel(x + 56, y + 38, 251, 9, 251);
 	gfx.PutPixel(x + 56, y + 39, 181, 4, 181);
 	gfx.PutPixel(x + 56, y + 40, 116, 2, 116);
@@ -2296,7 +2289,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 56, y + 78, 0, 2, 0);
 	gfx.PutPixel(x + 56, y + 79, 106, 3, 106);
 	gfx.PutPixel(x + 56, y + 80, 180, 8, 180);
-	gfx.PutPixel(x + 56, y + 81, 255, 7, 255);
+	
 	gfx.PutPixel(x + 57, y + 10, 174, 0, 174);
 	gfx.PutPixel(x + 57, y + 11, 82, 114, 82);
 	gfx.PutPixel(x + 57, y + 12, 141, 147, 141);
@@ -2306,7 +2299,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 57, y + 16, 23, 0, 23);
 	gfx.PutPixel(x + 57, y + 17, 139, 5, 139);
 	gfx.PutPixel(x + 57, y + 18, 249, 6, 249);
-	gfx.PutPixel(x + 57, y + 42, 255, 8, 255);
+	
 	gfx.PutPixel(x + 57, y + 43, 75, 19, 73);
 	gfx.PutPixel(x + 57, y + 44, 0, 0, 0);
 	gfx.PutPixel(x + 57, y + 45, 0, 2, 13);
@@ -2322,7 +2315,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 57, y + 55, 25, 25, 25);
 	gfx.PutPixel(x + 57, y + 56, 20, 35, 20);
 	gfx.PutPixel(x + 57, y + 57, 29, 10, 29);
-	gfx.PutPixel(x + 57, y + 58, 255, 9, 255);
+	
 	gfx.PutPixel(x + 57, y + 59, 56, 7, 48);
 	gfx.PutPixel(x + 57, y + 60, 27, 55, 71);
 	gfx.PutPixel(x + 57, y + 61, 61, 63, 61);
@@ -2353,7 +2346,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 58, y + 19, 20, 13, 20);
 	gfx.PutPixel(x + 58, y + 20, 99, 0, 99);
 	gfx.PutPixel(x + 58, y + 21, 183, 0, 183);
-	gfx.PutPixel(x + 58, y + 39, 255, 10, 255);
+	
 	gfx.PutPixel(x + 58, y + 40, 155, 10, 148);
 	gfx.PutPixel(x + 58, y + 41, 30, 11, 27);
 	gfx.PutPixel(x + 58, y + 42, 0, 0, 0);
@@ -2413,11 +2406,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 59, y + 26, 187, 3, 187);
 	gfx.PutPixel(x + 59, y + 27, 223, 0, 223);
 	gfx.PutPixel(x + 59, y + 28, 247, 11, 247);
-	gfx.PutPixel(x + 59, y + 29, 255, 10, 255);
-	gfx.PutPixel(x + 59, y + 30, 255, 7, 255);
-	gfx.PutPixel(x + 59, y + 31, 255, 8, 255);
-	gfx.PutPixel(x + 59, y + 32, 255, 7, 255);
-	gfx.PutPixel(x + 59, y + 33, 255, 14, 255);
+	
 	gfx.PutPixel(x + 59, y + 34, 234, 7, 219);
 	gfx.PutPixel(x + 59, y + 35, 200, 10, 195);
 	gfx.PutPixel(x + 59, y + 36, 157, 11, 168);
@@ -2440,7 +2429,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 59, y + 53, 47, 47, 47);
 	gfx.PutPixel(x + 59, y + 54, 0, 0, 0);
 	gfx.PutPixel(x + 59, y + 55, 0, 1, 0);
-	gfx.PutPixel(x + 59, y + 56, 255, 11, 255);
+	
 	gfx.PutPixel(x + 59, y + 61, 37, 15, 35);
 	gfx.PutPixel(x + 59, y + 62, 28, 36, 30);
 	gfx.PutPixel(x + 59, y + 63, 22, 24, 28);
@@ -2469,7 +2458,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 59, y + 86, 2, 17, 2);
 	gfx.PutPixel(x + 59, y + 87, 67, 1, 67);
 	gfx.PutPixel(x + 59, y + 88, 166, 7, 166);
-	gfx.PutPixel(x + 59, y + 89, 255, 6, 255);
+	
 	gfx.PutPixel(x + 60, y + 14, 223, 0, 223);
 	gfx.PutPixel(x + 60, y + 15, 118, 89, 118);
 	gfx.PutPixel(x + 60, y + 16, 180, 208, 180);
@@ -2749,7 +2738,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 63, y + 84, 108, 109, 108);
 	gfx.PutPixel(x + 63, y + 85, 52, 74, 52);
 	gfx.PutPixel(x + 63, y + 86, 22, 2, 22);
-	gfx.PutPixel(x + 63, y + 87, 255, 5, 255);
+	
 	gfx.PutPixel(x + 64, y + 22, 141, 0, 141);
 	gfx.PutPixel(x + 64, y + 23, 94, 102, 94);
 	gfx.PutPixel(x + 64, y + 24, 192, 215, 192);
@@ -3118,7 +3107,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 69, y + 86, 32, 34, 47);
 	gfx.PutPixel(x + 69, y + 87, 38, 46, 133);
 	gfx.PutPixel(x + 69, y + 88, 0, 26, 0);
-	gfx.PutPixel(x + 69, y + 89, 255, 1, 255);
+	
 	gfx.PutPixel(x + 70, y + 35, 198, 0, 198);
 	gfx.PutPixel(x + 70, y + 36, 76, 2, 76);
 	gfx.PutPixel(x + 70, y + 37, 77, 109, 77);
@@ -3222,7 +3211,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 71, y + 85, 17, 21, 9);
 	gfx.PutPixel(x + 71, y + 86, 0, 0, 0);
 	gfx.PutPixel(x + 71, y + 87, 53, 8, 50);
-	gfx.PutPixel(x + 71, y + 88, 255, 5, 255);
+	
 	gfx.PutPixel(x + 72, y + 42, 117, 0, 117);
 	gfx.PutPixel(x + 72, y + 43, 105, 148, 105);
 	gfx.PutPixel(x + 72, y + 44, 210, 230, 210);
@@ -3310,7 +3299,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 73, y + 82, 0, 6, 17);
 	gfx.PutPixel(x + 73, y + 83, 0, 0, 0);
 	gfx.PutPixel(x + 73, y + 84, 139, 14, 140);
-	gfx.PutPixel(x + 73, y + 85, 255, 2, 255);
+	
 	gfx.PutPixel(x + 74, y + 47, 211, 0, 210);
 	gfx.PutPixel(x + 74, y + 48, 118, 0, 118);
 	gfx.PutPixel(x + 74, y + 49, 46, 0, 46);
@@ -3347,7 +3336,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 74, y + 80, 15, 18, 57);
 	gfx.PutPixel(x + 74, y + 81, 0, 0, 0);
 	gfx.PutPixel(x + 74, y + 82, 74, 8, 73);
-	gfx.PutPixel(x + 74, y + 83, 255, 8, 255);
+	
 	gfx.PutPixel(x + 75, y + 51, 209, 0, 209);
 	gfx.PutPixel(x + 75, y + 52, 125, 0, 125);
 	gfx.PutPixel(x + 75, y + 53, 48, 0, 48);
@@ -3442,7 +3431,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 78, y + 59, 86, 160, 110);
 	gfx.PutPixel(x + 78, y + 60, 150, 226, 190);
 	gfx.PutPixel(x + 78, y + 61, 120, 74, 112);
-	gfx.PutPixel(x + 78, y + 63, 255, 3, 255);
+	
 	gfx.PutPixel(x + 78, y + 64, 114, 12, 114);
 	gfx.PutPixel(x + 78, y + 65, 0, 2, 0);
 	gfx.PutPixel(x + 78, y + 66, 0, 4, 0);
@@ -3474,7 +3463,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 79, y + 61, 218, 255, 255);
 	gfx.PutPixel(x + 79, y + 62, 58, 94, 63);
 	gfx.PutPixel(x + 79, y + 63, 119, 0, 114);
-	gfx.PutPixel(x + 79, y + 65, 255, 5, 255);
+	
 	gfx.PutPixel(x + 79, y + 66, 77, 13, 76);
 	gfx.PutPixel(x + 79, y + 67, 0, 0, 0);
 	gfx.PutPixel(x + 79, y + 68, 0, 4, 5);
@@ -3520,7 +3509,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 80, y + 77, 10, 13, 21);
 	gfx.PutPixel(x + 80, y + 78, 0, 5, 0);
 	gfx.PutPixel(x + 80, y + 79, 207, 13, 207);
-	gfx.PutPixel(x + 80, y + 86, 255, 9, 255);
+	
 	gfx.PutPixel(x + 80, y + 87, 247, 0, 247);
 	gfx.PutPixel(x + 80, y + 88, 209, 5, 209);
 	gfx.PutPixel(x + 80, y + 89, 178, 7, 178);
@@ -3555,7 +3544,7 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 81, y + 87, 170, 0, 170);
 	gfx.PutPixel(x + 81, y + 88, 201, 2, 201);
 	gfx.PutPixel(x + 81, y + 89, 231, 2, 231);
-	gfx.PutPixel(x + 81, y + 91, 255, 6, 255);
+	
 	gfx.PutPixel(x + 82, y + 63, 230, 15, 226);
 	gfx.PutPixel(x + 82, y + 64, 172, 170, 166);
 	gfx.PutPixel(x + 82, y + 65, 194, 254, 235);
@@ -3736,7 +3725,6 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 91, y + 90, 173, 193, 173);
 	gfx.PutPixel(x + 91, y + 91, 53, 65, 53);
 	gfx.PutPixel(x + 91, y + 92, 142, 0, 142);
-	gfx.PutPixel(x + 91, y + 93, 255, 3, 255);
 	gfx.PutPixel(x + 92, y + 86, 191, 0, 191);
 	gfx.PutPixel(x + 92, y + 87, 159, 30, 159);
 	gfx.PutPixel(x + 92, y + 88, 116, 45, 116);
@@ -3746,7 +3734,6 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 92, y + 92, 31, 73, 31);
 	gfx.PutPixel(x + 92, y + 93, 0, 2, 0);
 	gfx.PutPixel(x + 92, y + 94, 140, 11, 140);
-	gfx.PutPixel(x + 92, y + 95, 255, 1, 255);
 	gfx.PutPixel(x + 93, y + 91, 234, 0, 234);
 	gfx.PutPixel(x + 93, y + 92, 191, 4, 191);
 	gfx.PutPixel(x + 93, y + 93, 148, 10, 148);
