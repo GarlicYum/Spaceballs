@@ -48,7 +48,10 @@ void Game::Go()
 	ComposeFrame();
 	gfx.EndFrame();
 }
-
+/*
+I want to keep UpdateModel nice and neat. 
+Anything that has to do with the ship should be part of ship.Update
+*/
 void Game::UpdateModel()
 {
 	ship.Update(wnd);
@@ -80,6 +83,7 @@ void Game::DrawStars()
 	}
 }
 
+// same thing as in updatemodel goes for composeframe
 void Game::ComposeFrame()
 {
 	DrawStars();

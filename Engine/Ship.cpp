@@ -1,7 +1,8 @@
 #include "MainWindow.h"
 #include "Ship.h"
 
-void Ship::Draw(Graphics& gfx)
+// draws the ship and draws spawned bullets and anything that has to do with ship
+void Ship::Draw(Graphics& gfx) 
 {
 	gfx.PutPixel(x + 6, y + 91, 234, 0, 234);
 	gfx.PutPixel(x + 6, y + 92, 191, 4, 191);
@@ -3752,12 +3753,10 @@ void Ship::Draw(Graphics& gfx)
 
 void Ship::FireBullet()
 {
-	
-	
 	if (shotsFired == false)
 	{
 		bullet[bulletCounter].Spawn(x + canonPos, y);
-		gun.Play(0.5F, 0.3F);
+		gun.Play(0.5F, 0.5F);
 		++bulletCounter;
 		if (bulletCounter > 2)
 		{
@@ -3815,8 +3814,10 @@ void Ship::PlayerInput(MainWindow & wnd)
 	{
 		shotsFired = false;
 	}
-}
+}// gets the player input
 
+// updates should be neat. we use player input function
+// this way we can easily shut off player input if there's a cutscene etc
 void Ship::Update(MainWindow & wnd)
 {
 	PlayerInput(wnd);
