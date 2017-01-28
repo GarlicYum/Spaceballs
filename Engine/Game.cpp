@@ -24,7 +24,8 @@
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd )
+	gfx( wnd ),
+	mainSong(L"actionnd.wav")
 {
 	std::mt19937 rng;
 	std::uniform_int_distribution<int> xDist(0, 790);
@@ -37,6 +38,7 @@ Game::Game( MainWindow& wnd )
 	{
 		starB[i].Spawn(xDist(rng), yDist(rng), 6);
 	}
+	mainSong.Play(1.0F, 0.5F);
 }
 
 void Game::Go()

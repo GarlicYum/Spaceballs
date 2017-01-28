@@ -17,8 +17,8 @@ private:
 	int width = 100;
 	int height = 100;
 	int canonPos = 50;
-	int vx = 5;
-	int vy = 5;
+	int vx = 6;
+	int vy = 6;
 	static constexpr int nBullets = 3;
 	int bulletCounter = 0;
 	Bullet bullet[nBullets];

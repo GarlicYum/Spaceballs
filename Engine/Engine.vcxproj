@@ -234,6 +234,12 @@
   <ItemGroup>
     <Image Include="Chili.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="ACTION.wav" />
+    <Media Include="actionnd.wav" />
+    <Media Include="Butka.wav" />
+    <Media Include="JAKTEN.wav" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

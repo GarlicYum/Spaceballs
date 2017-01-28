@@ -27,6 +27,7 @@
 #include "Star.h"
 #include <random>
 #include "Bullet.h"
+#include "Sound.h"
 
 class Game
 {
@@ -55,5 +56,6 @@ private:
 	int starY = 2;
 	static constexpr int nBigStars = 20;
 	Star starB[nBigStars];
+	Sound mainSong;
 	/********************************/
 };

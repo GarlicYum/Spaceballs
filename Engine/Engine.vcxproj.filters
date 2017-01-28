@@ -16,6 +16,9 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{8b6c92a8-f65d-451e-80e3-d65773602b92}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Media">
+      <UniqueIdentifier>{146eceb6-cfea-4e90-9ae0-d269120a1168}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChiliWin.h">
@@ -119,5 +122,19 @@
     <Image Include="Chili.ico">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="JAKTEN.wav">
+      <Filter>Media</Filter>
+    </Media>
+    <Media Include="ACTION.wav">
+      <Filter>Media</Filter>
+    </Media>
+    <Media Include="Butka.wav">
+      <Filter>Media</Filter>
+    </Media>
+    <Media Include="actionnd.wav">
+      <Filter>Media</Filter>
+    </Media>
   </ItemGroup>
 </Project>
