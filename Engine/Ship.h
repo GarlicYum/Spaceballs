@@ -9,6 +9,7 @@ public:
 	void FireBullet();
 	void ClampScreen();
 	void Update(MainWindow& wnd);
+	void PlayerInput(MainWindow& wnd);
 
 private:
 	int x = 300;

@@ -3801,9 +3801,8 @@ void Ship::ClampScreen()
 	}
 }
 
-void Ship::Update(MainWindow& wnd)
+void Ship::PlayerInput(MainWindow & wnd)
 {
-	
 	if (wnd.kbd.KeyIsPressed(VK_UP))
 	{
 		y -= vy;
@@ -3828,7 +3827,11 @@ void Ship::Update(MainWindow& wnd)
 	{
 		shotsFired = false;
 	}
-	
+}
+
+void Ship::Update(MainWindow & wnd)
+{
+	PlayerInput(wnd);
 
 	for (int i = 0; i < nBullets; i++)
 	{
