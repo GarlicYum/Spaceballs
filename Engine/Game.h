@@ -40,7 +40,8 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
-	
+	void UpdateStars();
+	void DrawStars();
 	/********************************/
 private:
 	MainWindow& wnd;
@@ -48,9 +49,6 @@ private:
 	/********************************/
 	/*  User Variables              */
 	Ship ship;
-	static constexpr int nBullets = 3;
-	int bulletCounter = 0;
-	Bullet bullet[nBullets];
 	static constexpr int nStars = 100;
 	Star star[nStars];
 	int starX = 300;
@@ -58,6 +56,6 @@ private:
 	static constexpr int nBigStars = 20;
 	Star starB[nBigStars];
 	bool isShooting = false;
-	bool shotsFired = false;
+	
 	/********************************/
 };

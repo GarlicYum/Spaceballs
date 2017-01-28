@@ -1,6 +1,5 @@
+#include "MainWindow.h"
 #include "Ship.h"
-
-
 
 void Ship::Draw(Graphics& gfx)
 {
@@ -3755,6 +3754,34 @@ void Ship::Draw(Graphics& gfx)
 	gfx.PutPixel(x + 93, y + 95, 73, 22, 73);
 	gfx.PutPixel(x + 93, y + 96, 197, 31, 197);
 
+	for (int i = 0; i < nBullets; i++)
+	{
+		if (bullet[i].HasSpawned())
+		{
+			bullet[i].Draw(gfx);
+		}
+	}
+}
+
+void Ship::FireBullet(MainWindow& wnd)
+{
+	if (wnd.kbd.KeyIsPressed(VK_SPACE))
+	{
+		if (shotsFired == false)
+		{
+			bullet[bulletCounter].Spawn(x + canonPos, y);
+			++bulletCounter;
+			if (bulletCounter > 2)
+			{
+				bulletCounter = 0;
+			}
+			shotsFired = true;
+		}
+	}
+	else
+	{
+		shotsFired = false;
+	}
 }
 
 void Ship::ClampScreen()
@@ -3799,5 +3826,15 @@ void Ship::Update()
 {
 	x += vx;
 	y += vy;
+
+	for (int i = 0; i < nBullets; i++)
+	{
+		if (bullet[i].HasSpawned())
+		{
+			bullet[i].Update();
+		}
+	}
+
+	ClampScreen();
 }
 

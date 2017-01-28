@@ -69,37 +69,13 @@ void Game::UpdateModel()
 	}
 	ship.SetVelocity(vx, vy);
 
-
-	if (wnd.kbd.KeyIsPressed(VK_SPACE))
-	{
-		if (shotsFired == false)
-		{
-			bullet[bulletCounter].Spawn(ship.GetCannonX(), ship.GetCannonY());
-			++bulletCounter;
-			if (bulletCounter > 2)
-			{
-				bulletCounter = 0;
-			}
-			shotsFired = true;
-		}
-	}
-	else
-	{
-		shotsFired = false;
-	}
-
+	ship.FireBullet(wnd);
 	ship.Update();
-	ship.ClampScreen();
+	UpdateStars();
+}
 
-	for (int i = 0; i < nBullets; i++)
-	{
-		if (bullet[i].HasSpawned())
-		{
-			bullet[i].Update();
-		}
-	}
-	
-	
+void Game::UpdateStars()
+{
 	for (int i = 0; i < nStars; i++)
 	{
 		star[i].Update();
@@ -111,7 +87,7 @@ void Game::UpdateModel()
 	}
 }
 
-void Game::ComposeFrame()
+void Game::DrawStars()
 {
 	for (int i = 0; i < nStars; i++)
 	{
@@ -121,14 +97,10 @@ void Game::ComposeFrame()
 	{
 		starB[i].DrawBig(gfx);
 	}
-	
-	ship.Draw(gfx);
+}
 
-	for (int i = 0; i < nBullets; i++)
-	{
-		if (bullet[i].HasSpawned())
-		{
-			bullet[i].Draw(gfx);
-		}
-	}
+void Game::ComposeFrame()
+{
+	DrawStars();
+	ship.Draw(gfx);
 }
