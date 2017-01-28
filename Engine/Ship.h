@@ -1,6 +1,7 @@
 #pragma once
 #include "Graphics.h"
 #include "Bullet.h"
+#include "Sound.h"
 
 class Ship
 {
@@ -23,4 +24,5 @@ private:
 	int bulletCounter = 0;
 	Bullet bullet[nBullets];
 	bool shotsFired = false;
+	Sound gun = L"shitgun.wav";
 };

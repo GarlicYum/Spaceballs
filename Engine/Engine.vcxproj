@@ -239,6 +239,8 @@
     <Media Include="actionnd.wav" />
     <Media Include="Butka.wav" />
     <Media Include="JAKTEN.wav" />
+    <Media Include="shitgun.wav" />
+    <Media Include="shitgun2.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

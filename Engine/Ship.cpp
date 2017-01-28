@@ -3757,6 +3757,7 @@ void Ship::FireBullet()
 	if (shotsFired == false)
 	{
 		bullet[bulletCounter].Spawn(x + canonPos, y);
+		gun.Play(0.5F, 0.3F);
 		++bulletCounter;
 		if (bulletCounter > 2)
 		{
