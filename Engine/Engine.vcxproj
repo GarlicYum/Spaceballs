@@ -144,6 +144,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="Health.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="Mouse.h" />
@@ -158,6 +159,7 @@
     <ClCompile Include="DXErr.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="Health.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
@@ -235,10 +237,7 @@
     <Image Include="Chili.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="ACTION.wav" />
     <Media Include="actionnd.wav" />
-    <Media Include="Butka.wav" />
-    <Media Include="JAKTEN.wav" />
     <Media Include="shitgun.wav" />
     <Media Include="shitgun2.wav" />
   </ItemGroup>

@@ -333,6 +333,17 @@ void Graphics::DrawCircle(int x, int y, int r, Color c)
 	}
 }
 
+void Graphics::DrawSquare(int x, int y, int width, int height, Color c)
+{
+	for (int i = x; i < x + width; i++)
+	{
+		for (int j = y; j < y + height; j++)
+		{
+			PutPixel(i, j, c);
+		}
+	}
+}
+
 
 //////////////////////////////////////////////////
 //           Graphics Exception

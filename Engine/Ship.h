@@ -2,6 +2,7 @@
 #include "Graphics.h"
 #include "Bullet.h"
 #include "Sound.h"
+#include "Health.h"
 
 class Ship
 {
@@ -25,4 +26,7 @@ private:
 	Bullet bullet[nBullets];
 	bool shotsFired = false;
 	Sound gun = L"shitgun.wav";
+	Health health;
+	bool healthChanging = false;
+	int padding = 35;
 };
