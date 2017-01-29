@@ -56,6 +56,7 @@ void Game::UpdateModel()
 {
 	ship.Update(wnd);
 	UpdateStars();
+	mine.Update(200, 50);
 }
 
 void Game::UpdateStars()
@@ -86,6 +87,8 @@ void Game::DrawStars()
 // same thing as in updatemodel goes for composeframe
 void Game::ComposeFrame()
 {
+	
 	DrawStars();
 	ship.Draw(gfx);
+	mine.Draw(gfx);
 }

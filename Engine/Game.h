@@ -29,6 +29,7 @@
 #include "Bullet.h"
 #include "Sound.h"
 #include "Health.h"
+#include "Mine.h"
 
 class Game
 {
@@ -59,5 +60,6 @@ private:
 	Star starB[nBigStars];
 	Sound mainSong;
 	Health health;
+	Mine mine;
 	/********************************/
 };
