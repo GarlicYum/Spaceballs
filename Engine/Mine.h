@@ -4,13 +4,17 @@
 class Mine
 {
 public:
-	int Detonate();
-	void Update(int X, int Y);
+	void DetectCollision();
+	void Detonate();
+	void Update();
 	void Draw(Graphics& gfx);
+	void SetPos(int X);
 private:
-	int x;
-	int y;
+	int x = 0;
+	int y = 0;
 	int vy = 2;
+	int explosionCounter = 0;
+	static constexpr int explosionEnd = 30;
 	bool isDetonated = false;
 	bool gotPosition = false;
 	static constexpr int damage = 40;

@@ -56,7 +56,7 @@ void Game::UpdateModel()
 {
 	ship.Update(wnd);
 	UpdateStars();
-	mine.Update(200, 50);
+	mineM.Update();
 }
 
 void Game::UpdateStars()
@@ -90,5 +90,5 @@ void Game::ComposeFrame()
 	
 	DrawStars();
 	ship.Draw(gfx);
-	mine.Draw(gfx);
+	mineM.Draw(gfx);
 }
