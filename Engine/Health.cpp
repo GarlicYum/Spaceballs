@@ -22,7 +22,7 @@ void Health::Draw(Graphics& gfx)
 	gfx.DrawSquare(x, y, healthAmount, height, c);
 }
 
-bool Health::HasHealth()
+bool Health::HasHealth() const
 {
 	return
 		healthAmount > 0;
