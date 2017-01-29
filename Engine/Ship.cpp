@@ -3823,6 +3823,26 @@ void Ship::PlayerInput(MainWindow & wnd)
 	}
 }
 
+int Ship::GetX() const
+{
+	return x;
+}
+
+int Ship::GetY() const
+{
+	return y;
+}
+
+int Ship::GetWidth() const
+{
+	return width;
+}
+
+int Ship::GetHeight() const
+{
+	return height;
+}
+
 // updates should be neat. we use player input function
 // this way we can easily shut off player input if there's a cutscene etc
 void Ship::Update(MainWindow & wnd)

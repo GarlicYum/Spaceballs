@@ -12,6 +12,10 @@ public:
 	void ClampScreen();
 	void Update(MainWindow& wnd);
 	void PlayerInput(MainWindow& wnd);
+	int GetX() const;
+	int GetY() const;
+	int GetWidth() const;
+	int GetHeight() const;
 
 private:
 	int x = 300;
