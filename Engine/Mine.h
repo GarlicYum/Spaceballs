@@ -16,7 +16,7 @@ public:
 private:
 	int x = 0;
 	int y = 0;
-	int vy = 2;
+	int vy = 6;
 	int explosionCounter = 0;
 	static constexpr int explosionEnd = 30;
 	bool isDetonated = false;

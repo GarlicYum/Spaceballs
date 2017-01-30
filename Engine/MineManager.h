@@ -9,9 +9,9 @@ public:
 	void Update(Ship& ship);
 	void Draw(Graphics & gfx);
 private:
-	static constexpr int nMinesMax = 30;
+	static constexpr int nMinesMax = 130;
 	int nMines = 0;
 	int mineCounter = 0;
-	int newMine = 180;
+	int newMine = 30;
 	Mine mine[nMinesMax];
 };
