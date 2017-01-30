@@ -90,5 +90,5 @@ void Game::ComposeFrame()
 	
 	DrawStars();
 	ship.Draw(gfx);
-	mineM.Draw(gfx);
+	mineM.Draw(gfx, ship);
 }

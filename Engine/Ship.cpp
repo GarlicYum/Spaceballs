@@ -3834,6 +3834,11 @@ void Ship::Damage(int damage)
 	health.Damage(damage);
 }
 
+bool Ship::HasHealth() const
+{
+	return health.HasHealth();
+}
+
 int Ship::GetX() 
 {
 	return x;
@@ -3858,7 +3863,7 @@ int Ship::GetHeight()
 // this way we can easily shut off player input if there's a cutscene etc
 void Ship::Update(MainWindow & wnd)
 {
-	if (health.HasHealth())
+	if (HasHealth())
 	{
 		PlayerInput(wnd);
 

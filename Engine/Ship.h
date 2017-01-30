@@ -14,6 +14,7 @@ public:
 	void PlayerInput(MainWindow& wnd);
 	void Restore(int restore);
 	void Damage(int damage);
+	bool HasHealth() const;
 	int GetX();
 	int GetY();
 	int GetWidth();

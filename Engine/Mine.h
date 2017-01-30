@@ -10,7 +10,7 @@ class Mine
 public:
 	bool DetectCollision(Ship& ship);
 	void Update(Ship& ship);
-	void Draw(Graphics& gfx);
+	void Draw(Graphics& gfx, Ship& ship);
 	void SetPos(int X);
 	bool isActive();
 private:

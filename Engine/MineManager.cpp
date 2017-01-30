@@ -31,10 +31,10 @@ void MineManager::Update(Ship& ship)
 }
 
 //Draws the mines 
-void MineManager::Draw(Graphics & gfx)
+void MineManager::Draw(Graphics & gfx, Ship& ship)
 {
 	for (int i = 0; i < nMines; i++)
 	{
-		mine[i].Draw(gfx);
+		mine[i].Draw(gfx, ship);
 	}
 }
