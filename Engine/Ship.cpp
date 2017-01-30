@@ -3828,6 +3828,7 @@ void Ship::Restore(int restore)
 	health.Restore(restore);
 }
 
+//gets called when a mine is detonated
 void Ship::Damage(int damage)
 {
 	health.Damage(damage);

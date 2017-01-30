@@ -1,4 +1,7 @@
 #include "Mine.h"
+
+//detects if the mine collides with a ship, passing in reference to the ship so mine knows its location
+//returns a bool, this function will get called in mines update function
 bool Mine::DetectCollision(Ship& ship)
 {
 	const int mRight = x + width;
@@ -13,12 +16,15 @@ bool Mine::DetectCollision(Ship& ship)
 		y <= sBottom;
 }
 
+//updates the mine, takes ship as argument so it can call the detectcollision function
 void Mine::Update(Ship& ship)
 {
 	if (!isDetonated)
 	{
 		y += vy;
 	}
+	//if mine is detonated it stops moving and explosion counter starts counting,
+	//when the counter reaches explosion end then the explosion will no longer be displayed on screen
 	else
 	{
 		explosionCounter++;
@@ -26,8 +32,8 @@ void Mine::Update(Ship& ship)
 	if (DetectCollision(ship))
 	{
 		isDetonated = true;
-		if (!isDamaged)
-		{
+		if (!isDamaged)      //if not isdamaged then the ship will take damage and isdamaage becomes true
+		{                      // this way the damanage is dealt only one time
 			ship.Damage(damage);
 			explosion.Play(0.8F, 1.0F);
 			isDamaged = true;
@@ -7793,11 +7799,13 @@ void Mine::Draw(Graphics& gfx)
 	}
 }
 
+//rng will determine the mines x pos, gets set in mine manager
 void Mine::SetPos(int X)
 {
 	x = X;
 }
 
+//this will get used in mine manager to not update mine if it isn't active
 bool Mine::isActive()
 {
 	return

@@ -1,5 +1,6 @@
 #include "MineManager.h"
 
+//constructor sets x pos for all the mines
 MineManager::MineManager()
 {
 	std::mt19937 rng;
@@ -10,6 +11,7 @@ MineManager::MineManager()
 	}
 }
 
+//updates the active mines, take ship as argument since it's needed in mines update function
 void MineManager::Update(Ship& ship)
 {
 	for (int i = 0; i < nMines; i++)
@@ -18,6 +20,8 @@ void MineManager::Update(Ship& ship)
 		mine[i].Update(ship);
 	}
 
+	//when mine counter reaches newMine a new mine will be drawn on screen
+	//unless nMines == nMinesMax because that's the end of the array, there are no more mines to be drawn
 	mineCounter++;
 	if (mineCounter == newMine && nMines != nMinesMax)
 	{
@@ -26,6 +30,7 @@ void MineManager::Update(Ship& ship)
 	}
 }
 
+//Draws the mines 
 void MineManager::Draw(Graphics & gfx)
 {
 	for (int i = 0; i < nMines; i++)
