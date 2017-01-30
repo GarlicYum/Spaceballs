@@ -3857,16 +3857,20 @@ int Ship::GetHeight()
 // this way we can easily shut off player input if there's a cutscene etc
 void Ship::Update(MainWindow & wnd)
 {
-	PlayerInput(wnd);
-
-	for (int i = 0; i < nBullets; i++)
+	if (health.HasHealth())
 	{
-		if (bullet[i].HasSpawned())
-		{
-			bullet[i].Update();
-		}
-	}
+		PlayerInput(wnd);
 
-	ClampScreen();
+		for (int i = 0; i < nBullets; i++)
+		{
+			if (bullet[i].HasSpawned())
+			{
+				bullet[i].Update();
+			}
+		}
+
+		ClampScreen();
+	}
+	
 }
 
