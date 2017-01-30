@@ -151,5 +151,8 @@
     <Media Include="shitgun2.wav">
       <Filter>Media</Filter>
     </Media>
+    <Media Include="explo.wav">
+      <Filter>Media</Filter>
+    </Media>
   </ItemGroup>
 </Project>

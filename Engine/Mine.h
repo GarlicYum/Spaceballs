@@ -3,6 +3,7 @@
 #include "Graphics.h"
 #include "Ship.h"
 #include "Health.h"
+#include "Sound.h"
 
 class Mine
 {
@@ -24,4 +25,5 @@ private:
 	static constexpr int width = 50;
 	static constexpr int height = 50;
 	bool isDamaged = false;
+	Sound explosion = L"explo.wav";
 };

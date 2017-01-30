@@ -29,6 +29,7 @@ void Mine::Update(Ship& ship)
 		if (!isDamaged)
 		{
 			ship.Damage(damage);
+			explosion.Play(0.8F, 1.0F);
 			isDamaged = true;
 		}
 		
