@@ -4,7 +4,7 @@
 MineManager::MineManager()
 {
 	std::mt19937 rng;
-	std::uniform_int_distribution<int> xDist(0, 700);
+	std::uniform_real_distribution<float> xDist(0.0f, 700.0f);
 	for (int i = 0; i < nMinesMax; i++)
 	{
 		mine[i].SetPos(xDist(rng));
@@ -12,17 +12,17 @@ MineManager::MineManager()
 }
 
 //updates the active mines, take ship as argument since it's needed in mines update function
-void MineManager::Update(Ship& ship)
+void MineManager::Update(Ship& ship, float dt)
 {
 	for (int i = 0; i < nMines; i++)
 	{
 		if (mine[i].isActive())
-		mine[i].Update(ship);
+		mine[i].Update(ship, dt);
 	}
 
 	//when mine counter reaches newMine a new mine will be drawn on screen
 	//unless nMines == nMinesMax because that's the end of the array, there are no more mines to be drawn
-	mineCounter++;
+	mineCounter ++;
 	if (mineCounter == newMine && nMines != nMinesMax)
 	{
 		nMines++;

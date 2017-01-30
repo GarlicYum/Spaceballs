@@ -1,82 +1,86 @@
 #include "Star.h"
 
-void Star::Spawn(int X, int Y, int Size)
+void Star::Spawn(float X, float Y, float Size)
 {
 	x = X;
 	y = Y;
 	size = Size;
 }
 
-void Star::Update()
+void Star::Update(float dt)
 {
-	y++;
+	y += vy * dt;
 	if (y + size >= Graphics::ScreenHeight)
 	{
-		y = 3;
+		y = 3.0f;
 	}
 }
 
 void Star::Draw(Graphics & gfx)
 {
-	gfx.PutPixel(x, y, Colors::Cyan);
-	gfx.PutPixel(x +1, y, Colors::Cyan);
-	gfx.PutPixel(x -1, y, Colors::Cyan);
-	gfx.PutPixel(x, y + 1, Colors::Cyan);
-	gfx.PutPixel(x, y - 1, Colors::Cyan);
-	gfx.PutPixel(x +2, y, Colors::Blue);
-	gfx.PutPixel(x -2, y, Colors::Blue);
-	gfx.PutPixel(x + 1, y +1, Colors::Blue);
-	gfx.PutPixel(x - 1, y +1, Colors::Blue);
-	gfx.PutPixel(x + 1, y - 1, Colors::Blue);
-	gfx.PutPixel(x - 1, y - 1, Colors::Blue);
-	gfx.PutPixel(x, y - 2, Colors::Blue);
-	gfx.PutPixel(x, y + 2, Colors::Blue);
+	const int x_int = int(x);
+	const int y_int = int(y);
+	gfx.PutPixel(x_int, y_int, Colors::Cyan);
+	gfx.PutPixel(x_int+1, y_int, Colors::Cyan);
+	gfx.PutPixel(x_int-1, y_int, Colors::Cyan);
+	gfx.PutPixel(x_int, y_int+ 1, Colors::Cyan);
+	gfx.PutPixel(x_int, y_int- 1, Colors::Cyan);
+	gfx.PutPixel(x_int+2, y_int, Colors::Blue);
+	gfx.PutPixel(x_int-2, y_int, Colors::Blue);
+	gfx.PutPixel(x_int+ 1, y_int+1, Colors::Blue);
+	gfx.PutPixel(x_int- 1, y_int+1, Colors::Blue);
+	gfx.PutPixel(x_int+ 1, y_int- 1, Colors::Blue);
+	gfx.PutPixel(x_int- 1, y_int- 1, Colors::Blue);
+	gfx.PutPixel(x_int, y_int- 2, Colors::Blue);
+	gfx.PutPixel(x_int, y_int+ 2, Colors::Blue);
 }
 
 void Star::DrawBig(Graphics & gfx)
 {
-	gfx.PutPixel(x, y, Colors::Cyan);
-	gfx.PutPixel(x +1, y, Colors::Cyan);
-	gfx.PutPixel(x + 2, y, Colors::Cyan);
-	gfx.PutPixel(x, y+ 1, Colors::Cyan);
-	gfx.PutPixel(x + 1, y +1, Colors::Cyan);
-	gfx.PutPixel(x + 2, y +1, Colors::Cyan);
-	gfx.PutPixel(x, y +2, Colors::Cyan);
-	gfx.PutPixel(x + 1, y +2, Colors::Cyan);
-	gfx.PutPixel(x + 2, y +2, Colors::Cyan);
-	gfx.PutPixel(x+1, y -1, Colors::Cyan);
-	gfx.PutPixel(x + 1, y - 2, Colors::Cyan);
-	gfx.PutPixel(x + 1, y + 3, Colors::Cyan);
-	gfx.PutPixel(x + 1, y + 4, Colors::Cyan);
-	gfx.PutPixel(x + 3, y + 1, Colors::Cyan);
-	gfx.PutPixel(x + 4, y + 1, Colors::Cyan);
-	gfx.PutPixel(x - 1, y + 1, Colors::Cyan);
-	gfx.PutPixel(x - 2, y + 1, Colors::Cyan);
+	const int x_int = int(x);
+	const int y_int = int(y);
+	gfx.PutPixel(x_int, y_int, Colors::Cyan);
+	gfx.PutPixel(x_int+1, y_int, Colors::Cyan);
+	gfx.PutPixel(x_int+ 2, y_int, Colors::Cyan);
+	gfx.PutPixel(x_int, y_int+ 1, Colors::Cyan);
+	gfx.PutPixel(x_int+ 1, y_int+1, Colors::Cyan);
+	gfx.PutPixel(x_int+ 2, y_int+1, Colors::Cyan);
+	gfx.PutPixel(x_int, y_int+2, Colors::Cyan);
+	gfx.PutPixel(x_int+ 1, y_int+2, Colors::Cyan);
+	gfx.PutPixel(x_int+ 2, y_int+2, Colors::Cyan);
+	gfx.PutPixel(x_int+1, y_int-1, Colors::Cyan);
+	gfx.PutPixel(x_int+ 1, y_int- 2, Colors::Cyan);
+	gfx.PutPixel(x_int+ 1, y_int+ 3, Colors::Cyan);
+	gfx.PutPixel(x_int+ 1, y_int+ 4, Colors::Cyan);
+	gfx.PutPixel(x_int+ 3, y_int+ 1, Colors::Cyan);
+	gfx.PutPixel(x_int+ 4, y_int+ 1, Colors::Cyan);
+	gfx.PutPixel(x_int- 1, y_int+ 1, Colors::Cyan);
+	gfx.PutPixel(x_int- 2, y_int+ 1, Colors::Cyan);
 
-	gfx.PutPixel(x, y - 1, Colors::Blue);
-	gfx.PutPixel(x, y - 2, Colors::Blue);
-	gfx.PutPixel(x, y +3, Colors::Blue);
-	gfx.PutPixel(x, y +4, Colors::Blue);
+	gfx.PutPixel(x_int, y_int- 1, Colors::Blue);
+	gfx.PutPixel(x_int, y_int- 2, Colors::Blue);
+	gfx.PutPixel(x_int, y_int+3, Colors::Blue);
+	gfx.PutPixel(x_int, y_int+4, Colors::Blue);
 
-	gfx.PutPixel(x - 1, y, Colors::Blue);
-	gfx.PutPixel(x - 1, y - 1, Colors::Blue);
-	gfx.PutPixel(x - 1, y +2, Colors::Blue);
-	gfx.PutPixel(x - 1, y +3, Colors::Blue);
-	gfx.PutPixel(x - 2, y, Colors::Blue);
-	gfx.PutPixel(x - 2, y, Colors::Blue);
-	gfx.PutPixel(x - 3, y + 1, Colors::Blue);
+	gfx.PutPixel(x_int- 1, y_int, Colors::Blue);
+	gfx.PutPixel(x_int- 1, y_int- 1, Colors::Blue);
+	gfx.PutPixel(x_int- 1, y_int+2, Colors::Blue);
+	gfx.PutPixel(x_int- 1, y_int+3, Colors::Blue);
+	gfx.PutPixel(x_int- 2, y_int, Colors::Blue);
+	gfx.PutPixel(x_int- 2, y_int, Colors::Blue);
+	gfx.PutPixel(x_int- 3, y_int+ 1, Colors::Blue);
 
-	gfx.PutPixel(x + 1, y - 3, Colors::Blue);
-	gfx.PutPixel(x + 1, y + 5, Colors::Blue);
-	gfx.PutPixel(x + 2, y - 1, Colors::Blue);
-	gfx.PutPixel(x + 2, y - 2, Colors::Blue);
-	gfx.PutPixel(x + 2, y + 3, Colors::Blue);
-	gfx.PutPixel(x + 2, y + 4, Colors::Blue);
-	gfx.PutPixel(x + 3, y, Colors::Blue);
-	gfx.PutPixel(x + 3, y - 1, Colors::Blue);
-	gfx.PutPixel(x + 3, y +2, Colors::Blue);
-	gfx.PutPixel(x + 3, y +3, Colors::Blue);
-	gfx.PutPixel(x + 4, y, Colors::Blue);
-	gfx.PutPixel(x + 4, y +2, Colors::Blue);
-	gfx.PutPixel(x + 5, y +1, Colors::Blue);
+	gfx.PutPixel(x_int+ 1, y_int- 3, Colors::Blue);
+	gfx.PutPixel(x_int+ 1, y_int+ 5, Colors::Blue);
+	gfx.PutPixel(x_int+ 2, y_int- 1, Colors::Blue);
+	gfx.PutPixel(x_int+ 2, y_int- 2, Colors::Blue);
+	gfx.PutPixel(x_int+ 2, y_int+ 3, Colors::Blue);
+	gfx.PutPixel(x_int+ 2, y_int+ 4, Colors::Blue);
+	gfx.PutPixel(x_int+ 3, y_int, Colors::Blue);
+	gfx.PutPixel(x_int+ 3, y_int- 1, Colors::Blue);
+	gfx.PutPixel(x_int+ 3, y_int+2, Colors::Blue);
+	gfx.PutPixel(x_int+ 3, y_int+3, Colors::Blue);
+	gfx.PutPixel(x_int+ 4, y_int, Colors::Blue);
+	gfx.PutPixel(x_int+ 4, y_int+2, Colors::Blue);
+	gfx.PutPixel(x_int+ 5, y_int+1, Colors::Blue);
 }

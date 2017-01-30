@@ -43,7 +43,7 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
-	void UpdateStars();
+	void UpdateStars(float dt);
 	void DrawStars();
 	/********************************/
 private:
@@ -54,8 +54,6 @@ private:
 	Ship ship;
 	static constexpr int nStars = 100;
 	Star star[nStars];
-	int starX = 300;
-	int starY = 2;
 	static constexpr int nBigStars = 20;
 	Star starB[nBigStars];
 	Sound mainSong;

@@ -8,26 +8,26 @@ class Ship
 {
 public:
 	void Draw(Graphics& gfx);
-	void FireBullet();
+	void FireBullet(float dt);
 	void ClampScreen();
-	void Update(MainWindow& wnd);
-	void PlayerInput(MainWindow& wnd);
+	void Update(MainWindow& wnd, float dt);
+	void PlayerInput(MainWindow& wnd, float dt);
 	void Restore(int restore);
 	void Damage(int damage);
 	bool HasHealth() const;
-	int GetX();
-	int GetY();
-	int GetWidth();
-	int GetHeight();
+	float GetX();
+	float GetY();
+	float GetWidth();
+	float GetHeight();
 
 private:
-	int x = 300;
-	int y = 300;
-	int width = 100;
-	int height = 100;
-	int canonPos = 50;
-	int vx = 6;
-	int vy = 6;
+	float x = 300.0f;
+	float y = 300.0f;
+	float width = 100.0f;
+	float height = 100.0f;
+	float canonPos = 50.0f;
+	float vx = 6.0f * 60.0f;
+	float vy = 6.0f * 60.0f;
 	static constexpr int nBullets = 3;
 	int bulletCounter = 0;
 	Bullet bullet[nBullets];
@@ -35,5 +35,5 @@ private:
 	Sound gun = L"shitgun.wav";
 	Health health;
 	bool healthChanging = false;
-	int padding = 35;
+	float padding = 35.0f;
 };
