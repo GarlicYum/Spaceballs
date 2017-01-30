@@ -56,7 +56,7 @@ void Game::UpdateModel()
 {
 	ship.Update(wnd);
 	UpdateStars();
-	mineM.Update();
+	mineM.Update(ship);
 }
 
 void Game::UpdateStars()

@@ -1,11 +1,19 @@
 #include "Mine.h"
-
-void Mine::Detonate()
+bool Mine::DetectCollision(Ship& ship)
 {
-	isDetonated = true;
+	const int mRight = x + width;
+	const int mBottom = y + height;
+	const int sRight = ship.GetWidth() + ship.GetX();
+	const int sBottom = ship.GetHeight() + ship.GetY();
+
+	return
+		mRight >= ship.GetX() &&
+		x <= sRight &&
+		mBottom >= ship.GetY() &&
+		y <= sBottom;
 }
 
-void Mine::Update()
+void Mine::Update(Ship& ship)
 {
 	if (!isDetonated)
 	{
@@ -14,6 +22,10 @@ void Mine::Update()
 	else
 	{
 		explosionCounter++;
+	}
+	if (DetectCollision(ship))
+	{
+		isDetonated = true;
 	}
 }
 

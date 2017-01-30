@@ -3823,22 +3823,22 @@ void Ship::PlayerInput(MainWindow & wnd)
 	}
 }
 
-int Ship::GetX() const
+int Ship::GetX() 
 {
 	return x;
 }
 
-int Ship::GetY() const
+int Ship::GetY() 
 {
 	return y;
 }
 
-int Ship::GetWidth() const
+int Ship::GetWidth() 
 {
 	return width;
 }
 
-int Ship::GetHeight() const
+int Ship::GetHeight() 
 {
 	return height;
 }

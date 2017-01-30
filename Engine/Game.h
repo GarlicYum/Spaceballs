@@ -28,7 +28,6 @@
 #include <random>
 #include "Bullet.h"
 #include "Sound.h"
-#include "Health.h"
 #include "MineManager.h"
 
 class Game
@@ -59,7 +58,6 @@ private:
 	static constexpr int nBigStars = 20;
 	Star starB[nBigStars];
 	Sound mainSong;
-	Health health;
 	MineManager mineM;
 	/********************************/
 };

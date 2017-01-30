@@ -1,12 +1,14 @@
 #pragma once
+#include "MainWindow.h"
 #include "Graphics.h"
+#include "Ship.h"
+#include "Health.h"
 
 class Mine
 {
 public:
-	void DetectCollision();
-	void Detonate();
-	void Update();
+	bool DetectCollision(Ship& ship);
+	void Update(Ship& ship);
 	void Draw(Graphics& gfx);
 	void SetPos(int X);
 private:

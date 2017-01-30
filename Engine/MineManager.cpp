@@ -3,18 +3,18 @@
 MineManager::MineManager()
 {
 	std::mt19937 rng;
-	std::uniform_int_distribution<int> xDist(0, 750);
+	std::uniform_int_distribution<int> xDist(0, 700);
 	for (int i = 0; i < nMinesMax; i++)
 	{
 		mine[i].SetPos(xDist(rng));
 	}
 }
 
-void MineManager::Update()
+void MineManager::Update(Ship& ship)
 {
 	for (int i = 0; i < nMines; i++)
 	{
-		mine[i].Update();
+		mine[i].Update(ship);
 	}
 
 	mineCounter++;
