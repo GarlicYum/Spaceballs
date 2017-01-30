@@ -29,6 +29,7 @@
 #include "Bullet.h"
 #include "Sound.h"
 #include "MineManager.h"
+#include "FrameTimer.h"
 
 class Game
 {
@@ -59,5 +60,6 @@ private:
 	Star starB[nBigStars];
 	Sound mainSong;
 	MineManager mineM;
+	FrameTimer ft;
 	/********************************/
 };

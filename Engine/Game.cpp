@@ -54,6 +54,8 @@ Anything that has to do with the ship should be part of ship.Update
 */
 void Game::UpdateModel()
 {
+	const float dt = ft.Mark();
+
 	ship.Update(wnd);
 	UpdateStars();
 	mineM.Update(ship);
