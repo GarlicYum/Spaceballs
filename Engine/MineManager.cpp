@@ -19,7 +19,7 @@ void MineManager::Update(Ship& ship)
 	}
 
 	mineCounter++;
-	if (mineCounter == newMine)
+	if (mineCounter == newMine && nMines != nMinesMax)
 	{
 		nMines++;
 		mineCounter = 0;
