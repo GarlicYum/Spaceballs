@@ -3823,6 +3823,16 @@ void Ship::PlayerInput(MainWindow & wnd)
 	}
 }
 
+void Ship::Restore(int restore)
+{
+	health.Restore(restore);
+}
+
+void Ship::Damage(int damage)
+{
+	health.Damage(damage);
+}
+
 int Ship::GetX() 
 {
 	return x;

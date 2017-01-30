@@ -14,6 +14,7 @@ void MineManager::Update(Ship& ship)
 {
 	for (int i = 0; i < nMines; i++)
 	{
+		if (mine[i].isActive())
 		mine[i].Update(ship);
 	}
 

@@ -11,6 +11,7 @@ public:
 	void Update(Ship& ship);
 	void Draw(Graphics& gfx);
 	void SetPos(int X);
+	bool isActive();
 private:
 	int x = 0;
 	int y = 0;
@@ -22,4 +23,5 @@ private:
 	static constexpr int damage = 40;
 	static constexpr int width = 50;
 	static constexpr int height = 50;
+	bool isDamaged = false;
 };

@@ -26,6 +26,12 @@ void Mine::Update(Ship& ship)
 	if (DetectCollision(ship))
 	{
 		isDetonated = true;
+		if (!isDamaged)
+		{
+			ship.Damage(damage);
+			isDamaged = true;
+		}
+		
 	}
 }
 
@@ -7789,6 +7795,12 @@ void Mine::Draw(Graphics& gfx)
 void Mine::SetPos(int X)
 {
 	x = X;
+}
+
+bool Mine::isActive()
+{
+	return
+		explosionCounter < explosionEnd;
 }
 	
 

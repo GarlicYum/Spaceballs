@@ -12,6 +12,8 @@ public:
 	void ClampScreen();
 	void Update(MainWindow& wnd);
 	void PlayerInput(MainWindow& wnd);
+	void Restore(int restore);
+	void Damage(int damage);
 	int GetX();
 	int GetY();
 	int GetWidth();
