@@ -55,6 +55,15 @@ public:
 	{
 		PutPixel( x,y,{ unsigned char( r ),unsigned char( g ),unsigned char( b ) } );
 	}
+	void PutPixelClipped(int x, int y, int r, int g, int b)
+	{
+		if (x >= 0 && x < ScreenWidth &&
+			y >= 0 && y < ScreenHeight)
+		{
+			PutPixel(x, y, { unsigned char(r),unsigned char(g),unsigned char(b) });
+		}
+		
+	}
 	void PutPixel( int x,int y,Color c );
 	void DrawCircle(int x, int y, int r, Color c);
 	void DrawSquare(int x, int y, int width, int height, Color c);

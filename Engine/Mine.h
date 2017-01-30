@@ -15,8 +15,8 @@ public:
 	bool isActive();
 private:
 	float x = 0.0f;
-	float y = 0.0f;
-	float vy = 7.0f * 60.0f;
+	float y = -50.0f;
+	float vy = 1.0f * 60.0f;
 	int explosionCounter = 0;
 	static constexpr int explosionEnd = 30;
 	bool isDetonated = false;
