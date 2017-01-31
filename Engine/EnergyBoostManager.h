@@ -1,8 +1,8 @@
 #pragma once
 #include "MainWindow.h"
-#include "Ship.h"
 #include "EnergyBoost.h"
 #include <random>
+
 
 class EnergyBoostManager
 {

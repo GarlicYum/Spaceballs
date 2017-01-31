@@ -3861,9 +3861,19 @@ float Ship::GetHeight()
 	return height;
 }
 
+Bullet* Ship::GetBullets()
+{
+	return bullet;
+}
+
+int Ship::GetnBullets()
+{
+	return nBullets;
+}
+
 // updates should be neat. we use player input function
 // this way we can easily shut off player input if there's a cutscene etc
-void Ship::Update(MainWindow & wnd, float dt)
+void Ship::Update(MainWindow & wnd, float dt, MineManager& mm)
 {
 	if (HasHealth())
 	{
@@ -3871,6 +3881,10 @@ void Ship::Update(MainWindow & wnd, float dt)
 
 		for (int i = 0; i < nBullets; i++)
 		{
+			if (mm.WasHit())
+			{
+				bullet[i].hasSpawned = false;
+			}
 			if (bullet[i].HasSpawned())
 			{
 				bullet[i].Update(dt);

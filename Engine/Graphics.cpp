@@ -333,6 +333,25 @@ void Graphics::DrawCircle(int x, int y, int r, Color c)
 	}
 }
 
+void Graphics::DrawAnnulus(int x, int y, int radi, int r2, int r, int g, int b)
+{
+	const int r_sqr = r * r;
+	const int r2_sqr = r2 * r2;
+	for (int x_loop = x - r; x_loop < x + r; x_loop++)
+	{
+		for (int y_loop = y - r; y_loop < y + r; y_loop++)
+		{
+			int x_diff = x - x_loop;
+			int y_diff = y - y_loop;
+			if (x_diff * x_diff + y_diff * y_diff <= r_sqr &&
+				x_diff * x_diff + y_diff * y_diff > r2_sqr)
+			{
+				PutPixelClipped(x_loop, y_loop, r, g, b);
+			}
+		}
+	}
+}
+
 void Graphics::DrawSquare(int x, int y, int width, int height, Color c)
 {
 	for (int i = x; i < x + width; i++)

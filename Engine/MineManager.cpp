@@ -18,6 +18,7 @@ void MineManager::Update(Ship& ship, float dt)
 	{
 		if (mine[i].isActive())
 		mine[i].Update(ship, dt);
+		wasHit = mine[i].GotShot(ship, ship.GetnBullets());
 	}
 
 	//when mine counter reaches newMine a new mine will be drawn on screen
@@ -38,3 +39,9 @@ void MineManager::Draw(Graphics & gfx, Ship& ship)
 		mine[i].Draw(gfx, ship);
 	}
 }
+
+bool MineManager::WasHit()
+{
+	return wasHit;
+}
+
