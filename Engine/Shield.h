@@ -1,6 +1,7 @@
 #pragma once
+#include "MainWindow.h"
 #include "Graphics.h"
-#include "Ship"
+#include "Ship.h"
 
 class Shield
 {
@@ -8,8 +9,8 @@ public:
 	void Update(Ship& ship);
 	void Draw();
 private:
-	int x;
-	int y;
+	float x;
+	float y;
 	static constexpr int radius = 100;
 	bool isObtained = false;
 
