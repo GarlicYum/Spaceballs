@@ -30,6 +30,7 @@
 #include "Sound.h"
 #include "MineManager.h"
 #include "FrameTimer.h"
+#include "EnergyBoostManager.h"
 
 class Game
 {
@@ -59,5 +60,6 @@ private:
 	Sound mainSong;
 	MineManager mineM;
 	FrameTimer ft;
+	EnergyBoostManager eBoostM;
 	/********************************/
 };

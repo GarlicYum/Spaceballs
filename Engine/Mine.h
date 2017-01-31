@@ -21,7 +21,7 @@ private:
 	static constexpr int explosionEnd = 30;
 	bool isDetonated = false;
 	bool gotPosition = false;
-	static constexpr int damage = 40;
+	static constexpr int damage = 75;
 	static constexpr float width = 50.0f;
 	static constexpr float height = 50.0f;
 	bool isDamaged = false;

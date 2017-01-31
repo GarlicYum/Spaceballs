@@ -59,6 +59,7 @@ void Game::UpdateModel()
 	ship.Update(wnd, dt);
 	UpdateStars(dt);
 	mineM.Update(ship, dt);
+	eBoostM.Update(ship, dt);
 }
 
 void Game::UpdateStars(float dt)
@@ -89,8 +90,8 @@ void Game::DrawStars()
 // same thing as in updatemodel goes for composeframe
 void Game::ComposeFrame()
 {
-	
 	DrawStars();
 	ship.Draw(gfx);
 	mineM.Draw(gfx, ship);
+	eBoostM.Draw(gfx, ship);
 }
