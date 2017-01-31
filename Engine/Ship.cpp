@@ -3881,16 +3881,21 @@ void Ship::Update(MainWindow & wnd, float dt, MineManager& mm)
 
 		for (int i = 0; i < nBullets; i++)
 		{
-			if (hitTarget)
-			{
- 				bullet[i].hasSpawned = false;
-				hitTarget = false;
-			}
+			
 			if (bullet[i].HasSpawned())
 			{
 				bullet[i].Update(dt);
 			}
+
+			if (hitTarget)
+			{
+				bullet[i].hasSpawned = false;
+			}
+			
+			
 		}
+		hitTarget = false;
+		
 
 		ClampScreen();
 	}
