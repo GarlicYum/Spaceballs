@@ -22,9 +22,10 @@ public:
 	float GetHeight();
 	Bullet* GetBullets();
 	int GetnBullets();
-	bool hitTarget = false;
+	
 
 private:
+	bool hitTarget = false;
 	float x = 300.0f;
 	float y = 300.0f;
 	float width = 100.0f;

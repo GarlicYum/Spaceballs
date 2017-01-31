@@ -49,3 +49,11 @@ int Bullet::GetBulletSize()
 {
 	return bulletSize;
 }
+
+void Bullet::SetHasSpawned(bool hit)
+{
+	if (hit == true)
+	{
+		hasSpawned = false;
+	}
+}

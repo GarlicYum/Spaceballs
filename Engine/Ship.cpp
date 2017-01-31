@@ -3889,10 +3889,8 @@ void Ship::Update(MainWindow & wnd, float dt, MineManager& mm)
 
 			if (hitTarget)
 			{
-				bullet[i].hasSpawned = false;
+				bullet[i].SetHasSpawned(hitTarget);
 			}
-			
-			
 		}
 		hitTarget = false;
 		

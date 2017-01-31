@@ -11,8 +11,10 @@ public:
 	float GetX();
 	float GetY();
 	int GetBulletSize();
-	bool hasSpawned = false;
+	void SetHasSpawned(bool hit);
+	
 private:
+	bool hasSpawned = false;
 	int bulletSize = 10;
 	float x;
 	float y;
