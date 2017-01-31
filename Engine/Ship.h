@@ -22,6 +22,7 @@ public:
 	float GetHeight();
 	Bullet* GetBullets();
 	int GetnBullets();
+	bool hitTarget = false;
 
 private:
 	float x = 300.0f;

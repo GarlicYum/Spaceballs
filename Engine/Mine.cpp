@@ -44,6 +44,12 @@ void Mine::Update(Ship& ship, float dt)
 			}
 
 		}
+
+	
+		if (GotShot(ship, ship.GetnBullets()))
+		{
+			ship.hitTarget = true;
+		}
 	}
 }
 
@@ -7826,15 +7832,19 @@ bool Mine::isActive()
 
 bool Mine::GotShot(Ship & ship, int nBullets)
 {
-	const float mRight = x + width;
-	const float mBottom = y + height;
-		
 	for (int i = 0; i < nBullets; i++)
 	{
-		if (mRight >= (ship.GetBullets()[i].GetX() - ship.GetBullets()[i].GetBulletSize()) &&
-			x <= (ship.GetBullets()[i].GetX() + ship.GetBullets()[i].GetBulletSize()) &&
-			mBottom >= (ship.GetBullets()[i].GetY() - ship.GetBullets()[i].GetBulletSize()) &&
-			y <= (ship.GetBullets()[i].GetY() + ship.GetBullets()[i].GetBulletSize()))
+		const float bRight = ship.GetBullets()[i].GetX() + ship.GetBullets()[i].GetBulletSize();
+		const float bLeft = ship.GetBullets()[i].GetX() - ship.GetBullets()[i].GetBulletSize();
+		const float bBottom = ship.GetBullets()[i].GetY() + ship.GetBullets()[i].GetBulletSize();
+		const float bTop = ship.GetBullets()[i].GetY() - ship.GetBullets()[i].GetBulletSize();
+		const float mRight = x + width;
+		const float mBottom = y + height;
+
+		if (mRight >= bLeft &&
+			x <= bRight &&
+			mBottom >= bTop &&
+			y <= bBottom)
 		{
 			return true;
 		}
