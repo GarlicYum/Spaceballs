@@ -10,3 +10,8 @@ void ShieldManager::Draw(Graphics & gfx)
 {
 	shield.Draw(gfx);
 }
+
+Shield& ShieldManager::GetShield()
+{
+	return shield;
+}

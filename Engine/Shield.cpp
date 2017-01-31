@@ -16,7 +16,7 @@ void Shield::Update(Ship & ship)
 			meterWidth--;
 		}
 		
-		if (meterWidth == 0)
+		if (meterWidth <= 0)
 		{
 			isActive = false;
 		}

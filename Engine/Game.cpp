@@ -58,7 +58,7 @@ void Game::UpdateModel()
 
 	ship.Update(wnd, dt);
 	UpdateStars(dt);
-	mineM.Update(ship, dt);
+	mineM.Update(ship, dt, shieldM);
 	eBoostM.Update(ship, dt);
 	shieldM.Update(ship);
 }

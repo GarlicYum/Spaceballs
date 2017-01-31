@@ -3875,16 +3875,14 @@ void Ship::SethitTarget(bool hit)
 	hitTarget = hit;
 }
 
-Shield& Ship::GetShield()
-{
-	return shield;
-}
+
 
 
 // updates should be neat. we use player input function
 // this way we can easily shut off player input if there's a cutscene etc
 void Ship::Update(MainWindow & wnd, float dt)
 {
+
 	if (HasHealth())
 	{
 		PlayerInput(wnd, dt);

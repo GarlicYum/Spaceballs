@@ -13,12 +13,12 @@ MineManager::MineManager()
 }
 
 //updates the active mines, take ship as argument since it's needed in mines update function
-void MineManager::Update(Ship& ship, float dt)
+void MineManager::Update(Ship& ship, float dt, ShieldManager shieldM)
 {
 	for (int i = 0; i < nMines; i++)
 	{
 		if (mine[i].isActive())
-		mine[i].Update(ship, dt);
+		mine[i].Update(ship, dt, shieldM);
 		wasHit = mine[i].GotShot(ship, ship.GetnBullets());
  	}
 

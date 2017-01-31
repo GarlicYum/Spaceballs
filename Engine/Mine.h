@@ -4,17 +4,18 @@
 #include "Health.h"
 #include "Sound.h"
 #include "Shield.h"
+#include "ShieldManager.h"
 
 class Mine
 {
 public:
 	bool DetectCollision(class Ship& ship);
-	void Update(class Ship& ship, float dt);
+	void Update(class Ship& ship, float dt, ShieldManager shieldM);
 	void Draw(Graphics& gfx,class Ship& ship);
 	void SetPos(float X);
 	bool isActive();
 	bool GotShot(class Ship& ship, int nBullets);
-	bool DetectShield(Ship& ship);
+	bool DetectShield(ShieldManager& shieldM);
 private:
 	float x = 0.0f;
 	float y = -50.0f;

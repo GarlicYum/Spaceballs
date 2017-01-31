@@ -20,7 +20,7 @@ bool Mine::DetectCollision(Ship& ship)
 }
 
 //updates the mine, takes ship as argument so it can call the detectcollision function
-void Mine::Update(Ship& ship, float dt)
+void Mine::Update(Ship& ship, float dt, ShieldManager shieldM)
 {
 	if (ship.HasHealth()) //updates mines if ship has health
 	{
@@ -39,7 +39,7 @@ void Mine::Update(Ship& ship, float dt)
 			isDetonated = true;
 			if (!isDamaged)      //if not isdamaged then the ship will take damage and isdamaage becomes true
 			{                      // this way the damanage is dealt only one time
-				if (ship.GetShield().GetisActive() == false)
+				if (shieldM.GetShield().GetisActive() == false)
 				{
 					ship.Damage(damage);
 				}
@@ -55,7 +55,7 @@ void Mine::Update(Ship& ship, float dt)
 			ship.SethitTarget(true);
 		}
 
-		if (!isDetonated && DetectShield(ship))
+		if (!isDetonated && DetectShield(shieldM))
 		{
 			isDetonated = true;
 			explosion.Play(0.8F, 1.0F);
@@ -7861,14 +7861,14 @@ bool Mine::GotShot(Ship & ship, int nBullets)
 	return false;
 }
 
-bool Mine::DetectShield(Ship & ship)
+bool Mine::DetectShield(ShieldManager& shieldM)
 {
-	if (ship.GetShield().GetisActive())
+	if (shieldM.GetShield().GetisActive())
 	{
-		const float sRight = ship.GetShield().GetX() + float (ship.GetShield().GetSize());
-		const float sLeft = ship.GetShield().GetX() - float(ship.GetShield().GetSize());
-		const float sBottom = ship.GetShield().GetY() + float(ship.GetShield().GetSize());
-		const float sTop = ship.GetShield().GetY() - float(ship.GetShield().GetSize());
+		const float sRight = shieldM.GetShield().GetX() + float (shieldM.GetShield().GetSize());
+		const float sLeft = shieldM.GetShield().GetX() - float(shieldM.GetShield().GetSize());
+		const float sBottom = shieldM.GetShield().GetY() + float(shieldM.GetShield().GetSize());
+		const float sTop = shieldM.GetShield().GetY() - float(shieldM.GetShield().GetSize());
 		const float mRight = x + width;
 		const float mBottom = y + height;
 	

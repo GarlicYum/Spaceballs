@@ -2,13 +2,14 @@
 #include "MainWindow.h"
 #include "Mine.h"
 #include <random>
+#include "ShieldManager.h"
 
 
 class MineManager
 {
 public:
 	MineManager();
-	void Update(Ship& ship, float dt);
+	void Update(Ship& ship, float dt, ShieldManager shieldM);
 	void Draw(Graphics & gfx, Ship& ship);
 	bool WasHit();
 
