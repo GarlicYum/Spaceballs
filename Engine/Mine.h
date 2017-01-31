@@ -1,6 +1,6 @@
 #pragma once
-#include "MainWindow.h"
 #include "Graphics.h"
+#include "MainWindow.h"
 #include "Ship.h"
 #include "Health.h"
 #include "Sound.h"
@@ -13,6 +13,7 @@ public:
 	void Draw(Graphics& gfx, Ship& ship);
 	void SetPos(float X);
 	bool isActive();
+	bool GotShot(Ship& ship, int nBullets);
 private:
 	float x = 0.0f;
 	float y = -50.0f;

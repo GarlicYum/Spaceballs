@@ -34,3 +34,18 @@ void Bullet::Draw(Graphics& gfx)
 {
 	gfx.DrawCircle(int (x), int(y), bulletSize, Colors::Magenta);
 }
+
+float Bullet::GetX()
+{
+	return x;
+}
+
+float Bullet::GetY()
+{
+	return y;
+}
+
+int Bullet::GetBulletSize()
+{
+	return bulletSize;
+}

@@ -1,4 +1,5 @@
 #include "Mine.h"
+#include "MainWindow.h"
 
 //detects if the mine collides with a ship, passing in reference to the ship so mine knows its location
 //returns a bool, this function will get called in mines update function
@@ -7820,6 +7821,24 @@ bool Mine::isActive()
 {
 	return
 		explosionCounter < explosionEnd;
+}
+
+bool Mine::GotShot(Ship & ship, int nBullets)
+{
+	const float mRight = x + width;
+	const float mBottom = y + height;
+		
+	for (int i = 0; i < nBullets; i++)
+	{
+		if (mRight >= (ship.GetBullets()[i].GetX() - ship.GetBullets()[i].GetBulletSize()) &&
+			x <= (ship.GetBullets()[i].GetX() + ship.GetBullets()[i].GetBulletSize()) &&
+			mBottom >= (ship.GetBullets()[i].GetY() - ship.GetBullets()[i].GetBulletSize()) &&
+			y <= (ship.GetBullets()[i].GetY() + ship.GetBullets()[i].GetBulletSize()))
+		{
+			return true;
+		}
+	}
+	return false;
 }
 	
 
