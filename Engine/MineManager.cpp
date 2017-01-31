@@ -1,4 +1,5 @@
 #include "MineManager.h"
+#include "Ship.h"
 
 //constructor sets x pos for all the mines
 MineManager::MineManager()

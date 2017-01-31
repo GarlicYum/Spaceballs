@@ -1,5 +1,6 @@
 #include "Mine.h"
 #include "MainWindow.h"
+#include "Ship.h"
 
 //detects if the mine collides with a ship, passing in reference to the ship so mine knows its location
 //returns a bool, this function will get called in mines update function
