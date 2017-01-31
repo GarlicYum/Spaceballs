@@ -38,7 +38,7 @@ Game::Game( MainWindow& wnd )
 	{
 		starB[i].Spawn(xDist(rng), yDist(rng), 6.0f);
 	}
-//	mainSong.Play(1.0F, 0.5F);
+	mainSong.Play(1.0F, 0.5F);
 }
 
 void Game::Go()

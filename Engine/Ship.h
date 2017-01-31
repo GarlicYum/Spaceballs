@@ -23,7 +23,6 @@ public:
 	Bullet* GetBullets();
 	int GetnBullets();
 	void SethitTarget(bool hit);
-	
 
 private:
 	bool hitTarget = false;
