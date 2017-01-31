@@ -8,7 +8,7 @@ bool Mine::DetectCollision(Ship& ship)
 	const float mBottom = y + height;
 	const float sRight = ship.GetWidth() + ship.GetX();
 	const float sBottom = ship.GetHeight() + ship.GetY();
-
+	
 	return
 		mRight >= ship.GetX() &&
 		x <= sRight &&

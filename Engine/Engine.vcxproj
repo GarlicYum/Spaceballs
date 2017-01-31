@@ -154,6 +154,7 @@
     <ClInclude Include="MineManager.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Shield.h" />
     <ClInclude Include="Ship.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundEffect.h" />

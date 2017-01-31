@@ -87,6 +87,9 @@
     <ClInclude Include="EnergyBoostManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Shield.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">
