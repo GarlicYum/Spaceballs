@@ -48,7 +48,7 @@ void Mine::Update(Ship& ship, float dt)
 	
 		if (GotShot(ship, ship.GetnBullets()))
 		{
-			ship.hitTarget = true;
+			ship.SethitTarget(true);
 		}
 	}
 }

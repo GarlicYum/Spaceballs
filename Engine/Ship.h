@@ -3,7 +3,6 @@
 #include "Bullet.h"
 #include "Sound.h"
 #include "Health.h"
-#include "MineManager.h"
 
 class Ship
 {
@@ -11,7 +10,7 @@ public:
 	void Draw(Graphics& gfx);
 	void FireBullet(float dt);
 	void ClampScreen();
-	void Update(MainWindow& wnd, float dt, MineManager& mm);
+	void Update(MainWindow& wnd, float dt);
 	void PlayerInput(MainWindow& wnd, float dt);
 	void Restore(int restore);
 	void Damage(int damage);
@@ -22,7 +21,7 @@ public:
 	float GetHeight();
 	Bullet* GetBullets();
 	int GetnBullets();
-	
+	void SethitTarget(bool hit);
 
 private:
 	bool hitTarget = false;

@@ -56,7 +56,7 @@ void Game::UpdateModel()
 {
 	const float dt = ft.Mark();
 
-	ship.Update(wnd, dt, mineM);
+	ship.Update(wnd, dt);
 	UpdateStars(dt);
 	mineM.Update(ship, dt);
 	eBoostM.Update(ship, dt);

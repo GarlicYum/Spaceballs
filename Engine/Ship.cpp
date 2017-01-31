@@ -3871,9 +3871,14 @@ int Ship::GetnBullets()
 	return nBullets;
 }
 
+void Ship::SethitTarget(bool hit)
+{
+	hitTarget = hit;
+}
+
 // updates should be neat. we use player input function
 // this way we can easily shut off player input if there's a cutscene etc
-void Ship::Update(MainWindow & wnd, float dt, MineManager& mm)
+void Ship::Update(MainWindow & wnd, float dt)
 {
 	if (HasHealth())
 	{
