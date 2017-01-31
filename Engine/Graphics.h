@@ -64,9 +64,18 @@ public:
 		}
 		
 	}
+	void PutPixelClipped(int x, int y, Color c)
+	{
+		if (x >= 0 && x < ScreenWidth &&
+			y >= 0 && y < ScreenHeight)
+		{
+			PutPixel(x, y, c);
+		}
+
+	}
 	void PutPixel( int x,int y,Color c );
 	void DrawCircle(int x, int y, int r, Color c);
-	void DrawAnnulus(int x, int y, int radi, int r2, int r, int g, int b);
+	void DrawAnnulus(int x, int y, int radi, int r2, Color c);
 	void DrawSquare(int x, int y, int width, int height, Color c);
 	~Graphics();
 private:

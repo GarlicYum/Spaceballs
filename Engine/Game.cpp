@@ -38,7 +38,7 @@ Game::Game( MainWindow& wnd )
 	{
 		starB[i].Spawn(xDist(rng), yDist(rng), 6.0f);
 	}
-	mainSong.Play(1.0F, 0.5F);
+//	mainSong.Play(1.0F, 0.5F);
 }
 
 void Game::Go()
@@ -60,6 +60,7 @@ void Game::UpdateModel()
 	UpdateStars(dt);
 	mineM.Update(ship, dt);
 	eBoostM.Update(ship, dt);
+	shieldM.Update(ship);
 }
 
 void Game::UpdateStars(float dt)
@@ -91,7 +92,9 @@ void Game::DrawStars()
 void Game::ComposeFrame()
 {
 	DrawStars();
+	shieldM.Draw(gfx);
 	ship.Draw(gfx);
 	mineM.Draw(gfx, ship);
 	eBoostM.Draw(gfx, ship);
+	
 }

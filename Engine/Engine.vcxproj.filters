@@ -93,9 +93,6 @@
     <ClInclude Include="ShieldManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ShieldMeter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">
@@ -152,7 +149,7 @@
     <ClCompile Include="Shield.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ShieldMeter.cpp">
+    <ClCompile Include="ShieldManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

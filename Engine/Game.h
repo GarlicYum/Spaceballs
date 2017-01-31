@@ -31,6 +31,7 @@
 #include "MineManager.h"
 #include "FrameTimer.h"
 #include "EnergyBoostManager.h"
+#include "ShieldManager.h"
 
 class Game
 {
@@ -61,5 +62,6 @@ private:
 	MineManager mineM;
 	FrameTimer ft;
 	EnergyBoostManager eBoostM;
+	ShieldManager shieldM;
 	/********************************/
 };

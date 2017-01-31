@@ -3,6 +3,7 @@
 #include "Bullet.h"
 #include "Sound.h"
 #include "Health.h"
+#include "Shield.h"
 
 class Ship
 {
@@ -22,6 +23,7 @@ public:
 	Bullet* GetBullets();
 	int GetnBullets();
 	void SethitTarget(bool hit);
+	Shield& GetShield();
 
 private:
 	bool hitTarget = false;
@@ -40,4 +42,5 @@ private:
 	Health health;
 	bool healthChanging = false;
 	float padding = 35.0f;
+	Shield shield;
 };

@@ -3,6 +3,7 @@
 #include "MainWindow.h"
 #include "Health.h"
 #include "Sound.h"
+#include "Shield.h"
 
 class Mine
 {
@@ -13,6 +14,7 @@ public:
 	void SetPos(float X);
 	bool isActive();
 	bool GotShot(class Ship& ship, int nBullets);
+	bool DetectShield(Ship& ship);
 private:
 	float x = 0.0f;
 	float y = -50.0f;

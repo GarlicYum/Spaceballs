@@ -156,7 +156,6 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Shield.h" />
     <ClInclude Include="ShieldManager.h" />
-    <ClInclude Include="ShieldMeter.h" />
     <ClInclude Include="Ship.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundEffect.h" />
@@ -178,7 +177,7 @@
     <ClCompile Include="MineManager.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Shield.cpp" />
-    <ClCompile Include="ShieldMeter.cpp" />
+    <ClCompile Include="ShieldManager.cpp" />
     <ClCompile Include="Ship.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Star.cpp" />
