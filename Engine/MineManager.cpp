@@ -1,4 +1,5 @@
 #include "MineManager.h"
+#include "Ship.h"
 
 //constructor sets x pos for all the mines
 MineManager::MineManager()
@@ -19,7 +20,7 @@ void MineManager::Update(Ship& ship, float dt)
 		if (mine[i].isActive())
 		mine[i].Update(ship, dt);
 		wasHit = mine[i].GotShot(ship, ship.GetnBullets());
-	}
+ 	}
 
 	//when mine counter reaches newMine a new mine will be drawn on screen
 	//unless nMines == nMinesMax because that's the end of the array, there are no more mines to be drawn
