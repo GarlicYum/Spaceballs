@@ -29,6 +29,4 @@ private:
 	static constexpr float height = 50.0f;
 	bool isDamaged = false;
 	Sound explosion = L"explo.wav";
-	int hp = 60;
-	int bulletDmg = 20;
 };
