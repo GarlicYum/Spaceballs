@@ -72,7 +72,7 @@ void Game::UpdateStars(float dt)
 
 	for (int i = 0; i < nBigStars; i++)
 	{
-		starB[i].Update(dt);
+		starB[i].Update(dt * 1.2f);
 	}
 }
 

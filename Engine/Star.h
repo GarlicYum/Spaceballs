@@ -12,6 +12,6 @@ public:
 private:
 	float x;
 	float y;
-	float vy = 1.0f * 60.0f;
+	float vy = 2.0f * 60.0f;
 	float size;
 };
