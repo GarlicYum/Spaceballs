@@ -20,7 +20,6 @@ void Bullet::Update(float dt)
 
 	if (y - bulletSize < 0) //if bullet reaches end of screen, hasspawned becomes false and bullet will no longer be drawn
 	{
-		y = 0;
 		hasSpawned = false;
 	}
 }
@@ -52,5 +51,5 @@ int Bullet::GetBulletSize()
 
 void Bullet::SetHasSpawned(bool hit)
 {
-	hasSpawned = hit;	
+	hasSpawned = hit;
 }

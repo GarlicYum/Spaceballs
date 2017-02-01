@@ -3755,20 +3755,24 @@ void Ship::Draw(Graphics& gfx)
 		}
 		health.Draw(gfx);
 	}
-	
 }
 
 void Ship::FireBullet(float dt)
 {
 	if (shotsFired == false)
 	{
-		bullet[bulletCounter].Spawn(x + canonPos, y, dt);
-		gun.Play(0.5F, 0.5F);
+		if (!bullet[bulletCounter].HasSpawned())
+		{
+			bullet[bulletCounter].Spawn(x + canonPos, y, dt);
+			gun.Play(0.5F, 0.5F);
+		}
+		
 		++bulletCounter;
 		if (bulletCounter > 2)
 		{
 			bulletCounter = 0;
 		}
+
 		shotsFired = true;
 	}
 }
@@ -3875,9 +3879,6 @@ void Ship::SethitTarget(bool hit)
 	hitTarget = hit;
 }
 
-
-
-
 // updates should be neat. we use player input function
 // this way we can easily shut off player input if there's a cutscene etc
 void Ship::Update(MainWindow & wnd, float dt)
@@ -3893,14 +3894,8 @@ void Ship::Update(MainWindow & wnd, float dt)
 			{
 				bullet[i].Update(dt);
 			}
-//			if (hitTarget)
-//			{
-//				bullet[i].SetHasSpawned(hitTarget);
-//			}
-
-			
 		}
-//		hitTarget = false;
+
 		ClampScreen();
 	}
 	

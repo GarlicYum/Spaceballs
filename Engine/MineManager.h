@@ -18,6 +18,5 @@ private:
 	int nMines = 0;
 	int mineCounter = 0;
 	int newMine = 30;
-	bool wasHit = false;
 	Mine mine[nMinesMax];
 };
