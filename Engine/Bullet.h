@@ -8,9 +8,9 @@ public:
 	void Update(float dt);
 	bool HasSpawned() const;
 	void Draw(Graphics & gfx);
-	float GetX();
-	float GetY();
-	int GetBulletSize();
+	float GetX() const;
+	float GetY() const;
+	int GetBulletSize() const;
 	void SetHasSpawned(bool hit);
 	
 private:
@@ -19,4 +19,5 @@ private:
 	float x;
 	float y;
 	float vy = 15.0f * 60.0f;
+	static constexpr int dmg = 20;
 };
