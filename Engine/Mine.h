@@ -19,7 +19,7 @@ public:
 private:
 	float x = 0.0f;
 	float y = -50.0f;
-	float vy = 5.0f * 5.0f;
+	float vy = 5.0f * 60.0f;
 	int explosionCounter = 0;
 	static constexpr int explosionEnd = 30;
 	bool isDetonated = false;
@@ -29,4 +29,6 @@ private:
 	static constexpr float height = 50.0f;
 	bool isDamaged = false;
 	Sound explosion = L"explo.wav";
+	int hp = 60;
+	int bulletDmg = 20;
 };

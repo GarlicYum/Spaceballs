@@ -28,6 +28,7 @@ void Mine::Update(Ship& ship, float dt, ShieldManager shieldM)
 		{
 			y += vy * dt;
 		}
+
 		//if mine is detonated it stops moving and explosion counter starts counting,
 		//when the counter reaches explosion end then the explosion will no longer be displayed on screen
 		else
@@ -7821,7 +7822,6 @@ void Mine::Draw(Graphics& gfx, Ship& ship)
 
 		}
 	}
-	
 }
 
 //rng will determine the mines x pos, gets set in mine manager

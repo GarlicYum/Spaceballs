@@ -3761,19 +3761,16 @@ void Ship::FireBullet(float dt)
 {
 	if (shotsFired == false)
 	{
-		if (!bullet[bulletCounter].HasSpawned())
+		for (int i = 0; i < 3; ++i)
 		{
-			bullet[bulletCounter].Spawn(x + canonPos, y, dt);
-			gun.Play(0.5F, 0.5F);
+			if (!bullet[i].HasSpawned())
+			{
+				bullet[i].Spawn(x + canonPos, y, dt);
+				gun.Play(0.5F, 0.5F);
+				shotsFired = true;
+				break;
+			}
 		}
-		
-		++bulletCounter;
-		if (bulletCounter > 2)
-		{
-			bulletCounter = 0;
-		}
-
-		shotsFired = true;
 	}
 }
 
