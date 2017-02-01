@@ -31,8 +31,8 @@ bool Bullet::HasSpawned() const
 }
 
 void Bullet::Draw(Graphics& gfx)
-{
-	gfx.DrawCircle(int (x), int(y), bulletSize, Colors::Magenta);
+{	
+	gfx.DrawCircle(int(x), int(y), bulletSize, Colors::Magenta);
 }
 
 float Bullet::GetX()
@@ -52,8 +52,5 @@ int Bullet::GetBulletSize()
 
 void Bullet::SetHasSpawned(bool hit)
 {
-	if (hit == true)
-	{
-		hasSpawned = false;
-	}
+	hasSpawned = hit;	
 }

@@ -50,10 +50,7 @@ void Mine::Update(Ship& ship, float dt, ShieldManager shieldM)
 
 		}
 	
-		if (GotShot(ship, ship.GetnBullets()))
-		{
-			ship.SethitTarget(true);
-		}
+		GotShot(ship, ship.GetnBullets());
 
 		if (!isDetonated && DetectShield(shieldM))
 		{
@@ -7840,7 +7837,7 @@ bool Mine::isActive()
 		explosionCounter < explosionEnd;
 }
 
-bool Mine::GotShot(Ship & ship, int nBullets)
+void Mine::GotShot(Ship & ship, int nBullets)
 {
 	for (int i = 0; i < nBullets; i++)
 	{
@@ -7855,10 +7852,9 @@ bool Mine::GotShot(Ship & ship, int nBullets)
 			mBottom >= bTop &&
 			y <= bBottom)
 		{
-			return true;
+			ship.GetBullets()[i].SetHasSpawned(false);
 		}
 	}
-	return false;
 }
 
 bool Mine::DetectShield(ShieldManager& shieldM)

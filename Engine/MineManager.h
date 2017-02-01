@@ -14,7 +14,7 @@ public:
 	bool WasHit();
 
 private:
-	static constexpr int nMinesMax = 130;
+	static constexpr int nMinesMax = 10;
 	int nMines = 0;
 	int mineCounter = 0;
 	int newMine = 30;

@@ -3889,18 +3889,18 @@ void Ship::Update(MainWindow & wnd, float dt)
 
 		for (int i = 0; i < nBullets; i++)
 		{
-			
 			if (bullet[i].HasSpawned())
 			{
 				bullet[i].Update(dt);
 			}
+//			if (hitTarget)
+//			{
+//				bullet[i].SetHasSpawned(hitTarget);
+//			}
 
-			if (hitTarget)
-			{
-				bullet[i].SetHasSpawned(hitTarget);
-			}
+			
 		}
-		hitTarget = false;
+//		hitTarget = false;
 		ClampScreen();
 	}
 	

@@ -14,12 +14,12 @@ public:
 	void Draw(Graphics& gfx,class Ship& ship);
 	void SetPos(float X);
 	bool isActive();
-	bool GotShot(class Ship& ship, int nBullets);
+	void GotShot(class Ship& ship, int nBullets);
 	bool DetectShield(ShieldManager& shieldM);
 private:
 	float x = 0.0f;
 	float y = -50.0f;
-	float vy = 5.0f * 60.0f;
+	float vy = 5.0f * 5.0f;
 	int explosionCounter = 0;
 	static constexpr int explosionEnd = 30;
 	bool isDetonated = false;

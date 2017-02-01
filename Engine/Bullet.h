@@ -18,5 +18,5 @@ private:
 	int bulletSize = 10;
 	float x;
 	float y;
-	float vy = 15.0f * 60.0f;
+	float vy = 15.0f * 10.0f;
 };
