@@ -32,6 +32,7 @@
 #include "FrameTimer.h"
 #include "EnergyBoostManager.h"
 #include "ShieldManager.h"
+#include "TitleScreen.h"
 
 class Game
 {
@@ -47,6 +48,7 @@ private:
 	/*  User Functions              */
 	void UpdateStars(float dt);
 	void DrawStars();
+	void PlayerInput();
 	/********************************/
 private:
 	MainWindow& wnd;
@@ -65,5 +67,7 @@ private:
 	FrameTimer ft;
 	EnergyBoostManager eBoostM;
 	ShieldManager shieldM;
+	bool gameIsStarted = false;
+	TitleScreen title;
 	/********************************/
 };

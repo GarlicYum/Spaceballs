@@ -38,7 +38,6 @@ Game::Game( MainWindow& wnd )
 	{
 		starB[i].Spawn(xDist(rng), yDist(rng), 6.0f);
 	}
-	mainSong.Play(1.0F, 0.5F);
 }
 
 void Game::Go()
@@ -56,11 +55,17 @@ void Game::UpdateModel()
 {
 	const float dt = ft.Mark();
 
-	ship.Update(wnd, dt);
-	UpdateStars(dt);
-	mineM.Update(ship, dt, shieldM);
-	eBoostM.Update(ship, dt);
-	shieldM.Update(ship, dt, shieldon, shieldoff);
+	PlayerInput();
+
+	if (gameIsStarted)
+	{
+		ship.Update(wnd, dt);
+		UpdateStars(dt);
+		mineM.Update(ship, dt, shieldM);
+		eBoostM.Update(ship, dt);
+		shieldM.Update(ship, dt, shieldon, shieldoff);
+	}
+	
 }
 
 void Game::UpdateStars(float dt)
@@ -88,12 +93,31 @@ void Game::DrawStars()
 	}
 }
 
+void Game::PlayerInput()
+{
+	if (!gameIsStarted)
+	{
+		if (wnd.kbd.KeyIsPressed(VK_RETURN))
+		{
+			gameIsStarted = true;
+			mainSong.Play(1.0F, 0.5F);
+		}
+	}
+}
+
 // same thing as in updatemodel goes for composeframe
 void Game::ComposeFrame()
 {
-	DrawStars();
-	shieldM.Draw(gfx);
-	ship.Draw(gfx);
-	mineM.Draw(gfx, ship);
-	eBoostM.Draw(gfx, ship);
+	if (!gameIsStarted)
+	{
+		title.Draw(gfx);
+	}
+	else
+	{
+		DrawStars();
+		shieldM.Draw(gfx);
+		ship.Draw(gfx);
+		mineM.Draw(gfx, ship);
+		eBoostM.Draw(gfx, ship);
+	}
 }
