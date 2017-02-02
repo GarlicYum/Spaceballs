@@ -59,6 +59,7 @@ void Game::UpdateModel()
 
 	if (gameIsStarted)
 	{
+		titleSong.StopAll();
 		ship.Update(wnd, dt);
 		UpdateStars(dt);
 		mineM.Update(ship, dt, shieldM);
