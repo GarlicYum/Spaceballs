@@ -2,12 +2,18 @@
 #include "Ship.h"
 
 
+Shield::Shield()
+{
+}
+
 void Shield::Update(Ship & ship)
 {
 	if (isActive)
 	{
+		
 		if (newShield)
 		{
+			shieldon.Play();
 			meterWidth = 300;
 			newShield = false;
 		}

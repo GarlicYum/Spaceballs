@@ -1,10 +1,12 @@
 #pragma once
 #include "MainWindow.h"
 #include "Graphics.h"
+#include "Sound.h"
 
 class Shield
 {
 public:
+	Shield();
 	void Update(class Ship& ship);
 	void Draw(Graphics& gfx);
 	void DrawMeter(Graphics& gfx);
@@ -29,4 +31,5 @@ private:
 	int meterCounter = 0;
 	static constexpr int meterDecrease = 3;
 	bool newShield = true;
+	Sound shieldon = L"shieldon.wav";
 };
