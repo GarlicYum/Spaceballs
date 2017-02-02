@@ -1,5 +1,10 @@
 #include "Star.h"
 
+Star::Star()
+{
+	
+}
+
 void Star::Spawn(float X, float Y, float Size)
 {
 	x = X;
@@ -12,7 +17,11 @@ void Star::Update(float dt)
 	y += vy * dt;
 	if (y + size >= Graphics::ScreenHeight)
 	{
+		std::random_device rd;
+		std::mt19937 rng(rd());
+		std::uniform_real_distribution<float> xDist(3.0f, 795.0f);
 		y = 3.0f;
+		x = xDist(rng);
 	}
 }
 

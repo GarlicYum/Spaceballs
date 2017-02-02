@@ -1,9 +1,11 @@
 #pragma once
 #include "Graphics.h"
+#include <random>
 
 class Star
 {
 public:
+	Star();
 	void Spawn(float X, float Y, float Size);
 	void Update(float dt);
 	void Draw(Graphics& gfx);
