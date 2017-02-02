@@ -11,7 +11,6 @@ public:
 	MineManager();
 	void Update(Ship& ship, float dt, ShieldManager shieldM);
 	void Draw(Graphics & gfx, Ship& ship);
-	bool WasHit();
 
 private:
 	static constexpr int nMinesMax = 130;

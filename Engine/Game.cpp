@@ -60,7 +60,7 @@ void Game::UpdateModel()
 	UpdateStars(dt);
 	mineM.Update(ship, dt, shieldM);
 	eBoostM.Update(ship, dt);
-	shieldM.Update(ship);
+	shieldM.Update(ship, dt);
 }
 
 void Game::UpdateStars(float dt)
@@ -96,5 +96,4 @@ void Game::ComposeFrame()
 	ship.Draw(gfx);
 	mineM.Draw(gfx, ship);
 	eBoostM.Draw(gfx, ship);
-	
 }

@@ -999,17 +999,21 @@ bool EnergyBoost::DetectCollision(Ship & ship)
 
 void EnergyBoost::Update(Ship & ship, float dt)
 {
-	y += vy * dt;
-	if (DetectCollision(ship))
+	if (!isObtained)
 	{
-		isObtained = true;
-		if (!isRestored)
+		y += vy * dt;
+		if (DetectCollision(ship))
 		{
-			ship.Restore(restoreAmount);
-			isRestored = true;
+			isObtained = true;
+			if (!isRestored)
+			{
+				ship.Restore(restoreAmount);
+				isRestored = true;
+			}
+
 		}
-		
 	}
+	
 }
 
 void EnergyBoost::SetPos(float X)

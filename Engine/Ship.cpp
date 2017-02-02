@@ -3761,7 +3761,7 @@ void Ship::FireBullet(float dt)
 {
 	if (shotsFired == false)
 	{
-		for (int i = 0; i < 3; ++i)
+		for (int i = 0; i < nBullets; ++i)
 		{
 			if (!bullet[i].HasSpawned())
 			{

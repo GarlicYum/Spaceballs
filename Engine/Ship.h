@@ -3,7 +3,6 @@
 #include "Bullet.h"
 #include "Sound.h"
 #include "Health.h"
-#include "Shield.h"
 
 class Ship
 {

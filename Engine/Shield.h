@@ -8,7 +8,8 @@ public:
 	void Update(class Ship& ship);
 	void Draw(Graphics& gfx);
 	void DrawMeter(Graphics& gfx);
-	bool GetisActive();
+	bool GetisActive() const;
+	void SetisActive(bool active);
 	float GetX();
 	float GetY();
 	int GetSize();
@@ -17,7 +18,7 @@ private:
 	float x;
 	float y;
 	static constexpr int radius = 100;
-	bool isActive = true;
+	bool isActive = false;
 	int shieldSize = 0;
 	int holeSize = -5;
 	int meterWidth = 300;

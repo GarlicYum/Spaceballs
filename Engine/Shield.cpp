@@ -44,9 +44,14 @@ void Shield::DrawMeter(Graphics& gfx)
 	gfx.DrawSquare(meterX, meterY, meterWidth, meterHeight, c);
 }
 
-bool Shield::GetisActive()
+bool Shield::GetisActive() const
 {
 	return isActive;
+}
+
+void Shield::SetisActive(bool active)
+{
+	isActive = active;
 }
 
 float Shield::GetX()
