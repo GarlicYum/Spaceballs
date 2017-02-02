@@ -1007,6 +1007,7 @@ void EnergyBoost::Update(Ship & ship, float dt)
 			isObtained = true;
 			if (!isRestored)
 			{
+				boostSound.Play(1.2f, 1.4f);
 				ship.Restore(restoreAmount);
 				isRestored = true;
 			}

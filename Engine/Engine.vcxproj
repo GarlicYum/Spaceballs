@@ -254,6 +254,7 @@
   </ItemGroup>
   <ItemGroup>
     <Media Include="actionnd.wav" />
+    <Media Include="boost.wav" />
     <Media Include="explo.wav" />
     <Media Include="shitgun.wav" />
     <Media Include="shitgun2.wav" />

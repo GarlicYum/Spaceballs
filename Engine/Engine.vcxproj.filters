@@ -190,5 +190,8 @@
     <Media Include="explo.wav">
       <Filter>Media</Filter>
     </Media>
+    <Media Include="boost.wav">
+      <Filter>Media</Filter>
+    </Media>
   </ItemGroup>
 </Project>

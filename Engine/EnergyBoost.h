@@ -2,6 +2,7 @@
 #include "MainWindow.h"
 #include "Graphics.h"
 #include "Ship.h"
+#include "Sound.h"
 
 class EnergyBoost
 {
@@ -20,4 +21,5 @@ private:
 	static constexpr float width = 40.0f;
 	static constexpr float height = 32.0f;
 	static constexpr int restoreAmount = 150;
+	Sound boostSound = L"boost.wav";
 };
