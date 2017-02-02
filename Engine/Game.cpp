@@ -55,7 +55,7 @@ void Game::UpdateModel()
 {
 	const float dt = ft.Mark();
 
-	PlayerInput();
+	
 
 	if (gameIsStarted)
 	{
@@ -64,6 +64,16 @@ void Game::UpdateModel()
 		mineM.Update(ship, dt, shieldM);
 		eBoostM.Update(ship, dt);
 		shieldM.Update(ship, dt, shieldon, shieldoff);
+	}
+	else
+	{
+		if (!songIsPlayed)
+		{
+			titleSong.Play();
+			songIsPlayed = true;
+		}
+		
+		PlayerInput();
 	}
 	
 }

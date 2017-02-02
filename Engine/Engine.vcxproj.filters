@@ -202,5 +202,8 @@
     <Media Include="shieldon.wav">
       <Filter>Media</Filter>
     </Media>
+    <Media Include="War.wav">
+      <Filter>Media</Filter>
+    </Media>
   </ItemGroup>
 </Project>

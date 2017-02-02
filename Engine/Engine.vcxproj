@@ -261,6 +261,7 @@
     <Media Include="shieldon.wav" />
     <Media Include="shitgun.wav" />
     <Media Include="shitgun2.wav" />
+    <Media Include="War.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

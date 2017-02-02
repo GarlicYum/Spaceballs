@@ -63,11 +63,13 @@ private:
 	Sound mainSong;
 	Sound shieldon = L"shieldon.wav";
 	Sound shieldoff = L"shieldoff.wav";
+	Sound titleSong = L"War.wav";
 	MineManager mineM;
 	FrameTimer ft;
 	EnergyBoostManager eBoostM;
 	ShieldManager shieldM;
 	bool gameIsStarted = false;
 	TitleScreen title;
+	bool songIsPlayed = false;
 	/********************************/
 };
