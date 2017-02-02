@@ -6,7 +6,6 @@
 #include "Graphics.h"
 #include <random>
 
-
 class ShieldManager
 {
 public:
@@ -20,6 +19,6 @@ private:
 	SmallShield s_shield[nSmallMax];
 	int nSmall = 0;
 	int smallCounter = 0;
-	int newSmall = 60;
+	int newSmall = 1000;
 };
 

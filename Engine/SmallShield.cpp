@@ -19,7 +19,6 @@ void SmallShield::Update(Ship& ship, float dt, Shield& shield)
 			shield.SetisActive(true);
 		}
 	}
-	
 }
 
 bool SmallShield::DetectCollision(Ship & ship)

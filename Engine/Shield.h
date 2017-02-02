@@ -21,11 +21,12 @@ private:
 	bool isActive = false;
 	int shieldSize = 0;
 	int holeSize = -5;
-	int meterWidth = 300;
+	int meterWidth;
 	static constexpr int meterHeight = 10;
 	int meterX = 400;
 	int meterY = 570;
 	Color c = Colors::Blue;
 	int meterCounter = 0;
 	static constexpr int meterDecrease = 3;
+	bool newShield = true;
 };
