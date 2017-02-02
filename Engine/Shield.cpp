@@ -32,6 +32,8 @@ void Shield::Update(Ship & ship, Sound& shieldon, Sound& shieldoff)
 			isActive = false;
 			newShield = true;
 			shieldoff.Play(0.9f, 1.1f);
+			shieldSize = 0;
+			holeSize = -5;
 		}
 		if (shieldSize < radius)
 		{
