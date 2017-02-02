@@ -59,6 +59,7 @@ private:
 	static constexpr int nBigStars = 20;
 	Star starB[nBigStars];
 	Sound mainSong;
+	Sound shieldon = L"shieldon.wav";
 	MineManager mineM;
 	FrameTimer ft;
 	EnergyBoostManager eBoostM;

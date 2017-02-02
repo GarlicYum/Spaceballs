@@ -6,11 +6,12 @@
 #include "Graphics.h"
 #include <random>
 
+
 class ShieldManager
 {
 public:
 	ShieldManager();
-	void Update(Ship& ship, float dt);
+	void Update(Ship& ship, float dt, Sound& shieldon);
 	void Draw(Graphics& gfx);
 	Shield& GetShield();
 private:
@@ -19,6 +20,6 @@ private:
 	SmallShield s_shield[nSmallMax];
 	int nSmall = 0;
 	int smallCounter = 0;
-	int newSmall = 1000;
+	int newSmall = 200;
 };
 

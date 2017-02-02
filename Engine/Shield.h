@@ -7,7 +7,7 @@ class Shield
 {
 public:
 	Shield();
-	void Update(class Ship& ship);
+	void Update(class Ship& ship, Sound& shieldon);
 	void Draw(Graphics& gfx);
 	void DrawMeter(Graphics& gfx);
 	bool GetisActive() const;
@@ -31,5 +31,4 @@ private:
 	int meterCounter = 0;
 	static constexpr int meterDecrease = 3;
 	bool newShield = true;
-	Sound shieldon = L"shieldon.wav";
 };

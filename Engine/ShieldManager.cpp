@@ -11,9 +11,9 @@ ShieldManager::ShieldManager()
 	}	
 }
 
-void ShieldManager::Update(Ship & ship, float dt)
+void ShieldManager::Update(Ship & ship, float dt, Sound& shieldon)
 {
-	shield.Update(ship);
+	shield.Update(ship, shieldon);
 
 	for (int i = 0; i < nSmall; i++)
 	{

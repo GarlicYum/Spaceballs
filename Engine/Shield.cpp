@@ -6,14 +6,14 @@ Shield::Shield()
 {
 }
 
-void Shield::Update(Ship & ship)
+void Shield::Update(Ship & ship, Sound& shieldon)
 {
 	if (isActive)
 	{
 		
 		if (newShield)
 		{
-			shieldon.Play();
+			shieldon.Play(0.9f, 1.1f);
 			meterWidth = 300;
 			newShield = false;
 		}
