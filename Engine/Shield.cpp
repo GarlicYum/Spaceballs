@@ -39,7 +39,6 @@ void Shield::Update(Ship & ship, Sound& shieldon, Sound& shieldoff)
 			holeSize += 5;
 		}
 	}
-	
 }
 
 void Shield::Draw(Graphics& gfx)

@@ -14,6 +14,6 @@ private:
 	static constexpr int nEBoostMax = 3;
 	int nEBoost = 0;
 	int eBoostCounter = 0;
-	int newEBoost = 300;
+	int newEBoost = 900;
 	EnergyBoost eBoost[nEBoostMax];
 };

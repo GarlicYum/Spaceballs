@@ -20,6 +20,6 @@ private:
 	SmallShield s_shield[nSmallMax];
 	int nSmall = 0;
 	int smallCounter = 0;
-	int newSmall = 200;
+	int newSmall = 1150;
 };
 
