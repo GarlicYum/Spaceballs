@@ -6,7 +6,7 @@ Shield::Shield()
 {
 }
 
-void Shield::Update(Ship & ship, Sound& shieldon)
+void Shield::Update(Ship & ship, Sound& shieldon, Sound& shieldoff)
 {
 	if (isActive)
 	{
@@ -31,6 +31,7 @@ void Shield::Update(Ship & ship, Sound& shieldon)
 		{
 			isActive = false;
 			newShield = true;
+			shieldoff.Play(0.9f, 1.1f);
 		}
 		if (shieldSize < radius)
 		{

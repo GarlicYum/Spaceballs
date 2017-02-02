@@ -60,6 +60,7 @@ private:
 	Star starB[nBigStars];
 	Sound mainSong;
 	Sound shieldon = L"shieldon.wav";
+	Sound shieldoff = L"shieldoff.wav";
 	MineManager mineM;
 	FrameTimer ft;
 	EnergyBoostManager eBoostM;

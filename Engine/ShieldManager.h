@@ -11,7 +11,7 @@ class ShieldManager
 {
 public:
 	ShieldManager();
-	void Update(Ship& ship, float dt, Sound& shieldon);
+	void Update(Ship& ship, float dt, Sound& shieldon, Sound& shieldoff);
 	void Draw(Graphics& gfx);
 	Shield& GetShield();
 private:

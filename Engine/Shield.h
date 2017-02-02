@@ -7,7 +7,7 @@ class Shield
 {
 public:
 	Shield();
-	void Update(class Ship& ship, Sound& shieldon);
+	void Update(class Ship& ship, Sound& shieldon, Sound& shieldoff);
 	void Draw(Graphics& gfx);
 	void DrawMeter(Graphics& gfx);
 	bool GetisActive() const;
