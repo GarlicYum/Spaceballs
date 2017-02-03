@@ -49,6 +49,7 @@ private:
 	void UpdateStars(float dt);
 	void DrawStars();
 	void PlayerInput();
+	void DrawLaser();
 	/********************************/
 private:
 	MainWindow& wnd;

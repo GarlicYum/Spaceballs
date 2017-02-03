@@ -162,6 +162,7 @@
     <ClInclude Include="SoundEffect.h" />
     <ClInclude Include="Star.h" />
     <ClInclude Include="TitleScreen.h" />
+    <ClInclude Include="Vec2.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
@@ -185,6 +186,7 @@
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Star.cpp" />
     <ClCompile Include="TitleScreen.cpp" />
+    <ClCompile Include="Vec2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="FramebufferPS.hlsl">
