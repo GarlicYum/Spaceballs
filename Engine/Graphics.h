@@ -24,6 +24,7 @@
 #include "ChiliException.h"
 #include "Colors.h"
 
+
 class Graphics
 {
 public:
@@ -78,6 +79,7 @@ public:
 	void DrawCircle(int x, int y, int r, Color c);
 	void DrawAnnulus(int x, int y, int radi, int r2, Color c);
 	void DrawSquare(int x, int y, int width, int height, Color c);
+
 	~Graphics();
 private:
 	Microsoft::WRL::ComPtr<IDXGISwapChain>				pSwapChain;
