@@ -3,6 +3,7 @@
 #include "Bullet.h"
 #include "Sound.h"
 #include "Health.h"
+#include "Vec2.h"
 
 class Ship
 {

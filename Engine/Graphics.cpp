@@ -333,6 +333,41 @@ void Graphics::DrawCircle(int x, int y, int r, Color c)
 	}
 }
 
+void Graphics::DrawLightBall(int x, int y, int radi, int hole, int r, int g, int b)
+{
+	
+	for (int hole_loop = hole; hole >= 0; hole--)
+	{
+		int r_sqr = radi * radi;
+		int r2_sqr = hole * hole;
+		for (int x_loop = x - radi; x_loop < x + radi; x_loop++)
+		{
+			for (int y_loop = y - radi; y_loop < y + radi; y_loop++)
+			{
+				int x_diff = x - x_loop;
+				int y_diff = y - y_loop;
+				if (x_diff * x_diff + y_diff * y_diff <= r_sqr &&
+					x_diff * x_diff + y_diff * y_diff >= r2_sqr)
+				{
+					PutPixelClipped(x_loop, y_loop, r, g, b);
+				}
+			}
+		}
+		if (r < 255)
+		{
+			r += 10;
+		}
+		else
+		{
+			r = 255;
+			g = 255;
+			b = 255;
+		}		
+		--radi;
+	}
+	
+}
+
 void Graphics::DrawAnnulus(int x, int y, int radi, int r2, Color c)
 {
 	const int r_sqr = radi * radi;
