@@ -535,8 +535,8 @@ Sound::Sound( const std::wstring& fileName,LoopType loopType,
 				assert( loopEnd > loopStart && loopEnd < nFrames );
 
 				// just in case ;)
-				loopStart = std::min( loopStart,nFrames - 1u );
-				loopEnd = std::min( loopEnd,nFrames - 1u );
+		//		loopStart = std::min( loopStart,nFrames - 1u );
+		//		loopEnd = std::min( loopEnd,nFrames - 1u );
 			}
 			break;
 		case LoopType::ManualSample:
@@ -552,8 +552,8 @@ Sound::Sound( const std::wstring& fileName,LoopType loopType,
 				loopEnd = loopEndSample;
 
 				// just in case ;)
-				loopStart = std::min( loopStart,nFrames - 1u );
-				loopEnd = std::min( loopEnd,nFrames - 1u );
+		//		loopStart = std::min( loopStart,nFrames - 1u );
+		//		loopEnd = std::min( loopEnd,nFrames - 1u );
 			}
 			break;
 		case LoopType::AutoFullSound:

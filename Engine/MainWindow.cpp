@@ -169,7 +169,7 @@ LRESULT MainWindow::HandleMsg( HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam )
 			if( wParam & (MK_LBUTTON | MK_RBUTTON) )
 			{
 				pt.x = std::max( short( 0 ),pt.x );
-				pt.x = std::min( short( Graphics::ScreenWidth - 1 ),pt.x );
+	    		pt.x = std::min( short( Graphics::ScreenWidth - 1 ),pt.x );
 				pt.y = std::max( short( 0 ),pt.y );
 				pt.y = std::min( short( Graphics::ScreenHeight - 1 ),pt.y );
 				mouse.OnMouseMove( pt.x,pt.y );

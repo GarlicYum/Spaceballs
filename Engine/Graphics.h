@@ -19,10 +19,39 @@
 *	along with The Chili DirectX Framework.  If not, see <http://www.gnu.org/licenses/>.  *
 ******************************************************************************************/
 #pragma once
-#include <d3d11.h>
 #include <wrl.h>
+#include <d3d11.h>
 #include "ChiliException.h"
 #include "Colors.h"
+#include "Bitmap.h"
+#include <Gdiplus.h>
+#pragma comment(lib, "gdiplus.lib")
+
+struct Sprite
+{
+	int width;
+	int height;
+	Color key;
+	Color* surface;
+};
+
+struct Font
+{
+	int charWidth;
+	int charHeight;
+	int nCharsPerRow;
+	Color* surface;
+};
+
+void LoadSprite(Sprite* sprite, const char* filename,
+	unsigned int width, unsigned int height, Color key);
+
+void FreeSprite(Sprite* sprite);
+
+void LoadFont(Font* font, Color* surface, const char* filename,
+	int charWidth, int charHeight, int nCharsPerRow);
+
+void LoadSpriteAlpha(Sprite* sprite);
 
 class Graphics
 {
@@ -56,6 +85,7 @@ public:
 		PutPixel( x,y,{ unsigned char( r ),unsigned char( g ),unsigned char( b ) } );
 	}
 	void PutPixel( int x,int y,Color c );
+
 	~Graphics();
 private:
 	Microsoft::WRL::ComPtr<IDXGISwapChain>				pSwapChain;

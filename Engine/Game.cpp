@@ -26,6 +26,7 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd )
 {
+	LoadBmp("WalkingDude\\wdude00.bmp", NULL);
 }
 
 void Game::Go()

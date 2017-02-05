@@ -358,3 +358,51 @@ std::wstring Graphics::Exception::GetExceptionType() const
 {
 	return L"Chili Graphics Exception";
 }
+
+void LoadSprite(Sprite * sprite, const char * filename, unsigned int width, unsigned int height, Color key)
+{
+	sprite->surface = (Color*)malloc(sizeof(Color) * width * height);
+	LoadBmp(filename, sprite->surface);
+	sprite->height = height;
+	sprite->width = width;
+	sprite->key = key;
+}
+
+void FreeSprite(Sprite * sprite)
+{
+	free(sprite->surface);
+}
+
+void LoadFont(Font * font, Color * surface, const char * filename, int charWidth, int charHeight, int nCharsPerRow)
+{
+	LoadBmp(filename, surface);
+	font->charHeight = charHeight;
+	font->charWidth = charWidth;
+	font->nCharsPerRow = nCharsPerRow;
+	font->surface = surface;
+}
+
+void LoadSpriteAlpha(Sprite* sprite)
+{
+	Gdiplus::GdiplusStartupInput gdiplusStartupInput;
+	ULONG_PTR		gdiplusToken;
+	Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
+	Gdiplus::Bitmap bitmap(L"shipnew.png");
+	Gdiplus::Color pixel;
+
+	sprite->height = bitmap.GetHeight();
+	sprite->width = bitmap.GetWidth();
+	sprite->key = 0x010301f3;
+	sprite->surface = (Color*)malloc(
+		sizeof(Color) * sprite->height * sprite->width);
+
+	for (int y = 0; y < bitmap.GetHeight(); y++)
+	{
+		for (int x = 0; x < bitmap.GetWidth(); x++)
+		{
+			bitmap.GetPixel(x, y, &pixel);
+			sprite->surface[x + y * bitmap.GetWidth()] =
+				Color(pixel.GetA(), pixel.GetR(), pixel.GetG(), pixel.GetB());
+		}
+	}
+}
