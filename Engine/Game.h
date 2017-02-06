@@ -33,7 +33,6 @@
 #include "EnergyBoostManager.h"
 #include "ShieldManager.h"
 #include "TitleScreen.h"
-#include "HighScore.h"
 
 class Game
 {
@@ -73,7 +72,5 @@ private:
 	bool gameIsStarted = false;
 	TitleScreen title;
 	bool songIsPlayed = false;
-	static constexpr int nScores = 10;
-	HighScore scores[nScores];
 	/********************************/
 };
