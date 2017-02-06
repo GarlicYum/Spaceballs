@@ -38,6 +38,7 @@ public:
 		virtual std::wstring GetExceptionType() const override { return L"Surface Exception"; }
 	};
 public:
+	Surface() = default;
 	Surface( unsigned int width,unsigned int height,unsigned int pitch )
 		:
 		pBuffer( std::make_unique<Color[]>( width * height ) ),
