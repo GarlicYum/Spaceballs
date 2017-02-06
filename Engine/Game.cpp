@@ -132,9 +132,4 @@ void Game::ComposeFrame()
 		mineM.Draw(gfx, ship);
 		eBoostM.Draw(gfx, ship);
 	}
-
-	// sprite test code
-	static const Surface mario = Surface::FromFile( L"mario_sprite.png" );
-	gfx.DrawSprite( -24,-24,mario );
-	gfx.DrawSpriteKey( 331,410,mario,mario.GetPixel( 0,0 ) );
 }
