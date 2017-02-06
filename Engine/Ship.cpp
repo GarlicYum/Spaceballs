@@ -31,7 +31,7 @@ void Ship::FireBullet(float dt)
 		{
 			if (!bullet[i].HasSpawned())
 			{
-				bullet[i].Spawn(x + canonPos, y, dt);
+				bullet[i].Spawn(x + canonX, y +canonY, dt);
 				gun.Play(0.5F, 0.5F);
 				shotsFired = true;
 				break;

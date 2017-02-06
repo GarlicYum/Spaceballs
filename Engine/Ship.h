@@ -30,7 +30,8 @@ private:
 	float y = 300.0f;
 	float width = 100.0f;
 	float height = 100.0f;
-	float canonPos = 50.0f;
+	float canonX = 50.0f;
+	float canonY = 20.0f;
 	float vx = 6.0f * 60.0f;
 	float vy = 6.0f * 60.0f;
 	static constexpr int nBullets = 3;
