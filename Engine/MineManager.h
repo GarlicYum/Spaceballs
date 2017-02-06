@@ -13,7 +13,7 @@ public:
 	void Draw(Graphics & gfx, Ship& ship);
 
 private:
-	static constexpr int nMinesMax = 130;
+	static constexpr int nMinesMax = 100;
 	int nMines = 0;
 	int mineCounter = 0;
 	int newMine = 30;
