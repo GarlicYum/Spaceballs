@@ -13,7 +13,7 @@ class Mine
 public:
 	bool DetectCollision(class Ship& ship);
 	void Update(class Ship& ship, float dt, ShieldManager shieldM);
-	void Draw(Graphics& gfx,class Ship& ship);
+	void Draw(Graphics& gfx,class Ship& ship, Animation& animation);
 	void SetPos(float X);
 	bool isActive();
 	void GotShot(class Ship& ship, int nBullets);
@@ -31,7 +31,6 @@ private:
 	static constexpr float height = 50.0f;
 	bool isDamaged = false;
 	Sound explosion = L"explo.wav";
-	Animation animation;
 	int framecount;
 	int curframe;
 };

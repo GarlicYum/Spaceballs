@@ -129,7 +129,7 @@ void Game::ComposeFrame()
 		DrawStars();
 		shieldM.Draw(gfx);
 		ship.Draw(gfx);
-		mineM.Draw(gfx, ship);
+		mineM.Draw(gfx, ship, animation);
 		eBoostM.Draw(gfx, ship);
 	}
 }

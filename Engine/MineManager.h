@@ -10,7 +10,7 @@ class MineManager
 public:
 	MineManager();
 	void Update(Ship& ship, float dt, ShieldManager shieldM);
-	void Draw(Graphics & gfx, Ship& ship);
+	void Draw(Graphics & gfx, Ship& ship, Animation& animation);
 
 private:
 	static constexpr int nMinesMax = 100;

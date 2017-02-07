@@ -34,6 +34,7 @@
 #include "ShieldManager.h"
 #include "TitleScreen.h"
 #include "HighScore.h"
+#include "Animation.h"
 
 class Game
 {
@@ -75,5 +76,6 @@ private:
 	bool songIsPlayed = false;
 	static constexpr int nScores = 10;
 	HighScore scores[nScores];
+	Animation animation;
 	/********************************/
 };

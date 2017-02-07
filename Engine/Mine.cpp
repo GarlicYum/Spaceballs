@@ -69,7 +69,7 @@ void Mine::Update(Ship& ship, float dt, ShieldManager shieldM)
 	}
 }
 
-void Mine::Draw(Graphics& gfx, Ship& ship)
+void Mine::Draw(Graphics& gfx, Ship& ship, Animation& animation)
 {
 	if (ship.HasHealth())
 	{
