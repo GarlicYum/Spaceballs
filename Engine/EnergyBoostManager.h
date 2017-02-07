@@ -9,7 +9,7 @@ class EnergyBoostManager
 public:
 	EnergyBoostManager();
 	void Update(Ship& ship, float dt);
-	void Draw(Graphics & gfx, Ship& ship);
+	void Draw(Graphics & gfx, Ship& ship, Animation& animation);
 private:
 	static constexpr int nEBoostMax = 3;
 	int nEBoost = 0;

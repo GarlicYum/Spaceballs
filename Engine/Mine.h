@@ -31,6 +31,6 @@ private:
 	static constexpr float height = 50.0f;
 	bool isDamaged = false;
 	Sound explosion = L"explo.wav";
-	int framecount;
-	int curframe;
+	int framecount = 0;
+	int curframe = 0;
 };

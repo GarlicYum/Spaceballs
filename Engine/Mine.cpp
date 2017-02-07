@@ -75,8 +75,8 @@ void Mine::Draw(Graphics& gfx, Ship& ship, Animation& animation)
 	{
 		if (!isDetonated && (y < gfx.ScreenHeight))
 		{
-			static const Surface mine = Surface::FromFile(L"mine.png");
-			gfx.DrawSpriteKey(int(x), int(y), mine, mine.GetPixel(0, 0));
+			
+			gfx.DrawSpriteKey(int(x), int(y), animation.GetMineSprite(), animation.GetMineSprite().GetPixel(0, 0));
 		}
 
 		else if (isDetonated && explosionCounter < explosionEnd)

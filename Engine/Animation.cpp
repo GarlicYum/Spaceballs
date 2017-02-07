@@ -18,3 +18,18 @@ Surface* Animation::GetExplo()
 	return explo;
 }
 
+Surface & Animation::GetMineSprite()
+{
+	return mineSprite;
+}
+
+Surface & Animation::GetShipSprite()
+{
+	return shipSprite;
+}
+
+Surface & Animation::GetHeartSprite()
+{
+	return heartSprite;
+}
+

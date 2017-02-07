@@ -3,14 +3,12 @@
 #include "Surface.h"
 
 // draws the ship and draws spawned bullets and anything that has to do with ship
-void Ship::Draw(Graphics& gfx) 
+void Ship::Draw(Graphics& gfx, Animation& animation) 
 {
 	
 	if (health.HasHealth())
 	{
-		static const Surface ship = Surface::FromFile(L"shippit.png");
-
-		gfx.DrawSpriteKey(int(x), int(y), ship, ship.GetPixel(0, 0));
+		gfx.DrawSpriteKey(int(x), int(y), animation.GetShipSprite(), animation.GetShipSprite().GetPixel(0, 0));
 		
 		for (int i = 0; i < nBullets; i++)
 		{

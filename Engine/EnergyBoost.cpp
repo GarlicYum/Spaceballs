@@ -1,12 +1,11 @@
 #include "EnergyBoost.h"
 #include "Surface.h"
 
-void EnergyBoost::Draw(Graphics& gfx)
+void EnergyBoost::Draw(Graphics& gfx, Animation& animation)
 {
 	if (!isObtained && y < gfx.ScreenHeight)
 	{
-		static const Surface heart = Surface::FromFile(L"hart.png");
-		gfx.DrawSpriteKey(int(x), int(y), heart, heart.GetPixel(0, 0));
+		gfx.DrawSpriteKey(int(x), int(y), animation.GetHeartSprite(), animation.GetHeartSprite().GetPixel(0, 0));
 	}
 }
 

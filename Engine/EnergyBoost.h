@@ -7,7 +7,7 @@
 class EnergyBoost
 {
 public:
-	void Draw(Graphics& gfx);
+	void Draw(Graphics& gfx, Animation& animation);
 	bool DetectCollision(Ship& ship);
 	void Update(Ship& ship, float dt);
 	void SetPos(float X);

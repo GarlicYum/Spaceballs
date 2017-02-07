@@ -25,10 +25,10 @@ void EnergyBoostManager::Update(Ship& ship, float dt)
 	}
 }
 
-void EnergyBoostManager::Draw(Graphics & gfx, Ship& ship)
+void EnergyBoostManager::Draw(Graphics & gfx, Ship& ship, Animation& animation)
 {
 	for (int i = 0; i < nEBoost; i++)
 	{
-		eBoost[i].Draw(gfx);
+		eBoost[i].Draw(gfx, animation);
 	}
 }

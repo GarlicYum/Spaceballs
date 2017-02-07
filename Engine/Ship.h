@@ -4,11 +4,12 @@
 #include "Sound.h"
 #include "Health.h"
 #include "Vec2.h"
+#include "Animation.h"
 
 class Ship
 {
 public:
-	void Draw(Graphics& gfx);
+	void Draw(Graphics& gfx, Animation& animation);
 	void FireBullet(float dt);
 	void ClampScreen();
 	void Update(MainWindow& wnd, float dt);
@@ -42,4 +43,7 @@ private:
 	Health health;
 	bool healthChanging = false;
 	float padding = 35.0f;
+
+	int framecount = 0;
+	int curframe = 0;
 };
