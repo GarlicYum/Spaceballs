@@ -8,7 +8,14 @@ void Ship::Draw(Graphics& gfx, Animation& animation)
 	
 	if (health.HasHealth())
 	{
-		gfx.DrawSpriteKey(int(x), int(y), animation.GetShipSprite(), animation.GetShipSprite().GetPixel(0, 0));
+		if (health.GetHealthAmount() > 75)
+		{
+			gfx.DrawSpriteKey(int(x), int(y), animation.GetShipSprite(), animation.GetShipSprite().GetPixel(0, 0));
+		}
+		else
+		{
+			gfx.DrawSpriteKey(int(x), int(y), animation.GetShipDestroyed()[curframe], animation.GetShipDestroyed()[curframe].GetPixel(0, 0));
+		}
 		
 		for (int i = 0; i < nBullets; i++)
 		{
@@ -147,6 +154,19 @@ void Ship::Update(MainWindow & wnd, float dt)
 
 	if (HasHealth())
 	{
+		if (health.GetHealthAmount() <= 75)
+		{
+			framecount++;
+			if (framecount > 1)
+			{
+				curframe++;
+				framecount = 0;
+			}
+			if (curframe == 20)
+			{
+				curframe = 0;
+			}
+		}
 		PlayerInput(wnd, dt);
 
 		for (int i = 0; i < nBullets; i++)

@@ -28,6 +28,11 @@ bool Health::HasHealth() const
 		healthAmount > 0;
 }
 
+int Health::GetHealthAmount()
+{
+	return healthAmount;
+}
+
 void Health::ColorMeter()
 {
 	if (healthAmount <= 100)
