@@ -77,5 +77,6 @@ private:
 	static constexpr int nScores = 10;
 	HighScore scores[nScores];
 	Animation animation;
+	Surface sprite;
 	/********************************/
 };

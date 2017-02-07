@@ -142,7 +142,6 @@
     <ClInclude Include="ChiliWin.h" />
     <ClInclude Include="Colors.h" />
     <ClInclude Include="DXErr.h" />
-    <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnergyBoost.h" />
     <ClInclude Include="EnergyBoostManager.h" />
     <ClInclude Include="FrameTimer.h" />
@@ -166,6 +165,7 @@
     <ClInclude Include="Surface.h" />
     <ClInclude Include="TitleScreen.h" />
     <ClInclude Include="Vec2.h" />
+    <ClInclude Include="Enemy.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
@@ -193,6 +193,7 @@
     <ClCompile Include="Surface.cpp" />
     <ClCompile Include="TitleScreen.cpp" />
     <ClCompile Include="Vec2.cpp" />
+    <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="FramebufferPS.hlsl">
