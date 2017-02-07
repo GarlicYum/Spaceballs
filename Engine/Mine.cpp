@@ -4,18 +4,6 @@
 #include "Surface.h"
 
 
-Mine::Mine()
-{
-	std::wstring filename; 
-	for (int i = 0; i < surfCount; ++i)
-	{
-		const int j = i + 1;
-
-		filename = L"mineExplo\\" + std::to_wstring(j) + L".png"; 
-
-		explo[i] = Surface::FromFile(filename);
-	}
-}
 
 //detects if the mine collides with a ship, passing in reference to the ship so mine knows its location
 //returns a bool, this function will get called in mines update function
@@ -93,7 +81,7 @@ void Mine::Draw(Graphics& gfx, Ship& ship)
 
 		else if (isDetonated && explosionCounter < explosionEnd)
 		{
-			gfx.DrawSpriteKey(int(x), int(y), explo[curframe], explo[curframe].GetPixel(0, 0));
+			gfx.DrawSpriteKey(int(x), int(y), animation.GetExplo()[curframe], animation.GetExplo()[curframe].GetPixel(0, 0));
 		}
 	}
 }

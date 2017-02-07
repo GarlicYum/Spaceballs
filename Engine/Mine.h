@@ -5,12 +5,12 @@
 #include "Sound.h"
 #include "Shield.h"
 #include "ShieldManager.h"
+#include "Animation.h"
 
 
 class Mine
 {
 public:
-	Mine();
 	bool DetectCollision(class Ship& ship);
 	void Update(class Ship& ship, float dt, ShieldManager shieldM);
 	void Draw(Graphics& gfx,class Ship& ship);
@@ -31,10 +31,7 @@ private:
 	static constexpr float height = 50.0f;
 	bool isDamaged = false;
 	Sound explosion = L"explo.wav";
-	
-	static constexpr int surfCount = 16;
-	Surface explo[surfCount];
-
-	int framecount = 0;
-	int curframe = 0;
+	Animation animation;
+	int framecount;
+	int curframe;
 };
