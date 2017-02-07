@@ -9,6 +9,8 @@ class SmallShield
 public:
 	void Draw(Graphics& gfx);
 	void Update(Ship& ship, float dt, Shield& shield);
+	RectF GetCollisionRect()const;
+	void HandleCollision( Shield& shield );
 	bool DetectCollision(Ship& ship);
 	void SetPos(float X);
 private:

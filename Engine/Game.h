@@ -20,21 +20,7 @@
  ******************************************************************************************/
 #pragma once
 
-#include "Keyboard.h"
-#include "Mouse.h"
-#include "Graphics.h"
-#include "Ship.h"
-#include "Star.h"
-#include <random>
-#include "Bullet.h"
-#include "Sound.h"
-#include "MineManager.h"
-#include "FrameTimer.h"
-#include "EnergyBoostManager.h"
-#include "ShieldManager.h"
-#include "TitleScreen.h"
-#include "HighScore.h"
-#include "Animation.h"
+#include "World.h"
 
 class Game
 {
@@ -48,34 +34,19 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
-	void UpdateStars(float dt);
-	void DrawStars();
-	void PlayerInput();
-	void DrawLaser();
 	/********************************/
 private:
 	MainWindow& wnd;
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
-	Ship ship;
-	static constexpr int nStars = 100;
-	Star star[nStars];
-	static constexpr int nBigStars = 20;
-	Star starB[nBigStars];
-	Sound mainSong;
+	/*Sound mainSong;
 	Sound shieldon = L"shieldon.wav";
 	Sound shieldoff = L"shieldoff.wav";
-	Sound titleSong = L"War.wav";
-	MineManager mineM;
+	Sound titleSong = L"War.wav";*/
 	FrameTimer ft;
-	EnergyBoostManager eBoostM;
-	ShieldManager shieldM;
-	bool gameIsStarted = false;
-	TitleScreen title;
-	bool songIsPlayed = false;
-	static constexpr int nScores = 10;
-	HighScore scores[nScores];
-	Animation animation;
+	World world;
+
+	
 	/********************************/
 };

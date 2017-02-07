@@ -13,28 +13,21 @@ void SmallShield::Update(Ship& ship, float dt, Shield& shield)
 	if (!isObtained)
 	{
 		y += vy * dt;
-		if (DetectCollision(ship))
-		{
-			isObtained = true;
-			shield.SetisActive(true);
-		}
 	}
 }
 
-bool SmallShield::DetectCollision(Ship & ship)
+RectF SmallShield::GetCollisionRect() const
 {
-	const float ssRight = x + radius;
-	const float ssBottom = y + radius;
-	const float ssLeft = x - radius;
-	const float ssTop = y - radius;
-	const float sRight = ship.GetWidth() + ship.GetX();
-	const float sBottom = ship.GetHeight() + ship.GetY();
+	return RectF( x - radius, y - radius, radius * 2.f, radius * 2.f );
+}
 
-	return
-		ssRight >= ship.GetX() &&
-		ssLeft <= sRight &&
-		ssBottom >= ship.GetY() &&
-		ssTop <= sBottom;
+void SmallShield::HandleCollision( Shield& shield )
+{
+	if( !isObtained )
+	{
+		isObtained = true;
+		shield.SetisActive( true );
+	}
 }
 
 void SmallShield::SetPos(float X)

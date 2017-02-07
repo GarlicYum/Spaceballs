@@ -205,6 +205,7 @@ void SoundSystem::DeactivateChannel( Channel & channel )
 		return &channel == pChan.get();
 	} );
 	idleChannelPtrs.push_back( std::move( *i ) );
+	
 	activeChannelPtrs.erase( i );
 }
 
@@ -216,7 +217,9 @@ SoundSystem::Channel::Channel( SoundSystem & sys )
 	{
 	public:
 		void STDMETHODCALLTYPE OnStreamEnd() override
-		{}
+		{
+
+		}
 		void STDMETHODCALLTYPE OnVoiceProcessingPassEnd() override
 		{}
 		void STDMETHODCALLTYPE OnVoiceProcessingPassStart( UINT32 SamplesRequired ) override
@@ -300,12 +303,13 @@ void SoundSystem::Channel::PlaySoundBuffer( Sound& s,float freqMod,float vol )
 	if( FAILED( hr = pSource->Start() ) )
 	{
 		throw CHILI_SOUND_API_EXCEPTION( hr,L"Starting playback - starting" );
-	}
+	}	
 }
 
 void SoundSystem::Channel::Stop()
 {
 	assert( pSource && pSound );
+	
 	pSource->Stop();
 	pSource->FlushSourceBuffers();
 }
@@ -642,7 +646,19 @@ Sound& Sound::operator=( Sound && donor )
 
 void Sound::Play( float freqMod,float vol )
 {
+	isPlaying = true;
 	SoundSystem::Get().PlaySoundBuffer( *this,freqMod,vol );
+}
+
+void Sound::SetStop()
+{
+	std::lock_guard<std::mutex> lock( mutex );
+	isPlaying = false;
+}
+
+bool Sound::IsPlaying() const
+{
+	return isPlaying;
 }
 
 void Sound::StopOne()

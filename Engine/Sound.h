@@ -151,6 +151,8 @@ public:
 	Sound( Sound&& donor );
 	Sound& operator=( Sound&& donor );
 	void Play( float freqMod = 1.0f,float vol = 1.0f );
+	void SetStop();
+	bool IsPlaying()const;
 	void StopOne();
 	void StopAll();
 	~Sound();
@@ -161,6 +163,7 @@ private:
 private:
 	UINT32 nBytes = 0u;
 	bool looping = false;
+	bool isPlaying = false;
 	unsigned int loopStart;
 	unsigned int loopEnd;
 	std::unique_ptr<BYTE[]> pData;

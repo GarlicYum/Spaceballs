@@ -1,50 +1,41 @@
 #include "EnergyBoost.h"
 #include "Surface.h"
 
+EnergyBoost::EnergyBoost( float X, Sound & BoostSound, Surface & BoostSurface )
+	:
+	boostSound( BoostSound ),
+	heart( BoostSurface ),
+	x( X )
+{}
+
+void EnergyBoost::Update( Ship & ship, float dt )
+{
+	if( !isObtained )
+	{
+		y += vy * dt;
+	}
+}
+
 void EnergyBoost::Draw(Graphics& gfx)
 {
-	if (!isObtained && y < gfx.ScreenHeight)
-	{
-		static const Surface heart = Surface::FromFile(L"hart.png");
+	if (!isObtained && y < Graphics::ScreenHeight )
+	{		
 		gfx.DrawSpriteKey(int(x), int(y), heart, heart.GetPixel(0, 0));
 	}
 }
 
-bool EnergyBoost::DetectCollision(Ship & ship)
+RectF EnergyBoost::GetCollisionRect() const
 {
-	const float eRight = x + width;
-	const float eBottom = y + height;
-	const float sRight = ship.GetWidth() + ship.GetX();
-	const float sBottom = ship.GetHeight() + ship.GetY();
-
-	return
-		eRight >= ship.GetX() &&
-		x <= sRight &&
-		eBottom >= ship.GetY() &&
-		y <= sBottom;
+	return RectF( x, y, width, height );
 }
 
-void EnergyBoost::Update(Ship & ship, float dt)
+void EnergyBoost::HandleCollision( Ship & ship )
 {
-	if (!isObtained)
+	isObtained = true;
+	if( !isRestored )
 	{
-		y += vy * dt;
-		if (DetectCollision(ship))
-		{
-			isObtained = true;
-			if (!isRestored)
-			{
-				boostSound.Play(1.2f, 1.4f);
-				ship.Restore(restoreAmount);
-				isRestored = true;
-			}
-
-		}
+		boostSound.Play( 1.2f, 1.4f );
+		ship.Restore( restoreAmount );
+		isRestored = true;
 	}
-	
-}
-
-void EnergyBoost::SetPos(float X)
-{
-	x = X;
 }

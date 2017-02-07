@@ -14,6 +14,12 @@ public:
 	void Update(Ship& ship, float dt, Sound& shieldon, Sound& shieldoff);
 	void Draw(Graphics& gfx);
 	Shield& GetShield();
+	int GetShieldCount()const;
+	SmallShield &GetSmallShield( int Idx );
+	const SmallShield &GetSmallShield( int Idx )const;
+private:
+	void SpawnShieldPowerup();
+
 private:
 	static constexpr int nSmallMax = 2;
 	Shield shield;

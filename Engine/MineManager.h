@@ -1,21 +1,25 @@
 #pragma once
-#include "MainWindow.h"
+
 #include "Mine.h"
 #include <random>
-#include "ShieldManager.h"
-
+#include <vector>
 
 class MineManager
 {
 public:
-	MineManager();
-	void Update(Ship& ship, float dt, ShieldManager shieldM);
-	void Draw(Graphics & gfx, Ship& ship, Animation& animation);
+	MineManager(Sound &Explosion, const Surface &MineSurface, AnimationFrames &ExplosionFrames);
+	void Update( float Dt );
+	void Draw( Graphics & gfx );
+
+	void SpawnMine();
+	Mine &GetMine( int Idx );
+	const Mine &GetMine( int Idx )const;
+	int GetMineCount()const;
 
 private:
 	static constexpr int nMinesMax = 100;
 	int nMines = 0;
 	int mineCounter = 0;
 	int newMine = 30;
-	Mine mine[nMinesMax];
+	std::vector<Mine> mine;
 };

@@ -1,26 +1,30 @@
 #pragma once
-#include "MainWindow.h"
+
 #include "Graphics.h"
+#include "RectF.h"
 #include "Sound.h"
 
 class Shield
 {
 public:
+	enum ShieldState
+	{
+		NewState, ActiveState, NoShield
+	};
 	Shield();
 	void Update(class Ship& ship, Sound& shieldon, Sound& shieldoff);
-	void Draw(Graphics& gfx);
-	void DrawMeter(Graphics& gfx);
+	void Draw(Graphics& gfx)const;
+	void DrawMeter(Graphics& gfx)const;
 	bool GetisActive() const;
 	void SetisActive(bool active);
-	float GetX();
-	float GetY();
-	int GetSize();
+
+	RectF GetCollisionRect()const;
 
 private:
 	float x;
 	float y;
 	static constexpr int radius = 100;
-	bool isActive = false;
+	ShieldState sState = NoShield;
 	int shieldSize = 0;
 	int holeSize = -5;
 	int meterWidth;
@@ -30,5 +34,4 @@ private:
 	Color c = Colors::Blue;
 	int meterCounter = 0;
 	static constexpr int meterDecrease = 3;
-	bool newShield = true;
 };

@@ -6,11 +6,13 @@
 
 class EnergyBoost
 {
-public:
+public:	
+	EnergyBoost( float X, Sound &BoostSound, Surface &BoostSurface );
+	void Update( Ship& ship, float dt );
 	void Draw(Graphics& gfx);
-	bool DetectCollision(Ship& ship);
-	void Update(Ship& ship, float dt);
-	void SetPos(float X);
+
+	RectF GetCollisionRect()const;
+	void HandleCollision( Ship& ship );
 
 private:
 	float x = 0.0f;
@@ -21,5 +23,6 @@ private:
 	static constexpr float width = 40.0f;
 	static constexpr float height = 32.0f;
 	static constexpr int restoreAmount = 150;
-	Sound boostSound = L"boost.wav";
+	Surface &heart;
+	Sound &boostSound;
 };

@@ -1,12 +1,16 @@
 #include "EnergyBoostManager.h"
+#include <random>
 
-EnergyBoostManager::EnergyBoostManager()
+EnergyBoostManager::EnergyBoostManager( Sound &BoostSound, Surface &BoostSurface )
+	:
+	boostSound( BoostSound ),
+	boostSurface( BoostSurface )
 {
 	std::mt19937 rng;
 	std::uniform_real_distribution<float> xDist(0.0f, 700.0f);
 	for (int i = 0; i < nEBoostMax; i++)
 	{
-		eBoost[i].SetPos(xDist(rng));
+		eBoost.push_back( EnergyBoost( xDist( rng ), boostSound, boostSurface ) );
 	}
 }
 
@@ -31,4 +35,19 @@ void EnergyBoostManager::Draw(Graphics & gfx, Ship& ship)
 	{
 		eBoost[i].Draw(gfx);
 	}
+}
+
+EnergyBoost & EnergyBoostManager::GetBoost( int Idx )
+{
+	return eBoost[ Idx ];
+}
+
+const EnergyBoost & EnergyBoostManager::GetBoost( int Idx ) const
+{
+	return eBoost[ Idx ];
+}
+
+int EnergyBoostManager::GetBoostCount() const
+{
+	return nEBoost;
 }
