@@ -2,97 +2,63 @@
 #include "Ship.h"
 #include "Surface.h"
 
-// draws the ship and draws spawned bullets and anything that has to do with ship
-void Ship::Draw(Graphics& gfx, Animation& animation) 
+Ship::Ship(BulletManager& Manager, Surface& ShipSurface)
+	:
+	bManager(Manager),
+	shipSurface(ShipSurface)
+{}
+
+void Ship::HandleCollision(int Damage)
 {
-	
-	if (health.HasHealth())
-	{
-		if (health.GetHealthAmount() > 75)
-		{
-			gfx.DrawSpriteKey(int(x), int(y), animation.GetShipSprite(), animation.GetShipSprite().GetPixel(0, 0));
-		}
-		else
-		{
-			gfx.DrawSpriteKey(int(x), int(y), animation.GetShipDestroyed()[curframe], animation.GetShipDestroyed()[curframe].GetPixel(0, 0));
-		}
-		
-		for (int i = 0; i < nBullets; i++)
-		{
-			if (bullet[i].HasSpawned())
-			{
-				bullet[i].Draw(gfx);
-			}
-		}
-		health.Draw(gfx);
-	}
+	health.Damage(Damage);
 }
 
-void Ship::FireBullet(float dt)
+void Ship::Draw(Graphics& gfx)
 {
-	if (shotsFired == false)
+	if (health.HasHealth())
 	{
-		for (int i = 0; i < nBullets; ++i)
-		{
-			if (!bullet[i].HasSpawned())
-			{
-				bullet[i].Spawn(x + canonX, y +canonY, dt);
-				gun.Play(0.5F, 0.5F);
-				shotsFired = true;
-				break;
-			}
-		}
+		gfx.DrawSpriteKey(int(x), int(y), shipSurface, shipSurface.GetPixel(0, 0));
+		health.Draw(gfx);
+		bManager.DrawBullets(gfx);
 	}
 }
 
 void Ship::ClampScreen()
 {
-	float right = x + width;
-	float bottom = y + height;
-	if (x < 0)
-	{
-		x = 0;
-	}
-	if (right >= Graphics::ScreenWidth)
-	{
-		x = float(Graphics::ScreenWidth) - width;
-	}
-	if (y < 0)
-	{
-		y = 0;
-	}
-	if (bottom >= Graphics::ScreenHeight - padding)
-	{
-		y = float(Graphics::ScreenHeight) - height - padding;
-	}
+	x = std::max(0.f, std::min(x, float(Graphics::ScreenWidth) - (width + 1.f)));
+	y = std::max(0.f, std::min(y, float(Graphics::ScreenHeight) - (height + 1.f)));
 }
 
-// gets the player input
-void Ship::PlayerInput(MainWindow & wnd, float dt)
+void Ship::PlayerInput(Keyboard& kbd, float dt)
 {
-	if (wnd.kbd.KeyIsPressed(VK_UP))
+	if (kbd.KeyIsPressed(VK_UP))
 	{
 		y -= vy * dt;
 	}
-	if (wnd.kbd.KeyIsPressed(VK_DOWN))
+
+	else if (kbd.KeyIsPressed(VK_DOWN))
 	{
 		y += vy * dt;
 	}
-	if (wnd.kbd.KeyIsPressed(VK_LEFT))
+
+	if (kbd.KeyIsPressed(VK_LEFT))
 	{
 		x -= vx * dt;
 	}
-	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
+
+	else if (kbd.KeyIsPressed(VK_RIGHT))
 	{
 		x += vx * dt;
 	}
-	if (wnd.kbd.KeyIsPressed(VK_SPACE))
+
+	if (kbd.KeyIsPressed(VK_SPACE))
 	{
-		FireBullet(dt);
+		bManager.FireBullet(x + canonX, y + canonY, dt);
 	}
+
 	else
 	{
-		shotsFired = false;
+		bManager.ResetShotsFired();
 	}
 }
 
@@ -101,45 +67,14 @@ void Ship::Restore(int restore)
 	health.Restore(restore);
 }
 
-//gets called when a mine is detonated
-void Ship::Damage(int damage)
-{
-	health.Damage(damage);
-}
-
 bool Ship::HasHealth() const
 {
 	return health.HasHealth();
 }
 
-float Ship::GetX() 
+RectF Ship::GetCollisionRect() const
 {
-	return x;
-}
-
-float Ship::GetY() 
-{
-	return y;
-}
-
-float Ship::GetWidth() 
-{
-	return width;
-}
-
-float Ship::GetHeight() 
-{
-	return height;
-}
-
-Bullet* Ship::GetBullets()
-{
-	return bullet;
-}
-
-int Ship::GetnBullets()
-{
-	return nBullets;
+	return RectF(x, y, width, height);
 }
 
 void Ship::SethitTarget(bool hit)
@@ -147,38 +82,11 @@ void Ship::SethitTarget(bool hit)
 	hitTarget = hit;
 }
 
-// updates should be neat. we use player input function
-// this way we can easily shut off player input if there's a cutscene etc
-void Ship::Update(MainWindow & wnd, float dt)
+void Ship::Update(Keyboard & wnd, float dt)
 {
-
 	if (HasHealth())
 	{
-		if (health.GetHealthAmount() <= 75)
-		{
-			framecount++;
-			if (framecount > 1)
-			{
-				curframe++;
-				framecount = 0;
-			}
-			if (curframe == 20)
-			{
-				curframe = 0;
-			}
-		}
 		PlayerInput(wnd, dt);
-
-		for (int i = 0; i < nBullets; i++)
-		{
-			if (bullet[i].HasSpawned())
-			{
-				bullet[i].Update(dt);
-			}
-		}
-
 		ClampScreen();
 	}
-	
 }
-

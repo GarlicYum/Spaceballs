@@ -138,6 +138,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="BulletManager.h" />
     <ClInclude Include="ChiliException.h" />
     <ClInclude Include="ChiliWin.h" />
     <ClInclude Include="Colors.h" />
@@ -154,6 +155,7 @@
     <ClInclude Include="Mine.h" />
     <ClInclude Include="MineManager.h" />
     <ClInclude Include="Mouse.h" />
+    <ClInclude Include="RectF.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Shield.h" />
     <ClInclude Include="ShieldManager.h" />
@@ -165,10 +167,12 @@
     <ClInclude Include="Surface.h" />
     <ClInclude Include="TitleScreen.h" />
     <ClInclude Include="Vec2.h" />
+    <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="BulletManager.cpp" />
     <ClCompile Include="DXErr.cpp" />
     <ClCompile Include="EnergyBoost.cpp" />
     <ClCompile Include="EnergyBoostManager.cpp" />
@@ -183,6 +187,7 @@
     <ClCompile Include="Mine.cpp" />
     <ClCompile Include="MineManager.cpp" />
     <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="RectF.cpp" />
     <ClCompile Include="Shield.cpp" />
     <ClCompile Include="ShieldManager.cpp" />
     <ClCompile Include="Ship.cpp" />
@@ -192,6 +197,7 @@
     <ClCompile Include="Surface.cpp" />
     <ClCompile Include="TitleScreen.cpp" />
     <ClCompile Include="Vec2.cpp" />
+    <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="FramebufferPS.hlsl">

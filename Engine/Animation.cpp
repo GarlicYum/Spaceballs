@@ -1,48 +1,53 @@
 #include "Animation.h"
 
-Animation::Animation()
+Animation::Animation(const AnimationFrames& Frames, int HoldFrameCount)
+	:
+	frames(Frames),
+	nHoldFrames(HoldFrameCount)
+{}
+
+void Animation::Advance()
 {
-	std::wstring filename;
-	for (int i = 0; i < nExploFrames; ++i)
+	++frameCounter;
+	if (frameCounter >= nHoldFrames)
+	{
+		frameCounter = 0;
+		++curFrame;
+		if (curFrame == frames.GetFrameCount())
+		{
+			curFrame = 0;
+			isOver = true;
+		}
+	}
+}
+
+bool Animation::AnimEnd() const
+{
+	return isOver;
+}
+
+void Animation::Draw(int X, int Y, Graphics& Gfx)
+{
+	frames.Draw(X, Y, curFrame, Gfx);
+}
+
+AnimationFrames::AnimationFrames(const std::wstring& Basename, int NumFrames)
+{
+	for (int i = 0; i < NumFrames; ++i)
 	{
 		const int j = i + 1;
 
-		filename = L"mineExplo\\" + std::to_wstring(j) + L".png";
-
-		explo[i] = Surface::FromFile(filename);
-	}
-	for (int i = 0; i < nShipFrames; ++i)
-	{
-		const int j = i + 1;
-
-		filename = L"shipDestroyed\\" + std::to_wstring(j) + L".png";
-
-		shipDestroyed[i] = Surface::FromFile(filename);
+		std::wstring filename = Basename + std::to_wstring(j) + L".png";
+		surfaces.push_back(Surface::FromFile(filename));
 	}
 }
 
-Surface* Animation::GetExplo()
+int AnimationFrames::GetFrameCount() const
 {
-	return explo;
+	return static_cast<int>(surfaces.size());
 }
 
-Surface * Animation::GetShipDestroyed()
+void AnimationFrames::Draw(int X, int Y, int Idx, Graphics& Gfx) const
 {
-	return shipDestroyed;
+	Gfx.DrawSpriteKey(X, Y, surfaces[Idx], surfaces[Idx].GetPixel(0, 0));
 }
-
-Surface & Animation::GetMineSprite()
-{
-	return mineSprite;
-}
-
-Surface & Animation::GetShipSprite()
-{
-	return shipSprite;
-}
-
-Surface & Animation::GetHeartSprite()
-{
-	return heartSprite;
-}
-

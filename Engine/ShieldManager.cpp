@@ -21,14 +21,10 @@ void ShieldManager::Update(Ship & ship, float dt, Sound& shieldon, Sound& shield
 	}
 
 	smallCounter++;
-	if (smallCounter == newSmall && nSmall != nSmallMax)
-	{
-		nSmall++;
-		smallCounter = 0;
-	}
+	SpawnShieldPowerup();
 }
 
-void ShieldManager::Draw(Graphics & gfx)
+void ShieldManager::Draw(Graphics& gfx)
 {
 	shield.Draw(gfx);
 
@@ -43,3 +39,26 @@ Shield & ShieldManager::GetShield()
 	return shield;
 }
 
+int ShieldManager::GetShieldCount() const
+{
+	return nSmall;
+}
+
+SmallShield& ShieldManager::GetSmallShield(int Idx)
+{
+	return s_shield[Idx];
+}
+
+const SmallShield& ShieldManager::GetSmallShield(int Idx) const
+{
+	return s_shield[Idx];
+}
+
+void ShieldManager::SpawnShieldPowerup()
+{
+	if (smallCounter == newSmall && nSmall != nSmallMax)
+	{
+		nSmall++;
+		smallCounter = 0;
+	}
+}

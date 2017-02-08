@@ -642,7 +642,19 @@ Sound& Sound::operator=( Sound && donor )
 
 void Sound::Play( float freqMod,float vol )
 {
+	isPlaying = true;
 	SoundSystem::Get().PlaySoundBuffer( *this,freqMod,vol );
+}
+
+void Sound::SetStop()
+{
+	std::lock_guard<std::mutex> lock(mutex);
+	isPlaying = false;
+}
+
+bool Sound::IsPlaying() const
+{
+	return isPlaying;
 }
 
 void Sound::StopOne()

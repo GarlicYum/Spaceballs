@@ -25,21 +25,8 @@
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd ),
-	mainSong(L"actionnd.wav")
-{
-	std::mt19937 rng;
-	std::uniform_real_distribution<float> xDist(0.0f, 790.0f);
-	std::uniform_real_distribution<float> yDist(0.0f, 590.0f);
-	for (int i = 0; i < nStars; i++)
-	{
-		star[i].Spawn(xDist(rng), yDist(rng), 3.0f);
-	}
-	for (int i = 0; i < nBigStars; i++)
-	{
-		starB[i].Spawn(xDist(rng), yDist(rng), 6.0f);
-	}
-}
+	gfx( wnd )
+{}
 
 void Game::Go()
 {
@@ -55,81 +42,12 @@ Anything that has to do with the ship should be part of ship.Update
 void Game::UpdateModel()
 {
 	const float dt = ft.Mark();
-
 	
-
-	if (gameIsStarted)
-	{
-		titleSong.StopAll();
-		ship.Update(wnd, dt);
-		UpdateStars(dt);
-		mineM.Update(ship, dt, shieldM);
-		eBoostM.Update(ship, dt);
-		shieldM.Update(ship, dt, shieldon, shieldoff);
-	}
-	else
-	{
-		if (!songIsPlayed)
-		{
-			titleSong.Play();
-			songIsPlayed = true;
-		}
-		
-		PlayerInput();
-	}
-	
-}
-
-void Game::UpdateStars(float dt)
-{
-	for (int i = 0; i < nStars; i++)
-	{
-		star[i].Update(dt);
-	}
-
-	for (int i = 0; i < nBigStars; i++)
-	{
-		starB[i].Update(dt * 1.2f);
-	}
-}
-
-void Game::DrawStars()
-{
-	for (int i = 0; i < nStars; i++)
-	{
-		star[i].Draw(gfx);
-	}
-	for (int i = 0; i < nBigStars; i++)
-	{
-		starB[i].DrawBig(gfx);
-	}
-}
-
-void Game::PlayerInput()
-{
-	if (!gameIsStarted)
-	{
-		if (wnd.kbd.KeyIsPressed(VK_RETURN))
-		{
-			gameIsStarted = true;
-			mainSong.Play(1.0F, 0.5F);
-		}
-	}
+	world.Update(wnd.kbd, dt);
 }
 
 // same thing as in updatemodel goes for composeframe
 void Game::ComposeFrame()
 {
-	if (!gameIsStarted)
-	{
-		title.Draw(gfx);
-	}
-	else
-	{
-		DrawStars();
-		shieldM.Draw(gfx);
-		ship.Draw(gfx, animation);
-		mineM.Draw(gfx, ship, animation);
-		eBoostM.Draw(gfx, ship, animation);
-	}
+	world.Draw(gfx);
 }
