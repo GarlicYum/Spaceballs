@@ -26,6 +26,16 @@ void Mine::HandleCollision()
 	}
 }
 
+void Mine::HandleBulletCollision(int dmg)
+{
+	hp -= dmg;
+	if (hp <= 0)
+	{
+		SetState(Mine::DetonateState);
+		explosion.Play();
+	}
+}
+
 void Mine::Update(float Dt)
 {
 	switch (mState)

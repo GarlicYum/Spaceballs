@@ -50,3 +50,8 @@ void Bullet::HandleCollision()
 {
 	bState = DeadState;
 }
+
+int Bullet::GetDamage()
+{
+	return dmg;
+}

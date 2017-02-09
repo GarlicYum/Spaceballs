@@ -17,6 +17,7 @@ public:
 	bool IsActive() const;
 	RectF GetCollisionRect() const;
 	void HandleCollision();
+	int GetDamage();
 
 private:
 	BulletState bState = DeadState;

@@ -18,6 +18,7 @@ public:
 	};
 	Mine(float X, const Surface& MineSurface, Sound& Explosion, AnimationFrames& Anim);
 	void HandleCollision();
+	void Mine::HandleBulletCollision(int dmg);
 	void Update(float Dt);
 	void Draw(Graphics& gfx);
 	int GetDamageCost() const;
@@ -38,4 +39,5 @@ private:
 	Animation explo;
 	bool gotPosition = false;
 	int damage = 0;
+	int hp = 60;
 };
