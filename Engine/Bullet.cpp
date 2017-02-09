@@ -1,5 +1,6 @@
 #include "Bullet.h"
 
+//constructor get the position of the bullet and sets the state to alive
 Bullet::Bullet(float X, float Y)
 	:
 	x(X),
@@ -7,6 +8,7 @@ Bullet::Bullet(float X, float Y)
 	bState(AliveState)
 {}
 
+//Update makes the bullet move in y direction and changes state to deadstate if it reaches the end of the screen
 void Bullet::Update(float dt)
 {
 	y -= vy * dt;
@@ -17,6 +19,7 @@ void Bullet::Update(float dt)
 	}
 }
 
+//if bState == alivestate then hasspawned returns true, else it returns false
 bool Bullet::HasSpawned() const
 {
 	return bState == AliveState;
@@ -32,6 +35,7 @@ bool Bullet::IsActive() const
 	return bState == AliveState;
 }
 
+//returns RectF based on bullets position and size
 RectF Bullet::GetCollisionRect() const
 {
 	const float bSize = float(bulletSize);

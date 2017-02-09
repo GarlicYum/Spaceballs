@@ -1,11 +1,17 @@
 #include "Animation.h"
 
+// Constructor gets a constant reference to AnimationFrames and the HoldFrameCount
+// HoldFrame is the amount of frames I want to go by before changing between 2 pictures in an animation
 Animation::Animation(const AnimationFrames& Frames, int HoldFrameCount)
 	:
 	frames(Frames),
 	nHoldFrames(HoldFrameCount)
 {}
 
+//This is the function that animates the picture
+//framecounter increases every frame
+// when framecounter = nHoldFrames then framecounter resets and the curent frame increases
+// if the current frame = number of frames  for the animation then current fram resests and the animation is over
 void Animation::Advance()
 {
 	++frameCounter;
