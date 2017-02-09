@@ -77,6 +77,26 @@ RectF Ship::GetCollisionRect() const
 	return RectF(x, y, width, height);
 }
 
+float Ship::GetX() const
+{
+	return x;
+}
+
+float Ship::GetWidth() const
+{
+	return width;
+}
+
+float Ship::GetY() const
+{
+	return y;
+}
+
+float Ship::GetHeight() const
+{
+	return height;
+}
+
 void Ship::SethitTarget(bool hit)
 {
 	hitTarget = hit;
@@ -87,6 +107,11 @@ void Ship::SetY(float Y)
 	y = Y;
 }
 
+void Ship::SetX(float X)
+{
+	x = X;
+}
+
 int Ship::GetDmg() const
 {
 	return dmg;
@@ -94,7 +119,7 @@ int Ship::GetDmg() const
 
 void Ship::Update(Keyboard & wnd, float dt)
 {
-	if (y + height > Graphics::ScreenHeight)
+	if (y + 1 > Graphics::ScreenHeight)
 	{
 		health.Damage(health.GetHealthAmount());
 	}

@@ -162,11 +162,29 @@ void World::CheckCollisions()
 	for (int i = 0; i < obstacleM.GetObstacleCount(); ++i)
 	{
 		auto& obstacle = obstacleM.GetObstacle(i);
-		const auto obstacleRect = obstacle.GetCollisionRect();
+		const auto obstacleBottomRect = obstacle.GetBottomCollisionRect();
+		const auto obstacleTopRect = obstacle.GetTopCollisionRect();
+		const auto obstacleLeftRect = obstacle.GetLeftCollisionRect();
+		const auto obstacleRightRect = obstacle.GetRightCollisionRect();
 
-		if (IsColliding(shipRect, obstacleRect))
+		if (IsColliding(shipRect, obstacleBottomRect))
 		{
-			obstacle.HandleCollision(ship);
+			obstacle.HandleBottomCollision(ship);
+		}
+
+		else if (IsColliding(shipRect, obstacleTopRect))
+		{
+			obstacle.HandleTopCollision(ship);
+		}
+
+		else if (IsColliding(shipRect, obstacleLeftRect))
+		{
+			obstacle.HandleLeftCollision(ship);
+		}
+
+		else if (IsColliding(shipRect, obstacleRightRect))
+		{
+			obstacle.HandleRightCollision(ship);
 		}
 
 		for (int i = 0; i < bulletM.GetNumBullets(); ++i)
@@ -176,7 +194,7 @@ void World::CheckCollisions()
 				continue;
 			const auto bulletRect = bullet.GetCollisionRect();
 
-			if (IsColliding(bulletRect, obstacleRect))
+			if (IsColliding(bulletRect, obstacleBottomRect))
 			{
 				bullet.HandleCollision();
 			}

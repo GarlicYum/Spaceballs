@@ -22,7 +22,7 @@ public:
 private:
 	float x;
 	float y;
-	static constexpr int radius = 100;
+	static constexpr int radius = 90;
 	ShieldState sState = NoShield;
 	int shieldSize = 0;
 	int holeSize = - 5;

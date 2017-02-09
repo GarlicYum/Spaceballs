@@ -18,13 +18,14 @@ public:
 	bool HasHealth() const;
 	RectF GetCollisionRect() const;
 	
-	/*float GetX() const;
+	float GetX() const;
 	float GetWidth() const;
 	float GetY() const;
 	float GetHeight() const;
-	;*/
+	
 	void SethitTarget(bool hit);
 	void SetY(float Y);
+	void SetX(float X);
 	int GetDmg() const;
 
 private:
@@ -36,7 +37,7 @@ private:
 	float x = 300.0f;
 	float y = 300.0f;
 	float width = 100.0f;
-	float height = 100.0f;
+	float height = 90.0f;
 	static constexpr float canonX = 50.0f;
 	static constexpr float canonY = 20.0f;
 	float vx = 6.0f * 60.0f;

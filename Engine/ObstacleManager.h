@@ -16,9 +16,9 @@ public:
 	const Obstacle& GetObstacle(int Idx) const;
 
 private:
-	static constexpr int nObstaclesMax = 3;
+	static constexpr int nObstaclesMax = 4;
 	int nObstacles = 0;
-	int newObstacle = 300;
+	int newObstacle = 550;
 	int obstacleCounter = 0;
 	std::vector<Obstacle> obstacle;
 };

@@ -10,8 +10,14 @@ public:
 	Obstacle(float X, const Surface& obstacleSurface);
 	void Draw(Graphics& gfx);
 	void Update(float dt);
-	void HandleCollision(Ship& ship);
-	RectF GetCollisionRect();
+	void HandleBottomCollision(Ship& ship);
+	void HandleTopCollision(Ship& ship);
+	void HandleLeftCollision(Ship& ship);
+	void HandleRightCollision(Ship& ship);
+	RectF GetBottomCollisionRect() const;
+	RectF GetLeftCollisionRect() const;
+	RectF GetRightCollisionRect() const;
+	RectF GetTopCollisionRect() const;
 
 private:
 	float x = 0.0f;
