@@ -6,6 +6,14 @@ RectF::RectF( float X, float Y, float Width, float Height )
 	right( X + Width ), bottom( Y + Height )
 {}
 
+RectF::RectF( const Vec2 & TopLeft, const Vec2 & BottomRight )
+	:
+	left( TopLeft.x ),
+	top( TopLeft.y ),
+	right( BottomRight.x ),
+	bottom( BottomRight.y )
+{}
+
 bool RectF::Overlaps( const RectF & Rect ) const
 {
 	return
@@ -21,6 +29,11 @@ float RectF::GetWidth() const
 float RectF::GetHeight() const
 {
 	return bottom - top;
+}
+
+Vec2 RectF::GetCenter() const
+{
+	return Vec2( GetCenterX(), GetCenterY() );
 }
 
 float RectF::GetCenterX() const

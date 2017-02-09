@@ -2,17 +2,17 @@
 
 //Anything I want to draw on screen should have an update function and a draw function
 
-Bullet::Bullet( float X, float Y )
+Bullet::Bullet( const Vec2 &CannonPosition )
 	:
-	x( X ), y( Y ),
+	position( CannonPosition ),
 	bState( AliveState )
 {}
 
 void Bullet::Update(float dt)
 {
-	y -= vy * dt;
+	position.y -= ( vy * dt );
 
-	if (y - bulletSize < 0) //if bullet reaches end of screen, hasspawned becomes false and bullet will no longer be drawn
+	if ( position.y - bulletSize < 0) //if bullet reaches end of screen, hasspawned becomes false and bullet will no longer be drawn
 	{
 		bState = DeadState;
 	}
@@ -25,7 +25,7 @@ bool Bullet::HasSpawned() const
 
 void Bullet::Draw(Graphics& gfx)
 {	
-	gfx.DrawCircle(int(x), int(y), bulletSize, Colors::Magenta);
+	gfx.DrawCircle(int( position.x), int( position.y), bulletSize, Colors::Magenta);
 }
 
 bool Bullet::IsActive() const
@@ -36,11 +36,10 @@ bool Bullet::IsActive() const
 RectF Bullet::GetCollisionRect() const
 {
 	const float bSize = float( bulletSize );
-	return RectF( 
-		x - bSize, 
-		y - bSize, 
-		( bSize * 2.f), 
-		( bSize * 2.f) );
+	const Vec2 vSize( bSize, bSize );
+	return RectF(
+		position - vSize,
+		position + vSize );
 }
 
 void Bullet::HandleCollision()

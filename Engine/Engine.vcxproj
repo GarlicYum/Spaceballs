@@ -141,6 +141,7 @@
     <ClInclude Include="BulletManager.h" />
     <ClInclude Include="ChiliException.h" />
     <ClInclude Include="ChiliWin.h" />
+    <ClInclude Include="CircleF.h" />
     <ClInclude Include="Colors.h" />
     <ClInclude Include="DXErr.h" />
     <ClInclude Include="Enemy.h" />
@@ -174,6 +175,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletManager.cpp" />
+    <ClCompile Include="CircleF.cpp" />
     <ClCompile Include="DXErr.cpp" />
     <ClCompile Include="EnergyBoost.cpp" />
     <ClCompile Include="EnergyBoostManager.cpp" />

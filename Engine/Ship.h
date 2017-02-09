@@ -19,10 +19,6 @@ public:
 	bool HasHealth() const;
 
 	RectF GetCollisionRect()const;
-	/*float GetX()const;
-	float GetY()const;
-	float GetWidth()const;
-	float GetHeight()const;*/
 	void SethitTarget(bool hit);
 
 private:
@@ -33,17 +29,15 @@ private:
 
 private:
 	bool hitTarget = false;
-	float x = 300.0f;
-	float y = 300.0f;
+	Vec2 position = Vec2( 300.f, 300.f );
+	Vec2 cannonOffset = Vec2( 50.f, 20.f );
+	Vec2 velocity = Vec2( 1.f, 1.f) * ( 6.f * 60.f );
 	float width = 100.0f;
 	float height = 100.0f;
-	float canonX = 50.0f;
-	float canonY = 20.0f;
-	float vx = 6.0f * 60.0f;
-	float vy = 6.0f * 60.0f;
+
 	Health health;
-	bool healthChanging = false;
-	float padding = 35.0f;
+	//bool healthChanging = false;
+	//float padding = 35.0f;
 	BulletManager &bManager;
 	Surface &shipSurface;
 };

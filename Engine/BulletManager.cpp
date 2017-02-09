@@ -16,7 +16,7 @@ int BulletManager::GetNumBullets() const
 	return nBullets;
 }
 
-void BulletManager::FireBullet( float X, float Y, float Dt )
+void BulletManager::FireBullet( const Vec2 &CannonPosition )
 {
 	if( shotsFired == false )
 	{
@@ -25,7 +25,7 @@ void BulletManager::FireBullet( float X, float Y, float Dt )
 			auto &bullet = bullets[ i ];
 			if( !bullet.HasSpawned() )
 			{
-				bullet = Bullet( X, Y );
+				bullet = Bullet( CannonPosition );
 				gun.Play( 0.5F, 0.5F );
 				shotsFired = true;
 				break;

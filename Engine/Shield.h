@@ -3,6 +3,7 @@
 #include "Graphics.h"
 #include "RectF.h"
 #include "Sound.h"
+#include "Vec2.h"
 
 class Shield
 {
@@ -21,8 +22,7 @@ public:
 	RectF GetCollisionRect()const;
 
 private:
-	float x;
-	float y;
+	Vec2 position;
 	static constexpr int radius = 100;
 	ShieldState sState = NoShield;
 	int shieldSize = 0;

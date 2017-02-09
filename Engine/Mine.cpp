@@ -8,7 +8,7 @@ Mine::Mine( float X, const Surface & MineSurface, Sound &Explosion, AnimationFra
 	surface( MineSurface ),
 	explo( Anim, 2 ),
 	explosion( Explosion ),
-	x( X )
+	position( X, -50.f)
 {}
 
 void Mine::HandleCollision()
@@ -35,7 +35,7 @@ void Mine::Update( float Dt )
 	switch( mState )
 	{
 		case MineState::ActiveState:
-			y += vy * Dt;			
+			position.y += vy * Dt;
 			break;
 		case MineState::DetonateState:
 			//if mine is detonated it stops moving and explosion counter starts counting,
@@ -52,13 +52,13 @@ void Mine::Draw(Graphics& gfx)
 	switch( mState )
 	{
 		case ActiveState:
-			if( y < gfx.ScreenHeight )
+			if( position.y < gfx.ScreenHeight )
 			{
-				gfx.DrawSpriteKey( int( x ), int( y ), surface, surface.GetPixel( 0, 0 ) );
+				gfx.DrawSpriteKey( int( position.x ), int( position.y ), surface, surface.GetPixel( 0, 0 ) );
 			}
 			break;
 		case DetonateState:
-			explo.Draw( int( x ), int( y ), gfx );
+			explo.Draw( int( position.x ), int( position.y ), gfx );
 			break;
 	}
 }
@@ -75,7 +75,7 @@ void Mine::SetState( MineState State )
 
 RectF Mine::GetCollisionRect() const
 {
-	return RectF( x, y, width, height );
+	return RectF( position, position + Vec2{width, height} );
 }
 
 bool Mine::IsActive() const

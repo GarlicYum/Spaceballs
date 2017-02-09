@@ -18,7 +18,7 @@ void Ship::Draw(Graphics& gfx)
 {	
 	if (health.HasHealth())
 	{
-		gfx.DrawSpriteKey(int(x), int(y), shipSurface, shipSurface.GetPixel(0, 0));
+		gfx.DrawSpriteKey(int( position.x), int( position.y), shipSurface, shipSurface.GetPixel(0, 0));
 		health.Draw(gfx);
 		bManager.DrawBullets( gfx );
 	}
@@ -26,32 +26,38 @@ void Ship::Draw(Graphics& gfx)
 
 void Ship::ClampScreen()
 {
-	x = std::max( 0.f, std::min( x, float( Graphics::ScreenWidth ) - ( width + 1.f ) ) );
-	y = std::max( 0.f, std::min( y, float( Graphics::ScreenHeight ) - ( height + 1.f ) ) );
+	position = Vec2(
+		std::max( 0.f, std::min( position.x, float( Graphics::ScreenWidth ) - ( width + 1.f ) ) ),
+		std::max( 0.f, std::min( position.y, float( Graphics::ScreenHeight ) - ( height + 1.f ) ) )
+	);
 }
 
 // gets the player input
 void Ship::PlayerInput( Keyboard & kbd, float dt)
 {
+	Vec2 vel( 0.f, 0.f );
 	if (kbd.KeyIsPressed(VK_UP))
 	{
-		y -= vy * dt;
+		vel.y -= velocity.y;
 	}
 	else if (kbd.KeyIsPressed(VK_DOWN))
 	{
-		y += vy * dt;
+		vel.y += velocity.y;
 	}
 	if (kbd.KeyIsPressed(VK_LEFT))
 	{
-		x -= vx * dt;
+		vel.x -= velocity.x;
 	}
 	else if (kbd.KeyIsPressed(VK_RIGHT))
 	{
-		x += vx * dt;
+		vel.x += velocity.x;
 	}
+	const float speed = velocity.Length();
+	position += ( vel.Normalize() * ( speed * dt ) );
+	
 	if (kbd.KeyIsPressed(VK_SPACE))
 	{
-		bManager.FireBullet( x + canonX, y + canonY, dt );
+		bManager.FireBullet( position + cannonOffset );
 	}
 	else
 	{
@@ -71,7 +77,7 @@ bool Ship::HasHealth() const
 
 RectF Ship::GetCollisionRect() const
 {
-	return RectF( x, y, width, height );
+	return RectF( position, position + Vec2{ width, height } );
 }
 
 void Ship::SethitTarget(bool hit)

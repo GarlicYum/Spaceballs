@@ -11,7 +11,7 @@ public:
 		AliveState, DeadState
 	};
 	Bullet() = default;
-	Bullet( float X, float Y );
+	Bullet( const Vec2 &CannonPosition );
 
 	void Update(float dt);
 	bool HasSpawned() const;
@@ -24,8 +24,7 @@ public:
 private:
 	BulletState bState = DeadState;
 	bool hasSpawned = false;
-	float x;
-	float y;
+	Vec2 position;
 	static constexpr int bulletSize = 10;
 	static constexpr float vy = 15.0f * 60.0f;
 	static constexpr int dmg = 20;

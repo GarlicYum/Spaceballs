@@ -12,7 +12,7 @@ public:
 	Bullet &GetBullet( int Idx );
 	int GetNumBullets()const;
 
-	void FireBullet( float X, float Y, float Dt );
+	void FireBullet( const Vec2 &CannonPosition );
 	void UpdateBullets( float Dt );
 	void ResetShotsFired();
 	void DrawBullets( class Graphics &Gfx );
