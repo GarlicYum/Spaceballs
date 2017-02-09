@@ -82,6 +82,11 @@ void Ship::SethitTarget(bool hit)
 	hitTarget = hit;
 }
 
+void Ship::SetY(float Y)
+{
+	y = Y;
+}
+
 void Ship::Update(Keyboard & wnd, float dt)
 {
 	if (HasHealth())

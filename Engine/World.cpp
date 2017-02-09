@@ -5,7 +5,8 @@ World::World()
 	animExplosion(L"mineExplo\\", 8),
 	ship(bulletM, shipSurface),
 	mineM(explosion, mine, animExplosion),
-	eBoostM(eBoostSound, eBoostHeart)
+	eBoostM(eBoostSound, eBoostHeart),
+	obstacleM(obstacleSurface)
 {
 	std::mt19937 rng;
 	std::uniform_real_distribution<float> xDist(0.0f, 790.0f);
@@ -49,6 +50,7 @@ void World::Update(Keyboard& Kbd, float Dt)
 		mineM.Update(Dt);
 		eBoostM.Update(ship, Dt);
 		shieldM.Update(ship, Dt, shieldon, shieldoff);
+		obstacleM.Update(Dt);
 
 		CheckCollisions();
 		if (!ship.HasHealth())
@@ -76,6 +78,7 @@ void World::Draw(Graphics& Gfx)
 		ship.Draw(Gfx);
 		mineM.Draw(Gfx);
 		eBoostM.Draw(Gfx, ship);
+		obstacleM.Draw(Gfx);
 		break;
 	}
 }
@@ -89,7 +92,7 @@ void World::UpdateStars(float dt)
 
 	for (int i = 0; i < nBigStars; ++i)
 	{
-		starB[i].Update(dt);
+		starB[i].Update(dt * 1.2f);
 	}
 }
 
@@ -149,7 +152,7 @@ void World::CheckCollisions()
 			const auto bulletRect = bullet.GetCollisionRect();
 			if (IsColliding(bulletRect, mineRect))
 			{
-				mine.HandleCollision();
+				mine.HandleBulletCollision(bullet.GetDamage());
 				bullet.HandleCollision();
 				break;
 			}

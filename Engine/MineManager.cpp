@@ -4,7 +4,7 @@
 MineManager::MineManager(Sound& Explosion, const Surface& MineSurface, AnimationFrames& ExplosionFrames)
 {
 	std::mt19937 rng;
-	std::uniform_real_distribution<float> xDist(0.0f, 700.0f);
+	std::uniform_real_distribution<float> xDist(0.0f, 750.0f);
 	for (int i = 0; i < nMinesMax; ++i)
 	{
 		mine.emplace_back<Mine>(Mine{ xDist(rng), MineSurface, Explosion, ExplosionFrames });

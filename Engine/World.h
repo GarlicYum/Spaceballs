@@ -13,6 +13,7 @@
 #include "Sound.h"
 #include "Star.h"
 #include "TitleScreen.h"
+#include "ObstacleManager.h"
 
 class World
 {
@@ -56,6 +57,9 @@ private:
 	Surface shipSurface = Surface::FromFile(L"shippit.png");
 	BulletManager bulletM;
 	Ship ship;
+
+	Surface obstacleSurface = Surface::FromFile(L"obstacle.png");
+	ObstacleManager obstacleM;
 
 	static constexpr int nStars = 100;
 	Star star[nStars];

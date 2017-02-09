@@ -22,6 +22,7 @@ public:
 	float GetWidth() const;
 	float GetHeight() const;*/
 	void SethitTarget(bool hit);
+	void SetY(float Y);
 
 private:
 	void PlayerInput(Keyboard& wnd, float dt);
