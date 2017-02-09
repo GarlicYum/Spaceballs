@@ -119,7 +119,7 @@ int Ship::GetDmg() const
 
 void Ship::Update(Keyboard & wnd, float dt)
 {
-	if (y + 1 > Graphics::ScreenHeight)
+	if (y + 2 > Graphics::ScreenHeight)
 	{
 		health.Damage(health.GetHealthAmount());
 	}
