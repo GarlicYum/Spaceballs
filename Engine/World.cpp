@@ -39,7 +39,7 @@ void World::Update(Keyboard& Kbd, float Dt)
 			titleSong.Play();
 			songIsPlayed = true;
 		}
-
+		
 		PlayerInput(Kbd);
 		break;
 	case PlayState:
@@ -135,12 +135,12 @@ void World::CheckCollisions()
 			const auto shieldRect = shield.GetCollisionRect();
 			if (IsColliding(shieldRect, mineRect))
 			{
-				mine.HandleCollision();
+				mine.HandleCollision(shield.GetDmg());
 			}
 		}
 		else if (IsColliding(shipRect, mineRect))
 		{
-			mine.HandleCollision();
+			mine.HandleCollision(ship.GetDmg());
 			ship.HandleCollision(mine.GetDamageCost());
 		}
 
@@ -152,9 +152,33 @@ void World::CheckCollisions()
 			const auto bulletRect = bullet.GetCollisionRect();
 			if (IsColliding(bulletRect, mineRect))
 			{
-				mine.HandleBulletCollision(bullet.GetDamage());
+				mine.HandleCollision(bullet.GetDamage());
 				bullet.HandleCollision();
 				break;
+			}
+		}
+	}
+
+	for (int i = 0; i < obstacleM.GetObstacleCount(); ++i)
+	{
+		auto& obstacle = obstacleM.GetObstacle(i);
+		const auto obstacleRect = obstacle.GetCollisionRect();
+
+		if (IsColliding(shipRect, obstacleRect))
+		{
+			obstacle.HandleCollision(ship);
+		}
+
+		for (int i = 0; i < bulletM.GetNumBullets(); ++i)
+		{
+			auto& bullet = bulletM.GetBullet(i);
+			if (!bullet.IsActive())
+				continue;
+			const auto bulletRect = bullet.GetCollisionRect();
+
+			if (IsColliding(bulletRect, obstacleRect))
+			{
+				bullet.HandleCollision();
 			}
 		}
 	}

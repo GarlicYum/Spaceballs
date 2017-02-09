@@ -17,6 +17,7 @@ public:
 	bool GetisActive() const;
 	void SetisActive(bool active);
 	RectF GetCollisionRect() const;
+	int GetDmg() const;
 
 private:
 	float x;
@@ -32,4 +33,5 @@ private:
 	Color c = Colors::Blue;
 	int meterCounter = 0;
 	static constexpr int meterDecrease = 3;
+	static constexpr int dmg = 60;
 };

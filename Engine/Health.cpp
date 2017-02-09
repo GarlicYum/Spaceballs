@@ -28,7 +28,7 @@ bool Health::HasHealth() const
 		healthAmount > 0;
 }
 
-int Health::GetHealthAmount()
+int Health::GetHealthAmount() const
 {
 	return healthAmount;
 }

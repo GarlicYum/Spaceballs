@@ -11,28 +11,22 @@ Mine::Mine(float X, const Surface& MineSurface, Sound& Explosion, AnimationFrame
 	x(X)
 {}
 
-void Mine::HandleCollision()
+void Mine::HandleCollision(int dmg)
 {
+	hp -= dmg;
 	switch (mState)
 	{
 	case MineState::ActiveState:
-		damage = explDamage;
-		SetState(Mine::DetonateState);
-		explosion.Play();
+		if (hp <= 0)
+		{
+			damage = explDamage;
+			SetState(Mine::DetonateState);
+			explosion.Play();
+		}
 		break;
 	case MineState::DetonateState:
 		damage = 0;
 		break;
-	}
-}
-
-void Mine::HandleBulletCollision(int dmg)
-{
-	hp -= dmg;
-	if (hp <= 0)
-	{
-		SetState(Mine::DetonateState);
-		explosion.Play();
 	}
 }
 

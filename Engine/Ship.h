@@ -17,12 +17,15 @@ public:
 	void Restore(int restore);
 	bool HasHealth() const;
 	RectF GetCollisionRect() const;
+	
 	/*float GetX() const;
-	float GetY() const;
 	float GetWidth() const;
-	float GetHeight() const;*/
+	float GetY() const;
+	float GetHeight() const;
+	;*/
 	void SethitTarget(bool hit);
 	void SetY(float Y);
+	int GetDmg() const;
 
 private:
 	void PlayerInput(Keyboard& wnd, float dt);
@@ -34,8 +37,8 @@ private:
 	float y = 300.0f;
 	float width = 100.0f;
 	float height = 100.0f;
-	float canonX = 50.0f;
-	float canonY = 20.0f;
+	static constexpr float canonX = 50.0f;
+	static constexpr float canonY = 20.0f;
 	float vx = 6.0f * 60.0f;
 	float vy = 6.0f * 60.0f;
 	Health health;
@@ -43,4 +46,5 @@ private:
 	float padding = 35.0f;
 	BulletManager& bManager;
 	Surface& shipSurface;
+	static constexpr int dmg = 60;
 };

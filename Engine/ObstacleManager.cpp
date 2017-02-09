@@ -36,3 +36,18 @@ void ObstacleManager::SpawnObstacle()
 		nObstacles++;
 	}
 }
+
+int ObstacleManager::GetObstacleCount() const
+{
+	return nObstacles;
+}
+
+Obstacle & ObstacleManager::GetObstacle(int Idx)
+{
+	return obstacle[Idx];
+}
+
+const Obstacle & ObstacleManager::GetObstacle(int Idx) const
+{
+	return obstacle[Idx];
+}

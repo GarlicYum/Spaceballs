@@ -1,4 +1,4 @@
-#pragma once/**/
+#pragma once
 #include "Graphics.h"
 #include "Keyboard.h"
 #include "Health.h"
@@ -17,8 +17,7 @@ public:
 		ActiveState, DetonateState, InActiveState
 	};
 	Mine(float X, const Surface& MineSurface, Sound& Explosion, AnimationFrames& Anim);
-	void HandleCollision();
-	void Mine::HandleBulletCollision(int dmg);
+	void HandleCollision(int dmg);
 	void Update(float Dt);
 	void Draw(Graphics& gfx);
 	int GetDamageCost() const;

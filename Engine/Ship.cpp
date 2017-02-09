@@ -87,8 +87,17 @@ void Ship::SetY(float Y)
 	y = Y;
 }
 
+int Ship::GetDmg() const
+{
+	return dmg;
+}
+
 void Ship::Update(Keyboard & wnd, float dt)
 {
+	if (y + height > Graphics::ScreenHeight)
+	{
+		health.Damage(health.GetHealthAmount());
+	}
 	if (HasHealth())
 	{
 		PlayerInput(wnd, dt);

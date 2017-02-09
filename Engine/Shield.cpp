@@ -76,3 +76,8 @@ RectF Shield::GetCollisionRect() const
 		(radius * 2.0f),
 		(radius * 2.5f));
 }
+
+int Shield::GetDmg() const
+{
+	return dmg;
+}

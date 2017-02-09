@@ -11,6 +11,9 @@ public:
 	void Draw(Graphics& gfx);
 	void Update(float dt);
 	void SpawnObstacle();
+	int GetObstacleCount() const;
+	Obstacle& GetObstacle(int Idx);
+	const Obstacle& GetObstacle(int Idx) const;
 
 private:
 	static constexpr int nObstaclesMax = 3;

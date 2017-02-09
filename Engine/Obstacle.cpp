@@ -21,5 +21,10 @@ void Obstacle::Update(float dt)
 
 void Obstacle::HandleCollision(Ship& ship)
 {
-	ship.SetY(y);
+	ship.SetY(y + height);
+}
+
+RectF Obstacle::GetCollisionRect()
+{
+	return RectF(x, y, width, height);
 }
