@@ -143,6 +143,7 @@ void Ship::Reset()
 	y = 300.0f;
 	health.Reset();
 	isHit = false;
+	isMoving = false;
 }
 
 void Ship::Update(Keyboard & wnd, float dt)
