@@ -17,6 +17,8 @@ public:
 	int GetShieldCount() const;
 	SmallShield& GetSmallShield(int Idx);
 	const SmallShield& GetSmallShield(int Idx) const;
+	void Reset();
+
 private:
 	void SpawnShieldPowerup();
 private:

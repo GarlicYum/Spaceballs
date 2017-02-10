@@ -33,6 +33,12 @@ int Health::GetHealthAmount() const
 	return healthAmount;
 }
 
+void Health::Reset()
+{
+	healthAmount = maxHealth;
+	ColorMeter();
+}
+
 void Health::ColorMeter()
 {
 	if (healthAmount <= 100)

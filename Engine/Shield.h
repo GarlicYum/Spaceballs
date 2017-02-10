@@ -18,6 +18,7 @@ public:
 	void SetisActive(bool active);
 	RectF GetCollisionRect() const;
 	int GetDmg() const;
+	void Reset();
 
 private:
 	float x;

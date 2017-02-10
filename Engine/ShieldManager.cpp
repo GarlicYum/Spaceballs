@@ -54,6 +54,17 @@ const SmallShield& ShieldManager::GetSmallShield(int Idx) const
 	return s_shield[Idx];
 }
 
+void ShieldManager::Reset()
+{
+	nSmall = 0;
+	smallCounter = 0;
+	for (int i = 0; i < nSmallMax; ++i)
+	{
+		s_shield[i].Reset();
+	}
+	shield.Reset();
+}
+
 void ShieldManager::SpawnShieldPowerup()
 {
 	if (smallCounter == newSmall && nSmall != nSmallMax)

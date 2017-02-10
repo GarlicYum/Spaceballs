@@ -51,3 +51,13 @@ const Obstacle & ObstacleManager::GetObstacle(int Idx) const
 {
 	return obstacle[Idx];
 }
+
+void ObstacleManager::Reset()
+{
+	nObstacles = 0;
+	obstacleCounter = 0;
+	for (int i = 0; i < nObstaclesMax; ++i)
+	{
+		obstacle[i].Reset();
+	}
+}

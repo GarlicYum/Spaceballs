@@ -63,6 +63,9 @@ private:
 	Surface obstacleSurface = Surface::FromFile(L"obstacle.png");
 	ObstacleManager obstacleM;
 
+	Surface gameOverSurface = Surface::FromFile(L"gameover.png");
+	Sound gameOverSong = L"64.wav";
+
 	static constexpr int nStars = 100;
 	Star star[nStars];
 	static constexpr int nBigStars = 20;

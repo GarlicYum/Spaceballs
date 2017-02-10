@@ -59,7 +59,13 @@ void World::Update(Keyboard& Kbd, float Dt)
 		}
 		break;
 	case GameOverState:
-		gState = TitleState;
+		mainSong.StopAll();
+		if (songIsPlayed)
+		{
+			gameOverSong.Play(1.0f, 0.5f);
+			songIsPlayed = false;
+		}
+		PlayerInput(Kbd);
 		break;
 	}
 }
@@ -79,8 +85,9 @@ void World::Draw(Graphics& Gfx)
 		ship.Draw(Gfx);
 		mineM.Draw(Gfx);
 		obstacleM.Draw(Gfx);
-		
-
+		break;
+	case GameOverState:
+		Gfx.DrawSprite(0, 0, gameOverSurface);
 		break;
 	}
 }
@@ -113,11 +120,30 @@ void World::DrawStars(Graphics& Gfx)
 
 void World::PlayerInput(Keyboard& Kbd)
 {
-	if (Kbd.KeyIsPressed(VK_RETURN))
+	switch (gState)
 	{
-		gState = PlayState;
-		mainSong.Play(1.0f, 0.5f);
+	case TitleState:
+		if (Kbd.KeyIsPressed(VK_RETURN))
+		{
+			gState = PlayState;
+			mainSong.Play(1.0f, 0.5f);
+		}
+		break;
+	case GameOverState:
+		if (Kbd.KeyIsPressed(VK_RETURN))
+		{
+			ship.Reset();
+			mineM.Reset();
+			shieldM.Reset();
+			obstacleM.Reset();
+			eBoostM.Reset();
+			gameOverSong.StopAll();
+			gState = TitleState;
+		}
+		break;
 	}
+	
+		
 }
 
 void World::CheckCollisions()

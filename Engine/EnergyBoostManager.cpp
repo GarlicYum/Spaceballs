@@ -51,3 +51,13 @@ int EnergyBoostManager::GetBoostCount() const
 {
 	return nEBoost;
 }
+
+void EnergyBoostManager::Reset()
+{
+	nEBoost = 0;
+	eBoostCounter = 0;
+	for (int i = 0; i < nEBoostMax; ++i)
+	{
+		eBoost[i].Reset();
+	}
+}

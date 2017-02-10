@@ -34,3 +34,8 @@ void SmallShield::SetPos(float X)
 {
 	x = X;
 }
+
+void SmallShield::Reset()
+{
+	y = -40.0f;
+}

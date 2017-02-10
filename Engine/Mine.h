@@ -24,6 +24,7 @@ public:
 	void SetState(MineState State);
 	RectF GetCollisionRect() const;
 	bool IsActive() const;
+	void Reset();
 
 private:
 	static constexpr int explDamage = 75;

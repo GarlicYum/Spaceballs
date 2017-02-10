@@ -22,6 +22,7 @@ public:
 	void Advance();
 	bool AnimEnd() const;
 	void Draw(int X, int Y, Graphics& Gfx);
+	void Reset();
 
 private:
 	const AnimationFrames& frames;

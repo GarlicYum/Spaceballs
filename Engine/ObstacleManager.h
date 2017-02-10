@@ -14,6 +14,7 @@ public:
 	int GetObstacleCount() const;
 	Obstacle& GetObstacle(int Idx);
 	const Obstacle& GetObstacle(int Idx) const;
+	void Reset();
 
 private:
 	static constexpr int nObstaclesMax = 4;

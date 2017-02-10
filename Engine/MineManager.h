@@ -13,6 +13,7 @@ public:
 	Mine& GetMine(int Idx);
 	const Mine& GetMine(int Idx) const;
 	int GetMineCount() const;
+	void Reset();
 
 private:
 	static constexpr int nMinesMax = 100;

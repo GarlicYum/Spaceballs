@@ -137,6 +137,14 @@ int Ship::GetDmg() const
 	return dmg;
 }
 
+void Ship::Reset()
+{
+	x = 300.0f;
+	y = 300.0f;
+	health.Reset();
+	isHit = false;
+}
+
 void Ship::Update(Keyboard & wnd, float dt)
 {
 	if (y + 2 > Graphics::ScreenHeight)

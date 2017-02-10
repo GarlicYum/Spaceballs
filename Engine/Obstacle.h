@@ -18,6 +18,7 @@ public:
 	RectF GetLeftCollisionRect() const;
 	RectF GetRightCollisionRect() const;
 	RectF GetTopCollisionRect() const;
+	void Reset();
 
 private:
 	float x = 0.0f;

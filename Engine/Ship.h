@@ -28,6 +28,8 @@ public:
 	void SetX(float X);
 	int GetDmg() const;
 
+	void Reset();
+
 private:
 	void PlayerInput(Keyboard& wnd, float dt);
 	void ClampScreen();

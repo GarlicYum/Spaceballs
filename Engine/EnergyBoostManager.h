@@ -12,6 +12,7 @@ public:
 	EnergyBoost& GetBoost(int Idx);
 	const EnergyBoost& GetBoost(int Idx) const;
 	int GetBoostCount() const;
+	void Reset();
 
 private:
 	static constexpr int nEBoostMax = 3;

@@ -81,3 +81,9 @@ int Shield::GetDmg() const
 {
 	return dmg;
 }
+
+void Shield::Reset()
+{
+	sState = NoShield;
+}
+

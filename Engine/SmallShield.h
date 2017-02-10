@@ -12,6 +12,7 @@ public:
 	RectF GetCollisionRect() const;
 	void HandleCollision(Shield& shield);
 	void SetPos(float X);
+	void Reset();
 
 private:
 	float x = 0.0f;

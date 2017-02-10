@@ -58,3 +58,8 @@ RectF Obstacle::GetTopCollisionRect() const
 {
 	return RectF(x + 10, y, width - 20, 1);
 }
+
+void Obstacle::Reset()
+{
+	y = -120.0f;
+}

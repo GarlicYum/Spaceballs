@@ -12,6 +12,7 @@ public:
 	void Draw(Graphics& gfx);
 	RectF GetCollisionRect() const;
 	void HandleCollision(Ship& ship);
+	void Reset();
 
 private:
 	float x = 0.0f;

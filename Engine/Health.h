@@ -9,6 +9,7 @@ public:
 	void Draw(Graphics& gfx);
 	bool HasHealth() const; 
 	int GetHealthAmount() const;
+	void Reset();
 	
 private:
 	void ColorMeter();

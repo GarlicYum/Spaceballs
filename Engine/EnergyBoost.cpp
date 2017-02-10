@@ -39,3 +39,10 @@ void EnergyBoost::HandleCollision(Ship& ship)
 		isRestored = true;
 	}
 }
+
+void EnergyBoost::Reset()
+{
+	y = -40.0f;
+	isObtained = false;
+	isRestored = false;
+}

@@ -53,3 +53,13 @@ int MineManager::GetMineCount() const
 {
 	return nMines;
 }
+
+void MineManager::Reset()
+{
+	nMines = 0;
+	mineCounter = 0;
+	for (int i = 0; i < nMinesMax; ++i)
+	{
+		mine[i].Reset();
+	}
+}

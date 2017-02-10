@@ -37,6 +37,11 @@ void Animation::Draw(int X, int Y, Graphics& Gfx)
 	frames.Draw(X, Y, curFrame, Gfx);
 }
 
+void Animation::Reset()
+{
+	isOver = false;
+}
+
 AnimationFrames::AnimationFrames(const std::wstring& Basename, int NumFrames)
 {
 	for (int i = 0; i < NumFrames; ++i)
@@ -57,3 +62,4 @@ void AnimationFrames::Draw(int X, int Y, int Idx, Graphics& Gfx) const
 {
 	Gfx.DrawSpriteKey(X, Y, surfaces[Idx], surfaces[Idx].GetPixel(0, 0));
 }
+

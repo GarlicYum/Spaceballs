@@ -81,6 +81,14 @@ bool Mine::IsActive() const
 	return mState == ActiveState;
 }
 
+void Mine::Reset()
+{
+	y = -50.0f;
+	hp = 60;
+	mState = ActiveState;
+	explo.Reset();
+}
+
 //float Mine::GetX() const
 //{
 //	return x;
