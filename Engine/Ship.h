@@ -10,7 +10,7 @@
 class Ship
 {
 public:
-	Ship(BulletManager& Manager, Surface& ShipSurface);
+	Ship(BulletManager& Manager, Surface& ShipSurface, Surface& exhaust);
 	void HandleCollision(int Damage);
 	void Draw(Graphics& gfx);
 	void Update(Keyboard& wnd, float dt);
@@ -47,5 +47,7 @@ private:
 	float padding = 35.0f;
 	BulletManager& bManager;
 	Surface& shipSurface;
+	Surface& exhaustSurface;
+	bool isMoving = false;
 	static constexpr int dmg = 60;
 };

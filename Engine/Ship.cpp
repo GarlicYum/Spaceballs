@@ -2,10 +2,11 @@
 #include "Ship.h"
 #include "Surface.h"
 
-Ship::Ship(BulletManager& Manager, Surface& ShipSurface)
+Ship::Ship(BulletManager& Manager, Surface& ShipSurface, Surface& exhaust)
 	:
 	bManager(Manager),
-	shipSurface(ShipSurface)
+	shipSurface(ShipSurface),
+	exhaustSurface(exhaust)
 {}
 
 void Ship::HandleCollision(int Damage)
@@ -18,6 +19,11 @@ void Ship::Draw(Graphics& gfx)
 	if (health.HasHealth())
 	{
 		gfx.DrawSpriteKey(int(x), int(y), shipSurface, shipSurface.GetPixel(0, 0));
+		
+		if (isMoving)
+		{
+			gfx.DrawSpriteKey(int(x), int(y), exhaustSurface, exhaustSurface.GetPixel(0, 0));
+		}
 		health.Draw(gfx);
 		bManager.DrawBullets(gfx);
 	}
@@ -34,22 +40,33 @@ void Ship::PlayerInput(Keyboard& kbd, float dt)
 	if (kbd.KeyIsPressed(VK_UP))
 	{
 		y -= vy * dt;
+		isMoving = true;
 	}
 
 	else if (kbd.KeyIsPressed(VK_DOWN))
 	{
 		y += vy * dt;
+		isMoving = true;
+	}
+
+	else
+	{
+		isMoving = false;
 	}
 
 	if (kbd.KeyIsPressed(VK_LEFT))
 	{
 		x -= vx * dt;
+		isMoving = true;
 	}
 
 	else if (kbd.KeyIsPressed(VK_RIGHT))
 	{
 		x += vx * dt;
+		isMoving = true;
 	}
+
+	
 
 	if (kbd.KeyIsPressed(VK_SPACE))
 	{
