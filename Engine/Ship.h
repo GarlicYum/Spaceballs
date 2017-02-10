@@ -10,7 +10,7 @@
 class Ship
 {
 public:
-	Ship(BulletManager& Manager, Surface& ShipSurface, Surface& exhaust);
+	Ship(BulletManager& Manager, Surface& ShipSurface, Surface& exhaust, Surface& red);
 	void HandleCollision(int Damage);
 	void Draw(Graphics& gfx);
 	void Update(Keyboard& wnd, float dt);
@@ -48,6 +48,9 @@ private:
 	BulletManager& bManager;
 	Surface& shipSurface;
 	Surface& exhaustSurface;
+	Surface& redSurface;
 	bool isMoving = false;
 	static constexpr int dmg = 60;
+	bool isHit = false;
+	int isHitCounter = 0;
 };
