@@ -6,11 +6,12 @@
 #include "RectF.h"
 #include "Sound.h"
 #include "Vec2.h"
+#include "Animation.h"
 
 class Ship
 {
 public:
-	Ship(BulletManager& Manager, Surface& ShipSurface, Surface& exhaust, Surface& red);
+	Ship(BulletManager& Manager, Surface& ShipSurface, Surface& exhaust, Surface& red, AnimationFrames& shiprekt, Surface& rektsurface);
 	void HandleCollision(int Damage);
 	void Draw(Graphics& gfx);
 	void Update(Keyboard& wnd, float dt);
@@ -51,8 +52,11 @@ private:
 	Surface& shipSurface;
 	Surface& exhaustSurface;
 	Surface& redSurface;
+	Surface& rektSurface;
 	bool isMoving = false;
 	static constexpr int dmg = 60;
 	bool isHit = false;
 	int isHitCounter = 0;
+	Animation shipRekt;
+	static constexpr int lowHealth = 75;
 };

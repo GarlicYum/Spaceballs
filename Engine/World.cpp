@@ -3,10 +3,11 @@
 World::World()
 	:
 	animExplosion(L"mineExplo\\", 8),
-	ship(bulletM, shipSurface, exhaustSurface, redSurface),
+	ship(bulletM, shipSurface, exhaustSurface, redSurface, shipRekt, rektSurface),
 	mineM(explosion, mine, animExplosion),
 	eBoostM(eBoostSound, eBoostHeart),
-	obstacleM(obstacleSurface)
+	obstacleM(obstacleSurface),
+	shipRekt(L"shiprekt\\", 16)
 {
 	std::mt19937 rng;
 	std::uniform_real_distribution<float> xDist(0.0f, 790.0f);

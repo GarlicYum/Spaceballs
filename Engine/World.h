@@ -57,6 +57,8 @@ private:
 	Surface shipSurface = Surface::FromFile(L"shippit.png");
 	Surface exhaustSurface = Surface::FromFile(L"shipper.png");
 	Surface redSurface = Surface::FromFile(L"shipred.png");
+	Surface rektSurface = Surface::FromFile(L"enginerekt.png");
+	AnimationFrames shipRekt;
 	BulletManager bulletM;
 	Ship ship;
 

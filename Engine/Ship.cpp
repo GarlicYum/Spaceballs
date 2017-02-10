@@ -2,12 +2,14 @@
 #include "Ship.h"
 #include "Surface.h"
 
-Ship::Ship(BulletManager& Manager, Surface& ShipSurface, Surface& exhaust, Surface& red)
+Ship::Ship(BulletManager& Manager, Surface& ShipSurface, Surface& exhaust, Surface& red, AnimationFrames& shiprekt, Surface& rektsurface)
 	:
 	bManager(Manager),
 	shipSurface(ShipSurface),
 	exhaustSurface(exhaust),
-	redSurface(red)
+	redSurface(red), 
+	shipRekt(shiprekt, 2),
+	rektSurface(rektsurface)
 {}
 
 void Ship::HandleCollision(int Damage)
@@ -20,17 +22,30 @@ void Ship::Draw(Graphics& gfx)
 {
 	if (health.HasHealth())
 	{
-		gfx.DrawSpriteKey(int(x), int(y), shipSurface, shipSurface.GetPixel(0, 0));
-		
-		if (isMoving)
+		if (health.GetHealthAmount() > lowHealth)
 		{
-			gfx.DrawSpriteKey(int(x), int(y), exhaustSurface, exhaustSurface.GetPixel(0, 0));
-		}
+			gfx.DrawSpriteKey(int(x), int(y), shipSurface, shipSurface.GetPixel(0, 0));
 
-		if (isHit)
-		{
-			gfx.DrawSpriteKey(int(x), int(y), redSurface, redSurface.GetPixel(0, 0));
+			if (isMoving)
+			{
+				gfx.DrawSpriteKey(int(x), int(y), exhaustSurface, exhaustSurface.GetPixel(0, 0));
+			}
+
+			if (isHit)
+			{
+				gfx.DrawSpriteKey(int(x), int(y), redSurface, redSurface.GetPixel(0, 0));
+			}
 		}
+		
+		else
+		{
+			shipRekt.Draw(int(x), int(y), gfx);
+			if (isMoving)
+			{
+				gfx.DrawSpriteKey(int(x), int(y), rektSurface, rektSurface.GetPixel(0, 0));
+			}
+		}
+		
 		health.Draw(gfx);
 		bManager.DrawBullets(gfx);
 	}
@@ -164,6 +179,14 @@ void Ship::Update(Keyboard & wnd, float dt)
 		{
 			isHitCounter = 0;
 			isHit = false;
+		}
+	}
+	if (health.GetHealthAmount() <= lowHealth)
+	{
+		shipRekt.Advance();
+		if (shipRekt.AnimEnd())
+		{
+			shipRekt.Reset();
 		}
 	}
 }
