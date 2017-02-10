@@ -46,13 +46,14 @@ void Ship::PlayerInput(Keyboard& kbd, float dt)
 	else if (kbd.KeyIsPressed(VK_DOWN))
 	{
 		y += vy * dt;
+		isMoving = false;
 	}
 
 	else
 	{
 		isMoving = false;
 	}
-
+	
 	if (kbd.KeyIsPressed(VK_LEFT))
 	{
 		x -= vx * dt;
