@@ -123,10 +123,15 @@ void World::PlayerInput(Keyboard& Kbd)
 	switch (gState)
 	{
 	case TitleState:
-		if (Kbd.KeyIsPressed(VK_RETURN))
+		if (!keyIsPressed && Kbd.KeyIsPressed(VK_RETURN))
 		{
 			gState = PlayState;
 			mainSong.Play(1.0f, 0.5f);
+			keyIsPressed = true;
+		}
+		else if(!Kbd.KeyIsPressed(VK_RETURN))
+		{
+			keyIsPressed = false;
 		}
 		break;
 	case GameOverState:
@@ -142,8 +147,6 @@ void World::PlayerInput(Keyboard& Kbd)
 		}
 		break;
 	}
-	
-		
 }
 
 void World::CheckCollisions()

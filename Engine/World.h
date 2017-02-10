@@ -75,4 +75,6 @@ private:
 	bool songIsPlayed = false;
 	static constexpr int nScores = 10;
 	HighScore scores[nScores];
+
+	bool keyIsPressed = false;
 };
