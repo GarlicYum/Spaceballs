@@ -74,11 +74,13 @@ void World::Draw(Graphics& Gfx)
 		break;
 	case PlayState:
 		DrawStars(Gfx);
-		mineM.Draw(Gfx);
 		eBoostM.Draw(Gfx, ship);
-		obstacleM.Draw(Gfx);
 		shieldM.Draw(Gfx);
 		ship.Draw(Gfx);
+		mineM.Draw(Gfx);
+		obstacleM.Draw(Gfx);
+		
+
 		break;
 	}
 }
