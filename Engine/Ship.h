@@ -36,9 +36,9 @@ private:
 	bool hitTarget = false;
 	float x = 300.0f;
 	float y = 300.0f;
-	float width = 100.0f;
+	float width = 90.0f;
 	float height = 90.0f;
-	static constexpr float canonX = 50.0f;
+	static constexpr float canonX = 45.0f;
 	static constexpr float canonY = 20.0f;
 	float vx = 6.0f * 60.0f;
 	float vy = 6.0f * 60.0f;
