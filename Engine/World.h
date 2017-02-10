@@ -54,7 +54,7 @@ private:
 
 	GameState gState = TitleState;
 
-	Surface shipSurface = Surface::FromFile(L"shippit.png");
+	Surface shipSurface = Surface::FromFile(L"shipper.png");
 	BulletManager bulletM;
 	Ship ship;
 
