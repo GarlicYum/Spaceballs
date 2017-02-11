@@ -7,7 +7,9 @@ World::World()
 	mineM(explosion, mine, animExplosion),
 	eBoostM(eBoostSound, eBoostHeart),
 	obstacleM(obstacleSurface),
-	shipRekt(L"shiprekt\\", 16)
+	shipRekt(L"shiprekt\\", 16),
+	bHoleAnim(L"blackhole\\", 40),
+	blackholeM(bHoleAnim)
 {
 	std::mt19937 rng;
 	std::uniform_real_distribution<float> xDist(0.0f, 790.0f);
@@ -48,6 +50,7 @@ void World::Update(Keyboard& Kbd, float Dt)
 		ship.Update(Kbd, Dt);
 		bulletM.UpdateBullets(Dt);
 		UpdateStars(Dt);
+		blackholeM.Update(Dt);
 		mineM.Update(Dt);
 		eBoostM.Update(ship, Dt);
 		shieldM.Update(ship, Dt, shieldon, shieldoff);
@@ -80,6 +83,7 @@ void World::Draw(Graphics& Gfx)
 		title.Draw(Gfx);
 		break;
 	case PlayState:
+		blackholeM.Draw(Gfx);
 		DrawStars(Gfx);
 		eBoostM.Draw(Gfx, ship);
 		shieldM.Draw(Gfx);

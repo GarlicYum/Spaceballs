@@ -14,6 +14,7 @@
 #include "Star.h"
 #include "TitleScreen.h"
 #include "ObstacleManager.h"
+#include "BlackHoleManager.h"
 
 class World
 {
@@ -67,6 +68,9 @@ private:
 
 	Surface gameOverSurface = Surface::FromFile(L"gameover.png");
 	Sound gameOverSong = L"64.wav";
+
+	AnimationFrames bHoleAnim;
+	BlackHoleManager blackholeM;
 
 	static constexpr int nStars = 100;
 	Star star[nStars];
