@@ -52,8 +52,8 @@ void World::Update(Keyboard& Kbd, float Dt)
 		eBoostM.Update(ship, Dt);
 		shieldM.Update(ship, Dt, shieldon, shieldoff);
 		obstacleM.Update(Dt);
-
 		CheckCollisions();
+
 		if (!ship.HasHealth())
 		{
 			gState = GameOverState;
