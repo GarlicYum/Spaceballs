@@ -8,6 +8,16 @@ BlackHoleManager::BlackHoleManager(AnimationFrames & bHoleAnim)
 		bHole.emplace_back<BlackHole>(BlackHole{ xDist(rng), bHoleAnim });
 }
 
+void BlackHoleManager::Reset()
+{
+	nHoles = 0;
+	holeCounter = 0;
+	for (int i = 0; i < nHolesMax; ++i)
+	{
+		bHole[i].Reset();
+	}
+}
+
 void BlackHoleManager::Update(float dt)
 {
 	if (nHoles != nHolesMax)

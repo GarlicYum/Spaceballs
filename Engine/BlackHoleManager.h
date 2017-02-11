@@ -13,9 +13,9 @@ public:
 	void Draw(Graphics& gfx);
 
 private:
-	static constexpr int nHolesMax = 15;
+	static constexpr int nHolesMax = 3;
 	int nHoles = 0;
 	int holeCounter = 0;
-	static constexpr int newHole = 100;
+	static constexpr int newHole = 700;
 	std::vector<BlackHole> bHole;
 };

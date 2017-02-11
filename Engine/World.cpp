@@ -83,8 +83,8 @@ void World::Draw(Graphics& Gfx)
 		title.Draw(Gfx);
 		break;
 	case PlayState:
-		blackholeM.Draw(Gfx);
 		DrawStars(Gfx);
+		blackholeM.Draw(Gfx);
 		eBoostM.Draw(Gfx, ship);
 		shieldM.Draw(Gfx);
 		ship.Draw(Gfx);
@@ -148,6 +148,7 @@ void World::PlayerInput(Keyboard& Kbd)
 			obstacleM.Reset();
 			eBoostM.Reset();
 			bulletM.Reset();
+			blackholeM.Reset();
 			gameOverSong.StopAll();
 			gState = TitleState;
 		}
