@@ -14,6 +14,7 @@ public:
 	void UpdateBullets(float Dt);
 	void ResetShotsFired();
 	void DrawBullets(class Graphics& Gfx);
+	void Reset();
 
 private:
 	static constexpr int nBullets = 3;

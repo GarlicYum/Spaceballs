@@ -143,6 +143,7 @@ void World::PlayerInput(Keyboard& Kbd)
 			shieldM.Reset();
 			obstacleM.Reset();
 			eBoostM.Reset();
+			bulletM.Reset();
 			gameOverSong.StopAll();
 			gState = TitleState;
 		}

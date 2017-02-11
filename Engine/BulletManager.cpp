@@ -58,6 +58,14 @@ void BulletManager::DrawBullets(Graphics& Gfx)
 	}
 }
 
+void BulletManager::Reset()
+{
+	for (int i = 0; i < nBullets; ++i)
+	{
+		bullets[i].Reset();
+	}
+}
+
 void BulletManager::ResetShotsFired()
 {
 	shotsFired = false;

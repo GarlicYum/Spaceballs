@@ -55,3 +55,8 @@ int Bullet::GetDamage()
 {
 	return dmg;
 }
+
+void Bullet::Reset()
+{
+	bState = DeadState;
+}

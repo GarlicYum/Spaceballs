@@ -18,6 +18,7 @@ public:
 	RectF GetCollisionRect() const;
 	void HandleCollision();
 	int GetDamage();
+	void Reset();
 
 private:
 	BulletState bState = DeadState;
