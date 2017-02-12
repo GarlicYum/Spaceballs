@@ -128,30 +128,43 @@ void World::PlayerInput(Keyboard& Kbd)
 	switch (gState)
 	{
 	case TitleState:
-		if (!keyIsPressed && Kbd.KeyIsPressed(VK_RETURN))
+
+		while (!Kbd.KeyIsEmpty())
 		{
-			gState = PlayState;
-			mainSong.Play(1.0f, 0.5f);
-			keyIsPressed = true;
+			event = Kbd.ReadKey();
+			if (event.IsPress())
+			{
+				if (event.GetCode() == VK_RETURN)
+				{
+					gState = PlayState;
+					mainSong.Play(1.0f, 0.5f);
+				}
+			}
 		}
-		else if(!Kbd.KeyIsPressed(VK_RETURN))
-		{
-			keyIsPressed = false;
-		}
+		
 		break;
 	case GameOverState:
-		if (Kbd.KeyIsPressed(VK_RETURN))
+		
+		while (!Kbd.KeyIsEmpty())
 		{
-			ship.Reset();
-			mineM.Reset();
-			shieldM.Reset();
-			obstacleM.Reset();
-			eBoostM.Reset();
-			bulletM.Reset();
-			blackholeM.Reset();
-			gameOverSong.StopAll();
-			gState = TitleState;
+			event = Kbd.ReadKey();
+			if (event.IsPress())
+			{
+				if (event.GetCode() == VK_RETURN)
+				{
+					ship.Reset();
+					mineM.Reset();
+					shieldM.Reset();
+					obstacleM.Reset();
+					eBoostM.Reset();
+					bulletM.Reset();
+					blackholeM.Reset();
+					gameOverSong.StopAll();
+					gState = TitleState;
+				}
+			}
 		}
+		
 		break;
 	}
 }

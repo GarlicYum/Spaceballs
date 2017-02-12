@@ -81,6 +81,6 @@ private:
 	bool songIsPlayed = false;
 	static constexpr int nScores = 10;
 	HighScore scores[nScores];
+	Keyboard::Event event;
 
-	bool keyIsPressed = false;
 };
