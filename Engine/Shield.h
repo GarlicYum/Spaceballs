@@ -2,6 +2,7 @@
 #include "Graphics.h"
 #include "RectF.h"
 #include "Sound.h"
+#include "Vec2.h"
 
 class Shield
 {
@@ -21,8 +22,7 @@ public:
 	void Reset();
 
 private:
-	float x;
-	float y;
+	Vec2 pos;
 	static constexpr int radius = 90;
 	ShieldState sState = NoShield;
 	int shieldSize = 0;

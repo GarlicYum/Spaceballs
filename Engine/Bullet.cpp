@@ -1,19 +1,18 @@
 #include "Bullet.h"
 
 //constructor get the position of the bullet and sets the state to alive
-Bullet::Bullet(float X, float Y)
+Bullet::Bullet(Vec2& pos_in)
 	:
-	x(X),
-	y(Y),
+	pos(pos_in),
 	bState(AliveState)
 {}
 
 //Update makes the bullet move in y direction and changes state to deadstate if it reaches the end of the screen
 void Bullet::Update(float dt)
 {
-	y -= vy * dt;
+	pos.y -= vy * dt;
 
-	if (y - bulletSize < 0)
+	if (pos.y - bulletSize < 0)
 	{
 		bState = DeadState;
 	}
@@ -27,7 +26,7 @@ bool Bullet::HasSpawned() const
 
 void Bullet::Draw(Graphics& gfx)
 {
-	gfx.DrawCircle(int(x), int(y), bulletSize, Colors::Magenta);
+	gfx.DrawCircle(int(pos.x), int(pos.y), bulletSize, Colors::Magenta);
 }
 
 bool Bullet::IsActive() const
@@ -40,8 +39,7 @@ RectF Bullet::GetCollisionRect() const
 {
 	const float bSize = float(bulletSize);
 	return RectF(
-		x - bSize,
-		y - bSize,
+		Vec2(pos.x - bSize, pos.y - bSize),
 		(bSize * 2.0f),
 		(bSize * 2.0f));
 }

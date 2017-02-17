@@ -5,28 +5,28 @@ EnergyBoost::EnergyBoost(float X, Sound& BoostSound, Surface& BoostSurface)
 	:
 	boostSound(BoostSound),
 	heart(BoostSurface),
-	x(X)
+	pos(X, resetY)
 {}
 
 void EnergyBoost::Update(Ship& ship, float dt)
 {
 	if (!isObtained)
 	{
-		y += vy * dt;
+		pos.y += vy * dt;
 	}
 }
 
 void EnergyBoost::Draw(Graphics& gfx)
 {
-	if (!isObtained && y < Graphics::ScreenHeight)
+	if (!isObtained && pos.y < Graphics::ScreenHeight)
 	{
-		gfx.DrawSpriteKey(int(x), int(y), heart, heart.GetPixel(0, 0));
+		gfx.DrawSpriteKey(int(pos.x), int(pos.y), heart, heart.GetPixel(0, 0));
 	}
 }
 
 RectF EnergyBoost::GetCollisionRect() const
 {
-	return RectF(x, y, width, height);
+	return RectF(pos, width, height);
 }
 
 void EnergyBoost::HandleCollision(Ship& ship)
@@ -42,7 +42,7 @@ void EnergyBoost::HandleCollision(Ship& ship)
 
 void EnergyBoost::Reset()
 {
-	y = -40.0f;
+	pos.y = resetY;
 	isObtained = false;
 	isRestored = false;
 }

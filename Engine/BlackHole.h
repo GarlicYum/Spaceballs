@@ -1,6 +1,7 @@
 #pragma once
 #include "RectF.h"
 #include "Animation.h"
+#include "Vec2.h"
 
 
 class BlackHole
@@ -14,8 +15,7 @@ public:
 	RectF GetCollisionRect() const;
 
 private:
-	float x;
-	float y = -50.0f;
+	Vec2 pos;
 	static constexpr float vy = 80.0f;
 	static constexpr float width = 100.0f;
 	static constexpr float height = 100.0f;

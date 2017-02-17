@@ -24,25 +24,25 @@ void Ship::Draw(Graphics& gfx)
 	{
 		if (health.GetHealthAmount() > lowHealth)
 		{
-			gfx.DrawSpriteKey(int(x), int(y), shipSurface, shipSurface.GetPixel(0, 0));
+			gfx.DrawSpriteKey(int(pos.x), int(pos.y), shipSurface, shipSurface.GetPixel(0, 0));
 
 			if (isMoving)
 			{
-				gfx.DrawSpriteKey(int(x), int(y), exhaustSurface, exhaustSurface.GetPixel(0, 0));
+				gfx.DrawSpriteKey(int(pos.x), int(pos.y), exhaustSurface, exhaustSurface.GetPixel(0, 0));
 			}
 
 			if (isHit)
 			{
-				gfx.DrawSpriteKey(int(x), int(y), redSurface, redSurface.GetPixel(0, 0));
+				gfx.DrawSpriteKey(int(pos.x), int(pos.y), redSurface, redSurface.GetPixel(0, 0));
 			}
 		}
 		
 		else
 		{
-			shipRekt.Draw(int(x), int(y), gfx);
+			shipRekt.Draw(int(pos.x), int(pos.y), gfx);
 			if (isMoving)
 			{
-				gfx.DrawSpriteKey(int(x), int(y), rektSurface, rektSurface.GetPixel(0, 0));
+				gfx.DrawSpriteKey(int(pos.x), int(pos.y), rektSurface, rektSurface.GetPixel(0, 0));
 			}
 		}
 		
@@ -53,21 +53,21 @@ void Ship::Draw(Graphics& gfx)
 
 void Ship::ClampScreen()
 {
-	x = std::max(0.f, std::min(x, float(Graphics::ScreenWidth) - (width + 1.f)));
-	y = std::max(0.f, std::min(y, float(Graphics::ScreenHeight) - (height + 1.f)));
+	pos.x = std::max(0.f, std::min(pos.x, float(Graphics::ScreenWidth) - (width + 1.f)));
+	pos.y = std::max(0.f, std::min(pos.y, float(Graphics::ScreenHeight) - (height + 1.f)));
 }
 
 void Ship::PlayerInput(Keyboard& kbd, float dt)
 {
 	if (kbd.KeyIsPressed(VK_UP))
 	{
-		y -= vy * dt;
+		pos.y -= speed * dt;
 		isMoving = true;
 	}
 
 	else if (kbd.KeyIsPressed(VK_DOWN))
 	{
-		y += vy * dt;
+		pos.y += speed * dt;
 		isMoving = false;
 	}
 
@@ -78,17 +78,17 @@ void Ship::PlayerInput(Keyboard& kbd, float dt)
 	
 	if (kbd.KeyIsPressed(VK_LEFT))
 	{
-		x -= vx * dt;
+		pos.x -= speed * dt;
 	}
 
 	else if (kbd.KeyIsPressed(VK_RIGHT))
 	{
-		x += vx * dt;
+		pos.x += speed * dt;
 	}
 
 	if (kbd.KeyIsPressed(VK_SPACE))
 	{
-		bManager.FireBullet(x + canonX, y + canonY, dt);
+		bManager.FireBullet(Vec2(pos.x + canonX, pos.y + canonY), dt);
 	}
 
 	else
@@ -107,14 +107,14 @@ bool Ship::HasHealth() const
 	return health.HasHealth();
 }
 
-RectF Ship::GetCollisionRect() const
+RectF Ship::GetCollisionRect()
 {
-	return RectF(x, y, width, height);
+	return RectF(pos, width, height);
 }
 
 float Ship::GetX() const
 {
-	return x;
+	return pos.x;
 }
 
 float Ship::GetWidth() const
@@ -124,7 +124,7 @@ float Ship::GetWidth() const
 
 float Ship::GetY() const
 {
-	return y;
+	return pos.y;
 }
 
 float Ship::GetHeight() const
@@ -139,12 +139,12 @@ void Ship::SethitTarget(bool hit)
 
 void Ship::SetY(float Y)
 {
-	y = Y;
+	pos.y = Y;
 }
 
 void Ship::SetX(float X)
 {
-	x = X;
+	pos.x = X;
 }
 
 int Ship::GetDmg() const
@@ -154,8 +154,8 @@ int Ship::GetDmg() const
 
 void Ship::Reset()
 {
-	x = 300.0f;
-	y = 300.0f;
+	pos.x = 300.0f;
+	pos.y = 300.0f;
 	health.Reset();
 	isHit = false;
 	isMoving = false;
@@ -163,7 +163,7 @@ void Ship::Reset()
 
 void Ship::Update(Keyboard & wnd, float dt)
 {
-	if (y + 2 > Graphics::ScreenHeight)
+	if (pos.y + 2 > Graphics::ScreenHeight)
 	{
 		health.Damage(health.GetHealthAmount());
 	}

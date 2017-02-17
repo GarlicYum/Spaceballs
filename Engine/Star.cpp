@@ -5,30 +5,29 @@ Star::Star()
 	
 }
 
-void Star::Spawn(float X, float Y, float Size)
+void Star::Spawn(Vec2& pos_in, float Size)
 {
-	x = X;
-	y = Y;
+	pos = pos_in;
 	size = Size;
 }
 
 void Star::Update(float dt)
 {
-	y += vy * dt;
-	if (y + size >= Graphics::ScreenHeight)
+	pos.y += vy * dt;
+	if (pos.y + size >= Graphics::ScreenHeight)
 	{
 		std::random_device rd;
 		std::mt19937 rng(rd());
 		std::uniform_real_distribution<float> xDist(3.0f, 795.0f);
-		y = 3.0f;
-		x = xDist(rng);
+		pos.y = 3.0f;
+		pos.x = xDist(rng);
 	}
 }
 
 void Star::Draw(Graphics & gfx)
 {
-	const int x_int = int(x);
-	const int y_int = int(y);
+	const int x_int = int(pos.x);
+	const int y_int = int(pos.y);
 	gfx.PutPixel(x_int, y_int, Colors::Cyan);
 	gfx.PutPixel(x_int+1, y_int, Colors::Cyan);
 	gfx.PutPixel(x_int-1, y_int, Colors::Cyan);
@@ -46,8 +45,8 @@ void Star::Draw(Graphics & gfx)
 
 void Star::DrawBig(Graphics & gfx)
 {
-	const int x_int = int(x);
-	const int y_int = int(y);
+	const int x_int = int(pos.x);
+	const int y_int = int(pos.y);
 	gfx.PutPixel(x_int, y_int, Colors::Cyan);
 	gfx.PutPixel(x_int+1, y_int, Colors::Cyan);
 	gfx.PutPixel(x_int+ 2, y_int, Colors::Cyan);

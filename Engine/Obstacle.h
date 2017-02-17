@@ -21,8 +21,8 @@ public:
 	void Reset();
 
 private:
-	float x = 0.0f;
-	float y = -120.0f;
+	Vec2 pos;
+	static constexpr float resetY = -120.0f;
 	float vy = 120.0f;
 	static constexpr float width = 255;
 	static constexpr float height = 115;

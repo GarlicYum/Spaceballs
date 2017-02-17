@@ -1,6 +1,7 @@
 #pragma once
 #include "Bullet.h"
 #include "Sound.h"
+#include "Vec2.h"
 
 class BulletManager
 {
@@ -10,7 +11,7 @@ public:
 	Bullet& GetBullet(int Idx);
 	int GetNumBullets() const;
 
-	void FireBullet(float X, float Y, float Dt);
+	void FireBullet(Vec2& canonPos, float Dt);
 	void UpdateBullets(float Dt);
 	void ResetShotsFired();
 	void DrawBullets(class Graphics& Gfx);

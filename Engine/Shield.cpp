@@ -12,8 +12,8 @@ void Shield::Update(Ship& ship, Sound& shieldon, Sound& shieldoff)
 	break;
 	case ActiveState:
 		const auto shipRect = ship.GetCollisionRect();
-		x = shipRect.GetCenterX();
-		y = shipRect.GetCenterY();
+		pos.x = shipRect.GetCenterX();
+		pos.y = shipRect.GetCenterY();
 		meterCounter++;
 		if (meterCounter == meterDecrease)
 		{
@@ -41,7 +41,7 @@ void Shield::Draw(Graphics& gfx) const
 {
 	if (sState == ActiveState)
 	{
-		gfx.DrawAnnulus(int(x), int(y), shieldSize, holeSize, c);
+		gfx.DrawAnnulus(int(pos.x), int(pos.y), shieldSize, holeSize, c);
 		DrawMeter(gfx);
 	}
 }
@@ -71,8 +71,7 @@ void Shield::SetisActive(bool active)
 RectF Shield::GetCollisionRect() const
 {
 	return RectF(
-		x - radius,
-		y - radius,
+		Vec2(pos.x - radius, pos.y - radius),
 		(radius * 2.0f),
 		(radius * 2.5f));
 }

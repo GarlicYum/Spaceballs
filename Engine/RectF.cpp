@@ -1,9 +1,15 @@
 #include "RectF.h"
 
-RectF::RectF(float X, float Y, float Width, float Height)
+RectF::RectF(Vec2& pos, float Width, float Height)
 	:
-	left(X), top(Y),
-	right (X + Width), bottom(Y + Height)
+	left(pos.x), top(pos.y),
+	right (pos.x + Width), bottom(pos.y + Height)
+{}
+
+RectF::RectF(const Vec2& pos, float Width, float Height)
+	:
+	left(pos.x), top(pos.y),
+	right(pos.x + Width), bottom(pos.y + Height)
 {}
 
 bool RectF::Overlaps(const RectF& Rect) const

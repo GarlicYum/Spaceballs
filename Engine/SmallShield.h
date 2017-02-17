@@ -15,8 +15,8 @@ public:
 	void Reset();
 
 private:
-	float x = 0.0f;
-	float y = -40.0f;
+	Vec2 pos;
+	static constexpr float resetY = -40.0f;
 	float vy = 4.0f * 60.0f;
 	static constexpr int radius = 20;
 	static constexpr int hole = 18;

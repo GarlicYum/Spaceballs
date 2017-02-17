@@ -16,11 +16,11 @@ World::World()
 	std::uniform_real_distribution<float> yDist(0.0f, 590.0f);
 	for (int i = 0; i < nStars; ++i)
 	{
-		star[i].Spawn(xDist(rng), yDist(rng), 3.0f);
+		star[i].Spawn(Vec2(xDist(rng), yDist(rng)), 3.0f);
 	}
 	for (int i = 0; i < nBigStars; ++i)
 	{
-		starB[i].Spawn(xDist(rng), yDist(rng), 6.0f);
+		starB[i].Spawn(Vec2(xDist(rng), yDist(rng)), 6.0f);
 	}
 }
 

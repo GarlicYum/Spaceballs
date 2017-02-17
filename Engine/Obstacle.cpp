@@ -2,64 +2,64 @@
 
 Obstacle::Obstacle(float X, const Surface & obstacleSurface)
 	:
-	x(X),
+	pos(X, resetY),
 	surface(obstacleSurface)
 {}
 
 void Obstacle::Draw(Graphics & gfx)
 {
-	if (y < gfx.ScreenHeight)
+	if (pos.y < gfx.ScreenHeight)
 	{
-		gfx.DrawSpriteKey(int(x), int(y), surface, surface.GetPixel(0, 0));
+		gfx.DrawSpriteKey(int(pos.x), int(pos.y), surface, surface.GetPixel(0, 0));
 	}
 }
 
 void Obstacle::Update(float dt)
 {
-	y += vy * dt;
+	pos.y += vy * dt;
 }
 
 void Obstacle::HandleBottomCollision(Ship& ship)
 {
-	ship.SetY(y + height);
+	ship.SetY(pos.y + height);
 }
 
 void Obstacle::HandleTopCollision(Ship & ship)
 {
-	ship.SetY(y - ship.GetHeight());
+	ship.SetY(pos.y - ship.GetHeight());
 }
 
 void Obstacle::HandleLeftCollision(Ship & ship)
 {
-	ship.SetX(x - ship.GetWidth());
+	ship.SetX(pos.x - ship.GetWidth());
 }
 
 void Obstacle::HandleRightCollision(Ship & ship)
 {
-	ship.SetX(x + width);
+	ship.SetX(pos.x + width);
 }
 
 RectF Obstacle::GetBottomCollisionRect() const
 {
-	return RectF(x + 10, y + height -1, width - 20, 1);
+	return RectF(Vec2(pos.x + 10, pos.y + height -1), width - 20, 1);
 }
 
 RectF Obstacle::GetLeftCollisionRect() const
 {
-	return RectF(x, y, 1 ,height);
+	return RectF(pos, 1 ,height);
 }
 
 RectF Obstacle::GetRightCollisionRect() const
 {
-	return RectF(x + width -1, y, 1, height);
+	return RectF(Vec2(pos.x + width -1, pos.y), 1, height);
 }
 
 RectF Obstacle::GetTopCollisionRect() const
 {
-	return RectF(x + 10, y, width - 20, 1);
+	return RectF(Vec2(pos.x + 10, pos.y), width - 20, 1);
 }
 
 void Obstacle::Reset()
 {
-	y = -120.0f;
+	pos.y = resetY;
 }

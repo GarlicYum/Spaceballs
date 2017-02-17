@@ -1,19 +1,19 @@
 #pragma once
 #include "Graphics.h"
 #include <random>
+#include "Vec2.h"
 
 class Star
 {
 public:
 	Star();
-	void Spawn(float X, float Y, float Size);
+	void Spawn(Vec2& pos_in, float Size);
 	void Update(float dt);
 	void Draw(Graphics& gfx);
 	void DrawBig(Graphics& gfx);
 	
 private:
-	float x;
-	float y;
+	Vec2 pos;
 	float vy = 2.0f * 60.0f;
 	float size;
 };

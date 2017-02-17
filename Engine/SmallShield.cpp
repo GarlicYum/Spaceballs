@@ -4,7 +4,7 @@ void SmallShield::Draw(Graphics & gfx)
 {
 	if (!isObtained)
 	{
-		gfx.DrawAnnulus(int(x), int(y), radius, hole, c);
+		gfx.DrawAnnulus(int(pos.x), int(pos.y), radius, hole, c);
 	}
 }
 
@@ -12,13 +12,13 @@ void SmallShield::Update(Ship& ship, float dt, Shield& shield)
 {
 	if (!isObtained)
 	{
-		y += vy * dt;
+		pos.y += vy * dt;
 	}
 }
 
 RectF SmallShield::GetCollisionRect() const
 {
-	return RectF(x - radius, y - radius, radius * 2.f, radius * 2.f);
+	return RectF(Vec2(pos.x - radius, pos.y - radius), radius * 2.f, radius * 2.f);
 }
 
 void SmallShield::HandleCollision(Shield& shield)
@@ -32,10 +32,10 @@ void SmallShield::HandleCollision(Shield& shield)
 
 void SmallShield::SetPos(float X)
 {
-	x = X;
+	pos.x = X;
 }
 
 void SmallShield::Reset()
 {
-	y = -40.0f;
+	pos.y = -40.0f;
 }

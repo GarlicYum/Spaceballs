@@ -9,7 +9,7 @@ public:
 	Vec2& operator+=(const Vec2& rhs);
 	Vec2 operator*(float rhs) const;
 	Vec2& operator*=(float rhs);
-private:
+public:
 	float x;
 	float y;
 };

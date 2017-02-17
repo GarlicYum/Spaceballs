@@ -8,7 +8,7 @@ Mine::Mine(float X, const Surface& MineSurface, Sound& Explosion, AnimationFrame
 	surface(MineSurface),
 	explo(Anim, 2),
 	explosion(Explosion),
-	x(X)
+	pos(X, resetY)
 {}
 
 void Mine::HandleCollision(int dmg)
@@ -35,7 +35,7 @@ void Mine::Update(float Dt)
 	switch (mState)
 	{
 	case MineState::ActiveState:
-		y += vy * Dt;
+		pos.y += vy * Dt;
 		break;
 	case MineState::DetonateState:
 		explo.Advance();
@@ -50,13 +50,13 @@ void Mine::Draw(Graphics& gfx)
 	switch (mState)
 	{
 	case ActiveState:
-		if (y < gfx.ScreenHeight)
+		if (pos.y < gfx.ScreenHeight)
 		{
-			gfx.DrawSpriteKey(int(x), int(y), surface, surface.GetPixel(0, 0));
+			gfx.DrawSpriteKey(int(pos.x), int(pos.y), surface, surface.GetPixel(0, 0));
 		}
 		break;
 	case DetonateState:
-		explo.Draw(int(x), int(y), gfx);
+		explo.Draw(int(pos.x), int(pos.y), gfx);
 		break;
 	}
 }
@@ -73,7 +73,7 @@ void Mine::SetState(MineState State)
 
 RectF Mine::GetCollisionRect() const
 {
-	return RectF(x, y, width, height);
+	return RectF(pos, width, height);
 }
 
 bool Mine::IsActive() const
@@ -83,7 +83,7 @@ bool Mine::IsActive() const
 
 void Mine::Reset()
 {
-	y = -50.0f;
+	pos.y = resetY;
 	hp = 60;
 	mState = ActiveState;
 	explo.Reset();

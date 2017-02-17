@@ -2,18 +2,18 @@
 
 BlackHole::BlackHole(float X, AnimationFrames & bHoleAnim)
 	:
-	x(X),
+	pos(X, -50.0f),
 	bHoleSpin(bHoleAnim, 5)
 {}
 
 void BlackHole::Reset()
 {
-	y = -50.0f;
+	pos.y = -50.0f;
 }
 
 void BlackHole::Update(float dt)
 {
-	y += vy * dt;
+	pos.y += vy * dt;
 	bHoleSpin.Advance();
 	if (bHoleSpin.AnimEnd())
 	{
@@ -23,10 +23,10 @@ void BlackHole::Update(float dt)
 
 void BlackHole::Draw(Graphics& gfx)
 {
-	bHoleSpin.Draw(int(x), int(y), gfx);
+	bHoleSpin.Draw(int(pos.x), int(pos.y), gfx);
 }
 
 RectF BlackHole::GetCollisionRect() const
 {
-	return RectF(x, y, width, height);
+	return RectF(pos, width, height);
 }
