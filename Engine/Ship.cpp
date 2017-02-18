@@ -137,6 +137,11 @@ void Ship::SethitTarget(bool hit)
 	hitTarget = hit;
 }
 
+void Ship::AddGravity(Vec2 & gravity)
+{
+	pos += gravity;
+}
+
 void Ship::SetY(float Y)
 {
 	pos.y = Y;

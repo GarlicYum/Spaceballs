@@ -12,6 +12,7 @@ public:
 	float GetHeight() const;
 	float GetCenterX() const;
 	float GetCenterY() const;
+	Vec2 GetCenter() const;
 
 public:
 	float left;

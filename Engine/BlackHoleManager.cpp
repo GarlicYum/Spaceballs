@@ -43,3 +43,18 @@ void BlackHoleManager::Draw(Graphics& gfx)
 		bHole[i].Draw(gfx);
 	}
 }
+
+int BlackHoleManager::GetBlackHoleCount() const
+{
+	return nHoles;
+}
+
+BlackHole & BlackHoleManager::GetBlackHole(int Idx)
+{
+	return bHole[Idx];
+}
+
+const BlackHole & BlackHoleManager::GetBlackHole(int Idx) const
+{
+	return bHole[Idx];
+}

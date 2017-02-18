@@ -74,7 +74,6 @@ void World::Update(Keyboard& Kbd, float Dt)
 	}
 }
 
-
 void World::Draw(Graphics& Gfx)
 {
 	switch (gState)
@@ -137,7 +136,7 @@ void World::PlayerInput(Keyboard& Kbd)
 				if (event.GetCode() == VK_RETURN)
 				{
 					gState = PlayState;
-					mainSong.Play(1.0f, 0.5f);
+					mainSong.Play(1.0f, 0.0f);
 				}
 			}
 		}
@@ -207,6 +206,19 @@ void World::CheckCollisions()
 				bullet.HandleCollision();
 				break;
 			}
+		}
+	}
+
+	for (int i = 0; i < blackholeM.GetBlackHoleCount(); ++i)
+	{
+		auto& blackhole = blackholeM.GetBlackHole(i);
+		const auto blackHoleRect = blackhole.GetCollisionRect();
+
+		if (IsColliding(shipRect, blackHoleRect))
+		{
+			Vec2 gravity = shipRect.GetCenter() - blackHoleRect.GetCenter();
+			gravity.Normalize();
+			ship.AddGravity(gravity);
 		}
 	}
 

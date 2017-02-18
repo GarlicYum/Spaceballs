@@ -11,11 +11,14 @@ public:
 	void Reset();
 	void Update(float dt);
 	void Draw(Graphics& gfx);
+	int GetBlackHoleCount() const;
+	BlackHole& GetBlackHole(int Idx);
+	const BlackHole& GetBlackHole(int Idx) const;
 
 private:
-	static constexpr int nHolesMax = 3;
+	static constexpr int nHolesMax = 1;
 	int nHoles = 0;
 	int holeCounter = 0;
-	static constexpr int newHole = 700;
+	static constexpr int newHole = 100;
 	std::vector<BlackHole> bHole;
 };

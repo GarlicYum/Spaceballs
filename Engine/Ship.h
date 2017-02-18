@@ -25,6 +25,7 @@ public:
 	float GetHeight() const;
 	
 	void SethitTarget(bool hit);
+	void AddGravity(Vec2& gravity);
 	void SetY(float Y);
 	void SetX(float X);
 	int GetDmg() const;

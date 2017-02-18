@@ -38,3 +38,8 @@ float RectF::GetCenterY() const
 {
 	return top + (GetHeight() * 0.5f);
 }
+
+Vec2 RectF::GetCenter() const
+{
+	return Vec2(GetCenterX(), GetCenterY());
+}
