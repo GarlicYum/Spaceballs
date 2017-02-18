@@ -19,6 +19,14 @@ void BlackHole::Update(float dt)
 	{
 		bHoleSpin.Reset();
 	}
+	if (pos.y + height > 0.0f && pos.y < Graphics::ScreenHeight)
+	{
+		isActive = true;
+	}
+	else
+	{
+		isActive = false;
+	}
 }
 
 void BlackHole::Draw(Graphics& gfx)
@@ -29,4 +37,9 @@ void BlackHole::Draw(Graphics& gfx)
 RectF BlackHole::GetCollisionRect() const
 {
 	return RectF(Vec2(pos.x - range, pos.y - range), width + range*2, height + range*2);
+}
+
+bool BlackHole::GetIsActive() const
+{
+	return isActive;
 }

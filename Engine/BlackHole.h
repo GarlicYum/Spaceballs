@@ -12,6 +12,7 @@ public:
 	void Update(float dt);
 	void Draw(Graphics& gfx);
 	RectF GetCollisionRect() const;
+	bool GetIsActive() const;
 
 private:
 	Vec2 pos;
@@ -20,4 +21,5 @@ private:
 	static constexpr float height = 100.0f;
 	static constexpr float range = 250.0f;
 	Animation bHoleSpin;
+	bool isActive;
 };

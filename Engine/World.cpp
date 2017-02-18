@@ -226,7 +226,7 @@ void World::CheckCollisions()
 				ship.HandleCollision(ship.GetHealth());
 			}
 
-			else
+			else if (blackholeM.GetBlackHole(i).GetIsActive())
 			{
 				gravity.Normalize();
 				gravity *= 3.5f;
