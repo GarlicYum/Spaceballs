@@ -13,10 +13,12 @@ public:
 	void Draw(Graphics& gfx);
 	RectF GetCollisionRect() const;
 	bool GetIsActive() const;
+	void StopVy();
 
 private:
 	Vec2 pos;
-	static constexpr float vy = 80.0f;
+	float vy = 80.0f;
+	static constexpr float resetVy = 80.0f;
 	static constexpr float width = 100.0f;
 	static constexpr float height = 100.0f;
 	static constexpr float range = 250.0f;

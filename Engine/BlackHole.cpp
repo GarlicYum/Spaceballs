@@ -9,6 +9,7 @@ BlackHole::BlackHole(float X, AnimationFrames & bHoleAnim)
 void BlackHole::Reset()
 {
 	pos.y = -50.0f;
+	vy = resetVy;
 }
 
 void BlackHole::Update(float dt)
@@ -42,4 +43,9 @@ RectF BlackHole::GetCollisionRect() const
 bool BlackHole::GetIsActive() const
 {
 	return isActive;
+}
+
+void BlackHole::StopVy()
+{
+	vy = 0.0f;
 }

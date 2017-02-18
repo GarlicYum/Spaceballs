@@ -222,6 +222,7 @@ void World::CheckCollisions()
 			
 			if (gravity.GetLengthSq() < 5.0f)
 			{
+				blackhole.StopVy();
 				ship.CollidesWithHole(true);
 				ship.HandleCollision(ship.GetHealth());
 			}
