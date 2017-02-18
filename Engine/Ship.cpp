@@ -95,41 +95,44 @@ void Ship::ClampScreen()
 
 void Ship::PlayerInput(Keyboard& kbd, float dt)
 {
-	if (kbd.KeyIsPressed(VK_UP))
+	if (!collidesWithHole)
 	{
-		pos.y -= speed * dt;
-		isMoving = true;
-	}
+		if (kbd.KeyIsPressed(VK_UP))
+		{
+			pos.y -= speed * dt;
+			isMoving = true;
+		}
 
-	else if (kbd.KeyIsPressed(VK_DOWN))
-	{
-		pos.y += speed * dt;
-		isMoving = false;
-	}
+		else if (kbd.KeyIsPressed(VK_DOWN))
+		{
+			pos.y += speed * dt;
+			isMoving = false;
+		}
 
-	else
-	{
-		isMoving = false;
-	}
-	
-	if (kbd.KeyIsPressed(VK_LEFT))
-	{
-		pos.x -= speed * dt;
-	}
+		else
+		{
+			isMoving = false;
+		}
 
-	else if (kbd.KeyIsPressed(VK_RIGHT))
-	{
-		pos.x += speed * dt;
-	}
+		if (kbd.KeyIsPressed(VK_LEFT))
+		{
+			pos.x -= speed * dt;
+		}
 
-	if (kbd.KeyIsPressed(VK_SPACE))
-	{
-		bManager.FireBullet(Vec2(pos.x + canonX, pos.y + canonY), dt);
-	}
+		else if (kbd.KeyIsPressed(VK_RIGHT))
+		{
+			pos.x += speed * dt;
+		}
 
-	else
-	{
-		bManager.ResetShotsFired();
+		if (kbd.KeyIsPressed(VK_SPACE))
+		{
+			bManager.FireBullet(Vec2(pos.x + canonX, pos.y + canonY), dt);
+		}
+
+		else
+		{
+			bManager.ResetShotsFired();
+		}
 	}
 }
 
