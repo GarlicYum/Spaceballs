@@ -11,7 +11,8 @@
 class Ship
 {
 public:
-	Ship(BulletManager& Manager, Surface& ShipSurface, Surface& exhaust, Surface& red, AnimationFrames& shiprekt, Surface& rektsurface);
+	Ship(BulletManager& Manager, Surface& ShipSurface, Surface& exhaust, 
+		Surface& red, AnimationFrames& shiprekt, Surface& rektsurface, AnimationFrames& holeAnim);
 	void HandleCollision(int Damage);
 	void Draw(Graphics& gfx);
 	void Update(Keyboard& wnd, float dt);
@@ -23,13 +24,14 @@ public:
 	float GetWidth() const;
 	float GetY() const;
 	float GetHeight() const;
+	int GetHealth() const;
 	
 	void SethitTarget(bool hit);
 	void AddGravity(Vec2& gravity);
 	void SetY(float Y);
 	void SetX(float X);
 	int GetDmg() const;
-
+	void CollidesWithHole(bool collides);
 	void Reset();
 
 private:
@@ -58,4 +60,7 @@ private:
 	int isHitCounter = 0;
 	Animation shipRekt;
 	static constexpr int lowHealth = 75;
+
+	bool collidesWithHole = false;
+	Animation blackHole;
 };

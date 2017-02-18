@@ -3,15 +3,14 @@
 World::World()
 	:
 	animExplosion(L"mineExplo\\", 8),
-	ship(bulletM, shipSurface, exhaustSurface, redSurface, shipRekt, rektSurface),
+	ship(bulletM, shipSurface, exhaustSurface, redSurface, shipRekt, rektSurface, shipHoleAnim),
 	mineM(explosion, mine, animExplosion),
 	eBoostM(eBoostSound, eBoostHeart),
 	obstacleM(obstacleSurface),
 	shipRekt(L"shiprekt\\", 16),
 	bHoleAnim(L"blackhole\\", 40),
 	blackholeM(bHoleAnim),
-	shipHoleAnim(L"shiphole\\", 28),
-	shiphole(shipHoleAnim, 1)
+	shipHoleAnim(L"shiphole\\", 28)
 {
 	std::mt19937 rng;
 	std::uniform_real_distribution<float> xDist(0.0f, 790.0f);
@@ -88,10 +87,7 @@ void World::Draw(Graphics& Gfx)
 		blackholeM.Draw(Gfx);
 		eBoostM.Draw(Gfx, ship);
 		shieldM.Draw(Gfx);
-		if (!isDying)
-			ship.Draw(Gfx);
-		else
-			shiphole.Draw(int(ship.GetX()), int(ship.GetY()), Gfx);
+		ship.Draw(Gfx);
 		mineM.Draw(Gfx);
 		obstacleM.Draw(Gfx);
 		break;
@@ -225,15 +221,10 @@ void World::CheckCollisions()
 			
 			if (gravity.GetLengthSq() < 5.0f)
 			{
-				isDying = true;
-				shiphole.Advance();
-				if (shiphole.AnimEnd())
-				{
-					isDying = false;
-					shiphole.Reset();
-					gState = GameOverState;
-				}
+				ship.CollidesWithHole(true);
+				ship.HandleCollision(ship.GetHealth());
 			}
+
 			else
 			{
 				gravity.Normalize();

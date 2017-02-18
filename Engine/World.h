@@ -72,7 +72,6 @@ private:
 	AnimationFrames bHoleAnim;
 	BlackHoleManager blackholeM;
 	AnimationFrames shipHoleAnim;
-	Animation shiphole;
 
 	static constexpr int nStars = 100;
 	Star star[nStars];
@@ -84,6 +83,5 @@ private:
 	static constexpr int nScores = 10;
 	HighScore scores[nScores];
 	Keyboard::Event event;
-	bool isDying = false;
 
 };

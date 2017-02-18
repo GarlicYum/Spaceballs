@@ -2,27 +2,42 @@
 #include "Ship.h"
 #include "Surface.h"
 
-Ship::Ship(BulletManager& Manager, Surface& ShipSurface, Surface& exhaust, Surface& red, AnimationFrames& shiprekt, Surface& rektsurface)
+Ship::Ship(BulletManager& Manager, Surface& ShipSurface, Surface& exhaust, 
+	Surface& red, AnimationFrames& shiprekt, Surface& rektsurface, AnimationFrames& holeAnim)
 	:
 	bManager(Manager),
 	shipSurface(ShipSurface),
 	exhaustSurface(exhaust),
 	redSurface(red), 
 	shipRekt(shiprekt, 2),
-	rektSurface(rektsurface)
+	rektSurface(rektsurface),
+	blackHole(holeAnim, 1)
 {}
 
 void Ship::HandleCollision(int Damage)
 {
-	health.Damage(Damage);
-	isHit = true;
+	if (collidesWithHole)
+	{
+		blackHole.Advance();
+
+		if (blackHole.AnimEnd())
+		{
+			health.Damage(Damage);
+		}
+	}
+
+	else
+	{
+		health.Damage(Damage);
+		isHit = true;
+	}
 }
 
 void Ship::Draw(Graphics& gfx)
 {
 	if (health.HasHealth())
 	{
-		if (health.GetHealthAmount() > lowHealth)
+		if (health.GetHealthAmount() > lowHealth && !collidesWithHole)
 		{
 			gfx.DrawSpriteKey(int(pos.x), int(pos.y), shipSurface, shipSurface.GetPixel(0, 0));
 
@@ -37,13 +52,18 @@ void Ship::Draw(Graphics& gfx)
 			}
 		}
 		
-		else
+		else if (!collidesWithHole)
 		{
 			shipRekt.Draw(int(pos.x), int(pos.y), gfx);
 			if (isMoving)
 			{
 				gfx.DrawSpriteKey(int(pos.x), int(pos.y), rektSurface, rektSurface.GetPixel(0, 0));
 			}
+		}
+
+		else
+		{
+			blackHole.Draw(int(pos.x), int(pos.y), gfx);
 		}
 		
 		health.Draw(gfx);
@@ -132,6 +152,11 @@ float Ship::GetHeight() const
 	return height;
 }
 
+int Ship::GetHealth() const
+{
+	return health.GetHealthAmount();
+}
+
 void Ship::SethitTarget(bool hit)
 {
 	hitTarget = hit;
@@ -157,6 +182,11 @@ int Ship::GetDmg() const
 	return dmg;
 }
 
+void Ship::CollidesWithHole(bool collides)
+{
+	collidesWithHole = collides;
+}
+
 void Ship::Reset()
 {
 	pos.x = 300.0f;
@@ -164,6 +194,8 @@ void Ship::Reset()
 	health.Reset();
 	isHit = false;
 	isMoving = false;
+	collidesWithHole = false;
+	blackHole.Reset();
 }
 
 void Ship::Update(Keyboard & wnd, float dt)
