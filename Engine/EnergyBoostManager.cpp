@@ -21,11 +21,10 @@ void EnergyBoostManager::Update(Ship& ship, float dt)
 		eBoost[i].Update(ship, dt);
 	}
 
-	eBoostCounter++;
-	if (eBoostCounter == newEBoost && nEBoost != nEBoostMax)
+	if ((eBoostCounter += dt) > newEBoost && nEBoost != nEBoostMax)
 	{
 		nEBoost++;
-		eBoostCounter = 0;
+		eBoostCounter = 0.0f;
 	}
 }
 

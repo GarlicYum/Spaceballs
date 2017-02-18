@@ -20,8 +20,7 @@ void ShieldManager::Update(Ship & ship, float dt, Sound& shieldon, Sound& shield
 		s_shield[i].Update(ship, dt, shield);
 	}
 
-	smallCounter++;
-	SpawnShieldPowerup();
+	SpawnShieldPowerup(dt);
 }
 
 void ShieldManager::Draw(Graphics& gfx)
@@ -65,11 +64,11 @@ void ShieldManager::Reset()
 	shield.Reset();
 }
 
-void ShieldManager::SpawnShieldPowerup()
+void ShieldManager::SpawnShieldPowerup(float dt)
 {
-	if (smallCounter == newSmall && nSmall != nSmallMax)
+	if ((smallCounter += dt) > newSmall && nSmall != nSmallMax)
 	{
 		nSmall++;
-		smallCounter = 0;
+		smallCounter = 0.0f;
 	}
 }

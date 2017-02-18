@@ -18,8 +18,7 @@ void MineManager::Update(float Dt)
 		mine[i].Update(Dt);
 	}
 
-	mineCounter++;
-	SpawnMine();
+	SpawnMine(Dt);
 }
 
 void MineManager::Draw(Graphics& gfx)
@@ -30,12 +29,12 @@ void MineManager::Draw(Graphics& gfx)
 	}
 }
 
-void MineManager::SpawnMine()
+void MineManager::SpawnMine(float Dt)
 {
-	if (mineCounter == newMine && nMines != nMinesMax)
+	if ((mineCounter += Dt) > newMine && nMines != nMinesMax)
 	{
 		nMines++;
-		mineCounter = 0;
+		mineCounter = 0.0f;
 	}
 }
 

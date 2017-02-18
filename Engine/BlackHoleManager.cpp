@@ -22,10 +22,9 @@ void BlackHoleManager::Update(float dt)
 {
 	if (nHoles != nHolesMax)
 	{
-		holeCounter++;
-		if (holeCounter == newHole)
+		if ((holeCounter += dt) > newHole)
 		{
-			holeCounter = 0;
+			holeCounter = 0.0f;
 			nHoles++;
 		}
 	}

@@ -24,15 +24,14 @@ void ObstacleManager::Update(float dt)
 	{
 		obstacle[i].Update(dt);
 	}
-	obstacleCounter++;
-	SpawnObstacle();
+	SpawnObstacle(dt);
 }
 
-void ObstacleManager::SpawnObstacle()
+void ObstacleManager::SpawnObstacle(float dt)
 {
-	if (obstacleCounter == newObstacle && nObstacles != nObstaclesMax)
+	if ((obstacleCounter += dt) > newObstacle && nObstacles != nObstaclesMax)
 	{
-		obstacleCounter = 0;
+		obstacleCounter = 0.0f;
 		nObstacles++;
 	}
 }

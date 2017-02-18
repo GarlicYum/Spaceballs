@@ -18,7 +18,7 @@ public:
 private:
 	static constexpr int nHolesMax = 3;
 	int nHoles = 0;
-	int holeCounter = 0;
-	static constexpr int newHole = 700;
+	float holeCounter = 0.0f;
+	static constexpr float newHole = 13.5f;
 	std::vector<BlackHole> bHole;
 };

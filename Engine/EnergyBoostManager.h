@@ -17,8 +17,8 @@ public:
 private:
 	static constexpr int nEBoostMax = 3;
 	int nEBoost = 0;
-	int eBoostCounter = 0;
-	int newEBoost = 900;
+	float eBoostCounter = 0.0f;
+	static constexpr float newEBoost = 16.0f;
 	std::vector<EnergyBoost> eBoost;
 	Sound& boostSound;
 	Surface& boostSurface;

@@ -20,13 +20,13 @@ public:
 	void Reset();
 
 private:
-	void SpawnShieldPowerup();
+	void SpawnShieldPowerup(float dt);
 private:
 	static constexpr int nSmallMax = 2;
 	Shield shield;
 	SmallShield s_shield[nSmallMax];
  	int nSmall = 0;
- 	int smallCounter = 0;
- 	int newSmall = 1150;
+ 	float smallCounter = 0.0f;
+ 	static constexpr float newSmall = 19.5f;
 };
 
