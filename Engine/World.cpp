@@ -3,14 +3,15 @@
 World::World()
 	:
 	animExplosion(L"mineExplo\\", 8),
-	ship(bulletM, shipSurface, exhaustSurface, redSurface, shipRekt, rektSurface, shipHoleAnim),
+	ship(bulletM, shipSurface, exhaustSurface, redSurface, shipRekt, rektSurface, shipHoleAnim, shipHoleRektAnim),
 	mineM(explosion, mine, animExplosion),
 	eBoostM(eBoostSound, eBoostHeart),
 	obstacleM(obstacleSurface),
 	shipRekt(L"shiprekt\\", 16),
 	bHoleAnim(L"blackhole\\", 40),
 	blackholeM(bHoleAnim),
-	shipHoleAnim(L"shiphole\\", 28)
+	shipHoleAnim(L"shiphole\\", 28),
+	shipHoleRektAnim(L"shipholerekt\\", 28)
 {
 	std::mt19937 rng;
 	std::uniform_real_distribution<float> xDist(0.0f, 790.0f);

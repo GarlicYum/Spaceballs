@@ -3,7 +3,7 @@
 #include "Surface.h"
 
 Ship::Ship(BulletManager& Manager, Surface& ShipSurface, Surface& exhaust, 
-	Surface& red, AnimationFrames& shiprekt, Surface& rektsurface, AnimationFrames& holeAnim)
+	Surface& red, AnimationFrames& shiprekt, Surface& rektsurface, AnimationFrames& holeAnim, AnimationFrames& holeRektAnim)
 	:
 	bManager(Manager),
 	shipSurface(ShipSurface),
@@ -11,16 +11,24 @@ Ship::Ship(BulletManager& Manager, Surface& ShipSurface, Surface& exhaust,
 	redSurface(red), 
 	shipRekt(shiprekt, 2),
 	rektSurface(rektsurface),
-	blackHole(holeAnim, 1)
+	blackHole(holeAnim, 1),
+	blackHoleRekt(holeRektAnim, 1)
 {}
 
 void Ship::HandleCollision(int Damage)
 {
 	if (collidesWithHole)
 	{
-		blackHole.Advance();
+		if (health.GetHealthAmount() > lowHealth)
+		{
+			blackHole.Advance();
+		}
+		else
+		{
+			blackHoleRekt.Advance();
+		}
 
-		if (blackHole.AnimEnd())
+		if (blackHole.AnimEnd() || blackHoleRekt.AnimEnd())
 		{
 			health.Damage(Damage);
 		}
@@ -63,7 +71,15 @@ void Ship::Draw(Graphics& gfx)
 
 		else
 		{
-			blackHole.Draw(int(pos.x), int(pos.y), gfx);
+			if (health.GetHealthAmount() > lowHealth)
+			{
+				blackHole.Draw(int(pos.x), int(pos.y), gfx);
+			}
+			
+			else
+			{
+				blackHoleRekt.Draw(int(pos.x), int(pos.y), gfx);
+			}
 		}
 		
 		health.Draw(gfx);
@@ -196,6 +212,7 @@ void Ship::Reset()
 	isMoving = false;
 	collidesWithHole = false;
 	blackHole.Reset();
+	blackHoleRekt.Reset();
 }
 
 void Ship::Update(Keyboard & wnd, float dt)

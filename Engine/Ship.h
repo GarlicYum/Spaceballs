@@ -12,7 +12,7 @@ class Ship
 {
 public:
 	Ship(BulletManager& Manager, Surface& ShipSurface, Surface& exhaust, 
-		Surface& red, AnimationFrames& shiprekt, Surface& rektsurface, AnimationFrames& holeAnim);
+		Surface& red, AnimationFrames& shiprekt, Surface& rektsurface, AnimationFrames& holeAnim, AnimationFrames& holeRektAnim);
 	void HandleCollision(int Damage);
 	void Draw(Graphics& gfx);
 	void Update(Keyboard& wnd, float dt);
@@ -63,4 +63,5 @@ private:
 
 	bool collidesWithHole = false;
 	Animation blackHole;
+	Animation blackHoleRekt;
 };
