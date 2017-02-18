@@ -17,7 +17,7 @@ public:
 	void Reset();
 
 private:
-	static constexpr int nObstaclesMax = 0;
+	static constexpr int nObstaclesMax = 4;
 	int nObstacles = 0;
 	int newObstacle = 550;
 	int obstacleCounter = 0;

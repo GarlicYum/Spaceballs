@@ -16,7 +16,7 @@ public:
 	void Reset();
 
 private:
-	static constexpr int nMinesMax = 0;
+	static constexpr int nMinesMax = 100;
 	int nMines = 0;
 	int mineCounter = 0;
 	int newMine = 30;

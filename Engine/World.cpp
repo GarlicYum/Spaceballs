@@ -136,7 +136,7 @@ void World::PlayerInput(Keyboard& Kbd)
 				if (event.GetCode() == VK_RETURN)
 				{
 					gState = PlayState;
-					mainSong.Play(1.0f, 0.0f);
+					mainSong.Play(1.0f, 0.5f);
 				}
 			}
 		}
@@ -217,8 +217,17 @@ void World::CheckCollisions()
 		if (IsColliding(shipRect, blackHoleRect))
 		{
 			Vec2 gravity = shipRect.GetCenter() - blackHoleRect.GetCenter();
-			gravity.Normalize();
-			ship.AddGravity(gravity);
+			
+			if (gravity.GetLengthSq() < 5.0f)
+			{
+				gState = GameOverState;
+			}
+			else
+			{
+				gravity.Normalize();
+				gravity *= 3.5f;
+				ship.AddGravity(gravity);
+			}
 		}
 	}
 
