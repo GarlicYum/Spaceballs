@@ -11,8 +11,9 @@
 class Ship
 {
 public:
-	Ship(BulletManager& Manager, Surface& ShipSurface, Surface& exhaust, 
-		Surface& red, AnimationFrames& shiprekt, Surface& rektsurface, AnimationFrames& holeAnim, AnimationFrames& holeRektAnim, AnimationFrames& shipexplo);
+	Ship(BulletManager& Manager, Surface& ShipSurface, 
+		Surface& red, AnimationFrames& shiprekt, Surface& rektsurface, 
+		AnimationFrames& holeAnim, AnimationFrames& holeRektAnim, AnimationFrames& shipexplo, AnimationFrames& exhaustAnim);
 	void HandleCollision(int Damage);
 	void Draw(Graphics& gfx);
 	void Update(Keyboard& wnd, float dt);
@@ -52,7 +53,6 @@ private:
 	float padding = 35.0f;
 	BulletManager& bManager;
 	Surface& shipSurface;
-	Surface& exhaustSurface;
 	Surface& redSurface;
 	Surface& rektSurface;
 	bool isMoving = false;
@@ -66,6 +66,7 @@ private:
 	Animation blackHole;
 	Animation blackHoleRekt;
 	Animation shipExplo;
+	Animation exhaust;
 	bool isDead = false;
 	static constexpr int exploX = 196;
 	static constexpr int exploY = 239;

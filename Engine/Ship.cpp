@@ -2,18 +2,19 @@
 #include "Ship.h"
 #include "Surface.h"
 
-Ship::Ship(BulletManager& Manager, Surface& ShipSurface, Surface& exhaust, 
-	Surface& red, AnimationFrames& shiprekt, Surface& rektsurface, AnimationFrames& holeAnim, AnimationFrames& holeRektAnim, AnimationFrames& shipexplo)
+Ship::Ship(BulletManager& Manager, Surface& ShipSurface, 
+	Surface& red, AnimationFrames& shiprekt, Surface& rektsurface, AnimationFrames& holeAnim, 
+	AnimationFrames& holeRektAnim, AnimationFrames& shipexplo, AnimationFrames& exhaustAnim)
 	:
 	bManager(Manager),
 	shipSurface(ShipSurface),
-	exhaustSurface(exhaust),
 	redSurface(red), 
 	shipRekt(shiprekt, 2),
 	rektSurface(rektsurface),
 	blackHole(holeAnim, 1),
 	blackHoleRekt(holeRektAnim, 1),
-	shipExplo(shipexplo, 1)
+	shipExplo(shipexplo, 1),
+	exhaust(exhaustAnim, 2)
 {}
 
 void Ship::HandleCollision(int Damage)
@@ -52,7 +53,7 @@ void Ship::Draw(Graphics& gfx)
 
 			if (isMoving)
 			{
-				gfx.DrawSpriteKey(int(pos.x), int(pos.y), exhaustSurface, exhaustSurface.GetPixel(0, 0));
+				exhaust.Draw(int(pos.x), int(pos.y), gfx);
 			}
 
 			if (isHit)
@@ -264,6 +265,14 @@ void Ship::Update(Keyboard & wnd, float dt)
 		if (shipExplo.AnimEnd())
 		{
 			isDead = true;
+		}
+	}
+	if (isMoving)
+	{
+		exhaust.Advance();
+		if (exhaust.AnimEnd())
+		{
+			exhaust.Reset();
 		}
 	}
 }
