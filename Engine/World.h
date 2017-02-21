@@ -15,6 +15,7 @@
 #include "TitleScreen.h"
 #include "ObstacleManager.h"
 #include "BlackHoleManager.h"
+#include "EnemyManager.h"
 
 class World
 {
@@ -85,5 +86,8 @@ private:
 	static constexpr int nScores = 10;
 	HighScore scores[nScores];
 	Keyboard::Event event;
+
+	EnemyManager enemyM;
+	Surface smallEnemySurface = Surface::FromFile(L"smallenemy.png");
 
 };

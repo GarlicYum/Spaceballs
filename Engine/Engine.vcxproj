@@ -145,6 +145,7 @@
     <ClInclude Include="ChiliWin.h" />
     <ClInclude Include="Colors.h" />
     <ClInclude Include="DXErr.h" />
+    <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="EnergyBoost.h" />
     <ClInclude Include="EnergyBoostManager.h" />
     <ClInclude Include="FrameTimer.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="Shield.h" />
     <ClInclude Include="ShieldManager.h" />
     <ClInclude Include="Ship.h" />
+    <ClInclude Include="SmallEnemyShip.h" />
     <ClInclude Include="SmallShield.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundEffect.h" />
@@ -180,6 +182,7 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletManager.cpp" />
     <ClCompile Include="DXErr.cpp" />
+    <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="EnergyBoost.cpp" />
     <ClCompile Include="EnergyBoostManager.cpp" />
     <ClCompile Include="FrameTimer.cpp" />
@@ -199,6 +202,7 @@
     <ClCompile Include="Shield.cpp" />
     <ClCompile Include="ShieldManager.cpp" />
     <ClCompile Include="Ship.cpp" />
+    <ClCompile Include="SmallEnemyShip.cpp" />
     <ClCompile Include="SmallShield.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Star.cpp" />

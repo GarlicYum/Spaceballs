@@ -129,6 +129,12 @@
     <ClInclude Include="BlackHoleManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SmallEnemyShip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">
@@ -225,6 +231,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BlackHoleManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SmallEnemyShip.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

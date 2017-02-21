@@ -12,7 +12,8 @@ World::World()
 	blackholeM(bHoleAnim),
 	shipHoleAnim(L"shiphole\\", 28),
 	shipHoleRektAnim(L"shipholerekt\\", 28),
-	shipExploAnim(L"shipexplo\\", 29)
+	shipExploAnim(L"shipexplo\\", 29),
+	enemyM(smallEnemySurface)
 {
 	std::mt19937 rng;
 	std::uniform_real_distribution<float> xDist(0.0f, 790.0f);
@@ -92,6 +93,7 @@ void World::Draw(Graphics& Gfx)
 		ship.Draw(Gfx);
 		mineM.Draw(Gfx);
 		obstacleM.Draw(Gfx);
+		enemyM.Draw(Gfx);
 		break;
 	case GameOverState:
 		Gfx.DrawSprite(0, 0, gameOverSurface);
