@@ -58,7 +58,6 @@ private:
 
 	Surface shipSurface = Surface::FromFile(L"shippit.png");
 	Surface redSurface = Surface::FromFile(L"shipred.png");
-	Surface rektSurface = Surface::FromFile(L"enginerekt.png");
 	AnimationFrames shipRekt;
 	BulletManager bulletM;
 	Ship ship;
@@ -75,6 +74,7 @@ private:
 	AnimationFrames shipHoleRektAnim;
 	AnimationFrames shipExploAnim;
 	AnimationFrames shipExhaustAnim;
+	AnimationFrames rektExhaustAnim;
 
 	static constexpr int nStars = 100;
 	Star star[nStars];
