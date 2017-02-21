@@ -6,10 +6,13 @@
 class EnemyManager
 {
 public:
-	EnemyManager(const Surface& smallSurface);
+	EnemyManager(const Surface& smallSurface, AnimationFrames& smallexhaust);
 	void Draw(Graphics& gfx);
 	void Reset();
 	void Update(float dt);
+	int GetSmallCount() const;
+	SmallEnemyShip& GetSmallShip(int Idx);
+	const SmallEnemyShip& GetSmallShip(int Idx) const;
 
 private:
 	static constexpr int nSmallShipMax = 16;

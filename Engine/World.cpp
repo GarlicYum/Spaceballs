@@ -13,9 +13,10 @@ World::World()
 	shipHoleAnim(L"shiphole\\", 28),
 	shipHoleRektAnim(L"shipholerekt\\", 28),
 	shipExploAnim(L"shipexplo\\", 29),
-	enemyM(smallEnemySurface),
+	enemyM(smallEnemySurface, smallEnemyExhaust),
 	shipExhaustAnim(L"shipexhaust\\", 4),
-	rektExhaustAnim(L"rektexhaust\\", 16)
+	rektExhaustAnim(L"rektexhaust\\", 16),
+	smallEnemyExhaust(L"smallenemyexhaust\\", 8)
 {
 	std::mt19937 rng;
 	std::uniform_real_distribution<float> xDist(0.0f, 790.0f);
@@ -218,6 +219,36 @@ void World::CheckCollisions()
 			}
 		}
 	}
+
+	for (int i = 0; i < enemyM.GetSmallCount(); ++i)
+	{
+		auto& smallShip = enemyM.GetSmallShip(i);
+		if (smallShip.IsDead())
+			continue;
+		const auto smallShipRect = smallShip.GetCollisionRect();
+
+		if (IsColliding(shipRect, smallShipRect) && !smallShip.GetCoolDown())
+		{
+			smallShip.HandleCollision(0);
+			ship.HandleCollision(smallShip.GetCollisionDmg());
+		}
+
+		for (int i = 0; i < bulletM.GetNumBullets(); ++i)
+		{
+			auto& bullet = bulletM.GetBullet(i);
+			if (!bullet.IsActive())
+				continue;
+			const auto bulletRect = bullet.GetCollisionRect();
+			if (IsColliding(bulletRect, smallShipRect))
+			{
+				smallShip.HandleCollision(bullet.GetDamage());
+				bullet.HandleCollision();
+				break;
+			}
+		}
+	}
+
+
 
 	for (int i = 0; i < blackholeM.GetBlackHoleCount(); ++i)
 	{
