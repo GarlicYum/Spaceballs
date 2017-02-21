@@ -88,7 +88,7 @@ void Ship::Draw(Graphics& gfx)
 	}
 	else
 	{
-		shipExplo.Draw(int(pos.x) - 196, int(pos.y) - 239, gfx);
+		shipExplo.Draw(int(pos.x) - exploX, int(pos.y) - exploY, gfx);
 	}
 }
 

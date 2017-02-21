@@ -67,4 +67,6 @@ private:
 	Animation blackHoleRekt;
 	Animation shipExplo;
 	bool isDead = false;
+	static constexpr int exploX = 196;
+	static constexpr int exploY = 239;
 };
