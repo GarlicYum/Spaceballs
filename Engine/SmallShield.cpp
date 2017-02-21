@@ -38,4 +38,5 @@ void SmallShield::SetPos(float X)
 void SmallShield::Reset()
 {
 	pos.y = -40.0f;
+	isObtained = false;
 }
