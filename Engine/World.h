@@ -73,6 +73,7 @@ private:
 	BlackHoleManager blackholeM;
 	AnimationFrames shipHoleAnim;
 	AnimationFrames shipHoleRektAnim;
+	AnimationFrames shipExploAnim;
 
 	static constexpr int nStars = 100;
 	Star star[nStars];

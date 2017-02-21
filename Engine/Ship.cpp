@@ -3,7 +3,7 @@
 #include "Surface.h"
 
 Ship::Ship(BulletManager& Manager, Surface& ShipSurface, Surface& exhaust, 
-	Surface& red, AnimationFrames& shiprekt, Surface& rektsurface, AnimationFrames& holeAnim, AnimationFrames& holeRektAnim)
+	Surface& red, AnimationFrames& shiprekt, Surface& rektsurface, AnimationFrames& holeAnim, AnimationFrames& holeRektAnim, AnimationFrames& shipexplo)
 	:
 	bManager(Manager),
 	shipSurface(ShipSurface),
@@ -12,7 +12,8 @@ Ship::Ship(BulletManager& Manager, Surface& ShipSurface, Surface& exhaust,
 	shipRekt(shiprekt, 2),
 	rektSurface(rektsurface),
 	blackHole(holeAnim, 1),
-	blackHoleRekt(holeRektAnim, 1)
+	blackHoleRekt(holeRektAnim, 1),
+	shipExplo(shipexplo, 1)
 {}
 
 void Ship::HandleCollision(int Damage)
@@ -30,7 +31,7 @@ void Ship::HandleCollision(int Damage)
 
 		if (blackHole.AnimEnd() || blackHoleRekt.AnimEnd())
 		{
-			health.Damage(Damage);
+			isDead = true;
 		}
 	}
 
@@ -84,6 +85,10 @@ void Ship::Draw(Graphics& gfx)
 		
 		health.Draw(gfx);
 		bManager.DrawBullets(gfx);
+	}
+	else
+	{
+		shipExplo.Draw(int(pos.x) - 196, int(pos.y) - 239, gfx);
 	}
 }
 
@@ -216,13 +221,20 @@ void Ship::Reset()
 	collidesWithHole = false;
 	blackHole.Reset();
 	blackHoleRekt.Reset();
+	shipExplo.Reset();
+	isDead = false;
+}
+
+bool Ship::IsDead() const
+{
+	return isDead;
 }
 
 void Ship::Update(Keyboard & wnd, float dt)
 {
 	if (pos.y + 2 > Graphics::ScreenHeight)
 	{
-		health.Damage(health.GetHealthAmount());
+		isDead = true;
 	}
 	if (HasHealth())
 	{
@@ -244,6 +256,14 @@ void Ship::Update(Keyboard & wnd, float dt)
 		if (shipRekt.AnimEnd())
 		{
 			shipRekt.Reset();
+		}
+	}
+	if (!health.HasHealth())
+	{
+		shipExplo.Advance();
+		if (shipExplo.AnimEnd())
+		{
+			isDead = true;
 		}
 	}
 }

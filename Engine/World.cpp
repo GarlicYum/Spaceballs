@@ -3,7 +3,7 @@
 World::World()
 	:
 	animExplosion(L"mineExplo\\", 8),
-	ship(bulletM, shipSurface, exhaustSurface, redSurface, shipRekt, rektSurface, shipHoleAnim, shipHoleRektAnim),
+	ship(bulletM, shipSurface, exhaustSurface, redSurface, shipRekt, rektSurface, shipHoleAnim, shipHoleRektAnim, shipExploAnim),
 	mineM(explosion, mine, animExplosion),
 	eBoostM(eBoostSound, eBoostHeart),
 	obstacleM(obstacleSurface),
@@ -11,7 +11,8 @@ World::World()
 	bHoleAnim(L"blackhole\\", 40),
 	blackholeM(bHoleAnim),
 	shipHoleAnim(L"shiphole\\", 28),
-	shipHoleRektAnim(L"shipholerekt\\", 28)
+	shipHoleRektAnim(L"shipholerekt\\", 28),
+	shipExploAnim(L"shipexplo\\", 29)
 {
 	std::mt19937 rng;
 	std::uniform_real_distribution<float> xDist(0.0f, 790.0f);
@@ -59,7 +60,7 @@ void World::Update(Keyboard& Kbd, float Dt)
 		obstacleM.Update(Dt);
 		CheckCollisions();
 
-		if (!ship.HasHealth())
+		if (ship.IsDead())
 		{
 			gState = GameOverState;
 		}
