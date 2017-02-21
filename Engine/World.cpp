@@ -62,6 +62,7 @@ void World::Update(Keyboard& Kbd, float Dt)
 		shieldM.Update(ship, Dt, shieldon, shieldoff);
 		obstacleM.Update(Dt);
 		CheckCollisions();
+		enemyM.Update(Dt);
 
 		if (ship.IsDead())
 		{
@@ -95,7 +96,7 @@ void World::Draw(Graphics& Gfx)
 		ship.Draw(Gfx);
 		mineM.Draw(Gfx);
 		obstacleM.Draw(Gfx);
-	//	enemyM.Draw(Gfx);
+		enemyM.Draw(Gfx);
 		break;
 	case GameOverState:
 		Gfx.DrawSprite(0, 0, gameOverSurface);
