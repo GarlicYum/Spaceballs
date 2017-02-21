@@ -20,6 +20,7 @@ public:
 	RectF GetCollisionRect() const;
 	int GetDmg() const;
 	void Reset();
+	void HandleCollision(int damage);
 
 private:
 	Vec2 pos;
@@ -32,7 +33,5 @@ private:
 	int meterX = 400;
 	int meterY = 570;
 	Color c = Colors::Blue;
-	int meterCounter = 0;
-	static constexpr int meterDecrease = 3;
 	static constexpr int dmg = 60;
 };

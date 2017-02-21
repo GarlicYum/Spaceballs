@@ -14,12 +14,6 @@ void Shield::Update(Ship& ship, Sound& shieldon, Sound& shieldoff)
 		const auto shipRect = ship.GetCollisionRect();
 		pos.x = shipRect.GetCenterX();
 		pos.y = shipRect.GetCenterY();
-		meterCounter++;
-		if (meterCounter == meterDecrease)
-		{
-			meterCounter = 0;
-			meterWidth--;
-		}
 
 		if (meterWidth <= 0)
 		{
@@ -84,5 +78,10 @@ int Shield::GetDmg() const
 void Shield::Reset()
 {
 	sState = NoShield;
+}
+
+void Shield::HandleCollision(int damage)
+{
+	meterWidth -= damage;
 }
 

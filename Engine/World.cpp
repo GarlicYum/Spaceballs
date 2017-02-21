@@ -95,7 +95,7 @@ void World::Draw(Graphics& Gfx)
 		ship.Draw(Gfx);
 		mineM.Draw(Gfx);
 		obstacleM.Draw(Gfx);
-		enemyM.Draw(Gfx);
+	//	enemyM.Draw(Gfx);
 		break;
 	case GameOverState:
 		Gfx.DrawSprite(0, 0, gameOverSurface);
@@ -193,6 +193,7 @@ void World::CheckCollisions()
 			if (IsColliding(shieldRect, mineRect))
 			{
 				mine.HandleCollision(shield.GetDmg());
+				shield.HandleCollision(mine.GetShieldDamage());
 			}
 		}
 		else if (IsColliding(shipRect, mineRect))
