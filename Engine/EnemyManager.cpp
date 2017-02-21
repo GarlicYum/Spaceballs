@@ -30,7 +30,7 @@ void EnemyManager::Reset()
 
 void EnemyManager::Update(float dt)
 {
-	if ((smallShipCounter += dt) >= newSmallShip)
+	if ((smallShipCounter += dt) >= newSmallShip && nSmallShip != nSmallShipMax)
 	{
 		smallShipCounter = 0.0f;
 		nSmallShip++;

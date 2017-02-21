@@ -12,7 +12,7 @@ Ship::Ship(BulletManager& Manager, Surface& ShipSurface,
 	shipRekt(shiprekt, 2),
 	blackHole(holeAnim, 1),
 	blackHoleRekt(holeRektAnim, 1),
-	shipExplo(shipexplo, 1),
+	shipExplo(shipexplo, 2),
 	exhaust(exhaustAnim, 2),
 	rektExhaust(rektExhaustAnim, 2)
 {}

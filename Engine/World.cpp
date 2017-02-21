@@ -197,7 +197,7 @@ void World::CheckCollisions()
 				shield.HandleCollision(mine.GetShieldDamage());
 			}
 		}
-		else if (IsColliding(shipRect, mineRect))
+		else if (IsColliding(shipRect, mineRect) && ship.HasHealth())
 		{
 			mine.HandleCollision(ship.GetDmg());
 			ship.HandleCollision(mine.GetDamageCost());
