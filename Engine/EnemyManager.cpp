@@ -17,3 +17,27 @@ void EnemyManager::Draw(Graphics & gfx)
 		smallShip[i].Draw(gfx);
 	}
 }
+
+void EnemyManager::Reset()
+{
+	nSmallShip = 0;
+	smallShipCounter = 0.0f;
+	for (int i = 0; i < nSmallShipMax; ++i)
+	{
+		smallShip[i].Reset();
+	}
+}
+
+void EnemyManager::Update(float dt)
+{
+	if ((smallShipCounter += dt) >= newSmallShip)
+	{
+		smallShipCounter = 0.0f;
+		nSmallShip++;
+	}
+
+	for (int i = 0; i < nSmallShip; ++i)
+	{
+		smallShip[i].Update(dt);
+	}
+}

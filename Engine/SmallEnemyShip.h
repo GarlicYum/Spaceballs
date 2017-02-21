@@ -15,12 +15,14 @@ public:
 	SmallEnemyShip(float x, const Surface& enemySurface);
 	void Attack();
 	void Move(float dt);
-	void Update();
+	void Update(float dt);
 	void Draw(Graphics& gfx);
 	void Reset();
 
 private:
 	Vec2 pos;
+	float resetX;
+	float resetY = -100.0f;
 	Vec2 vel;
 	BulletManager bulletM;
 	EnemyState state;
