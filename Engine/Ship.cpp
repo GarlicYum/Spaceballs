@@ -55,11 +55,6 @@ void Ship::Draw(Graphics& gfx)
 			{
 				exhaust.Draw(int(pos.x), int(pos.y), gfx);
 			}
-
-			if (isHit)
-			{
-				gfx.DrawSpriteKey(int(pos.x), int(pos.y), redSurface, redSurface.GetPixel(0, 0));
-			}
 		}
 		
 		else if (!collidesWithHole)
@@ -88,6 +83,11 @@ void Ship::Draw(Graphics& gfx)
 			}
 		}
 		
+		if (isHit)
+		{
+			gfx.DrawSpriteKey(int(pos.x), int(pos.y), redSurface, redSurface.GetPixel(0, 0));
+		}
+
 		health.Draw(gfx);
 		bManager.DrawBullets(gfx);
 	}

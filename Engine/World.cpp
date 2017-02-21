@@ -166,6 +166,7 @@ void World::PlayerInput(Keyboard& Kbd)
 					eBoostM.Reset();
 					bulletM.Reset();
 					blackholeM.Reset();
+					enemyM.Reset();
 					gameOverSong.StopAll();
 					gState = TitleState;
 				}
