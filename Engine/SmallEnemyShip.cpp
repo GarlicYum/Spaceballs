@@ -42,6 +42,10 @@ void SmallEnemyShip::Move(float dt, float playerX)
 	{
 		vel.x = -200.0f;
 	}
+	else
+	{
+		Attack(dt);
+	}
 	
 	if (pos.x < 0.0f || (pos.x + width) > int(Graphics::ScreenWidth))
 	{
@@ -51,12 +55,12 @@ void SmallEnemyShip::Move(float dt, float playerX)
 
 void SmallEnemyShip::Update(float dt, float playerX)
 {
-	Move(dt, playerX);
+	
 
 	switch (state)
 	{
 	case AliveState:
-		Attack(dt);
+		Move(dt, playerX);
 		if (coolDown)
 		{
 			if ((coolDownTime += dt) > coolDownOver)
