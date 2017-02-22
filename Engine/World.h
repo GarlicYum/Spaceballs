@@ -76,6 +76,7 @@ private:
 	AnimationFrames shipExploAnim;
 	AnimationFrames shipExhaustAnim;
 	AnimationFrames rektExhaustAnim;
+	Sound blackHoleSound = L"bhole.wav";
 
 	static constexpr int nStars = 100;
 	Star star[nStars];

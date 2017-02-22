@@ -5,7 +5,7 @@
 Ship::Ship(BulletManager& Manager, Surface& ShipSurface, 
 	Surface& red, AnimationFrames& shiprekt, AnimationFrames& holeAnim, 
 	AnimationFrames& holeRektAnim, AnimationFrames& shipexplo, AnimationFrames& exhaustAnim, 
-	AnimationFrames& rektExhaustAnim, Sound& shipexplodesound)
+	AnimationFrames& rektExhaustAnim, Sound& shipexplodesound, Sound& blackholesound)
 	:
 	bManager(Manager),
 	shipSurface(ShipSurface),
@@ -16,7 +16,8 @@ Ship::Ship(BulletManager& Manager, Surface& ShipSurface,
 	shipExplo(shipexplo, 2),
 	exhaust(exhaustAnim, 2),
 	rektExhaust(rektExhaustAnim, 2),
-	shipExplodeSound(shipexplodesound)
+	shipExplodeSound(shipexplodesound),
+	blackHoleSound(blackholesound)
 {}
 
 void Ship::HandleCollision(int Damage)
@@ -225,8 +226,9 @@ int Ship::GetDmg() const
 
 void Ship::CollidesWithHole(bool collides)
 {
-	if (collides)
+	if (collides && state == AliveState)
 	{
+		blackHoleSound.Play(0.8f, 1.0f);
 		state = BlackHoleState;
 	}	
 }
