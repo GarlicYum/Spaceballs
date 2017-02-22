@@ -252,7 +252,7 @@ void World::CheckCollisions()
 				break;
 			}
 		}
-		//////////////////////////////////////////////////////////////////////////////////////////
+
 		for (int i = 0; i < smallLeftBulletM.GetNumBullets(); ++i)
 		{
 			auto& bulletLeft = smallLeftBulletM.GetBullet(i);

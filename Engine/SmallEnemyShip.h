@@ -48,4 +48,8 @@ private:
 	BulletManager& smallRightM;
 	float fireBullet = 0.5f;
 	float bulletTimer = 0.0f;
+	static constexpr int bulletDmg = 25;
+	static constexpr float bulletVel = -600.0f;
+	Color bulletColor = Colors::Blue;
+	static constexpr int bulletSize = 6;
 };
