@@ -11,6 +11,10 @@
 class Ship
 {
 public:
+	enum ShipState
+	{
+		AliveState, ExplodingState, BlackHoleState, DeadState
+	};
 	Ship(BulletManager& Manager, Surface& ShipSurface, 
 		Surface& red, AnimationFrames& shiprekt, 
 		AnimationFrames& holeAnim, AnimationFrames& holeRektAnim, AnimationFrames& shipexplo, 
@@ -19,7 +23,8 @@ public:
 	void Draw(Graphics& gfx);
 	void Update(Keyboard& wnd, float dt);
 	void Restore(int restore);
-	bool HasHealth() const;
+	bool IsAlive() const;
+	bool IsDead() const;
 	RectF GetCollisionRect();
 	
 	float GetX() const;
@@ -35,7 +40,6 @@ public:
 	int GetDmg() const;
 	void CollidesWithHole(bool collides);
 	void Reset();
-	bool IsDead() const;
 
 private:
 	void PlayerInput(Keyboard& wnd, float dt);
@@ -50,27 +54,23 @@ private:
 	float width = 90.0f;
 	float height = 90.0f;
 	Health health;
-	bool healthChanging = false;
 	float padding = 35.0f;
 	BulletManager& bManager;
 	Surface& shipSurface;
 	Surface& redSurface;
 	bool isMoving = false;
 	static constexpr int dmg = 60;
-	bool isHit = false;
 	int isHitCounter = 0;
 	Animation shipRekt;
 	static constexpr int lowHealth = 75;
-
-	bool collidesWithHole = false;
+	bool isHit = false;
 	Animation blackHole;
 	Animation blackHoleRekt;
 	Animation shipExplo;
 	Animation exhaust;
 	Animation rektExhaust;
-	bool isDead = false;
 	static constexpr int exploX = 196;
 	static constexpr int exploY = 239;
 	Sound& shipExplodeSound;
-	bool soundIsPlayed = false;
+	ShipState state = AliveState;
 };

@@ -21,8 +21,9 @@ Ship::Ship(BulletManager& Manager, Surface& ShipSurface,
 
 void Ship::HandleCollision(int Damage)
 {
-	if (collidesWithHole)
+	switch (state)
 	{
+	case BlackHoleState:
 		if (health.GetHealthAmount() > lowHealth)
 		{
 			blackHole.Advance();
@@ -34,69 +35,73 @@ void Ship::HandleCollision(int Damage)
 
 		if (blackHole.AnimEnd() || blackHoleRekt.AnimEnd())
 		{
-			isDead = true;
+			state = DeadState;
 		}
-	}
+		break;
 
-	else
-	{
+	case AliveState:
 		health.Damage(Damage);
 		isHit = true;
-	}
+		break;
+	}	
 }
 
 void Ship::Draw(Graphics& gfx)
 {
-	if (health.HasHealth())
+	switch (state)
 	{
-		if (health.GetHealthAmount() > lowHealth && !collidesWithHole)
+	case AliveState:
+		if (health.GetHealthAmount() > lowHealth)
 		{
-			gfx.DrawSpriteKey(int(pos.x), int(pos.y), shipSurface, shipSurface.GetPixel(0, 0));
-
-			if (isMoving)
+			if (!isMoving)
+			{
+				gfx.DrawSpriteKey(int(pos.x), int(pos.y), shipSurface, shipSurface.GetPixel(0, 0));
+			}
+			
+			else
 			{
 				exhaust.Draw(int(pos.x), int(pos.y), gfx);
 			}
 		}
-		
-		else if (!collidesWithHole)
+
+		else
 		{
 			if (!isMoving)
 			{
 				shipRekt.Draw(int(pos.x), int(pos.y), gfx);
 			}
-			
+
 			else
 			{
 				rektExhaust.Draw(int(pos.x), int(pos.y), gfx);
 			}
 		}
 
-		else
-		{
-			if (health.GetHealthAmount() > lowHealth)
-			{
-				blackHole.Draw(int(pos.x), int(pos.y), gfx);
-			}
-			
-			else
-			{
-				blackHoleRekt.Draw(int(pos.x), int(pos.y), gfx);
-			}
-		}
-		
 		if (isHit)
 		{
 			gfx.DrawSpriteKey(int(pos.x), int(pos.y), redSurface, redSurface.GetPixel(0, 0));
 		}
+		break;
 
-		health.Draw(gfx);
-		bManager.DrawBullets(gfx);
-	}
-	else
-	{
+	case BlackHoleState:
+		if (health.GetHealthAmount() > lowHealth)
+		{
+			blackHole.Draw(int(pos.x), int(pos.y), gfx);
+		}
+
+		else
+		{
+			blackHoleRekt.Draw(int(pos.x), int(pos.y), gfx);
+		}
+		break;
+
+	case ExplodingState:
 		shipExplo.Draw(int(pos.x) - exploX, int(pos.y) - exploY, gfx);
-	}
+		break;
+	}	
+
+	health.Draw(gfx);
+	bManager.DrawBullets(gfx);
 }
 
 void Ship::ClampScreen()
@@ -107,7 +112,7 @@ void Ship::ClampScreen()
 
 void Ship::PlayerInput(Keyboard& kbd, float dt)
 {
-	if (!collidesWithHole)
+	if (state == AliveState)
 	{
 		if (kbd.KeyIsPressed(VK_UP))
 		{
@@ -153,9 +158,14 @@ void Ship::Restore(int restore)
 	health.Restore(restore);
 }
 
-bool Ship::HasHealth() const
+bool Ship::IsAlive() const
 {
-	return health.HasHealth();
+	return state == AliveState;
+}
+
+bool Ship::IsDead() const
+{
+	return state == DeadState;
 }
 
 RectF Ship::GetCollisionRect()
@@ -215,7 +225,10 @@ int Ship::GetDmg() const
 
 void Ship::CollidesWithHole(bool collides)
 {
-	collidesWithHole = collides;
+	if (collides)
+	{
+		state = BlackHoleState;
+	}	
 }
 
 void Ship::Reset()
@@ -224,64 +237,56 @@ void Ship::Reset()
 	pos.y = 300.0f;
 	health.Reset();
 	isHit = false;
-	isMoving = false;
-	collidesWithHole = false;
 	blackHole.Reset();
 	blackHoleRekt.Reset();
 	shipExplo.Reset();
-	soundIsPlayed = false;
-	isDead = false;
-}
-
-bool Ship::IsDead() const
-{
-	return isDead;
+	state = AliveState;
 }
 
 void Ship::Update(Keyboard & wnd, float dt)
 {
-	if (pos.y + 2 > Graphics::ScreenHeight)
+	switch (state)
 	{
-		isDead = true;
-	}
-	if (HasHealth())
-	{
+	case AliveState:
 		PlayerInput(wnd, dt);
 		ClampScreen();
-	}
-	if (isHit)
-	{
-		isHitCounter++;
-		if (isHitCounter >= 10)
+
+		if (pos.y + 2 > Graphics::ScreenHeight)
 		{
-			isHitCounter = 0;
-			isHit = false;
+			state = DeadState;
 		}
-	}
-	if (health.GetHealthAmount() <= lowHealth)
-	{
-		shipRekt.Advance();
-		if (shipRekt.AnimEnd())
+
+		if (isHit)
 		{
-			shipRekt.Reset();
+			isHitCounter++;
+			if (isHitCounter >= 10)
+			{
+				isHitCounter = 0;
+				isHit = false;
+			}
 		}
-	}
-	if (!health.HasHealth())
-	{
-		if (!soundIsPlayed)
+
+		if (health.GetHealthAmount() <= lowHealth)
 		{
-			shipExplodeSound.Play();
-			soundIsPlayed = true;
+			if (!isMoving)
+			{
+				shipRekt.Advance();
+				if (shipRekt.AnimEnd())
+				{
+					shipRekt.Reset();
+				}
+			}
+			else
+			{
+				rektExhaust.Advance();
+				if (rektExhaust.AnimEnd())
+				{
+					rektExhaust.Reset();
+				}
+			}
 		}
-		shipExplo.Advance();
-		if (shipExplo.AnimEnd())
-		{
-			isDead = true;
-		}
-	}
-	if (isMoving)
-	{
-		if (health.GetHealthAmount() > lowHealth)
+
+		else if (isMoving)
 		{
 			exhaust.Advance();
 			if (exhaust.AnimEnd())
@@ -289,14 +294,20 @@ void Ship::Update(Keyboard & wnd, float dt)
 				exhaust.Reset();
 			}
 		}
-		else
+
+		if (!health.HasHealth())
 		{
-			rektExhaust.Advance();
-			if (rektExhaust.AnimEnd())
-			{
-				rektExhaust.Reset();
-			}
+			shipExplodeSound.Play();
+			state = ExplodingState;
 		}
-		
+		break;
+
+	case ExplodingState:
+		shipExplo.Advance();
+		if (shipExplo.AnimEnd())
+		{
+			state = DeadState;
+		}
+		break;
 	}
 }

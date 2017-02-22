@@ -66,18 +66,18 @@ void World::Update(Keyboard& Kbd, float Dt)
 		CheckCollisions();
 		enemyM.Update(Dt);
 
-		if (ship.IsDead())
+		if (!ship.IsAlive())
 		{
-			gState = GameOverState;
+			mainSong.StopAll();
+
+			if (ship.IsDead())
+			{
+				gameOverSong.Play(1.0f, 0.5f);
+				gState = GameOverState;
+			}
 		}
 		break;
 	case GameOverState:
-		mainSong.StopAll();
-		if (songIsPlayed)
-		{
-			gameOverSong.Play(1.0f, 0.5f);
-			songIsPlayed = false;
-		}
 		PlayerInput(Kbd);
 		break;
 	}
@@ -170,6 +170,7 @@ void World::PlayerInput(Keyboard& Kbd)
 					blackholeM.Reset();
 					enemyM.Reset();
 					gameOverSong.StopAll();
+					titleSong.Play();
 					gState = TitleState;
 				}
 			}
@@ -200,7 +201,7 @@ void World::CheckCollisions()
 				shield.HandleCollision(mine.GetShieldDamage());
 			}
 		}
-		else if (IsColliding(shipRect, mineRect) && ship.HasHealth())
+		else if (IsColliding(shipRect, mineRect) && ship.IsAlive())
 		{
 			mine.HandleCollision(ship.GetDmg());
 			ship.HandleCollision(mine.GetDamageCost());
