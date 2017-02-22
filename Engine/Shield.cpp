@@ -3,6 +3,13 @@
 
 void Shield::Update(Ship& ship, Sound& shieldon, Sound& shieldoff)
 {
+	if (sState == NewState || sState == ActiveState)
+	{
+		const auto shipRect = ship.GetCollisionRect();
+		pos.x = shipRect.GetCenterX();
+		pos.y = shipRect.GetCenterY();
+	}
+
 	switch(sState)
 	{
 	case NewState:
@@ -11,10 +18,7 @@ void Shield::Update(Ship& ship, Sound& shieldon, Sound& shieldoff)
 		sState = ActiveState;
 	break;
 	case ActiveState:
-		const auto shipRect = ship.GetCollisionRect();
-		pos.x = shipRect.GetCenterX();
-		pos.y = shipRect.GetCenterY();
-
+		
 		if (meterWidth <= 0)
 		{
 			sState = NoShield;
