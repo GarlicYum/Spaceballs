@@ -201,7 +201,7 @@ void World::CheckCollisions()
 			if (IsColliding(shieldRect, mineRect))
 			{
 				mine.HandleCollision(shield.GetDmg());
-				shield.HandleCollision(mine.GetShieldDamage());
+				shield.HandleCollision(mine.GetDamageCost());
 			}
 		}
 		else if (IsColliding(shipRect, mineRect) && ship.IsAlive())
@@ -249,6 +249,56 @@ void World::CheckCollisions()
 			{
 				smallShip.HandleCollision(bullet.GetDamage());
 				bullet.HandleCollision();
+				break;
+			}
+		}
+		//////////////////////////////////////////////////////////////////////////////////////////
+		for (int i = 0; i < smallLeftBulletM.GetNumBullets(); ++i)
+		{
+			auto& bulletLeft = smallLeftBulletM.GetBullet(i);
+			if (!bulletLeft.IsActive())
+				continue;
+			const auto bulletLeftRect = bulletLeft.GetCollisionRect();
+
+			if (shield.GetisActive())
+			{
+				const auto shieldRect = shield.GetCollisionRect();
+				if (IsColliding(shieldRect, bulletLeftRect))
+				{
+					bulletLeft.HandleCollision();
+					shield.HandleCollision(bulletLeft.GetDamage());
+				}
+			}
+
+			else if (IsColliding(bulletLeftRect, shipRect))
+			{
+				ship.HandleCollision(bulletLeft.GetDamage());
+				bulletLeft.HandleCollision();
+				break;
+			}
+		}
+
+		for (int i = 0; i < smallRightBulletM.GetNumBullets(); ++i)
+		{
+			auto& bulletRight = smallRightBulletM.GetBullet(i);
+			if (!bulletRight.IsActive())
+				continue;
+			const auto bulletRightRect = bulletRight.GetCollisionRect();
+
+			if (shield.GetisActive())
+			{
+				const auto shieldRect = shield.GetCollisionRect();
+				if (IsColliding(shieldRect, bulletRightRect))
+				{
+					bulletRight.HandleCollision();
+					shield.HandleCollision(bulletRight.GetDamage());
+				}
+			}
+
+			else if (IsColliding(bulletRightRect, shipRect))
+			{
+				ship.HandleCollision(bulletRight.GetDamage());
+				bulletRight.HandleCollision();
 				break;
 			}
 		}

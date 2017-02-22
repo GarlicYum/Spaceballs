@@ -19,6 +19,6 @@ private:
 	static constexpr int nSmallShipMax = 16;
 	int nSmallShip = 0;
 	float smallShipCounter = 0.0f;
-	static constexpr float newSmallShip = 5.5f;
+	static constexpr float newSmallShip = 6.0f;
 	std::vector<SmallEnemyShip> smallShip;
 };

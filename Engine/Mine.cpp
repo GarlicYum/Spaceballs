@@ -89,11 +89,6 @@ void Mine::Reset()
 	explo.Reset();
 }
 
-int Mine::GetShieldDamage() const
-{
-	return shieldDamage;
-}
-
 //float Mine::GetX() const
 //{
 //	return x;

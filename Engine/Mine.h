@@ -26,8 +26,6 @@ public:
 	RectF GetCollisionRect() const;
 	bool IsActive() const;
 	void Reset();
-	int GetShieldDamage() const;
-
 
 private:
 	static constexpr int explDamage = 75;
@@ -43,5 +41,4 @@ private:
 	bool gotPosition = false;
 	int damage = 0;
 	int hp = 60;
-	static constexpr int shieldDamage = 150;
 };

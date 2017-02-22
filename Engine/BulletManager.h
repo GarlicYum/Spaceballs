@@ -18,7 +18,7 @@ public:
 	void Reset();
 
 private:
-	static constexpr int nBullets = 6;
+	static constexpr int nBullets = 4;
 	int bulletCounter = 0;
 	Bullet bullets[nBullets];
 	bool shotsFired = false;
