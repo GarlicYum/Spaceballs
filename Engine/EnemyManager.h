@@ -6,7 +6,7 @@
 class EnemyManager
 {
 public:
-	EnemyManager(const Surface& smallSurface, AnimationFrames& smallexhaust);
+	EnemyManager(const Surface& smallSurface, AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo);
 	void Draw(Graphics& gfx);
 	void Reset();
 	void Update(float dt);

@@ -13,7 +13,7 @@ public:
 	{
 		AliveState, DyingState, DeadState
 	};
-	SmallEnemyShip(float x, const Surface& enemySurface, AnimationFrames& smallexhaust);
+	SmallEnemyShip(float x, const Surface& enemySurface, AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo);
 	void Attack();
 	void MoveY(float dt);
 	void MoveX(float dt);
@@ -23,7 +23,7 @@ public:
 	void Reset();
 	void HandleCollision(int dmg);
 	int GetCollisionDmg() const;
-	bool IsDead() const;
+	bool IsAlive() const;
 	bool GetCoolDown() const;
 
 private:
@@ -42,4 +42,6 @@ private:
 	static constexpr int collisionDmg = 50;
 	EnemyState state = AliveState;
 	Animation smallExhaust;
+	Animation smallExplode;
+	Sound& smallExploSound;
 };

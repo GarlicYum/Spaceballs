@@ -1,12 +1,12 @@
 #include "EnemyManager.h"
 
-EnemyManager::EnemyManager(const Surface & smallSurface, AnimationFrames& smallexhaust)
+EnemyManager::EnemyManager(const Surface & smallSurface, AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo)
 {
 	std::mt19937 rng;
 	std::uniform_real_distribution<float> xDist(0.0f, 545.0f);
 	for (int i = 0; i < nSmallShipMax; ++i)
 	{
-		smallShip.emplace_back<SmallEnemyShip>(SmallEnemyShip{ xDist(rng), smallSurface, smallexhaust });
+		smallShip.emplace_back<SmallEnemyShip>(SmallEnemyShip{ xDist(rng), smallSurface, smallexhaust, smallexplode, smallexplo });
 	}
 }
 

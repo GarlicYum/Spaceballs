@@ -13,10 +13,11 @@ World::World()
 	shipHoleAnim(L"shiphole\\", 28),
 	shipHoleRektAnim(L"shipholerekt\\", 28),
 	shipExploAnim(L"shipexplo\\", 29),
-	enemyM(smallEnemySurface, smallEnemyExhaust),
+	enemyM(smallEnemySurface, smallEnemyExhaust, smallEnemyExplode, smallExplo),
 	shipExhaustAnim(L"shipexhaust\\", 4),
 	rektExhaustAnim(L"rektexhaust\\", 16),
-	smallEnemyExhaust(L"smallenemyexhaust\\", 8)
+	smallEnemyExhaust(L"smallenemyexhaust\\", 8),
+	smallEnemyExplode(L"smallshipexplo\\", 13)
 {
 	std::mt19937 rng;
 	std::uniform_real_distribution<float> xDist(0.0f, 790.0f);
@@ -223,7 +224,7 @@ void World::CheckCollisions()
 	for (int i = 0; i < enemyM.GetSmallCount(); ++i)
 	{
 		auto& smallShip = enemyM.GetSmallShip(i);
-		if (smallShip.IsDead())
+		if (!smallShip.IsAlive())
 			continue;
 		const auto smallShipRect = smallShip.GetCollisionRect();
 

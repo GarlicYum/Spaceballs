@@ -1,11 +1,13 @@
 #include "SmallEnemyShip.h"
 
-SmallEnemyShip::SmallEnemyShip(float x, const Surface & enemySurface, AnimationFrames& smallexhaust)
+SmallEnemyShip::SmallEnemyShip(float x, const Surface & enemySurface, AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo)
 	:
 	pos(x, resetY),
 	resetX(x),
 	surface(enemySurface),
-	smallExhaust(smallexhaust, 2)
+	smallExhaust(smallexhaust, 2),
+	smallExplode(smallexplode, 3),
+	smallExploSound(smallexplo)
 {}
 
 void SmallEnemyShip::MoveY(float dt)
@@ -15,10 +17,12 @@ void SmallEnemyShip::MoveY(float dt)
 
 void SmallEnemyShip::Update(float dt)
 {
-	if (state == AliveState)
-	{
-		MoveY(dt);
+	MoveY(dt);
 
+	switch (state)
+	{
+	case AliveState:
+		
 		if (coolDown)
 		{
 			if ((coolDownTime += dt) > coolDownOver)
@@ -36,17 +40,36 @@ void SmallEnemyShip::Update(float dt)
 
 		if (hp <= 0)
 		{
+			state = DyingState;
+			smallExploSound.Play(0.9f, 1.75f);
+		}
+
+		break;
+
+	case DyingState:
+		smallExplode.Advance();
+
+		if (smallExplode.AnimEnd())
+		{
 			state = DeadState;
 		}
+
+		break;
 	}
 }
 
 void SmallEnemyShip::Draw(Graphics & gfx)
 {
-	if (hp > 0)
+	switch (state)
 	{
+	case AliveState:
 		smallExhaust.Draw(int(pos.x), int(pos.y), gfx);
 //		gfx.DrawSpriteKey(int(pos.x), int(pos.y), surface, surface.GetPixel(0, 0));
+		
+		break;
+
+	case DyingState:
+		smallExplode.Draw(int(pos.x), int(pos.y), gfx);
 	}
 }
 	
@@ -59,6 +82,7 @@ void SmallEnemyShip::Reset()
 {
 	pos.y = resetY;
 	pos.x = resetX;
+	smallExplode.Reset();
 	state = AliveState;
 	hp = 80;
 }
@@ -74,9 +98,9 @@ int SmallEnemyShip::GetCollisionDmg() const
 	return collisionDmg;
 }
 
-bool SmallEnemyShip::IsDead() const
+bool SmallEnemyShip::IsAlive() const
 {
-	return state == DeadState;
+	return state == AliveState;
 }
 
 bool SmallEnemyShip::GetCoolDown() const
