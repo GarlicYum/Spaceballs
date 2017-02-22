@@ -14,7 +14,7 @@ public:
 	Ship(BulletManager& Manager, Surface& ShipSurface, 
 		Surface& red, AnimationFrames& shiprekt, 
 		AnimationFrames& holeAnim, AnimationFrames& holeRektAnim, AnimationFrames& shipexplo, 
-		AnimationFrames& exhaustAnim, AnimationFrames& rektExhaustAnim);
+		AnimationFrames& exhaustAnim, AnimationFrames& rektExhaustAnim, Sound& shipexplodesound);
 	void HandleCollision(int Damage);
 	void Draw(Graphics& gfx);
 	void Update(Keyboard& wnd, float dt);
@@ -71,4 +71,6 @@ private:
 	bool isDead = false;
 	static constexpr int exploX = 196;
 	static constexpr int exploY = 239;
+	Sound& shipExplodeSound;
+	bool soundIsPlayed = false;
 };

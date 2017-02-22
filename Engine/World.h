@@ -61,6 +61,7 @@ private:
 	AnimationFrames shipRekt;
 	BulletManager bulletM;
 	Ship ship;
+	Sound shipExplodeSound = L"shipexplode.wav";
 
 	Surface obstacleSurface = Surface::FromFile(L"obstacle.png");
 	ObstacleManager obstacleM;

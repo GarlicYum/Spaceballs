@@ -41,7 +41,7 @@ void SmallEnemyShip::Update(float dt)
 		if (hp <= 0)
 		{
 			state = DyingState;
-			smallExploSound.Play(0.9f, 1.75f);
+			smallExploSound.Play(1.1f, 1.75f);
 		}
 
 		break;

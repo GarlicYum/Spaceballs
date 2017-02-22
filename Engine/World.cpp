@@ -3,7 +3,7 @@
 World::World()
 	:
 	animExplosion(L"mineExplo\\", 8),
-	ship(bulletM, shipSurface, redSurface, shipRekt, shipHoleAnim, shipHoleRektAnim, shipExploAnim, shipExhaustAnim, rektExhaustAnim),
+	ship(bulletM, shipSurface, redSurface, shipRekt, shipHoleAnim, shipHoleRektAnim, shipExploAnim, shipExhaustAnim, rektExhaustAnim, shipExplodeSound),
 	mineM(explosion, mine, animExplosion),
 	eBoostM(eBoostSound, eBoostHeart),
 	obstacleM(obstacleSurface),

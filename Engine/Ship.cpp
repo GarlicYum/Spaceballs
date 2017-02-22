@@ -4,7 +4,8 @@
 
 Ship::Ship(BulletManager& Manager, Surface& ShipSurface, 
 	Surface& red, AnimationFrames& shiprekt, AnimationFrames& holeAnim, 
-	AnimationFrames& holeRektAnim, AnimationFrames& shipexplo, AnimationFrames& exhaustAnim, AnimationFrames& rektExhaustAnim)
+	AnimationFrames& holeRektAnim, AnimationFrames& shipexplo, AnimationFrames& exhaustAnim, 
+	AnimationFrames& rektExhaustAnim, Sound& shipexplodesound)
 	:
 	bManager(Manager),
 	shipSurface(ShipSurface),
@@ -14,7 +15,8 @@ Ship::Ship(BulletManager& Manager, Surface& ShipSurface,
 	blackHoleRekt(holeRektAnim, 1),
 	shipExplo(shipexplo, 2),
 	exhaust(exhaustAnim, 2),
-	rektExhaust(rektExhaustAnim, 2)
+	rektExhaust(rektExhaustAnim, 2),
+	shipExplodeSound(shipexplodesound)
 {}
 
 void Ship::HandleCollision(int Damage)
@@ -227,6 +229,7 @@ void Ship::Reset()
 	blackHole.Reset();
 	blackHoleRekt.Reset();
 	shipExplo.Reset();
+	soundIsPlayed = false;
 	isDead = false;
 }
 
@@ -265,6 +268,11 @@ void Ship::Update(Keyboard & wnd, float dt)
 	}
 	if (!health.HasHealth())
 	{
+		if (!soundIsPlayed)
+		{
+			shipExplodeSound.Play();
+			soundIsPlayed = true;
+		}
 		shipExplo.Advance();
 		if (shipExplo.AnimEnd())
 		{
