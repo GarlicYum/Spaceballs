@@ -1,23 +1,30 @@
 #include "SmallEnemyShip.h"
 
-SmallEnemyShip::SmallEnemyShip(float x, AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo, BulletManager& smallEnemyBulletM)
+SmallEnemyShip::SmallEnemyShip(float x, AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo, 
+	BulletManager& smallLeftManager, BulletManager& smallRightManager)
 	:
 	pos(x, -100.0f),
 	resetX(x),
 	smallExhaust(smallexhaust, 2),
 	smallExplode(smallexplode, 3),
 	smallExploSound(smallexplo),
-	smallBManager(smallEnemyBulletM)
+	smallLeftM(smallLeftManager),
+	smallRightM(smallRightManager)
 {}
 
 void SmallEnemyShip::Attack(float dt)
 {
-	if (pos.y < Graphics::ScreenHeight && pos.y > 0.0f)
+	
+	if ((pos.y + height) < Graphics::ScreenHeight && (pos.y + height) > 0.0f)
 	{
+		Vec2 leftCanonPos = pos + leftCanon;
+		Vec2 rightCanonPos = pos + rightCanon;
 		if ((bulletTimer += dt) > fireBullet)
 		{
-			smallBManager.FireBullet(pos, -600.0f, Colors::Cyan, 5, 10);
-			smallBManager.ResetShotsFired();
+			smallLeftM.FireBullet(leftCanonPos, -600.0f, Colors::Cyan, 5, 10);
+			smallRightM.FireBullet(rightCanonPos, -600.0f, Colors::Cyan, 5, 10);
+			smallLeftM.ResetShotsFired();
+			smallRightM.ResetShotsFired();
 			bulletTimer = 0.0f;
 		}
 	}
@@ -87,7 +94,8 @@ void SmallEnemyShip::Update(float dt, float playerX)
 
 void SmallEnemyShip::Draw(Graphics & gfx)
 {
-	smallBManager.DrawBullets(gfx);
+	smallLeftM.DrawBullets(gfx);
+	smallRightM.DrawBullets(gfx);
 	switch (state)
 	{
 	case AliveState:

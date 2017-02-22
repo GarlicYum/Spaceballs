@@ -1,12 +1,13 @@
 #include "EnemyManager.h"
 
-EnemyManager::EnemyManager(AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo, BulletManager& smallEnemyBulletM)
+EnemyManager::EnemyManager(AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo, 
+	BulletManager& smallLeftBulletM, BulletManager& smallRightBulletM)
 {
 	std::mt19937 rng;
 	std::uniform_real_distribution<float> xDist(0.0f, 545.0f);
 	for (int i = 0; i < nSmallShipMax; ++i)
 	{
-		smallShip.emplace_back<SmallEnemyShip>(SmallEnemyShip{ xDist(rng), smallexhaust, smallexplode, smallexplo, smallEnemyBulletM });
+		smallShip.emplace_back<SmallEnemyShip>(SmallEnemyShip{ xDist(rng), smallexhaust, smallexplode, smallexplo, smallLeftBulletM, smallRightBulletM });
 	}
 }
 

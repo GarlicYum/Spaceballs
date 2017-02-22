@@ -13,7 +13,8 @@ public:
 	{
 		AliveState, DyingState, DeadState
 	};
-	SmallEnemyShip(float x, AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo, BulletManager& smallEnemyBulletM);
+	SmallEnemyShip(float x, AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo, 
+		BulletManager& smallLeftmanager, BulletManager& smallRightManager);
 	void Attack(float dt);
 	void Move(float dt, float playerX);
 	void Update(float dt, float playerX);
@@ -30,6 +31,8 @@ private:
 	static constexpr float coolDownOver = 0.5f;
 	float coolDownTime = 0.0f;
 	Vec2 pos;
+	Vec2 leftCanon = Vec2(6.0f, 50.0f);
+	Vec2 rightCanon = Vec2(83.0f, 50.0f);
 	float resetX;
 	Vec2 vel = Vec2(200.0f, 100.0f);
 	BulletManager bulletM;
@@ -41,7 +44,8 @@ private:
 	Animation smallExhaust;
 	Animation smallExplode;
 	Sound& smallExploSound;
-	BulletManager& smallBManager;
+	BulletManager& smallLeftM;
+	BulletManager& smallRightM;
 	float fireBullet = 0.5f;
 	float bulletTimer = 0.0f;
 };
