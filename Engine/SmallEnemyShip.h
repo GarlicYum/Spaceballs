@@ -28,11 +28,10 @@ public:
 
 private:
 	bool coolDown = false;
-	static constexpr float coolDownOver = .5f;
+	static constexpr float coolDownOver = 0.5f;
 	float coolDownTime = 0.0f;
 	Vec2 pos;
 	float resetX;
-	float resetY = -100.0f;
 	Vec2 vel = Vec2(200.0f, 200.0f);
 	BulletManager bulletM;
 	const Surface& surface;

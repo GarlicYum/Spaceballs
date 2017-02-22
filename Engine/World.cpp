@@ -230,6 +230,7 @@ void World::CheckCollisions()
 
 		if (IsColliding(shipRect, smallShipRect) && !smallShip.GetCoolDown())
 		{
+			shipCollideSound.Play(1.1f, 0.9f);
 			smallShip.HandleCollision(0);
 			ship.HandleCollision(smallShip.GetCollisionDmg());
 		}
@@ -248,8 +249,6 @@ void World::CheckCollisions()
 			}
 		}
 	}
-
-
 
 	for (int i = 0; i < blackholeM.GetBlackHoleCount(); ++i)
 	{

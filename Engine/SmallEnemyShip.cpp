@@ -2,7 +2,7 @@
 
 SmallEnemyShip::SmallEnemyShip(float x, const Surface & enemySurface, AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo)
 	:
-	pos(x, resetY),
+	pos(x, -100.0f),
 	resetX(x),
 	surface(enemySurface),
 	smallExhaust(smallexhaust, 2),
@@ -41,7 +41,7 @@ void SmallEnemyShip::Update(float dt)
 		if (hp <= 0)
 		{
 			state = DyingState;
-			smallExploSound.Play(1.1f, 1.75f);
+			smallExploSound.Play(0.7f, 2.0f);
 		}
 
 		break;
@@ -70,6 +70,7 @@ void SmallEnemyShip::Draw(Graphics & gfx)
 
 	case DyingState:
 		smallExplode.Draw(int(pos.x), int(pos.y), gfx);
+		break;
 	}
 }
 	
@@ -80,7 +81,7 @@ RectF SmallEnemyShip::GetCollisionRect() const
 
 void SmallEnemyShip::Reset()
 {
-	pos.y = resetY;
+	pos.y = -100.0f;
 	pos.x = resetX;
 	smallExplode.Reset();
 	state = AliveState;
