@@ -6,7 +6,7 @@
 class EnemyManager
 {
 public:
-	EnemyManager(AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo);
+	EnemyManager(AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo, BulletManager& smallEnemyBulletM);
 	void Draw(Graphics& gfx);
 	void Reset();
 	void Update(float dt, float playerX);

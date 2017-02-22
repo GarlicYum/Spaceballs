@@ -16,7 +16,7 @@ int BulletManager::GetNumBullets() const
 	return nBullets;
 }
 
-void BulletManager::FireBullet(Vec2& canonPos, float Dt)
+void BulletManager::FireBullet(Vec2& canonPos)
 {
 	if (shotsFired == false)
 	{
@@ -26,6 +26,24 @@ void BulletManager::FireBullet(Vec2& canonPos, float Dt)
 			if (!bullet.HasSpawned())
 			{
 				bullet = Bullet(canonPos);
+				gun.Play(0.5f, 0.5f);
+				shotsFired = true;
+				break;
+			}
+		}
+	}
+}
+
+void BulletManager::FireBullet(Vec2& canonPos, float VY, Color C, int bulletsize, int Dmg)
+{
+	if (shotsFired == false)
+	{
+		for (int i = 0; i < nBullets; ++i)
+		{
+			auto& bullet = bullets[i];
+			if (!bullet.HasSpawned())
+			{
+				bullet = Bullet(canonPos, VY, C, bulletsize, Dmg);
 				gun.Play(0.5f, 0.5f);
 				shotsFired = true;
 				break;

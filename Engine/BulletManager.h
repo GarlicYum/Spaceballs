@@ -10,15 +10,15 @@ public:
 	const Bullet& GetBullet(int Idx) const;
 	Bullet& GetBullet(int Idx);
 	int GetNumBullets() const;
-
-	void FireBullet(Vec2& canonPos, float Dt);
+	void FireBullet(Vec2& canonPos);
+	void FireBullet(Vec2& canonPos, float VY, Color C, int bulletsize, int Dmg);
 	void UpdateBullets(float Dt);
 	void ResetShotsFired();
 	void DrawBullets(class Graphics& Gfx);
 	void Reset();
 
 private:
-	static constexpr int nBullets = 3;
+	static constexpr int nBullets = 6;
 	int bulletCounter = 0;
 	Bullet bullets[nBullets];
 	bool shotsFired = false;

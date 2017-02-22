@@ -14,7 +14,7 @@ World::World()
 	shipHoleAnim(L"shiphole\\", 28),
 	shipHoleRektAnim(L"shipholerekt\\", 28),
 	shipExploAnim(L"shipexplo\\", 29),
-	enemyM(smallEnemyExhaust, smallEnemyExplode, smallExplo),
+	enemyM(smallEnemyExhaust, smallEnemyExplode, smallExplo, smallEnemyBulletM),
 	shipExhaustAnim(L"shipexhaust\\", 4),
 	rektExhaustAnim(L"rektexhaust\\", 16),
 	smallEnemyExhaust(L"smallenemyexhaust\\", 8),
@@ -58,6 +58,7 @@ void World::Update(Keyboard& Kbd, float Dt)
 		titleSong.StopAll();
 		ship.Update(Kbd, Dt);
 		bulletM.UpdateBullets(Dt);
+		smallEnemyBulletM.UpdateBullets(Dt);
 		UpdateStars(Dt);
 		blackholeM.Update(Dt);
 		mineM.Update(Dt);

@@ -13,8 +13,8 @@ public:
 	{
 		AliveState, DyingState, DeadState
 	};
-	SmallEnemyShip(float x, AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo);
-	void Attack();
+	SmallEnemyShip(float x, AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo, BulletManager& smallEnemyBulletM);
+	void Attack(float dt);
 	void Move(float dt, float playerX);
 	void Update(float dt, float playerX);
 	void Draw(Graphics& gfx);
@@ -41,6 +41,7 @@ private:
 	Animation smallExhaust;
 	Animation smallExplode;
 	Sound& smallExploSound;
-
-	float change = 300.0f;
+	BulletManager& smallBManager;
+	float fireBullet = 0.5f;
+	float bulletTimer = 0.0f;
 };

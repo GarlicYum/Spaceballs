@@ -7,12 +7,22 @@ Bullet::Bullet(Vec2& pos_in)
 	bState(AliveState)
 {}
 
+Bullet::Bullet(Vec2 & pos_in, float VY, Color C, int bulletsize, int Dmg)
+	:
+	pos(pos_in),
+	bulletSize(bulletsize),
+	vy(VY),
+	dmg(Dmg),
+	bState(AliveState),
+	color(C)
+{}
+
 //Update makes the bullet move in y direction and changes state to deadstate if it reaches the end of the screen
 void Bullet::Update(float dt)
 {
 	pos.y -= vy * dt;
 
-	if (pos.y - bulletSize < 0)
+	if ((pos.y - bulletSize) < 0 || (pos.y + bulletSize) >= Graphics::ScreenHeight)
 	{
 		bState = DeadState;
 	}
@@ -26,7 +36,7 @@ bool Bullet::HasSpawned() const
 
 void Bullet::Draw(Graphics& gfx)
 {
-	gfx.DrawCircle(int(pos.x), int(pos.y), bulletSize, Colors::Magenta);
+	gfx.DrawCircle(int(pos.x), int(pos.y), bulletSize, color);
 }
 
 bool Bullet::IsActive() const

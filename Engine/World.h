@@ -94,4 +94,5 @@ private:
 	AnimationFrames smallEnemyExplode;
 	Sound smallExplo = L"smallshipexplo.wav";
 	Sound shipCollideSound = L"shipcollide.wav";
+	BulletManager smallEnemyBulletM;
 };

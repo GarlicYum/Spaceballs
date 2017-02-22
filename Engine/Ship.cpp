@@ -144,7 +144,7 @@ void Ship::PlayerInput(Keyboard& kbd, float dt)
 
 		if (kbd.KeyIsPressed(VK_SPACE))
 		{
-			bManager.FireBullet(Vec2(pos.x + canonX, pos.y + canonY), dt);
+			bManager.FireBullet(Vec2(pos.x + canonX, pos.y + canonY));
 		}
 
 		else
