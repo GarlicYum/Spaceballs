@@ -90,7 +90,6 @@ private:
 	Keyboard::Event event;
 
 	EnemyManager enemyM;
-	Surface smallEnemySurface = Surface::FromFile(L"smallenemy.png");
 	AnimationFrames smallEnemyExhaust;
 	AnimationFrames smallEnemyExplode;
 	Sound smallExplo = L"smallshipexplo.wav";

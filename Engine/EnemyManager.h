@@ -6,10 +6,10 @@
 class EnemyManager
 {
 public:
-	EnemyManager(const Surface& smallSurface, AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo);
+	EnemyManager(AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo);
 	void Draw(Graphics& gfx);
 	void Reset();
-	void Update(float dt);
+	void Update(float dt, float playerX);
 	int GetSmallCount() const;
 	SmallEnemyShip& GetSmallShip(int Idx);
 	const SmallEnemyShip& GetSmallShip(int Idx) const;

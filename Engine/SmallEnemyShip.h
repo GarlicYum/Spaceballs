@@ -13,11 +13,10 @@ public:
 	{
 		AliveState, DyingState, DeadState
 	};
-	SmallEnemyShip(float x, const Surface& enemySurface, AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo);
+	SmallEnemyShip(float x, AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo);
 	void Attack();
-	void MoveY(float dt);
-	void MoveX(float dt);
-	void Update(float dt);
+	void Move(float dt, float playerX);
+	void Update(float dt, float playerX);
 	void Draw(Graphics& gfx);
 	RectF GetCollisionRect() const;
 	void Reset();
@@ -32,9 +31,8 @@ private:
 	float coolDownTime = 0.0f;
 	Vec2 pos;
 	float resetX;
-	Vec2 vel = Vec2(200.0f, 200.0f);
+	Vec2 vel = Vec2(200.0f, 100.0f);
 	BulletManager bulletM;
-	const Surface& surface;
 	int hp = 80;
 	static constexpr float width = 90.0f;
 	static constexpr float height = 70.0f;
@@ -43,4 +41,6 @@ private:
 	Animation smallExhaust;
 	Animation smallExplode;
 	Sound& smallExploSound;
+
+	float change = 300.0f;
 };

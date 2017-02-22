@@ -14,7 +14,7 @@ World::World()
 	shipHoleAnim(L"shiphole\\", 28),
 	shipHoleRektAnim(L"shipholerekt\\", 28),
 	shipExploAnim(L"shipexplo\\", 29),
-	enemyM(smallEnemySurface, smallEnemyExhaust, smallEnemyExplode, smallExplo),
+	enemyM(smallEnemyExhaust, smallEnemyExplode, smallExplo),
 	shipExhaustAnim(L"shipexhaust\\", 4),
 	rektExhaustAnim(L"rektexhaust\\", 16),
 	smallEnemyExhaust(L"smallenemyexhaust\\", 8),
@@ -65,7 +65,7 @@ void World::Update(Keyboard& Kbd, float Dt)
 		shieldM.Update(ship, Dt, shieldon, shieldoff);
 		obstacleM.Update(Dt);
 		CheckCollisions();
-		enemyM.Update(Dt);
+		enemyM.Update(Dt, ship.GetX());
 
 		if (!ship.IsAlive())
 		{
@@ -230,7 +230,7 @@ void World::CheckCollisions()
 			continue;
 		const auto smallShipRect = smallShip.GetCollisionRect();
 
-		if (IsColliding(shipRect, smallShipRect) && !smallShip.GetCoolDown())
+		if (IsColliding(shipRect, smallShipRect) && !smallShip.GetCoolDown() && ship.IsAlive())
 		{
 			shipCollideSound.Play(1.1f, 0.9f);
 			smallShip.HandleCollision(0);

@@ -1,23 +1,37 @@
 #include "SmallEnemyShip.h"
 
-SmallEnemyShip::SmallEnemyShip(float x, const Surface & enemySurface, AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo)
+SmallEnemyShip::SmallEnemyShip(float x, AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo)
 	:
 	pos(x, -100.0f),
 	resetX(x),
-	surface(enemySurface),
 	smallExhaust(smallexhaust, 2),
 	smallExplode(smallexplode, 3),
 	smallExploSound(smallexplo)
 {}
 
-void SmallEnemyShip::MoveY(float dt)
+void SmallEnemyShip::Move(float dt, float playerX)
 {
-	pos.y += (vel.y * dt);
+	pos.y += vel.y * dt;
+	pos.x += vel.x * dt;
+	if ((playerX - 200.0f) > pos.x)
+	{
+		vel.x = 200.0f;
+	}
+	else if ((playerX + 200.0f) < pos.x)
+	{
+		vel.x = -200.0f;
+	}
+	
+	if (pos.x < 0.0f || (pos.x + width) > int(Graphics::ScreenWidth))
+	{
+		vel.x = -vel.x;
+	}
+	
 }
 
-void SmallEnemyShip::Update(float dt)
+void SmallEnemyShip::Update(float dt, float playerX)
 {
-	MoveY(dt);
+	Move(dt, playerX);
 
 	switch (state)
 	{
@@ -64,8 +78,6 @@ void SmallEnemyShip::Draw(Graphics & gfx)
 	{
 	case AliveState:
 		smallExhaust.Draw(int(pos.x), int(pos.y), gfx);
-//		gfx.DrawSpriteKey(int(pos.x), int(pos.y), surface, surface.GetPixel(0, 0));
-		
 		break;
 
 	case DyingState:
