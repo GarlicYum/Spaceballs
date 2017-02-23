@@ -23,7 +23,7 @@ class World
 public:
 	enum GameState
 	{
-		TitleState, PlayState, BlackHoleState, GameOverState
+		TitleState, PlayState, BlackHoleState, TransitionState, GameOverState
 	};
 	World();
 	~World();

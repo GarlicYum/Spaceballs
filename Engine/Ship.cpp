@@ -233,6 +233,11 @@ bool Ship::IsBlackHole() const
 	return state == BlackHoleState;
 }
 
+bool Ship::ExitingBlackHole() const
+{
+	return state == TransitionBackState;
+}
+
 RectF Ship::GetCollisionRect()
 {
 	return RectF(pos, width, height);

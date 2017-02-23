@@ -26,6 +26,7 @@ public:
 	bool IsAlive() const;
 	bool IsDead() const;
 	bool IsBlackHole() const;
+	bool ExitingBlackHole() const;
 	RectF GetCollisionRect();
 	
 	float GetX() const;

@@ -99,6 +99,19 @@ void World::Update(Keyboard& Kbd, float Dt)
 		ship.Update(Kbd, Dt);
 		blackHoleLevel.Update();
 		CheckCollisions();
+		if (ship.ExitingBlackHole())
+		{
+			gState = TransitionState;
+		}
+		break;
+
+	case TransitionState:
+		ship.Update(Kbd, Dt);
+		if (ship.IsAlive())
+		{
+			gState = PlayState;
+			mainSong.Play(1.0f, 0.5f);
+		}
 		break;
 
 	case GameOverState:
@@ -127,6 +140,16 @@ void World::Draw(Graphics& Gfx)
 	case BlackHoleState:
 		blackHoleLevel.Draw(Gfx);
 		ship.Draw(Gfx);
+		break;
+	case TransitionState:
+		DrawStars(Gfx);
+		blackholeM.Draw(Gfx);
+		eBoostM.Draw(Gfx, ship);
+		shieldM.Draw(Gfx);
+		ship.Draw(Gfx);
+		mineM.Draw(Gfx);
+		obstacleM.Draw(Gfx);
+		enemyM.Draw(Gfx);
 		break;
 	case GameOverState:
 		Gfx.DrawSprite(0, 0, gameOverSurface);
