@@ -13,7 +13,7 @@ class Ship
 public:
 	enum ShipState
 	{
-		AliveState, ExplodingState, BlackHoleState, DeadState
+		AliveState, ExplodingState, BlackHoleTransitionState, BlackHoleState, DeadState
 	};
 	Ship(BulletManager& Manager, Surface& ShipSurface, 
 		Surface& red, AnimationFrames& shiprekt, 
@@ -25,6 +25,7 @@ public:
 	void Restore(int restore);
 	bool IsAlive() const;
 	bool IsDead() const;
+	bool IsBlackHole() const;
 	RectF GetCollisionRect();
 	
 	float GetX() const;

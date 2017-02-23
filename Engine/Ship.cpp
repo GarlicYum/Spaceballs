@@ -24,7 +24,7 @@ void Ship::HandleCollision(int Damage)
 {
 	switch (state)
 	{
-	case BlackHoleState:
+	case BlackHoleTransitionState:
 		if (health.GetHealthAmount() > lowHealth)
 		{
 			blackHole.Advance();
@@ -36,7 +36,9 @@ void Ship::HandleCollision(int Damage)
 
 		if (blackHole.AnimEnd() || blackHoleRekt.AnimEnd())
 		{
-			state = DeadState;
+			state = BlackHoleState;
+			pos.x = 350.0f;
+			pos.y = 500.0f;
 		}
 		break;
 
@@ -84,7 +86,7 @@ void Ship::Draw(Graphics& gfx)
 		}
 		break;
 
-	case BlackHoleState:
+	case BlackHoleTransitionState:
 		if (health.GetHealthAmount() > lowHealth)
 		{
 			blackHole.Draw(int(pos.x), int(pos.y), gfx);
@@ -98,6 +100,23 @@ void Ship::Draw(Graphics& gfx)
 
 	case ExplodingState:
 		shipExplo.Draw(int(pos.x) - exploX, int(pos.y) - exploY, gfx);
+		break;
+
+	case BlackHoleState:
+		if (health.GetHealthAmount() > lowHealth)
+		{
+			exhaust.Draw(int(pos.x), int(pos.y), gfx);
+		}
+
+		else
+		{
+			rektExhaust.Draw(int(pos.x), int(pos.y), gfx);
+		}
+
+		if (isHit)
+		{
+			gfx.DrawSpriteKey(int(pos.x), int(pos.y), redSurface, redSurface.GetPixel(0, 0));
+		}
 		break;
 	}	
 
@@ -152,6 +171,19 @@ void Ship::PlayerInput(Keyboard& kbd, float dt)
 			bManager.ResetShotsFired();
 		}
 	}
+
+	else if (state == BlackHoleState)
+	{
+		if (kbd.KeyIsPressed(VK_LEFT))
+		{
+			pos.x -= speed * dt;
+		}
+
+		else if (kbd.KeyIsPressed(VK_RIGHT))
+		{
+			pos.x += speed * dt;
+		}
+	}
 }
 
 void Ship::Restore(int restore)
@@ -167,6 +199,11 @@ bool Ship::IsAlive() const
 bool Ship::IsDead() const
 {
 	return state == DeadState;
+}
+
+bool Ship::IsBlackHole() const
+{
+	return state == BlackHoleState;
 }
 
 RectF Ship::GetCollisionRect()
@@ -229,7 +266,7 @@ void Ship::CollidesWithHole(bool collides)
 	if (collides && state == AliveState)
 	{
 		blackHoleSound.Play(0.8f, 1.0f);
-		state = BlackHoleState;
+		state = BlackHoleTransitionState;
 	}	
 }
 
@@ -250,9 +287,9 @@ void Ship::Update(Keyboard & wnd, float dt)
 	switch (state)
 	{
 	case AliveState:
-		if (int(pos.y) > (Graphics::ScreenHeight - 2))
+		if (int(pos.y) > (Graphics::ScreenHeight - 10))
 		{
-			state = DeadState;
+			health.Damage(health.GetHealthAmount());
 		}
 
 		if (isHit)
@@ -299,8 +336,6 @@ void Ship::Update(Keyboard & wnd, float dt)
 			shipExplodeSound.Play();
 			state = ExplodingState;
 		}
-		PlayerInput(wnd, dt);
-		ClampScreen();
 		break;
 
 	case ExplodingState:
@@ -310,5 +345,46 @@ void Ship::Update(Keyboard & wnd, float dt)
 			state = DeadState;
 		}
 		break;
+
+	case BlackHoleState:
+		pos.y -= (speed / 50.0f) * dt;
+
+		if (isHit)
+		{
+			isHitCounter++;
+			if (isHitCounter >= 10)
+			{
+				isHitCounter = 0;
+				isHit = false;
+			}
+		}
+
+		if (!health.HasHealth())
+		{
+			shipExplodeSound.Play();
+			state = ExplodingState;
+		}
+
+		else if (health.GetHealthAmount() <= lowHealth)
+		{
+			rektExhaust.Advance();
+			if (rektExhaust.AnimEnd())
+			{
+				rektExhaust.Reset();
+			}
+		}
+
+		else if (health.GetHealthAmount() > lowHealth)
+		{
+			exhaust.Advance();
+			if (exhaust.AnimEnd())
+			{
+				exhaust.Reset();
+			}
+		}
+		break;
+
 	}
+	PlayerInput(wnd, dt);
+	ClampScreen();
 }

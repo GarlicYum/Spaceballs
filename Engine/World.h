@@ -22,7 +22,7 @@ class World
 public:
 	enum GameState
 	{
-		TitleState, PlayState, GameOverState
+		TitleState, PlayState, BlackHoleState, GameOverState
 	};
 	World();
 	~World();
@@ -96,4 +96,7 @@ private:
 	Sound shipCollideSound = L"shipcollide.wav";
 	BulletManager smallLeftBulletM;
 	BulletManager smallRightBulletM;
+	
+	AnimationFrames BlackHoleBGFrames;
+	Animation BlackHoleBG;
 };

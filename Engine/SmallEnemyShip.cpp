@@ -121,6 +121,7 @@ void SmallEnemyShip::Reset()
 	smallExplode.Reset();
 	state = AliveState;
 	hp = 80;
+	bulletTimer = 0.0f;
 }
 
 void SmallEnemyShip::HandleCollision(int dmg)

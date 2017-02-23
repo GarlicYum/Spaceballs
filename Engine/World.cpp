@@ -18,7 +18,9 @@ World::World()
 	shipExhaustAnim(L"shipexhaust\\", 4),
 	rektExhaustAnim(L"rektexhaust\\", 16),
 	smallEnemyExhaust(L"smallenemyexhaust\\", 8),
-	smallEnemyExplode(L"smallshipexplo\\", 13)
+	smallEnemyExplode(L"smallshipexplo\\", 13),
+	BlackHoleBGFrames(L"blackholeBG\\", 66),
+	BlackHoleBG(BlackHoleBGFrames, 2)
 {
 	std::mt19937 rng;
 	std::uniform_real_distribution<float> xDist(0.0f, 790.0f);
@@ -79,7 +81,29 @@ void World::Update(Keyboard& Kbd, float Dt)
 				gState = GameOverState;
 			}
 		}
+
+		if (ship.IsBlackHole())
+		{
+			mainSong.StopAll();
+			gState = BlackHoleState;
+
+			if (ship.IsDead())
+			{
+				gameOverSong.Play(1.0f, 0.5f);
+				gState = GameOverState;
+			}
+		}
 		break;
+
+	case BlackHoleState:
+		ship.Update(Kbd, Dt);
+		BlackHoleBG.Advance();
+		if (BlackHoleBG.AnimEnd())
+		{
+			BlackHoleBG.Reset();
+		}
+		break;
+
 	case GameOverState:
 		PlayerInput(Kbd);
 		break;
@@ -102,6 +126,10 @@ void World::Draw(Graphics& Gfx)
 		mineM.Draw(Gfx);
 		obstacleM.Draw(Gfx);
 		enemyM.Draw(Gfx);
+		break;
+	case BlackHoleState:
+		BlackHoleBG.Draw(0, 0, Gfx);
+		ship.Draw(Gfx);
 		break;
 	case GameOverState:
 		Gfx.DrawSprite(0, 0, gameOverSurface);
