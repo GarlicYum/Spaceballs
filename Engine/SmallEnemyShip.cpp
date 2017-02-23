@@ -14,7 +14,6 @@ SmallEnemyShip::SmallEnemyShip(float x, AnimationFrames& smallexhaust, Animation
 
 void SmallEnemyShip::Attack(float dt)
 {
-	
 	if ((pos.y + height) < Graphics::ScreenHeight && (pos.y + leftCanon.y + bulletSize) > 0.0f)
 	{
 		Vec2 leftCanonPos = pos + leftCanon;
@@ -55,8 +54,6 @@ void SmallEnemyShip::Move(float dt, float playerX)
 
 void SmallEnemyShip::Update(float dt, float playerX)
 {
-	
-
 	switch (state)
 	{
 	case AliveState:
