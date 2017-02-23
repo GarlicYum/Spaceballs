@@ -15,7 +15,7 @@ SmallEnemyShip::SmallEnemyShip(float x, AnimationFrames& smallexhaust, Animation
 void SmallEnemyShip::Attack(float dt)
 {
 	
-	if ((pos.y + height) < Graphics::ScreenHeight && (pos.y + height) > 0.0f)
+	if ((pos.y + height) < Graphics::ScreenHeight && (pos.y + leftCanon.y + bulletSize) > 0.0f)
 	{
 		Vec2 leftCanonPos = pos + leftCanon;
 		Vec2 rightCanonPos = pos + rightCanon;

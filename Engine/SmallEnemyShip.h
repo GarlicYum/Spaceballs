@@ -50,6 +50,6 @@ private:
 	float bulletTimer = 0.0f;
 	static constexpr int bulletDmg = 25;
 	static constexpr float bulletVel = -600.0f;
-	Color bulletColor = Colors::Blue;
+	Color bulletColor = Colors::Cyan;
 	static constexpr int bulletSize = 6;
 };

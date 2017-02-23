@@ -170,6 +170,8 @@ void World::PlayerInput(Keyboard& Kbd)
 					obstacleM.Reset();
 					eBoostM.Reset();
 					bulletM.Reset();
+					smallLeftBulletM.Reset();
+					smallRightBulletM.Reset();
 					blackholeM.Reset();
 					enemyM.Reset();
 					gameOverSong.StopAll();

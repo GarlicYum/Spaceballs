@@ -250,10 +250,7 @@ void Ship::Update(Keyboard & wnd, float dt)
 	switch (state)
 	{
 	case AliveState:
-		PlayerInput(wnd, dt);
-		ClampScreen();
-
-		if (pos.y + 2 > Graphics::ScreenHeight)
+		if (int(pos.y) > (Graphics::ScreenHeight - 2))
 		{
 			state = DeadState;
 		}
@@ -302,6 +299,8 @@ void Ship::Update(Keyboard & wnd, float dt)
 			shipExplodeSound.Play();
 			state = ExplodingState;
 		}
+		PlayerInput(wnd, dt);
+		ClampScreen();
 		break;
 
 	case ExplodingState:
