@@ -10,7 +10,7 @@ void BlackHole::Reset()
 {
 	pos.y = -50.0f;
 	vy = resetVy;
-	isActive = true;
+	isActive = false;
 }
 
 void BlackHole::Update(float dt)
@@ -23,6 +23,10 @@ void BlackHole::Update(float dt)
 		{
 			bHoleSpin.Reset();
 		}
+	}
+	else
+	{
+		isActive = false;
 	}
 }
 
