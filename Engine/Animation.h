@@ -20,6 +20,7 @@ class Animation
 public:
 	Animation(const AnimationFrames& Frames, int HoldFrameCount);
 	void Advance();
+	void Reverse();
 	bool AnimEnd() const;
 	void Draw(int X, int Y, Graphics& Gfx);
 	void Reset();
@@ -31,4 +32,5 @@ private:
 	int curFrame = 0;
 	int frameCounter = 0;
 	bool isOver = false;
+	bool isReversed = false;
 };

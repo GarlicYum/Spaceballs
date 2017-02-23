@@ -27,6 +27,27 @@ void Animation::Advance()
 	}
 }
 
+void Animation::Reverse()
+{
+	++frameCounter;
+	if (!isReversed)
+	{
+		curFrame = frames.GetFrameCount();
+		isReversed = true;
+	}
+	if (frameCounter >= nHoldFrames)
+	{
+		frameCounter = 0;	
+		--curFrame;
+		
+		if (curFrame == 0)
+		{
+			isOver = true;
+			isReversed = false;
+		}
+	}
+}
+
 bool Animation::AnimEnd() const
 {
 	return isOver;

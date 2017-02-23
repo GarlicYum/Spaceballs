@@ -13,7 +13,7 @@ class Ship
 public:
 	enum ShipState
 	{
-		AliveState, ExplodingState, BlackHoleTransitionState, BlackHoleState, DeadState
+		AliveState, ExplodingState, BlackHoleTransitionState, TransitionBackState, BlackHoleState, DeadState
 	};
 	Ship(BulletManager& Manager, Surface& ShipSurface, 
 		Surface& red, AnimationFrames& shiprekt, 
@@ -75,4 +75,8 @@ private:
 	Sound& shipExplodeSound;
 	ShipState state = AliveState;
 	Sound& blackHoleSound;
+	float oldX;
+	float oldY;
+	bool firstTransition = true;
+
 };

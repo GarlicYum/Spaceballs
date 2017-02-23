@@ -10,23 +10,19 @@ void BlackHole::Reset()
 {
 	pos.y = -50.0f;
 	vy = resetVy;
+	isActive = true;
 }
 
 void BlackHole::Update(float dt)
 {
-	pos.y += vy * dt;
-	bHoleSpin.Advance();
-	if (bHoleSpin.AnimEnd())
-	{
-		bHoleSpin.Reset();
-	}
 	if (pos.y + height > 0.0f && pos.y < Graphics::ScreenHeight)
 	{
-		isActive = true;
-	}
-	else
-	{
-		isActive = false;
+		pos.y += vy * dt;
+		bHoleSpin.Advance();
+		if (bHoleSpin.AnimEnd())
+		{
+			bHoleSpin.Reset();
+		}
 	}
 }
 
@@ -45,7 +41,17 @@ bool BlackHole::GetIsActive() const
 	return isActive;
 }
 
+void BlackHole::Deactivate()
+{
+	isActive = false;
+}
+
 void BlackHole::StopVy()
 {
 	vy = 0.0f;
+}
+
+void BlackHole::StartVy()
+{
+	vy = 80.0f;
 }

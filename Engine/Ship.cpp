@@ -34,12 +34,27 @@ void Ship::HandleCollision(int Damage)
 			blackHoleRekt.Advance();
 		}
 
-		if (blackHole.AnimEnd() || blackHoleRekt.AnimEnd())
+		if ((blackHole.AnimEnd() || blackHoleRekt.AnimEnd()) && firstTransition)
 		{
-			state = BlackHoleState;
+			blackHoleRekt.Reset();
+			blackHole.Reset();
+			oldX = pos.x;
+			oldY = pos.y;
 			pos.x = 350.0f;
 			pos.y = 500.0f;
+			state = BlackHoleState;
+			firstTransition = false;
 		}
+		else if (blackHole.AnimEnd() || blackHoleRekt.AnimEnd())
+		{
+			blackHoleRekt.Reset();
+			blackHole.Reset();
+			pos.x = oldX;
+			pos.y = oldY;
+			firstTransition = true;
+			state = TransitionBackState;
+		}
+		///////////////what happens in update and draw during transitionback? let world know about it
 		break;
 
 	case AliveState:
@@ -87,6 +102,18 @@ void Ship::Draw(Graphics& gfx)
 		break;
 
 	case BlackHoleTransitionState:
+		if (health.GetHealthAmount() > lowHealth)
+		{
+			blackHole.Draw(int(pos.x), int(pos.y), gfx);
+		}
+
+		else
+		{
+			blackHoleRekt.Draw(int(pos.x), int(pos.y), gfx);
+		}
+		break;
+
+	case TransitionBackState:
 		if (health.GetHealthAmount() > lowHealth)
 		{
 			blackHole.Draw(int(pos.x), int(pos.y), gfx);
@@ -263,7 +290,7 @@ int Ship::GetDmg() const
 
 void Ship::CollidesWithHole(bool collides)
 {
-	if (collides && state == AliveState)
+	if (collides && (state == AliveState || state == BlackHoleState))
 	{
 		blackHoleSound.Play(0.8f, 1.0f);
 		state = BlackHoleTransitionState;
@@ -347,7 +374,7 @@ void Ship::Update(Keyboard & wnd, float dt)
 		break;
 
 	case BlackHoleState:
-		pos.y -= (speed / 50.0f) * dt;
+		pos.y -= (speed / 5.0f) * dt;
 
 		if (isHit)
 		{
@@ -383,6 +410,24 @@ void Ship::Update(Keyboard & wnd, float dt)
 			}
 		}
 		break;
+
+	case TransitionBackState:
+		if (health.GetHealthAmount() > lowHealth)
+		{
+			blackHole.Reverse();
+		}
+		else
+		{
+			blackHoleRekt.Reverse();
+		}
+
+		if (blackHole.AnimEnd() || blackHoleRekt.AnimEnd())
+		{
+			blackHoleRekt.Reset();
+			blackHole.Reset();
+			state = AliveState;
+		}
+		break; 
 
 	}
 	PlayerInput(wnd, dt);

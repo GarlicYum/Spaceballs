@@ -138,6 +138,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="BlackHole.h" />
+    <ClInclude Include="BlackHoleLevel.h" />
     <ClInclude Include="BlackHoleManager.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletManager.h" />
@@ -178,6 +179,7 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="BlackHole.cpp" />
+    <ClCompile Include="BlackHoleLevel.cpp" />
     <ClCompile Include="BlackHoleManager.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletManager.cpp" />

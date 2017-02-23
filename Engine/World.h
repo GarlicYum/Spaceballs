@@ -16,6 +16,7 @@
 #include "ObstacleManager.h"
 #include "BlackHoleManager.h"
 #include "EnemyManager.h"
+#include "BlackHoleLevel.h"
 
 class World
 {
@@ -96,7 +97,8 @@ private:
 	Sound shipCollideSound = L"shipcollide.wav";
 	BulletManager smallLeftBulletM;
 	BulletManager smallRightBulletM;
-	
+
 	AnimationFrames BlackHoleBGFrames;
-	Animation BlackHoleBG;
+	BlackHoleLevel blackHoleLevel;
+	
 };

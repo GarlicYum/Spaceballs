@@ -13,7 +13,9 @@ public:
 	void Draw(Graphics& gfx);
 	RectF GetCollisionRect() const;
 	bool GetIsActive() const;
+	void Deactivate();
 	void StopVy();
+	void StartVy();
 
 private:
 	Vec2 pos;
@@ -23,5 +25,5 @@ private:
 	static constexpr float height = 100.0f;
 	static constexpr float range = 250.0f;
 	Animation bHoleSpin;
-	bool isActive;
+	bool isActive = true;
 };
