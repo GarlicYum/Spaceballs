@@ -61,6 +61,11 @@ void Ship::HandleCollision(int Damage)
 		health.Damage(Damage);
 		isHit = true;
 		break;
+
+	case BlackHoleState:
+		health.Damage(Damage);
+		isHit = true;
+		break;
 	}	
 }
 

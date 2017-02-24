@@ -15,6 +15,7 @@ public:
 	RectF GetCollisionRect();
 	Comet& GetComet(int Idx);
 	const Comet& GetComet(int Idx) const;
+	int GetCometCount() const;
 	void Reset();
 
 private:
@@ -24,6 +25,6 @@ private:
 	static constexpr int nCometsMax = 100;
 	int nComets = 0;
 	float cometTimer = 0.0f;
-	static constexpr float newComet = 0.2f;
+	static constexpr float newComet = 0.25f;
 	std::vector<Comet> comet;
 };

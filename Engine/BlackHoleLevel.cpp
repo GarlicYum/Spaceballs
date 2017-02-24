@@ -60,6 +60,11 @@ const Comet & BlackHoleLevel::GetComet(int Idx) const
 	return comet[Idx];
 }
 
+int BlackHoleLevel::GetCometCount() const
+{
+	return nComets;
+}
+
 void BlackHoleLevel::Reset()
 {
 	for (int i = 0; i < nCometsMax; ++i)

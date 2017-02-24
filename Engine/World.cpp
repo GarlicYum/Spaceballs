@@ -458,6 +458,19 @@ void World::CheckCollisions()
 				ship.CollidesWithHole(true);
 				ship.HandleCollision(0);
 			}
+
+			for (int i = 0; i < blackHoleLevel.GetCometCount(); ++i)
+			{
+				auto& comet = blackHoleLevel.GetComet(i);
+				if (!comet.IsActive())
+					continue;
+				const auto cometRect = comet.GetCollisionRect();
+				if (IsColliding(shipRect, cometRect))
+				{
+					comet.HandleCollision();
+					ship.HandleCollision(comet.GetDmg());
+				}
+			}
 		break;
 	}
 }
