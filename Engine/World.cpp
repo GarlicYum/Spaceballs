@@ -19,8 +19,9 @@ World::World()
 	rektExhaustAnim(L"rektexhaust\\", 16),
 	smallEnemyExhaust(L"smallenemyexhaust\\", 8),
 	smallEnemyExplode(L"smallshipexplo\\", 13),
-	blackHoleLevel(BlackHoleBGFrames),
-	BlackHoleBGFrames(L"blackholeBG\\", 66)
+	blackHoleLevel(BlackHoleBGFrames, cometAnim),
+	BlackHoleBGFrames(L"blackholeBG\\", 66),
+	cometAnim(L"comet\\", 6)
 {
 	std::mt19937 rng;
 	std::uniform_real_distribution<float> xDist(0.0f, 790.0f);
@@ -97,7 +98,7 @@ void World::Update(Keyboard& Kbd, float Dt)
 
 	case BlackHoleState:
 		ship.Update(Kbd, Dt);
-		blackHoleLevel.Update();
+		blackHoleLevel.Update(Dt);
 		CheckCollisions();
 		if (ship.ExitingBlackHole())
 		{
@@ -112,6 +113,7 @@ void World::Update(Keyboard& Kbd, float Dt)
 			gState = PlayState;
 			mainSong.Play(1.0f, 0.5f);
 		}
+		blackHoleLevel.Reset();
 		break;
 
 	case GameOverState:

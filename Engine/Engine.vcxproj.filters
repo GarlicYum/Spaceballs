@@ -138,6 +138,9 @@
     <ClInclude Include="BlackHoleLevel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Comet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">
@@ -243,6 +246,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BlackHoleLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Comet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

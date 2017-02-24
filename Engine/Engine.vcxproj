@@ -145,6 +145,7 @@
     <ClInclude Include="ChiliException.h" />
     <ClInclude Include="ChiliWin.h" />
     <ClInclude Include="Colors.h" />
+    <ClInclude Include="Comet.h" />
     <ClInclude Include="DXErr.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="EnergyBoost.h" />
@@ -183,6 +184,7 @@
     <ClCompile Include="BlackHoleManager.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletManager.cpp" />
+    <ClCompile Include="Comet.cpp" />
     <ClCompile Include="DXErr.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="EnergyBoost.cpp" />

@@ -98,7 +98,7 @@ private:
 	BulletManager smallLeftBulletM;
 	BulletManager smallRightBulletM;
 
+	AnimationFrames cometAnim;
 	AnimationFrames BlackHoleBGFrames;
 	BlackHoleLevel blackHoleLevel;
-	
 };

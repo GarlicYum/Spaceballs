@@ -379,7 +379,7 @@ void Ship::Update(Keyboard & wnd, float dt)
 		break;
 
 	case BlackHoleState:
-		pos.y -= (speed / 5.0f) * dt;
+		pos.y -= (speed / 30.0f) * dt;
 
 		if (isHit)
 		{
