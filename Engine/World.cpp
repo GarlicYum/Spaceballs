@@ -20,7 +20,7 @@ World::World()
 	smallEnemyExhaust(L"smallenemyexhaust\\", 8),
 	smallEnemyExplode(L"smallshipexplo\\", 13),
 	blackHoleLevel(BlackHoleBGFrames, cometAnim),
-	BlackHoleBGFrames(L"blackholeBG\\", 66),
+	BlackHoleBGFrames(L"blackholeBG\\", 20),
 	cometAnim(L"comet\\", 6)
 {
 	std::mt19937 rng;
