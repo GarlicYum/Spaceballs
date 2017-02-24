@@ -10,7 +10,7 @@ void BlackHole::Reset()
 {
 	pos.y = -50.0f;
 	vy = resetVy;
-	isActive = false;
+	isActive = true;
 }
 
 void BlackHole::Update(float dt)
