@@ -14,14 +14,17 @@ World::World()
 	shipHoleAnim(L"shiphole\\", 28),
 	shipHoleRektAnim(L"shipholerekt\\", 28),
 	shipExploAnim(L"shipexplo\\", 29),
-	enemyM(smallEnemyExhaust, smallEnemyExplode, smallExplo, smallLeftBulletM, smallRightBulletM),
+	smallEnemyM(smallEnemyExhaust, smallEnemyExplode, smallExplo, smallLeftBulletM, smallRightBulletM),
 	shipExhaustAnim(L"shipexhaust\\", 4),
 	rektExhaustAnim(L"rektexhaust\\", 16),
 	smallEnemyExhaust(L"smallenemyexhaust\\", 8),
 	smallEnemyExplode(L"smallshipexplo\\", 13),
 	blackHoleLevel(BlackHoleBGFrames, cometAnim),
 	BlackHoleBGFrames(L"blackholeBG\\", 20),
-	cometAnim(L"comet\\", 6)
+	cometAnim(L"comet\\", 6),
+	droneM(droneAnim, droneExplo, droneExploSound),
+	droneAnim(L"drone\\", 8),
+	droneExplo(L"dronexplo\\", 8)
 {
 	std::mt19937 rng;
 	std::uniform_real_distribution<float> xDist(0.0f, 790.0f);
@@ -70,7 +73,8 @@ void World::Update(Keyboard& Kbd, float Dt)
 		shieldM.Update(ship, Dt, shieldon, shieldoff);
 		obstacleM.Update(Dt);
 		CheckCollisions();
-		enemyM.Update(Dt, ship.GetX());
+		smallEnemyM.Update(Dt, ship.GetX());
+		droneM.Update(Dt);
 
 		if (!ship.IsAlive())
 		{
@@ -137,7 +141,8 @@ void World::Draw(Graphics& Gfx)
 		ship.Draw(Gfx);
 		mineM.Draw(Gfx);
 		obstacleM.Draw(Gfx);
-		enemyM.Draw(Gfx);
+		smallEnemyM.Draw(Gfx);
+		droneM.Draw(Gfx);
 		break;
 	case BlackHoleState:
 		blackHoleLevel.Draw(Gfx);
@@ -151,7 +156,7 @@ void World::Draw(Graphics& Gfx)
 		ship.Draw(Gfx);
 		mineM.Draw(Gfx);
 		obstacleM.Draw(Gfx);
-		enemyM.Draw(Gfx);
+		smallEnemyM.Draw(Gfx);
 		break;
 	case GameOverState:
 		Gfx.DrawSprite(0, 0, gameOverSurface);
@@ -223,7 +228,8 @@ void World::PlayerInput(Keyboard& Kbd)
 					smallLeftBulletM.Reset();
 					smallRightBulletM.Reset();
 					blackholeM.Reset();
-					enemyM.Reset();
+					smallEnemyM.Reset();
+					droneM.Reset();
 					gameOverSong.StopAll();
 					titleSong.Play();
 					gState = TitleState;
@@ -279,9 +285,9 @@ void World::CheckCollisions()
 			}
 		}
 
-		for (int i = 0; i < enemyM.GetSmallCount(); ++i)
+		for (int i = 0; i < smallEnemyM.GetSmallCount(); ++i)
 		{
-			auto& smallShip = enemyM.GetSmallShip(i);
+			auto& smallShip = smallEnemyM.GetSmallShip(i);
 			if (!smallShip.IsAlive())
 				continue;
 			const auto smallShipRect = smallShip.GetCollisionRect();

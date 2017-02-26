@@ -15,8 +15,9 @@
 #include "TitleScreen.h"
 #include "ObstacleManager.h"
 #include "BlackHoleManager.h"
-#include "EnemyManager.h"
+#include "SmallEnemyManager.h"
 #include "BlackHoleLevel.h"
+#include "DroneManager.h"
 
 class World
 {
@@ -90,7 +91,7 @@ private:
 	HighScore scores[nScores];
 	Keyboard::Event event;
 
-	EnemyManager enemyM;
+	SmallEnemyManager smallEnemyM;
 	AnimationFrames smallEnemyExhaust;
 	AnimationFrames smallEnemyExplode;
 	Sound smallExplo = L"smallshipexplo.wav";
@@ -101,4 +102,9 @@ private:
 	AnimationFrames cometAnim;
 	AnimationFrames BlackHoleBGFrames;
 	BlackHoleLevel blackHoleLevel;
+
+	DroneManager droneM;
+	AnimationFrames droneExplo;
+	AnimationFrames droneAnim;
+	Sound droneExploSound = L"droneexplo.wav";
 };

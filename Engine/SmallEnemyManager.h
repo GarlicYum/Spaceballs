@@ -3,10 +3,10 @@
 #include <random>
 #include <vector>
 
-class EnemyManager
+class SmallEnemyManager
 {
 public:
-	EnemyManager(AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo, 
+	SmallEnemyManager(AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo, 
 		BulletManager& smallLeftBulletM, BulletManager& smallRightBulletM);
 	void Draw(Graphics& gfx);
 	void Reset();

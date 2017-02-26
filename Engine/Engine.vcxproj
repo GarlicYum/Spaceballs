@@ -146,8 +146,10 @@
     <ClInclude Include="ChiliWin.h" />
     <ClInclude Include="Colors.h" />
     <ClInclude Include="Comet.h" />
+    <ClInclude Include="Drone.h" />
+    <ClInclude Include="DroneManager.h" />
     <ClInclude Include="DXErr.h" />
-    <ClInclude Include="EnemyManager.h" />
+    <ClInclude Include="SmallEnemyManager.h" />
     <ClInclude Include="EnergyBoost.h" />
     <ClInclude Include="EnergyBoostManager.h" />
     <ClInclude Include="FrameTimer.h" />
@@ -185,8 +187,10 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletManager.cpp" />
     <ClCompile Include="Comet.cpp" />
+    <ClCompile Include="Drone.cpp" />
+    <ClCompile Include="DroneManager.cpp" />
     <ClCompile Include="DXErr.cpp" />
-    <ClCompile Include="EnemyManager.cpp" />
+    <ClCompile Include="SmallEnemyManager.cpp" />
     <ClCompile Include="EnergyBoost.cpp" />
     <ClCompile Include="EnergyBoostManager.cpp" />
     <ClCompile Include="FrameTimer.cpp" />

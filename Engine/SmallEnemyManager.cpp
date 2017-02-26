@@ -1,6 +1,6 @@
-#include "EnemyManager.h"
+#include "SmallEnemyManager.h"
 
-EnemyManager::EnemyManager(AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo, 
+SmallEnemyManager::SmallEnemyManager(AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo, 
 	BulletManager& smallLeftBulletM, BulletManager& smallRightBulletM)
 {
 	std::mt19937 rng;
@@ -11,7 +11,7 @@ EnemyManager::EnemyManager(AnimationFrames& smallexhaust, AnimationFrames& small
 	}
 }
 
-void EnemyManager::Draw(Graphics & gfx)
+void SmallEnemyManager::Draw(Graphics & gfx)
 {
 	for (int i = 0; i < nSmallShip; ++i)
 	{
@@ -19,7 +19,7 @@ void EnemyManager::Draw(Graphics & gfx)
 	}
 }
 
-void EnemyManager::Reset()
+void SmallEnemyManager::Reset()
 {
 	nSmallShip = 0;
 	smallShipCounter = 0.0f;
@@ -29,7 +29,7 @@ void EnemyManager::Reset()
 	}
 }
 
-void EnemyManager::Update(float dt, float playerX)
+void SmallEnemyManager::Update(float dt, float playerX)
 {
 	if ((smallShipCounter += dt) >= newSmallShip && nSmallShip != nSmallShipMax)
 	{
@@ -43,17 +43,17 @@ void EnemyManager::Update(float dt, float playerX)
 	}
 }
 
-int EnemyManager::GetSmallCount() const
+int SmallEnemyManager::GetSmallCount() const
 {
 	return nSmallShip;
 }
 
-SmallEnemyShip & EnemyManager::GetSmallShip(int Idx)
+SmallEnemyShip & SmallEnemyManager::GetSmallShip(int Idx)
 {
 	return smallShip[Idx];
 }
 
-const SmallEnemyShip & EnemyManager::GetSmallShip(int Idx) const
+const SmallEnemyShip & SmallEnemyManager::GetSmallShip(int Idx) const
 {
 	return smallShip[Idx];
 }
