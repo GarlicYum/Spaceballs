@@ -1,6 +1,6 @@
 #include "Drone.h"
 
-Drone::Drone(float X, AnimationFrames & DroneAnim, AnimationFrames & DroneExplode, Sound & ExploSound)
+Drone::Drone(float X, AnimationFrames & DroneAnim, AnimationFrames& DroneExplode, Sound& ExploSound)
 	:
 	pos(X, -40.0f),
 	resetX(X),
@@ -11,27 +11,17 @@ Drone::Drone(float X, AnimationFrames & DroneAnim, AnimationFrames & DroneExplod
 
 void Drone::Move(float dt)
 {
-	pos.y += vel.y;
-	pos.x += vel.x;
+	pos.y += vel.y *dt;
+	pos.x += vel.x *dt;
 
-	if (vel.x >= 0.0f && vel.x <= 8.0f && accelerating)
+	if (pos.x >= resetX)
 	{
-		vel.x += 0.4f;
+		vel.x -= 12.0f;
 	}
-	else if (vel.x >= 0.0f)
+	else
 	{
-		accelerating = false;
-		vel.x -= 0.4f;
+		vel.x += 12.0f;
 	}
-	else if (vel.x < 0.0f && vel.x >= -8.0f && !accelerating)
-	{
-		vel.x -= 0.4f;
-	}
-	else if (vel.x < 0.0f)
-	{
-		accelerating = true;
-		vel.x += 0.4f;
-	}	
 }
 
 void Drone::Update(float dt)
@@ -51,12 +41,13 @@ void Drone::Update(float dt)
 		}
 		break;
 
-//	case DyingState:
-//		droneExplode.Advance();
-//		if (droneExplode.AnimEnd())
-//		{
-//			state = DeadState;
-//		}
+	case DyingState:
+		droneExplode.Advance();
+		if (droneExplode.AnimEnd())
+		{
+			state = DeadState;
+		}
+		break;
 	}
 }
 
@@ -67,9 +58,9 @@ void Drone::Draw(Graphics & gfx)
 	case AliveState:
 		droneAnim.Draw(int(pos.x), int(pos.y), gfx);
 		break;
-//	case DyingState:
-//		droneExplode.Draw(int(pos.x), int(pos.y), gfx);
-//		break;
+	case DyingState:
+		droneExplode.Draw(int(pos.x), int(pos.y), gfx);
+		break;
 	}
 }
 
@@ -84,11 +75,17 @@ void Drone::Reset()
 	pos.x = resetX;
 	pos.y = -40.0f;
 	droneAnim.Reset();
+	droneExplode.Reset();
 }
 
 void Drone::HandleCollision()
 {
-	state = DyingState;
+	if (state == AliveState)
+	{
+		exploSound.Play(0.5f, 0.7f);
+		state = DyingState;
+	}
+	
 }
 
 int Drone::GetCollisionDmg() const

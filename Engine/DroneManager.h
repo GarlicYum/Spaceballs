@@ -7,7 +7,7 @@
 class DroneManager
 {
 public:
-	DroneManager(AnimationFrames& DroneAnim, AnimationFrames& DroneExplo, Sound& ExploSound);
+	DroneManager(AnimationFrames& DroneAnim, AnimationFrames& DroneExplode, Sound& ExploSound);
 	void Draw(Graphics& gfx);
 	void Reset();
 	void Update(float dt);

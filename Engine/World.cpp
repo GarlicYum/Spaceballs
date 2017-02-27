@@ -21,10 +21,10 @@ World::World()
 	smallEnemyExplode(L"smallshipexplo\\", 13),
 	blackHoleLevel(BlackHoleBGFrames, cometAnim),
 	BlackHoleBGFrames(L"blackholeBG\\", 20),
-	cometAnim(L"comet\\", 6)
-//	droneM(droneAnim, droneExplo, droneExploSound),
-//	droneAnim(L"drone\\", 8),
-//	droneExplo(L"dronexplo\\", 8)
+	cometAnim(L"comet\\", 6),
+	droneM(droneAnim, droneExplo, droneExploSound),
+	droneAnim(L"drone\\", 8),
+	droneExplo(L"dronexplo\\", 8)
 {
 	std::mt19937 rng;
 	std::uniform_real_distribution<float> xDist(0.0f, 790.0f);
@@ -74,7 +74,7 @@ void World::Update(Keyboard& Kbd, float Dt)
 		obstacleM.Update(Dt);
 		CheckCollisions();
 		smallEnemyM.Update(Dt, ship.GetX());
-//		droneM.Update(Dt);
+		droneM.Update(Dt);
 
 		if (!ship.IsAlive())
 		{
@@ -142,7 +142,7 @@ void World::Draw(Graphics& Gfx)
 		mineM.Draw(Gfx);
 		obstacleM.Draw(Gfx);
 		smallEnemyM.Draw(Gfx);
-//		droneM.Draw(Gfx);
+		droneM.Draw(Gfx);
 		break;
 	case BlackHoleState:
 		blackHoleLevel.Draw(Gfx);
@@ -229,7 +229,7 @@ void World::PlayerInput(Keyboard& Kbd)
 					smallRightBulletM.Reset();
 					blackholeM.Reset();
 					smallEnemyM.Reset();
-	//				droneM.Reset();
+					droneM.Reset();
 					gameOverSong.StopAll();
 					titleSong.Play();
 					gState = TitleState;
@@ -455,6 +455,44 @@ void World::CheckCollisions()
 				smallShield.HandleCollision(shield);
 			}
 		}
+
+		for (int i = 0; i < droneM.GetDroneCount(); ++i)
+		{
+			auto& drone = droneM.GetDrone(i);
+			if (!drone.IsAlive())
+				continue;
+			const auto droneRect = drone.GetCollisionRect();
+
+			if (shield.GetisActive())
+			{
+				const auto shieldRect = shield.GetCollisionRect();
+				if (IsColliding(shieldRect, droneRect))
+				{
+					drone.HandleCollision();
+					shield.HandleCollision(drone.GetCollisionDmg());
+				}
+			}
+			else if (IsColliding(shipRect, droneRect) && ship.IsAlive())
+			{
+				drone.HandleCollision();
+				ship.HandleCollision(drone.GetCollisionDmg());
+			}
+
+			for (int i = 0; i < bulletM.GetNumBullets(); ++i)
+			{
+				auto& bullet = bulletM.GetBullet(i);
+				if (!bullet.IsActive())
+					continue;
+				const auto bulletRect = bullet.GetCollisionRect();
+				if (IsColliding(bulletRect, droneRect))
+				{
+					drone.HandleCollision();
+					bullet.HandleCollision();
+					break;
+				}
+			}
+		}
+
 		break;
 		
 		case BlackHoleState:
