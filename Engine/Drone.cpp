@@ -85,7 +85,6 @@ void Drone::HandleCollision()
 		exploSound.Play(0.5f, 0.5f);
 		state = DyingState;
 	}
-	
 }
 
 int Drone::GetCollisionDmg() const
