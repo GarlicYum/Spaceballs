@@ -26,7 +26,6 @@ public:
 private:
 	Vec2 pos;
 	float resetX;
-	float xDist = 150.0f;
 	Vec2 vel = Vec2(0.0f, 4.0f);
 	static constexpr float width = 80.0f;
 	static constexpr float height = 40.0f;

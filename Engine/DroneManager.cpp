@@ -31,9 +31,9 @@ void DroneManager::Reset()
 
 void DroneManager::Update(float dt)
 {
-	if ((droneCounter += dt) > newDrone && nDrones != nDronesMax)
+	if ((droneCounter += dt) >= newDrone && nDrones != nDronesMax)
 	{
-		++nDrones;
+		nDrones++;
 		droneCounter = 0.0f;
 	}
 	for (int i = 0; i < nDrones; ++i)

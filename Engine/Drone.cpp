@@ -51,12 +51,12 @@ void Drone::Update(float dt)
 		}
 		break;
 
-	case DyingState:
-		droneExplode.Advance();
-		if (droneExplode.AnimEnd())
-		{
-			state = DeadState;
-		}
+//	case DyingState:
+//		droneExplode.Advance();
+//		if (droneExplode.AnimEnd())
+//		{
+//			state = DeadState;
+//		}
 	}
 }
 
@@ -67,9 +67,9 @@ void Drone::Draw(Graphics & gfx)
 	case AliveState:
 		droneAnim.Draw(int(pos.x), int(pos.y), gfx);
 		break;
-	case DyingState:
-		droneExplode.Draw(int(pos.x), int(pos.y), gfx);
-		break;
+//	case DyingState:
+//		droneExplode.Draw(int(pos.x), int(pos.y), gfx);
+//		break;
 	}
 }
 
@@ -83,7 +83,7 @@ void Drone::Reset()
 	state = AliveState;
 	pos.x = resetX;
 	pos.y = -40.0f;
-	droneExplode.Reset();
+	droneAnim.Reset();
 }
 
 void Drone::HandleCollision()
