@@ -74,7 +74,6 @@ public:
 		{
 			PutPixel(x, y, c);
 		}
-
 	}
 	void Graphics::DrawLightBall(int x, int y, int radi, int hole, int r, int g, int b);
 	void PutPixel( int x,int y,Color c );
