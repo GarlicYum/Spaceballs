@@ -103,8 +103,9 @@ private:
 	AnimationFrames BlackHoleBGFrames;
 	BlackHoleLevel blackHoleLevel;
 
-	DroneManager droneM;
 	AnimationFrames droneExplo;
 	AnimationFrames droneAnim;
 	Sound droneExploSound = L"droneexplo.wav";
+	DroneManager droneM;
+	
 };

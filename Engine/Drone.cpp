@@ -86,7 +86,7 @@ void Drone::Reset()
 	droneExplode.Reset();
 }
 
-void Drone::HandleCollision(int dmg)
+void Drone::HandleCollision()
 {
 	state = DyingState;
 }
@@ -101,29 +101,4 @@ bool Drone::IsAlive() const
 	return state == AliveState;
 }
 
-void Drone::Decelerate(float dt)
-{
-	if (vel.x >= 0.0f)
-	{ 
-		if (vel.x )
-		vel.x -= 50.0f * dt;
-	}
-	else
-	{
-		vel.x += 50.0f * dt;
-	}
-}
 
-void Drone::Accelerate(float dt)
-{
-	if (vel.x >= 0.0f)
-	{
-		if(vel.x < 150.0f)
-		vel.x += 50.0f * dt;
-	}
-	else
-	{
-		if (vel.x > -150.0f)
-		vel.x -= 50.0f * dt;
-	}
-}

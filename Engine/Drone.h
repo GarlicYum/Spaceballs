@@ -19,11 +19,9 @@ public:
 	void Draw(Graphics& gfx);
 	RectF GetCollisionRect() const;
 	void Reset();
-	void HandleCollision(int dmg);
+	void HandleCollision();
 	int GetCollisionDmg() const;
 	bool IsAlive() const;
-	void Decelerate(float dt);
-	void Accelerate(float dt);
 
 private:
 	Vec2 pos;

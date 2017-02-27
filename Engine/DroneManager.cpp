@@ -47,12 +47,12 @@ int DroneManager::GetDroneCount() const
 	return nDrones;
 }
 
-Drone & DroneManager::GetSmallShip(int Idx)
+Drone & DroneManager::GetDrone(int Idx)
 {
 	return drone[Idx];
 }
 
-const Drone & DroneManager::GetSmallShip(int Idx) const
+const Drone & DroneManager::GetDrone(int Idx) const
 {
 	return drone[Idx];
 }

@@ -12,8 +12,8 @@ public:
 	void Reset();
 	void Update(float dt);
 	int GetDroneCount() const;
-	Drone& GetSmallShip(int Idx);
-	const Drone& GetSmallShip(int Idx) const;
+	Drone& GetDrone(int Idx);
+	const Drone& GetDrone(int Idx) const;
 
 private:
 	static constexpr int nDronesMax = 30;
