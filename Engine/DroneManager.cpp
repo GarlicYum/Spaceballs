@@ -7,7 +7,7 @@ DroneManager::DroneManager(AnimationFrames & DroneAnim, AnimationFrames& DroneEx
 
 	for (int i = 0; i < nDronesMax; ++i)
 	{
-		drone.emplace_back<Drone>(Drone{ xDist(rng), DroneAnim, DroneExplode, ExploSound });
+		drone.emplace_back<Drone>(Drone{ 250.0f, DroneAnim, DroneExplode, ExploSound });
 	}
 }
 

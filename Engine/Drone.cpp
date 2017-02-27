@@ -82,7 +82,7 @@ void Drone::HandleCollision()
 {
 	if (state == AliveState)
 	{
-		exploSound.Play(0.5f, 0.7f);
+		exploSound.Play(0.5f, 0.5f);
 		state = DyingState;
 	}
 	

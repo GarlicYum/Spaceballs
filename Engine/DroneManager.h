@@ -16,9 +16,9 @@ public:
 	const Drone& GetDrone(int Idx) const;
 
 private:
-	static constexpr int nDronesMax = 30;
+	static constexpr int nDronesMax = 6;
 	int nDrones = 0;
 	float droneCounter = 0.0f;
-	static constexpr float newDrone = 2.0f;
+	static constexpr float newDrone = 0.3f;
 	std::vector<Drone> drone;
 };
