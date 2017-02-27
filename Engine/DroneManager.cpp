@@ -4,6 +4,7 @@ DroneManager::DroneManager(AnimationFrames & DroneAnim, AnimationFrames & DroneE
 {
 	std::mt19937 rng;
 	std::uniform_real_distribution<float> xDist(40.0f, 750.0f);
+
 	for (int i = 0; i < nDronesMax; ++i)
 	{
 		drone.emplace_back<Drone>(Drone{ xDist(rng), DroneAnim, DroneExplo, ExploSound });

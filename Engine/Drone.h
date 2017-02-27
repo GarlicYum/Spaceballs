@@ -22,12 +22,14 @@ public:
 	void HandleCollision(int dmg);
 	int GetCollisionDmg() const;
 	bool IsAlive() const;
+	void Decelerate(float dt);
+	void Accelerate(float dt);
 
 private:
 	Vec2 pos;
 	float resetX;
-	float xDist = 100.0f;
-	Vec2 vel = Vec2(200.0f, 100.0f);
+	float xDist = 150.0f;
+	Vec2 vel = Vec2(0.0f, 4.0f);
 	static constexpr float width = 80.0f;
 	static constexpr float height = 40.0f;
 	static constexpr int collisionDmg = 50;
@@ -35,4 +37,5 @@ private:
 	Animation droneAnim;
 	Animation droneExplode;
 	Sound& exploSound;
+	bool accelerating = true;
 };

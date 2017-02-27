@@ -3,6 +3,7 @@
 Drone::Drone(float X, AnimationFrames & DroneAnim, AnimationFrames & DroneExplode, Sound & ExploSound)
 	:
 	pos(X, -40.0f),
+	resetX(X),
 	droneAnim(DroneAnim, 2),
 	droneExplode(DroneExplode, 2),
 	exploSound(ExploSound)
@@ -10,15 +11,27 @@ Drone::Drone(float X, AnimationFrames & DroneAnim, AnimationFrames & DroneExplod
 
 void Drone::Move(float dt)
 {
-	pos.y += vel.y * dt;
-	pos.x += vel.x * dt;
-	xDist -= vel.x * dt;
-	if (xDist <= 0.0f)
-	{
-		xDist = 100.0f;
-		vel.x = -vel.x;
-	}
+	pos.y += vel.y;
+	pos.x += vel.x;
 
+	if (vel.x >= 0.0f && vel.x <= 8.0f && accelerating)
+	{
+		vel.x += 0.4f;
+	}
+	else if (vel.x >= 0.0f)
+	{
+		accelerating = false;
+		vel.x -= 0.4f;
+	}
+	else if (vel.x < 0.0f && vel.x >= -8.0f && !accelerating)
+	{
+		vel.x -= 0.4f;
+	}
+	else if (vel.x < 0.0f)
+	{
+		accelerating = true;
+		vel.x += 0.4f;
+	}	
 }
 
 void Drone::Update(float dt)
@@ -86,4 +99,31 @@ int Drone::GetCollisionDmg() const
 bool Drone::IsAlive() const
 {
 	return state == AliveState;
+}
+
+void Drone::Decelerate(float dt)
+{
+	if (vel.x >= 0.0f)
+	{ 
+		if (vel.x )
+		vel.x -= 50.0f * dt;
+	}
+	else
+	{
+		vel.x += 50.0f * dt;
+	}
+}
+
+void Drone::Accelerate(float dt)
+{
+	if (vel.x >= 0.0f)
+	{
+		if(vel.x < 150.0f)
+		vel.x += 50.0f * dt;
+	}
+	else
+	{
+		if (vel.x > -150.0f)
+		vel.x -= 50.0f * dt;
+	}
 }
