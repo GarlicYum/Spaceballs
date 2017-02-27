@@ -16,9 +16,9 @@ public:
 	const BlackHole& GetBlackHole(int Idx) const;
 
 private:
-	static constexpr int nHolesMax = 1;
+	static constexpr int nHolesMax = 4;
 	int nHoles = 0;
 	float holeCounter = 0.0f;
-	static constexpr float newHole = 3.5f;
+	static constexpr float newHole = 13.5f;
 	std::vector<BlackHole> bHole;
 };
