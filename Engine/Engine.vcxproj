@@ -139,6 +139,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="BigEnemyShip.h" />
     <ClInclude Include="BlackHole.h" />
     <ClInclude Include="BlackHoleLevel.h" />
     <ClInclude Include="BlackHoleManager.h" />
