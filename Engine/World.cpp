@@ -112,6 +112,10 @@ void World::Update(Keyboard& Kbd, float Dt)
 		{
 			gState = TransitionState;
 		}
+		if (ship.IsDead())
+		{
+			gState = GameOverState;
+		}
 		break;
 
 	case TransitionState:

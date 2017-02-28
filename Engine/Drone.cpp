@@ -74,6 +74,7 @@ void Drone::Reset()
 	state = AliveState;
 	pos.x = resetX;
 	pos.y = -40.0f;
+	vel.x = 360.0f;
 	droneAnim.Reset();
 	droneExplode.Reset();
 }
