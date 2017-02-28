@@ -18,9 +18,15 @@ Bullet::Bullet(Vec2 & pos_in, float VY, Color C, int bulletsize, int Dmg)
 {}
 
 //Update makes the bullet move in y direction and changes state to deadstate if it reaches the end of the screen
-void Bullet::Update(float dt)
+void Bullet::Update(float dt, Animation& bulletSprite)
 {
 	pos.y -= vy * dt;
+
+	bulletSprite.Advance();
+	if (bulletSprite.AnimEnd)
+	{
+		bulletSprite.Reset();
+	}
 
 	if ((pos.y - bulletSize) < 0 || (pos.y + bulletSize) >= Graphics::ScreenHeight)
 	{
@@ -34,9 +40,9 @@ bool Bullet::HasSpawned() const
 	return bState == AliveState;
 }
 
-void Bullet::Draw(Graphics& gfx)
+void Bullet::Draw(Graphics& gfx, Animation& bulletSprite)
 {
-	gfx.DrawCircle(int(pos.x), int(pos.y), bulletSize, color);
+	bulletSprite.Draw(int(pos.x), int(pos.y), gfx);
 }
 
 bool Bullet::IsActive() const

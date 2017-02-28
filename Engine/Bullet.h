@@ -2,6 +2,7 @@
 #include "Graphics.h"
 #include "RectF.h"
 #include "Vec2.h"
+#include "Animation.h"
 
 class Bullet
 {
@@ -13,9 +14,9 @@ public:
 	Bullet() = default;
 	Bullet(Vec2& pos_in);
 	Bullet(Vec2& pos_in, float VY, Color C, int bulletsize, int Dmg);
-	void Update(float dt);
+	void Update(float dt, Animation& bulletSprite);
 	bool HasSpawned() const;
-	void Draw(Graphics & gfx);
+	void Draw(Graphics & gfx, Animation& bulletSprite);
 	bool IsActive() const;
 	RectF GetCollisionRect() const;
 	void HandleCollision();

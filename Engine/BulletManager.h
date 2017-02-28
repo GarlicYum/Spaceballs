@@ -2,6 +2,7 @@
 #include "Bullet.h"
 #include "Sound.h"
 #include "Vec2.h"
+#include "Animation.h"
 
 class BulletManager
 {
@@ -12,9 +13,9 @@ public:
 	int GetNumBullets() const;
 	void FireBullet(Vec2& canonPos);
 	void FireBullet(Vec2& canonPos, float VY, Color C, int bulletsize, int Dmg, float pitch);
-	void UpdateBullets(float Dt);
+	void UpdateBullets(float Dt, Animation& bulletSprite);
 	void ResetShotsFired();
-	void DrawBullets(class Graphics& Gfx);
+	void DrawBullets(class Graphics& Gfx, Animation& bulletSprite);
 	void Reset();
 
 private:

@@ -5,7 +5,7 @@
 Ship::Ship(BulletManager& Manager, Surface& ShipSurface, 
 	Surface& red, AnimationFrames& shiprekt, AnimationFrames& holeAnim, 
 	AnimationFrames& holeRektAnim, AnimationFrames& shipexplo, AnimationFrames& exhaustAnim, 
-	AnimationFrames& rektExhaustAnim, Sound& shipexplodesound, Sound& blackholesound)
+	AnimationFrames& rektExhaustAnim, Sound& shipexplodesound, Sound& blackholesound, AnimationFrames& bulletAnim)
 	:
 	bManager(Manager),
 	shipSurface(ShipSurface),
@@ -17,7 +17,8 @@ Ship::Ship(BulletManager& Manager, Surface& ShipSurface,
 	exhaust(exhaustAnim, 2),
 	rektExhaust(rektExhaustAnim, 2),
 	shipExplodeSound(shipexplodesound),
-	blackHoleSound(blackholesound)
+	blackHoleSound(blackholesound),
+	bulletSprite(bulletAnim, 2)
 {}
 
 void Ship::HandleCollision(int Damage)
@@ -153,7 +154,7 @@ void Ship::Draw(Graphics& gfx)
 	}	
 
 	health.Draw(gfx);
-	bManager.DrawBullets(gfx);
+	bManager.DrawBullets(gfx, bulletSprite);
 }
 
 void Ship::ClampScreen()
@@ -324,6 +325,7 @@ void Ship::Update(Keyboard & wnd, float dt)
 	switch (state)
 	{
 	case AliveState:
+		bManager.UpdateBullets(dt, bulletSprite);
 		if (int(pos.y) > (Graphics::ScreenHeight - 10))
 		{
 			health.Damage(health.GetHealthAmount());

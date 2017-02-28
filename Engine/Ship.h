@@ -18,7 +18,7 @@ public:
 	Ship(BulletManager& Manager, Surface& ShipSurface, 
 		Surface& red, AnimationFrames& shiprekt, 
 		AnimationFrames& holeAnim, AnimationFrames& holeRektAnim, AnimationFrames& shipexplo, 
-		AnimationFrames& exhaustAnim, AnimationFrames& rektExhaustAnim, Sound& shipexplodesound, Sound& blackholesound);
+		AnimationFrames& exhaustAnim, AnimationFrames& rektExhaustAnim, Sound& shipexplodesound, Sound& blackholesound, AnimationFrames& bulletAnim);
 	void HandleCollision(int Damage);
 	void Draw(Graphics& gfx);
 	void Update(Keyboard& wnd, float dt);
@@ -79,5 +79,6 @@ private:
 	float oldX;
 	float oldY;
 	bool firstTransition = true;
+	Animation bulletSprite;
 
 };

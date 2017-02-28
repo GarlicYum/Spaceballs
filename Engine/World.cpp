@@ -4,7 +4,7 @@ World::World()
 	:
 	animExplosion(L"mineExplo\\", 8),
 	ship(bulletM, shipSurface, redSurface, shipRekt, shipHoleAnim, shipHoleRektAnim, shipExploAnim, 
-		shipExhaustAnim, rektExhaustAnim, shipExplodeSound, blackHoleSound),
+		shipExhaustAnim, rektExhaustAnim, shipExplodeSound, blackHoleSound, bulletAnim),
 	mineM(explosion, mine, animExplosion),
 	eBoostM(eBoostSound, eBoostHeart),
 	obstacleM(obstacleSurface),
@@ -26,7 +26,8 @@ World::World()
 	droneExplo(L"dronexplo\\", 8),
 	droneM(droneAnim, droneExplo, droneExploSound),
 	bigEnemyExplo(L"bigshipexplo\\", 16),
-	bigEnemy(350.0f, bigEnemySurface, bigEnemyBulletM, bigEnemyExplo, bigEnemyExploSound)
+	bigEnemy(350.0f, bigEnemySurface, bigEnemyBulletM, bigEnemyExplo, bigEnemyExploSound),
+	bulletAnim(L"bullet\\", 18)
 	
 {
 	std::mt19937 rng;
@@ -66,7 +67,6 @@ void World::Update(Keyboard& Kbd, float Dt)
 	case PlayState:
 		titleSong.StopAll();
 		ship.Update(Kbd, Dt);
-		bulletM.UpdateBullets(Dt);
 		smallLeftBulletM.UpdateBullets(Dt);
 		smallRightBulletM.UpdateBullets(Dt);
 		UpdateStars(Dt);

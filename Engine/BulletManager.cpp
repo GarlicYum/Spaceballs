@@ -52,26 +52,26 @@ void BulletManager::FireBullet(Vec2& canonPos, float VY, Color C, int bulletsize
 	}
 }
 
-void BulletManager::UpdateBullets(float Dt)
+void BulletManager::UpdateBullets(float Dt, Animation& bulletSprite)
 {
 	for (int i = 0; i < nBullets; ++i)
 	{
 		auto &bullet = bullets[i];
 		if (bullet.HasSpawned())
 		{
-			bullet.Update(Dt);
+			bullet.Update(Dt, bulletSprite);
 		}
 	}
 }
 
-void BulletManager::DrawBullets(Graphics& Gfx)
+void BulletManager::DrawBullets(Graphics& Gfx, Animation& bulletSprite)
 {
 	for (int i = 0; i < nBullets; ++i)
 	{
 		auto& bullet = bullets[i];
 		if (bullet.HasSpawned())
 		{
-			bullet.Draw(Gfx);
+			bullet.Draw(Gfx, bulletSprite);
 		}
 	}
 }

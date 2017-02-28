@@ -114,4 +114,6 @@ private:
 	BigEnemyShip bigEnemy;
 	BulletManager bigEnemyBulletM;
 	Sound bigEnemyExploSound = L"bigenemyexplo.wav";
+
+	AnimationFrames bulletAnim;
 };
