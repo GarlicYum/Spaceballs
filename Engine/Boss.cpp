@@ -50,6 +50,16 @@ void Boss::Draw(Graphics & gfx)
 	}
 }
 
+int Boss::GetCollisionDmg() const
+{
+	return collisionDmg;
+}
+
+RectF Boss::GetCollisionRect() const
+{
+	return RectF(pos, width, height);
+}
+
 void Boss::Move(float dt)
 {
 	if (state == EntranceState)
@@ -64,4 +74,11 @@ void Boss::Move(float dt)
 			state = AliveState;
 		}
 	}
+}
+
+void Boss::Reset()
+{
+	state = EntranceState;
+	pos.x = 315.0f;
+	pos.y = -250.0f;
 }

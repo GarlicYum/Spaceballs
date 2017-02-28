@@ -135,6 +135,15 @@ void World::Update(Keyboard& Kbd, float Dt)
 		ship.Update(Kbd, Dt);
 		UpdateStars(Dt);
 		boss.Update(Dt);
+
+		if (!ship.IsAlive())
+		{
+			bossSong.StopAll();
+		}
+		if (ship.IsDead())
+		{
+			gState = GameOverState;
+		}
 		break;
 
 	case GameOverState:
@@ -180,6 +189,7 @@ void World::Draw(Graphics& Gfx)
 		DrawStars(Gfx);
 		ship.Draw(Gfx);
 		boss.Draw(Gfx);
+		CheckCollisions();
 		break;
 	case GameOverState:
 		Gfx.DrawSprite(0, 0, gameOverSurface);
@@ -256,6 +266,7 @@ void World::PlayerInput(Keyboard& Kbd)
 					droneM.Reset();
 					bigEnemy.Reset();
 					bigEnemyBulletM.Reset();
+					boss.Reset();
 					gameOverSong.StopAll();
 					titleSong.Play();
 					gState = TitleState;
@@ -270,6 +281,7 @@ void World::PlayerInput(Keyboard& Kbd)
 void World::CheckCollisions()
 {
 	const auto shipRect = ship.GetCollisionRect();
+	const auto& blackholeRect = blackHoleLevel.GetCollisionRect();
 	auto& shield = shieldM.GetShield();
 	switch (gState)
 	{
@@ -571,7 +583,6 @@ void World::CheckCollisions()
 		break;
 		
 		case BlackHoleState:
-			const auto& blackholeRect = blackHoleLevel.GetCollisionRect();
 			if (IsColliding(blackholeRect, shipRect))
 			{
 				ship.CollidesWithHole(true);
@@ -591,5 +602,26 @@ void World::CheckCollisions()
 				}
 			}
 		break;
+
+		case BossState:
+			const auto& bossRect = boss.GetCollisionRect();
+			if (IsColliding(bossRect, shipRect) && ship.IsAlive())
+			{
+				ship.HandleCollision(boss.GetCollisionDmg());
+			}
+
+			for (int i = 0; i < bulletM.GetNumBullets(); ++i)
+			{
+				auto& bullet = bulletM.GetBullet(i);
+				if (!bullet.IsActive())
+					continue;
+				const auto bulletRect = bullet.GetCollisionRect();
+				if (IsColliding(bulletRect, bossRect))
+				{
+					bullet.HandleCollision();
+					break;
+				}
+			}
+			break;
 	}
 }

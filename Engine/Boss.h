@@ -17,10 +17,12 @@ public:
 	Boss(AnimationFrames& bossAnim, BulletManager& BulletM);
 	void Update(float dt);
 	void Draw(Graphics& gfx);
-	RectF GetCollisionRect();
+	RectF GetCollisionRect() const;
+	int GetCollisionDmg() const;
 	void Attack();
 	void Move(float dt);
 	void HandleCollision();
+	void Reset();
 
 private:
 	Vec2 pos = Vec2(315.0f, -250.0f);
