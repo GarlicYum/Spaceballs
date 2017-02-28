@@ -68,6 +68,16 @@ int Bullet::GetDamage()
 	return dmg;
 }
 
+void Bullet::DecreaseDmg()
+{
+	dmg = 1;
+}
+
+void Bullet::ResetDmg()
+{
+	dmg = 20;
+}
+
 void Bullet::Reset()
 {
 	bState = DeadState;

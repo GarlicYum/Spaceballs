@@ -29,7 +29,9 @@ World::World()
 	bigEnemy(350.0f, bigEnemySurface, bigEnemyBulletM, bigEnemyExplo, bigEnemyExploSound, bigBulletAnim),
 	bulletAnim(L"bullet\\", 18),
 	bigBulletAnim(L"bigbullet\\", 26),
-	smallBulletAnim(L"smallbullet\\", 18)
+	smallBulletAnim(L"smallbullet\\", 18),
+	bossAnim(L"boss\\", 8),
+	boss(bossAnim, bossBulletM)
 	
 {
 	std::mt19937 rng;
@@ -128,6 +130,13 @@ void World::Update(Keyboard& Kbd, float Dt)
 		blackHoleLevel.Reset();
 		break;
 
+	case BossState:
+		titleSong.StopAll();
+		ship.Update(Kbd, Dt);
+		UpdateStars(Dt);
+		boss.Update(Dt);
+		break;
+
 	case GameOverState:
 		PlayerInput(Kbd);
 		break;
@@ -166,6 +175,11 @@ void World::Draw(Graphics& Gfx)
 		mineM.Draw(Gfx);
 		obstacleM.Draw(Gfx);
 		smallEnemyM.Draw(Gfx);
+		break;
+	case BossState:
+		DrawStars(Gfx);
+		ship.Draw(Gfx);
+		boss.Draw(Gfx);
 		break;
 	case GameOverState:
 		Gfx.DrawSprite(0, 0, gameOverSurface);
@@ -212,7 +226,7 @@ void World::PlayerInput(Keyboard& Kbd)
 			{
 				if (event.GetCode() == VK_RETURN)
 				{
-					gState = PlayState;
+					gState = BossState; //////////////////////////////////////////////////////////////////////////temporary
 					mainSong.Play(1.0f, 0.5f);
 				}
 			}

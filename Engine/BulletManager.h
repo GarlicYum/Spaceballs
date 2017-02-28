@@ -16,6 +16,7 @@ public:
 	void UpdateBullets(float Dt, Animation& bulletSprite);
 	void ResetShotsFired();
 	void DrawBullets(class Graphics& Gfx, Animation& bulletSprite);
+	void DecreaseDmg();
 	void Reset();
 
 private:

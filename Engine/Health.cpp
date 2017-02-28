@@ -1,6 +1,13 @@
 #include "Health.h"
 
 
+Health::Health(int X, int Y, Color C)
+	:
+	x(X),
+	y(Y),
+	c(C)
+{}
+
 void Health::Damage(int dmg)
 {
 	healthAmount -= dmg;

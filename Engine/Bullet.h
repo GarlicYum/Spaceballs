@@ -21,6 +21,8 @@ public:
 	RectF GetCollisionRect() const;
 	void HandleCollision();
 	int GetDamage();
+	void DecreaseDmg();
+	void ResetDmg();
 	void Reset();
 
 private:

@@ -19,13 +19,14 @@
 #include "BlackHoleLevel.h"
 #include "DroneManager.h"
 #include "BigEnemyShip.h"
+#include "Boss.h"
 
 class World
 {
 public:
 	enum GameState
 	{
-		TitleState, PlayState, BlackHoleState, TransitionState, GameOverState
+		TitleState, PlayState, BlackHoleState, TransitionState, BossState, GameOverState
 	};
 	World();
 	~World();
@@ -118,4 +119,8 @@ private:
 	AnimationFrames bulletAnim;
 	AnimationFrames bigBulletAnim;
 	AnimationFrames smallBulletAnim;
+
+	AnimationFrames bossAnim;
+	Boss boss;
+	BulletManager bossBulletM;
 };

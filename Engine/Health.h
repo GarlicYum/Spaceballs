@@ -4,6 +4,8 @@
 class Health
 {
 public:
+	Health() = default;
+	Health(int X, int Y, Color C);
 	void Damage(int dmg);
 	void Restore(int restore);
 	void Draw(Graphics& gfx);
@@ -14,8 +16,8 @@ public:
 private:
 	void ColorMeter();
 	static constexpr int height = 10;
-	static constexpr int x = 50;
-	static constexpr int y = 570;
+	int x = 50;
+	int y = 570;
 	int healthAmount = 300;
 	static constexpr int maxHealth = 300;
 	Color c = Colors::Green;

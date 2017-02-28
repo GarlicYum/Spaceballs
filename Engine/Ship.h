@@ -41,6 +41,7 @@ public:
 	void SetX(float X);
 	int GetDmg() const;
 	void CollidesWithHole(bool collides);
+	void PrepareForBoss();
 	void Reset();
 
 private:
