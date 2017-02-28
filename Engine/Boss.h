@@ -26,6 +26,7 @@ private:
 	Vec2 pos = Vec2(315.0f, -250.0f);
 	Vec2 vel = Vec2(100.0f, 100.0f);
 	Vec2 canon;
+	static constexpr float entranceSpeed = 50.0f;
 	static constexpr float width = 170.0f;
 	static constexpr float height = 250.0f;
 	static constexpr int collisionDmg = 75;

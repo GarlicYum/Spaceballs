@@ -123,4 +123,5 @@ private:
 	AnimationFrames bossAnim;
 	Boss boss;
 	BulletManager bossBulletM;
+	Sound bossSong = L"bossmusic.wav";
 };

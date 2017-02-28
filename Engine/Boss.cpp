@@ -28,8 +28,8 @@ void Boss::Update(float dt)
 		{
 			bossSprite.Reset();
 		}
-		
 		break;
+
 	case ExplodingState:
 		break;
 	}
@@ -56,7 +56,7 @@ void Boss::Move(float dt)
 	{
 		if (int(pos.y) < 15)
 		{
-			pos.y += vel.y * dt;
+			pos.y += entranceSpeed * dt;
 		}
 		else
 		{
