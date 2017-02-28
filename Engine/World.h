@@ -116,4 +116,6 @@ private:
 	Sound bigEnemyExploSound = L"bigenemyexplo.wav";
 
 	AnimationFrames bulletAnim;
+	AnimationFrames bigBulletAnim;
+	AnimationFrames smallBulletAnim;
 };

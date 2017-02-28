@@ -20,8 +20,8 @@ void SmallEnemyShip::Attack(float dt)
 		Vec2 rightCanonPos = pos + rightCanon;
 		if ((bulletTimer += dt) > fireBullet)
 		{
-			smallLeftM.FireBullet(leftCanonPos, bulletVel, bulletColor, bulletWidth, bulletHeight, bulletDmg, bulletPitch);
-			smallRightM.FireBullet(rightCanonPos, bulletVel, bulletColor, bulletWidth, bulletHeight, bulletDmg, bulletPitch);
+			smallLeftM.FireBullet(leftCanonPos, bulletVel, bulletColor, bulletWidth, bulletHeight, bulletRectSize, bulletDmg, bulletPitch);
+			smallRightM.FireBullet(rightCanonPos, bulletVel, bulletColor, bulletWidth, bulletHeight, bulletRectSize, bulletDmg, bulletPitch);
 			smallLeftM.ResetShotsFired();
 			smallRightM.ResetShotsFired();
 			bulletTimer = 0.0f;

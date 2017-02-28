@@ -31,8 +31,8 @@ private:
 	static constexpr float coolDownOver = 0.5f;
 	float coolDownTime = 0.0f;
 	Vec2 pos;
-	Vec2 leftCanon = Vec2(6.0f, 50.0f);
-	Vec2 rightCanon = Vec2(83.0f, 50.0f);
+	Vec2 leftCanon = Vec2(-9.0f, 30.0f);
+	Vec2 rightCanon = Vec2(68.0f, 30.0f);
 	float resetX;
 	Vec2 vel = Vec2(200.0f, 100.0f);
 	BulletManager bulletM;
@@ -51,8 +51,9 @@ private:
 	static constexpr int bulletDmg = 25;
 	static constexpr float bulletVel = -600.0f;
 	Color bulletColor = Colors::Cyan;
-	static constexpr int bulletWidth = 40;
-	static constexpr int bulletHeight = 50;
+	static constexpr int bulletWidth = 30;
+	static constexpr int bulletHeight = 40;
+	static constexpr int bulletRectSize = 10;
 	static constexpr float bulletPitch = 0.7f;
 
 };

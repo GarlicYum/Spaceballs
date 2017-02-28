@@ -99,7 +99,7 @@ void BigEnemyShip::Attack(float dt)
 	{
 		Vec2 canonPos = pos + canon;
 		bulletTimer = 0.0;
-		bulletM.FireBullet(canonPos, bulletVel, bulletColor, bulletWidth, bulletHeight, bulletDmg, bulletPitch);
+		bulletM.FireBullet(canonPos, bulletVel, bulletColor, bulletHalfWidth, bulletHalfHeight, bulletRectSize, bulletDmg, bulletPitch);
 		bulletM.ResetShotsFired();
 	}
 }

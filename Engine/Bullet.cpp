@@ -7,7 +7,7 @@ Bullet::Bullet(Vec2& pos_in)
 	bState(AliveState)
 {}
 
-Bullet::Bullet(Vec2 & pos_in, float VY, Color C, int Width, int Height, int Dmg)
+Bullet::Bullet(Vec2 & pos_in, float VY, Color C, int Width, int Height, int bulletRectSize, int Dmg)
 	:
 	pos(pos_in),
 	halfWidth(Width),
@@ -15,7 +15,8 @@ Bullet::Bullet(Vec2 & pos_in, float VY, Color C, int Width, int Height, int Dmg)
 	vy(VY),
 	dmg(Dmg),
 	bState(AliveState),
-	color(C)
+	color(C),
+	rectSize(bulletRectSize)
 {}
 
 //Update makes the bullet move in y direction and changes state to deadstate if it reaches the end of the screen

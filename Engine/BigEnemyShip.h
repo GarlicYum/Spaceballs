@@ -24,10 +24,9 @@ public:
 	void Move(float dt);
 	bool IsAlive() const;
 
-
 private:
 	Vec2 pos;
-	Vec2 canon = Vec2(72.5f, 85.0f);
+	Vec2 canon = Vec2(42.5f, 75.0f);
 	Vec2 vel = Vec2(100.0f, 100.0f);
 	static constexpr float width = 145.0f;
 	static constexpr float height = 90.0f;
@@ -35,8 +34,9 @@ private:
 	const Surface& shipSurface;
 	State state = WaitState;
 	BulletManager& bulletM;
-	static constexpr int bulletWidth = 40;
-	static constexpr int bulletHeight = 50;
+	static constexpr int bulletHalfWidth = 30;
+	static constexpr int bulletHalfHeight = 37;
+	static constexpr int bulletRectSize = 20;
 	static constexpr float bulletVel = -400.0f;
 	Color bulletColor = Colors::Green;
 	static constexpr int bulletDmg = 50;
@@ -46,7 +46,7 @@ private:
 	static constexpr float newBullet = 1.5f;
 	Animation exploAnim;
 	float shipTimer = 0.0f;
-	static constexpr float waitOver = 20.0f;
+	static constexpr float waitOver = 2.0f;
 	Sound& exploSound;
 	static constexpr float bulletPitch = 0.3f;
 
