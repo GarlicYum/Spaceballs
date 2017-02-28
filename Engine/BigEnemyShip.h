@@ -12,7 +12,7 @@ public:
 	{
 		WaitState, AliveState, DyingState
 	};
-	BigEnemyShip(float X, const Surface& surface, BulletManager& BulletM, AnimationFrames& ExploAnim);
+	BigEnemyShip(float X, const Surface& surface, BulletManager& BulletM, AnimationFrames& ExploAnim, Sound& ExploSound);
 	void Draw(Graphics& gfx);
 	void Update(float dt);
 	void Reset();
@@ -42,8 +42,10 @@ private:
 	static constexpr int collisionDmg = 75;
 	int hp = 600;
 	float bulletTimer = 0.0f;
-	static constexpr float newBullet = 2.0f;
+	static constexpr float newBullet = 1.5f;
 	Animation exploAnim;
 	float shipTimer = 0.0f;
 	static constexpr float waitOver = 20.0f;
+	Sound& exploSound;
+	static constexpr float bulletPitch = 0.3f;
 };

@@ -52,4 +52,5 @@ private:
 	static constexpr float bulletVel = -600.0f;
 	Color bulletColor = Colors::Cyan;
 	static constexpr int bulletSize = 6;
+	static constexpr float bulletPitch = 0.7f;
 };

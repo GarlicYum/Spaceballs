@@ -1,12 +1,13 @@
 #include "BigEnemyShip.h"
 
-BigEnemyShip::BigEnemyShip(float X, const Surface & surface, BulletManager& BulletM, AnimationFrames& ExploAnim)
+BigEnemyShip::BigEnemyShip(float X, const Surface & surface, BulletManager& BulletM, AnimationFrames& ExploAnim, Sound& ExploSound)
 	:
 	pos(X, -100.0f),
 	shipSurface(surface),
 	resetX(X),
 	bulletM(BulletM),
-	exploAnim(ExploAnim, 2)
+	exploAnim(ExploAnim, 2),
+	exploSound(ExploSound)
 {}
 
 void BigEnemyShip::Draw(Graphics & gfx)
@@ -39,7 +40,10 @@ void BigEnemyShip::Update(float dt)
 	case AliveState:
 		Move(dt);
 		if (hp <= 0)
+		{
+			exploSound.Play();
 			state = DyingState;
+		}
 		break;
 
 	case DyingState:
@@ -94,7 +98,7 @@ void BigEnemyShip::Attack(float dt)
 	{
 		Vec2 canonPos = pos + canon;
 		bulletTimer = 0.0;
-		bulletM.FireBullet(canonPos, bulletVel, bulletColor, bulletSize, bulletDmg);
+		bulletM.FireBullet(canonPos, bulletVel, bulletColor, bulletSize, bulletDmg, bulletPitch);
 		bulletM.ResetShotsFired();
 	}
 }

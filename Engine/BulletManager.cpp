@@ -34,7 +34,7 @@ void BulletManager::FireBullet(Vec2& canonPos)
 	}
 }
 
-void BulletManager::FireBullet(Vec2& canonPos, float VY, Color C, int bulletsize, int Dmg)
+void BulletManager::FireBullet(Vec2& canonPos, float VY, Color C, int bulletsize, int Dmg, float pitch)
 {
 	if (shotsFired == false)
 	{
@@ -44,7 +44,7 @@ void BulletManager::FireBullet(Vec2& canonPos, float VY, Color C, int bulletsize
 			if (!bullet.HasSpawned())
 			{
 				bullet = Bullet(canonPos, VY, C, bulletsize, Dmg);
-				gun.Play(0.5f, 0.5f);
+				gun.Play(pitch, 0.5f);
 				shotsFired = true;
 				break;
 			}

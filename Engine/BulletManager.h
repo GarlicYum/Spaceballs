@@ -11,7 +11,7 @@ public:
 	Bullet& GetBullet(int Idx);
 	int GetNumBullets() const;
 	void FireBullet(Vec2& canonPos);
-	void FireBullet(Vec2& canonPos, float VY, Color C, int bulletsize, int Dmg);
+	void FireBullet(Vec2& canonPos, float VY, Color C, int bulletsize, int Dmg, float pitch);
 	void UpdateBullets(float Dt);
 	void ResetShotsFired();
 	void DrawBullets(class Graphics& Gfx);

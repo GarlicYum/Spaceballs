@@ -26,7 +26,7 @@ World::World()
 	droneExplo(L"dronexplo\\", 8),
 	droneM(droneAnim, droneExplo, droneExploSound),
 	bigEnemyExplo(L"bigshipexplo\\", 16),
-	bigEnemy(350.0f, bigEnemySurface, bigEnemyBulletM, bigEnemyExplo)
+	bigEnemy(350.0f, bigEnemySurface, bigEnemyBulletM, bigEnemyExplo, bigEnemyExploSound)
 	
 {
 	std::mt19937 rng;
