@@ -36,7 +36,7 @@ private:
 	BulletManager& bulletM;
 	static constexpr int bulletHalfWidth = 30;
 	static constexpr int bulletHalfHeight = 37;
-	static constexpr int bulletRectSize = 20;
+	static constexpr int bulletRectSize = 15;
 	static constexpr float bulletVel = -400.0f;
 	static constexpr int bulletDmg = 50;
 	static constexpr int collisionDmg = 75;
@@ -45,7 +45,7 @@ private:
 	static constexpr float newBullet = 1.5f;
 	Animation exploAnim;
 	float shipTimer = 0.0f;
-	static constexpr float waitOver = 2.0f;
+	static constexpr float waitOver = 15.0f;
 	Sound& exploSound;
 	static constexpr float bulletPitch = 0.3f;
 

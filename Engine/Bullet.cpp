@@ -55,7 +55,7 @@ RectF Bullet::GetCollisionRect() const
 {
 	Vec2 center = Vec2(pos.x + float(halfWidth), pos.y + float(halfHeight));
 	Vec2 rectPos = Vec2(center.x - float(rectSize), center.y - float(rectSize));
-	return RectF(rectPos, float(rectSize), float(rectSize));
+	return RectF(rectPos, float(rectSize * 2), float(rectSize * 2));
 }
 
 void Bullet::HandleCollision()
