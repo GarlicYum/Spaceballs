@@ -21,10 +21,12 @@ World::World()
 	smallEnemyExplode(L"smallshipexplo\\", 13),
 	blackHoleLevel(BlackHoleBGFrames, cometAnim),
 	BlackHoleBGFrames(L"blackholeBG\\", 20),
-	cometAnim(L"comet\\", 6)
-//	droneAnim(L"drone\\", 8),
-//	droneExplo(L"dronexplo\\", 8),
-//	droneM(droneAnim, droneExplo, droneExploSound)
+	cometAnim(L"comet\\", 6),
+	droneAnim(L"drone\\", 8),
+	droneExplo(L"dronexplo\\", 8),
+	droneM(droneAnim, droneExplo, droneExploSound),
+	bigEnemyExplo(L"bigshipexplo\\", 16),
+	bigEnemy(350.0f, bigEnemySurface, bigEnemyBulletM, bigEnemyExplo)
 	
 {
 	std::mt19937 rng;
@@ -75,7 +77,8 @@ void World::Update(Keyboard& Kbd, float Dt)
 		obstacleM.Update(Dt);
 		CheckCollisions();
 		smallEnemyM.Update(Dt, ship.GetX());
-//		droneM.Update(Dt);
+		droneM.Update(Dt);
+		bigEnemy.Update(Dt);
 
 		if (!ship.IsAlive())
 		{
@@ -143,7 +146,8 @@ void World::Draw(Graphics& Gfx)
 		mineM.Draw(Gfx);
 		obstacleM.Draw(Gfx);
 		smallEnemyM.Draw(Gfx);
-	//	droneM.Draw(Gfx);
+		droneM.Draw(Gfx);
+		bigEnemy.Draw(Gfx);
 		break;
 	case BlackHoleState:
 		blackHoleLevel.Draw(Gfx);
@@ -230,7 +234,9 @@ void World::PlayerInput(Keyboard& Kbd)
 					smallRightBulletM.Reset();
 					blackholeM.Reset();
 					smallEnemyM.Reset();
-		//			droneM.Reset();
+					droneM.Reset();
+					bigEnemy.Reset();
+					bigEnemyBulletM.Reset();
 					gameOverSong.StopAll();
 					titleSong.Play();
 					gState = TitleState;
@@ -457,7 +463,7 @@ void World::CheckCollisions()
 			}
 		}
 
-/*		for (int i = 0; i < droneM.GetDroneCount(); ++i)
+		for (int i = 0; i < droneM.GetDroneCount(); ++i)
 		{
 			auto& drone = droneM.GetDrone(i);
 			if (!drone.IsAlive())
@@ -492,7 +498,7 @@ void World::CheckCollisions()
 					break;
 				}
 			}
-		}*/
+		}
 
 		break;
 		

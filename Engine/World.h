@@ -18,6 +18,7 @@
 #include "SmallEnemyManager.h"
 #include "BlackHoleLevel.h"
 #include "DroneManager.h"
+#include "BigEnemyShip.h"
 
 class World
 {
@@ -103,9 +104,13 @@ private:
 	AnimationFrames BlackHoleBGFrames;
 	BlackHoleLevel blackHoleLevel;
 
-//	AnimationFrames droneAnim;
-//	DroneManager droneM;
-//	AnimationFrames droneExplo;
-//	Sound droneExploSound = L"droneexplo.wav";
-	
+	AnimationFrames droneAnim;
+	DroneManager droneM;
+	AnimationFrames droneExplo;
+	Sound droneExploSound = L"droneexplo.wav";
+
+	Surface bigEnemySurface = Surface::FromFile(L"bigenemy.png");
+	AnimationFrames bigEnemyExplo;
+	BigEnemyShip bigEnemy;
+	BulletManager bigEnemyBulletM;
 };

@@ -184,6 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="BigEnemyShip.cpp" />
     <ClCompile Include="BlackHole.cpp" />
     <ClCompile Include="BlackHoleLevel.cpp" />
     <ClCompile Include="BlackHoleManager.cpp" />
