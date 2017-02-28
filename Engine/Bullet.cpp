@@ -15,7 +15,6 @@ Bullet::Bullet(Vec2 & pos_in, float VY, Color C, int Width, int Height, int bull
 	vy(VY),
 	dmg(Dmg),
 	bState(AliveState),
-	color(C),
 	rectSize(bulletRectSize)
 {}
 

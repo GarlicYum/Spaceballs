@@ -32,5 +32,4 @@ private:
 	int rectSize = 10;
 	float vy = 15.0f * 60.0f;
 	int dmg = 20;
-	Color color = Colors::Magenta;
 };
