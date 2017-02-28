@@ -1,7 +1,7 @@
 #include "SmallEnemyShip.h"
 
 SmallEnemyShip::SmallEnemyShip(float x, AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo, 
-	BulletManager& smallLeftManager, BulletManager& smallRightManager)
+	BulletManager& smallLeftManager, BulletManager& smallRightManager, AnimationFrames& bulletAnim)
 	:
 	pos(x, -100.0f),
 	resetX(x),
@@ -95,8 +95,6 @@ void SmallEnemyShip::Update(float dt, float playerX)
 
 void SmallEnemyShip::Draw(Graphics & gfx)
 {
-	smallLeftM.DrawBullets(gfx);
-	smallRightM.DrawBullets(gfx);
 	switch (state)
 	{
 	case AliveState:

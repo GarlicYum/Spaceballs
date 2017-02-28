@@ -14,7 +14,7 @@ public:
 		AliveState, DyingState, DeadState
 	};
 	SmallEnemyShip(float x, AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo, 
-		BulletManager& smallLeftmanager, BulletManager& smallRightManager);
+		BulletManager& smallLeftmanager, BulletManager& smallRightManager, AnimationFrames& bulletAnim);
 	void Attack(float dt);
 	void Move(float dt, float playerX);
 	void Update(float dt, float playerX);
@@ -53,4 +53,5 @@ private:
 	Color bulletColor = Colors::Cyan;
 	static constexpr int bulletSize = 6;
 	static constexpr float bulletPitch = 0.7f;
+
 };

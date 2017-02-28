@@ -1,13 +1,14 @@
 #include "BigEnemyShip.h"
 
-BigEnemyShip::BigEnemyShip(float X, const Surface & surface, BulletManager& BulletM, AnimationFrames& ExploAnim, Sound& ExploSound)
+BigEnemyShip::BigEnemyShip(float X, const Surface & surface, BulletManager& BulletM, AnimationFrames& ExploAnim, Sound& ExploSound, AnimationFrames& bulletAnim)
 	:
 	pos(X, -100.0f),
 	shipSurface(surface),
 	resetX(X),
 	bulletM(BulletM),
 	exploAnim(ExploAnim, 2),
-	exploSound(ExploSound)
+	exploSound(ExploSound),
+	bulletSprite(bulletAnim, 2)
 {}
 
 void BigEnemyShip::Draw(Graphics & gfx)
@@ -16,7 +17,7 @@ void BigEnemyShip::Draw(Graphics & gfx)
 	{
 	case AliveState:
 		gfx.DrawSpriteKey(int(pos.x), int(pos.y), shipSurface, shipSurface.GetPixel(0, 0));
-		bulletM.DrawBullets(gfx);
+		bulletM.DrawBullets(gfx, bulletSprite);
 		break;
 		
 	case DyingState:
@@ -27,7 +28,7 @@ void BigEnemyShip::Draw(Graphics & gfx)
 
 void BigEnemyShip::Update(float dt)
 {
-	bulletM.UpdateBullets(dt);
+	bulletM.UpdateBullets(dt, bulletSprite);
 	switch (state)
 	{
 	case WaitState:

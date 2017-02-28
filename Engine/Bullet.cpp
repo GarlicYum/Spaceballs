@@ -23,7 +23,7 @@ void Bullet::Update(float dt, Animation& bulletSprite)
 	pos.y -= vy * dt;
 
 	bulletSprite.Advance();
-	if (bulletSprite.AnimEnd)
+	if (bulletSprite.AnimEnd())
 	{
 		bulletSprite.Reset();
 	}

@@ -27,7 +27,8 @@ private:
 	BulletState bState = DeadState;
 	bool hasSpawned = false;
 	Vec2 pos;
-	int bulletSize = 10;
+	int bulletWidth = 40;
+	int bulletHeight = 50;
 	float vy = 15.0f * 60.0f;
 	int dmg = 20;
 	Color color = Colors::Magenta;
