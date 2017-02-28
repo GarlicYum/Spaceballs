@@ -29,6 +29,13 @@ void BigEnemyShip::Update(float dt)
 	bulletM.UpdateBullets(dt);
 	switch (state)
 	{
+	case WaitState:
+		if ((shipTimer += dt) > waitOver)
+		{
+			shipTimer = 0.0f;
+			state = AliveState;
+		}
+		break;
 	case AliveState:
 		Move(dt);
 		break;
@@ -37,7 +44,8 @@ void BigEnemyShip::Update(float dt)
 		exploAnim.Advance();
 		if (exploAnim.AnimEnd())
 		{
-			state = DeadState;
+			Reset();
+			state = WaitState;
 		}
 		break;
 	}
@@ -48,10 +56,11 @@ void BigEnemyShip::Reset()
 	pos.y = -100.0f;
 	pos.x = resetX;
 	hp = 200;
-	state = AliveState;
+	state = WaitState;
 	bulletTimer = 0.0f;
 	exploAnim.Reset();
 	vel.x = 100.0f;
+	shipTimer = 0.0f;
 }
 
 RectF BigEnemyShip::GetCollisionRect() const
@@ -90,14 +99,25 @@ void BigEnemyShip::Attack(float dt)
 
 void BigEnemyShip::Move(float dt)
 {
-	if (pos.y < 25.0f)
+	if (pos.y < 25.0f && shipTimer < waitOver)
 	{
 		pos.y += vel.y * dt;
 	}
-	else
+	else if (shipTimer < waitOver)
 	{
 		pos.x += vel.x * dt;
 		Attack(dt);
+
+		shipTimer += dt;
+	}
+	if ((pos.y > -100.0f) && shipTimer > waitOver)
+	{
+		pos.y -= vel.y * dt;
+	}
+	else if (pos.y <= -100.0f)
+	{
+		Reset();
+		state = WaitState;
 	}
 
 	if ((pos.x <= 0 && vel.x < 0.0f) ||

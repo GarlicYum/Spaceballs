@@ -10,7 +10,7 @@ class BigEnemyShip
 public:
 	enum State
 	{
-		AliveState, DyingState, DeadState
+		WaitState, AliveState, DyingState
 	};
 	BigEnemyShip(float X, const Surface& surface, BulletManager& BulletM, AnimationFrames& ExploAnim);
 	void Draw(Graphics& gfx);
@@ -32,7 +32,7 @@ private:
 	static constexpr float height = 90.0f;
 	float resetX;
 	const Surface& shipSurface;
-	State state = AliveState;
+	State state = WaitState;
 	BulletManager& bulletM;
 	static constexpr int bulletSize = 15;
 	static constexpr float bulletVel = -400.0f;
@@ -43,4 +43,6 @@ private:
 	float bulletTimer = 0.0f;
 	static constexpr float newBullet = 2.0f;
 	Animation exploAnim;
+	float shipTimer = 0.0f;
+	static constexpr float waitOver = 20.0f;
 };
