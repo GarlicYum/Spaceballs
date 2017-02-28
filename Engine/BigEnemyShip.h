@@ -38,7 +38,6 @@ private:
 	static constexpr int bulletHalfHeight = 37;
 	static constexpr int bulletRectSize = 20;
 	static constexpr float bulletVel = -400.0f;
-	Color bulletColor = Colors::Green;
 	static constexpr int bulletDmg = 50;
 	static constexpr int collisionDmg = 75;
 	int hp = 600;

@@ -7,7 +7,7 @@ Bullet::Bullet(Vec2& pos_in)
 	bState(AliveState)
 {}
 
-Bullet::Bullet(Vec2 & pos_in, float VY, Color C, int Width, int Height, int bulletRectSize, int Dmg)
+Bullet::Bullet(Vec2 & pos_in, float VY, int Width, int Height, int bulletRectSize, int Dmg)
 	:
 	pos(pos_in),
 	halfWidth(Width),

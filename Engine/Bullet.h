@@ -13,7 +13,7 @@ public:
 	};
 	Bullet() = default;
 	Bullet(Vec2& pos_in);
-	Bullet(Vec2& pos_in, float VY, Color C, int Width, int Height, int bulletRectSize, int Dmg);
+	Bullet(Vec2& pos_in, float VY, int Width, int Height, int bulletRectSize, int Dmg);
 	void Update(float dt, Animation& bulletSprite);
 	bool HasSpawned() const;
 	void Draw(Graphics & gfx, Animation& bulletSprite);
