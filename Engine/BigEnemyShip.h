@@ -22,6 +22,7 @@ public:
 	void HandleCollision(int dmg);
 	void Attack(float dt);
 	void Move(float dt);
+	bool IsAlive() const;
 
 
 private:
@@ -39,7 +40,7 @@ private:
 	Color bulletColor = Colors::Green;
 	static constexpr int bulletDmg = 50;
 	static constexpr int collisionDmg = 75;
-	int hp = 200;
+	int hp = 600;
 	float bulletTimer = 0.0f;
 	static constexpr float newBullet = 2.0f;
 	Animation exploAnim;

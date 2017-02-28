@@ -38,6 +38,8 @@ void BigEnemyShip::Update(float dt)
 		break;
 	case AliveState:
 		Move(dt);
+		if (hp <= 0)
+			state = DyingState;
 		break;
 
 	case DyingState:
@@ -55,7 +57,7 @@ void BigEnemyShip::Reset()
 {
 	pos.y = -100.0f;
 	pos.x = resetX;
-	hp = 200;
+	hp = 600;
 	state = WaitState;
 	bulletTimer = 0.0f;
 	exploAnim.Reset();
@@ -125,4 +127,9 @@ void BigEnemyShip::Move(float dt)
 	{
 		vel.x = -vel.x;
 	}
+}
+
+bool BigEnemyShip::IsAlive() const
+{
+	return state == AliveState;
 }

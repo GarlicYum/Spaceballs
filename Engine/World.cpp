@@ -500,6 +500,55 @@ void World::CheckCollisions()
 			}
 		}
 
+		const auto bigShipRect = bigEnemy.GetCollisionRect();
+		if (bigEnemy.IsAlive())
+		{
+			if (IsColliding(shipRect, bigShipRect) && ship.IsAlive())
+			{
+				shipCollideSound.Play(1.1f, 0.9f);
+				bigEnemy.HandleCollision(0);
+				ship.HandleCollision(bigEnemy.GetCollisionDmg());
+			}
+
+			for (int i = 0; i < bulletM.GetNumBullets(); ++i)
+			{
+				auto& bullet = bulletM.GetBullet(i);
+				if (!bullet.IsActive())
+					continue;
+				const auto bulletRect = bullet.GetCollisionRect();
+				if (IsColliding(bulletRect, bigShipRect))
+				{
+					bigEnemy.HandleCollision(bullet.GetDamage());
+					bullet.HandleCollision();
+					break;
+				}
+			}
+
+			for (int i = 0; i < bigEnemyBulletM.GetNumBullets(); ++i)
+			{
+				auto& bullet = bigEnemyBulletM.GetBullet(i);
+				if (!bullet.IsActive())
+					continue;
+				const auto bulletRect = bullet.GetCollisionRect();
+
+				if (shield.GetisActive())
+				{
+					const auto shieldRect = shield.GetCollisionRect();
+					if (IsColliding(shieldRect, bulletRect))
+					{
+						bullet.HandleCollision();
+						shield.HandleCollision(bullet.GetDamage());
+					}
+				}
+
+				else if (IsColliding(bulletRect, shipRect))
+				{
+					ship.HandleCollision(bullet.GetDamage());
+					bullet.HandleCollision();
+					break;
+				}
+			}
+		}
 		break;
 		
 		case BlackHoleState:
