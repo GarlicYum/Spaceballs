@@ -14,14 +14,14 @@ SmallEnemyShip::SmallEnemyShip(float x, AnimationFrames& smallexhaust, Animation
 
 void SmallEnemyShip::Attack(float dt)
 {
-	if ((pos.y + height) < Graphics::ScreenHeight && (pos.y + leftCanon.y + bulletSize) > 0.0f)
+	if ((pos.y + height) < Graphics::ScreenHeight && (pos.y + leftCanon.y) > 0.0f)
 	{
 		Vec2 leftCanonPos = pos + leftCanon;
 		Vec2 rightCanonPos = pos + rightCanon;
 		if ((bulletTimer += dt) > fireBullet)
 		{
-			smallLeftM.FireBullet(leftCanonPos, bulletVel, bulletColor, bulletSize, bulletDmg, bulletPitch);
-			smallRightM.FireBullet(rightCanonPos, bulletVel, bulletColor, bulletSize, bulletDmg, bulletPitch);
+			smallLeftM.FireBullet(leftCanonPos, bulletVel, bulletColor, bulletWidth, bulletHeight, bulletDmg, bulletPitch);
+			smallRightM.FireBullet(rightCanonPos, bulletVel, bulletColor, bulletWidth, bulletHeight, bulletDmg, bulletPitch);
 			smallLeftM.ResetShotsFired();
 			smallRightM.ResetShotsFired();
 			bulletTimer = 0.0f;

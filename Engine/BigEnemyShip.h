@@ -35,7 +35,8 @@ private:
 	const Surface& shipSurface;
 	State state = WaitState;
 	BulletManager& bulletM;
-	static constexpr int bulletSize = 15;
+	static constexpr int bulletWidth = 40;
+	static constexpr int bulletHeight = 50;
 	static constexpr float bulletVel = -400.0f;
 	Color bulletColor = Colors::Green;
 	static constexpr int bulletDmg = 50;

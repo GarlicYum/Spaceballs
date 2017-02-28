@@ -7,10 +7,11 @@ Bullet::Bullet(Vec2& pos_in)
 	bState(AliveState)
 {}
 
-Bullet::Bullet(Vec2 & pos_in, float VY, Color C, int bulletsize, int Dmg)
+Bullet::Bullet(Vec2 & pos_in, float VY, Color C, int Width, int Height, int Dmg)
 	:
 	pos(pos_in),
-	bulletSize(bulletsize),
+	halfWidth(Width),
+	halfHeight(Height),
 	vy(VY),
 	dmg(Dmg),
 	bState(AliveState),
@@ -28,7 +29,7 @@ void Bullet::Update(float dt, Animation& bulletSprite)
 		bulletSprite.Reset();
 	}
 
-	if ((pos.y - bulletSize) < 0 || (pos.y + bulletSize) >= Graphics::ScreenHeight)
+	if ((pos.y + (halfHeight * 2)) < 0 || pos.y >= Graphics::ScreenHeight)
 	{
 		bState = DeadState;
 	}
@@ -50,14 +51,11 @@ bool Bullet::IsActive() const
 	return bState == AliveState;
 }
 
-//returns RectF based on bullets position and size
 RectF Bullet::GetCollisionRect() const
 {
-	const float bSize = float(bulletSize);
-	return RectF(
-		Vec2(pos.x - bSize, pos.y - bSize),
-		(bSize * 2.0f),
-		(bSize * 2.0f));
+	Vec2 center = Vec2(pos.x + float(halfWidth), pos.y + float(halfHeight));
+	Vec2 rectPos = Vec2(center.x - float(rectSize), center.y - float(rectSize));
+	return RectF(rectPos, float(rectSize), float(rectSize));
 }
 
 void Bullet::HandleCollision()

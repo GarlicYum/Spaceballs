@@ -13,7 +13,7 @@ public:
 	};
 	Bullet() = default;
 	Bullet(Vec2& pos_in);
-	Bullet(Vec2& pos_in, float VY, Color C, int bulletsize, int Dmg);
+	Bullet(Vec2& pos_in, float VY, Color C, int Width, int Height, int Dmg);
 	void Update(float dt, Animation& bulletSprite);
 	bool HasSpawned() const;
 	void Draw(Graphics & gfx, Animation& bulletSprite);
@@ -27,8 +27,9 @@ private:
 	BulletState bState = DeadState;
 	bool hasSpawned = false;
 	Vec2 pos;
-	int bulletWidth = 40;
-	int bulletHeight = 50;
+	int halfWidth = 20;
+	int halfHeight = 25;
+	int rectSize = 10;
 	float vy = 15.0f * 60.0f;
 	int dmg = 20;
 	Color color = Colors::Magenta;

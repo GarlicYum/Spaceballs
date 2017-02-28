@@ -105,6 +105,7 @@ void Ship::Draw(Graphics& gfx)
 		{
 			gfx.DrawSpriteKey(int(pos.x), int(pos.y), redSurface, redSurface.GetPixel(0, 0));
 		}
+		bManager.DrawBullets(gfx, bulletSprite);
 		break;
 
 	case BlackHoleTransitionState:
@@ -133,6 +134,7 @@ void Ship::Draw(Graphics& gfx)
 
 	case ExplodingState:
 		shipExplo.Draw(int(pos.x) - exploX, int(pos.y) - exploY, gfx);
+		bManager.DrawBullets(gfx, bulletSprite);
 		break;
 
 	case BlackHoleState:
@@ -154,7 +156,6 @@ void Ship::Draw(Graphics& gfx)
 	}	
 
 	health.Draw(gfx);
-	bManager.DrawBullets(gfx, bulletSprite);
 }
 
 void Ship::ClampScreen()
@@ -378,6 +379,7 @@ void Ship::Update(Keyboard & wnd, float dt)
 		break;
 
 	case ExplodingState:
+		bManager.UpdateBullets(dt, bulletSprite);
 		shipExplo.Advance();
 		if (shipExplo.AnimEnd())
 		{
