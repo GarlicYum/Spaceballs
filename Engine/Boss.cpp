@@ -1,9 +1,11 @@
 #include "Boss.h"
 
-Boss::Boss(AnimationFrames & bossAnim, BulletManager& BulletM)
+Boss::Boss(AnimationFrames & bossAnim, BulletManager& LeftBulletM, BulletManager& RightBulletM, AnimationFrames& BulletAnim)
 	:
 bossSprite(bossAnim, 2),
-bulletM(BulletM),
+bulletSprite(BulletAnim, 2),
+rightBulletM(RightBulletM),
+leftBulletM(LeftBulletM),
 health(healthX, healthY, 0)
 {}
 
@@ -48,6 +50,8 @@ break;
 	case ExplodingState:
 		break;
 	}
+	leftBulletM.UpdateBullets(dt, bulletSprite);
+	rightBulletM.UpdateBullets(dt, bulletSprite);
 }
 
 void Boss::Draw(Graphics & gfx)
@@ -63,7 +67,8 @@ void Boss::Draw(Graphics & gfx)
 	case ExplodingState:
 		break;
 	}
-
+	leftBulletM.DrawBullets(gfx, bulletSprite);
+	rightBulletM.DrawBullets(gfx, bulletSprite);
 	health.Draw(gfx);
 }
 
@@ -151,6 +156,17 @@ void Boss::Move(float dt, float playerPos)
 			{
 				vel.x = -vel.x;
 			}	
+
+			if ((attackTimer += dt) > attack)
+			{
+				Vec2 leftCanonPos = pos + leftCanon;
+				Vec2 rightCanonPos = pos + rightCanon;
+				leftBulletM.FireBullet(leftCanonPos, bulletVel, bulletHalfWidth, bulletHalfHeight, bulletRectSize, bulletDmg, bulletPitch);
+				rightBulletM.FireBullet(rightCanonPos, bulletVel, bulletHalfWidth, bulletHalfHeight, bulletRectSize, bulletDmg, bulletPitch);
+				leftBulletM.ResetShotsFired();
+				rightBulletM.ResetShotsFired();
+				attackTimer = 0.0f;
+			}
 		}
 
 		if ((specialAttackTimer += dt) > specialAttack)
@@ -227,5 +243,8 @@ void Boss::Reset()
 	state = EntranceState;
 	pos.x = 315.0f;
 	pos.y = -250.0f;
+	vel.x = 100.0f;
+	attackTimer = 0.0f;
+	specialAttackTimer = 0.0f;
 	health.Damage(health.GetHealthAmount());
 }

@@ -14,7 +14,7 @@ public:
 	{
 		EntranceState, AliveState, ExplodingState, DeadState
 	};
-	Boss(AnimationFrames& bossAnim, BulletManager& BulletM);
+	Boss(AnimationFrames& bossAnim, BulletManager& LeftBulletM, BulletManager& RightBulletM, AnimationFrames& BulletAnim);
 	void Update(float dt, float playerPos);
 	void Draw(Graphics& gfx);
 	RectF GetBottomCollisionRect() const;
@@ -49,19 +49,26 @@ private:
 	bool isAttacking = false;
 	bool attackOver = false;
 	bool hasPlayerPos = false;
+	Vec2 leftCanon = Vec2(25.0f, 200.0f);
+	Vec2 rightCanon = Vec2(90.0f, 200.0f);
+	float bulletVel = -300.0f;
+	static constexpr int bulletHalfWidth = 30;
+	static constexpr int bulletHalfHeight = 37;
+	static constexpr int bulletRectSize = 15;
+	static constexpr float bulletPitch = 0.3f;
 
 
 
 
-
-	Vec2 canon;
 	static constexpr float entranceSpeed = 50.0f;
 	static constexpr float width = 170.0f;
 	static constexpr float height = 250.0f;
 	static constexpr int collisionDmg = 75;
 	static constexpr int bulletDmg = 50;
 	Animation bossSprite;
-	BulletManager& bulletM;
+	BulletManager& leftBulletM;
+	BulletManager& rightBulletM;
+	Animation bulletSprite;
 	State state = EntranceState;
 	bool coolDown = false;
 	float coolDownTimer = 0.0f;

@@ -123,7 +123,8 @@ private:
 
 	AnimationFrames bossAnim;
 	Boss boss;
-	BulletManager bossBulletM;
+	BulletManager bossLeftBulletM;
+	BulletManager bossRightBulletM;
 	Sound bossSong = L"bossmusic.wav";
 
 	bool starsSpedUp = false;

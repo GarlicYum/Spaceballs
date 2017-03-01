@@ -31,7 +31,7 @@ World::World()
 	bigBulletAnim(L"bigbullet\\", 26),
 	smallBulletAnim(L"smallbullet\\", 18),
 	bossAnim(L"boss\\", 8),
-	boss(bossAnim, bossBulletM)
+	boss(bossAnim, bossLeftBulletM, bossRightBulletM, bigBulletAnim)
 	
 {
 	std::mt19937 rng;
