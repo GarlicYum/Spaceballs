@@ -7,22 +7,22 @@ bulletM(BulletM),
 health(healthX, healthY, 0)
 {}
 
-void Boss::Update(float dt)
+void Boss::Update(float dt, float playerPos)
 {
 	switch (state)
 	{
 	case EntranceState:
-		Move(dt);
+		Move(dt, playerPos);
 
 		bossSprite.Advance();
-		if (bossSprite.AnimEnd())
-		{
-			bossSprite.Reset();
-		}
-		break;
+if (bossSprite.AnimEnd())
+{
+	bossSprite.Reset();
+}
+break;
 
 	case AliveState:
-		Move(dt);
+		Move(dt, playerPos);
 
 		bossSprite.Advance();
 		if (bossSprite.AnimEnd())
@@ -92,7 +92,42 @@ RectF Boss::GetRightCollisionRect() const
 	return RectF(Vec2(pos.x + width - 1, pos.y), 1, height);
 }
 
-void Boss::Move(float dt)
+void Boss::Thrust(float dt, float playerPos)
+{
+	if (((pos.y + height) < Graphics::ScreenHeight) && !attackOver)
+	{
+		pos.y += thrustY * dt;
+	}
+	else if (!attackOver)
+	{
+		if (!hasPlayerPos)
+		{
+			if (playerPos <= pos.x)
+			{
+				thrustX = thrustLeft;
+			}
+			else
+			{
+				thrustX = thrustRight;
+			}
+			hasPlayerPos = true;
+		}
+		pos.x += thrustX * dt;
+	}
+
+	if (pos.x <= 0.0f || ((pos.x + width) >= Graphics::ScreenWidth) && !attackOver)
+	{
+		attackOver = true;
+		hasPlayerPos = false;
+		
+	}
+	if (attackOver)
+	{
+		BringBack();
+	}
+}
+
+void Boss::Move(float dt, float playerPos)
 {
 	if (state == EntranceState)
 	{
@@ -103,7 +138,25 @@ void Boss::Move(float dt)
 		else
 		{
 			if (health.FillUp(hp, 2))
-			state = AliveState;
+				state = AliveState;
+		}
+	}
+
+	if (state == AliveState)
+	{
+		if (!isAttacking)
+		{
+			pos.x -= vel.x * dt;
+			if (pos.x <= 0.0f || (pos.x + width) >= Graphics::ScreenWidth)
+			{
+				vel.x = -vel.x;
+			}	
+		}
+
+		if ((specialAttackTimer += dt) > specialAttack)
+		{
+			isAttacking = true;
+			Thrust(dt, playerPos);
 		}
 	}
 }
@@ -147,6 +200,26 @@ float Boss::GetTop() const
 float Boss::GetBottom() const
 {
 	return pos.y + height;
+}
+
+void Boss::BringBack()
+{
+	RectF bossRect = RectF(pos, width, height);
+	bossCenter = bossRect.GetCenter();
+	Vec2 diff = bossCenter - midPoint;
+
+	if (diff.GetLengthSq() > 5.0f)
+	{
+		diff.Normalize();
+		diff *= 3.5f;
+		pos -= diff;
+	}
+	else
+	{
+		attackOver = false;
+		isAttacking = false;
+		specialAttackTimer = 0.0f;
+	}
 }
 
 void Boss::Reset()

@@ -134,7 +134,7 @@ void World::Update(Keyboard& Kbd, float Dt)
 		titleSong.StopAll();
 		ship.Update(Kbd, Dt);
 		UpdateStars(Dt);
-		boss.Update(Dt);
+		boss.Update(Dt, ship.GetX());
 
 		if (boss.IsEntering())
 		{
@@ -146,7 +146,7 @@ void World::Update(Keyboard& Kbd, float Dt)
 			ship.EnableInput();
 			if (!starsSpedUp)
 			{
-				SpeedUpStars(4.0f);
+				SpeedUpStars(2.0f);
 				starsSpedUp = true;
 			}
 		}
@@ -689,7 +689,7 @@ void World::CheckCollisions()
 				if (!bullet.IsActive())
 					continue;
 				const auto bulletRect = bullet.GetCollisionRect();
-				if (IsColliding(bulletRect, bossBottomRect))
+				if (IsColliding(bulletRect, bossBottomRect) || IsColliding(bulletRect, bossRightRect) || IsColliding(bulletRect, bossLeftRect))
 				{
 					bullet.HandleCollision();
 					boss.HandleCollision(bullet.GetBossDmg());
