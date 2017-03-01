@@ -43,6 +43,8 @@ public:
 	int GetDmg() const;
 	void CollidesWithHole(bool collides);
 	void PrepareForBoss();
+	float GetRight() const;
+	float GetBottom() const;
 	void Reset();
 
 private:

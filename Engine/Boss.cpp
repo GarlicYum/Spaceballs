@@ -72,9 +72,24 @@ int Boss::GetCollisionDmg() const
 	return collisionDmg;
 }
 
-RectF Boss::GetCollisionRect() const
+RectF Boss::GetBottomCollisionRect() const
 {
-	return RectF(pos, width, height);
+	return RectF(Vec2(pos.x + 10, pos.y + height - 1), width - 20, 1);
+}
+
+RectF Boss::GetTopCollisionRect() const
+{
+	return RectF(Vec2(pos.x + 10, pos.y), width - 20, 1);
+}
+
+RectF Boss::GetLeftCollisionRect() const
+{
+	return RectF(pos, 1, height);
+}
+
+RectF Boss::GetRightCollisionRect() const
+{
+	return RectF(Vec2(pos.x + width - 1, pos.y), 1, height);
 }
 
 void Boss::Move(float dt)
@@ -112,6 +127,26 @@ bool Boss::IsEntering() const
 bool Boss::IsAliveState() const
 {
 	return state == AliveState;
+}
+
+float Boss::GetLeft() const
+{
+	return pos.x;
+}
+
+float Boss::GetRight() const
+{
+	return pos.x + width;
+}
+
+float Boss::GetTop() const
+{
+	return pos.y;
+}
+
+float Boss::GetBottom() const
+{
+	return pos.y + height;
 }
 
 void Boss::Reset()

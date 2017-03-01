@@ -17,7 +17,10 @@ public:
 	Boss(AnimationFrames& bossAnim, BulletManager& BulletM);
 	void Update(float dt);
 	void Draw(Graphics& gfx);
-	RectF GetCollisionRect() const;
+	RectF GetBottomCollisionRect() const;
+	RectF GetTopCollisionRect() const;
+	RectF GetLeftCollisionRect() const;
+	RectF GetRightCollisionRect() const;
 	int GetCollisionDmg() const;
 	void Attack();
 	void Move(float dt);
@@ -25,6 +28,11 @@ public:
 	bool GetCoolDown() const;
 	bool IsEntering() const;
 	bool IsAliveState() const;
+	float GetLeft() const;
+	float GetRight() const;
+	float GetTop() const;
+	float GetBottom() const;
+
 	void Reset();
 
 private:

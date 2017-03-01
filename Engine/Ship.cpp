@@ -331,6 +331,16 @@ void Ship::PrepareForBoss()
 	}
 }
 
+float Ship::GetRight() const
+{
+	return pos.x + width;
+}
+
+float Ship::GetBottom() const
+{
+	return pos.y + height;
+}
+
 void Ship::Reset()
 {
 	pos.x = 300.0f;
