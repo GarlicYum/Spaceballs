@@ -144,6 +144,11 @@ void World::Update(Keyboard& Kbd, float Dt)
 		if (boss.IsAliveState())
 		{
 			ship.EnableInput();
+			if (!starsSpedUp)
+			{
+				SpeedUpStars(4.0f);
+				starsSpedUp = true;
+			}
 		}
 
 		if (!ship.IsAlive())
@@ -230,6 +235,18 @@ void World::DrawStars(Graphics& Gfx)
 	for (int i = 0; i < nBigStars; ++i)
 	{
 		starB[i].DrawBig(Gfx);
+	}
+}
+
+void World::SpeedUpStars(float factor)
+{
+	for (int i = 0; i < nBigStars; ++i)
+	{
+		starB[i].SpeedUp(factor);
+	}
+	for (int i = 0; i < nStars; ++i)
+	{
+		star[i].SpeedUp(factor);
 	}
 }
 

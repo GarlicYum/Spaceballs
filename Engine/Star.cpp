@@ -92,3 +92,8 @@ void Star::DrawBig(Graphics & gfx)
 	gfx.PutPixel(x_int+ 4, y_int+2, Colors::Blue);
 	gfx.PutPixel(x_int+ 5, y_int+1, Colors::Blue);
 }
+
+void Star::SpeedUp(float factor)
+{
+	vy *= factor;
+}

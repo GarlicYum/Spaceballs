@@ -22,8 +22,6 @@ public:
 	void HandleCollision();
 	int GetDamage();
 	int GetBossDmg();
-	void DecreaseDmg();
-	void ResetDmg();
 	void Reset();
 
 private:
@@ -35,5 +33,5 @@ private:
 	int rectSize = 10;
 	float vy = 15.0f * 60.0f;
 	int dmg = 20;
-	int bossDmg = 1;
+	int bossDmg = 2;
 };

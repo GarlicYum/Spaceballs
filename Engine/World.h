@@ -39,6 +39,7 @@ private:
 	void PlayerInput(Keyboard& Kbd);
 	void CheckCollisions();
 	void DrawStars(Graphics& Gfx);
+	void SpeedUpStars(float factor);
 
 private:
 	Sound titleSong = L"War.wav";
@@ -124,4 +125,6 @@ private:
 	Boss boss;
 	BulletManager bossBulletM;
 	Sound bossSong = L"bossmusic.wav";
+
+	bool starsSpedUp = false;
 };
