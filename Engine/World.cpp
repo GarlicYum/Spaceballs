@@ -696,6 +696,34 @@ void World::CheckCollisions()
 					break;
 				}
 			}
+
+			for (int i = 0; i < bossLeftBulletM.GetNumBullets(); ++i)
+			{
+				auto& leftBullet = bossLeftBulletM.GetBullet(i);
+				if (!leftBullet.IsActive())
+					continue;
+				const auto leftBulletRect = leftBullet.GetCollisionRect();
+				if (IsColliding(leftBulletRect, shipRect))
+				{
+					leftBullet.HandleCollision();
+					ship.HandleCollision(leftBullet.GetDamage());
+					break;
+				}
+			}
+
+			for (int i = 0; i < bossRightBulletM.GetNumBullets(); ++i)
+			{
+				auto& rightBullet = bossRightBulletM.GetBullet(i);
+				if (!rightBullet.IsActive())
+					continue;
+				const auto rightBulletRect = rightBullet.GetCollisionRect();
+				if (IsColliding(rightBulletRect, shipRect))
+				{
+					rightBullet.HandleCollision();
+					ship.HandleCollision(rightBullet.GetDamage());
+					break;
+				}
+			}
 			break;
 	}
 }
