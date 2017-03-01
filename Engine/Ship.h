@@ -27,6 +27,7 @@ public:
 	bool IsDead() const;
 	bool IsBlackHole() const;
 	bool ExitingBlackHole() const;
+	void EnableInput();
 	RectF GetCollisionRect();
 	
 	float GetX() const;
@@ -81,5 +82,5 @@ private:
 	float oldY;
 	bool firstTransition = true;
 	Animation bulletSprite;
-
+	bool inputEnabled = true;
 };

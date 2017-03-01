@@ -55,7 +55,6 @@ void Ship::HandleCollision(int Damage)
 			firstTransition = true;
 			state = TransitionBackState;
 		}
-		///////////////what happens in update and draw during transitionback? let world know about it
 		break;
 
 	case AliveState:
@@ -166,56 +165,59 @@ void Ship::ClampScreen()
 
 void Ship::PlayerInput(Keyboard& kbd, float dt)
 {
-	if (state == AliveState)
+	if (inputEnabled)
 	{
-		if (kbd.KeyIsPressed(VK_UP))
+		if (state == AliveState)
 		{
-			pos.y -= speed * dt;
-			isMoving = true;
+			if (kbd.KeyIsPressed(VK_UP))
+			{
+				pos.y -= speed * dt;
+				isMoving = true;
+			}
+
+			else if (kbd.KeyIsPressed(VK_DOWN))
+			{
+				pos.y += speed * dt;
+				isMoving = false;
+			}
+
+			else
+			{
+				isMoving = false;
+			}
+
+			if (kbd.KeyIsPressed(VK_LEFT))
+			{
+				pos.x -= speed * dt;
+			}
+
+			else if (kbd.KeyIsPressed(VK_RIGHT))
+			{
+				pos.x += speed * dt;
+			}
+
+			if (kbd.KeyIsPressed(VK_SPACE))
+			{
+				bManager.FireBullet(Vec2(pos.x + canonX, pos.y + canonY));
+			}
+
+			else
+			{
+				bManager.ResetShotsFired();
+			}
 		}
 
-		else if (kbd.KeyIsPressed(VK_DOWN))
+		else if (state == BlackHoleState)
 		{
-			pos.y += speed * dt;
-			isMoving = false;
-		}
+			if (kbd.KeyIsPressed(VK_LEFT))
+			{
+				pos.x -= speed * dt;
+			}
 
-		else
-		{
-			isMoving = false;
-		}
-
-		if (kbd.KeyIsPressed(VK_LEFT))
-		{
-			pos.x -= speed * dt;
-		}
-
-		else if (kbd.KeyIsPressed(VK_RIGHT))
-		{
-			pos.x += speed * dt;
-		}
-
-		if (kbd.KeyIsPressed(VK_SPACE))
-		{
-			bManager.FireBullet(Vec2(pos.x + canonX, pos.y + canonY));
-		}
-
-		else
-		{
-			bManager.ResetShotsFired();
-		}
-	}
-
-	else if (state == BlackHoleState)
-	{
-		if (kbd.KeyIsPressed(VK_LEFT))
-		{
-			pos.x -= speed * dt;
-		}
-
-		else if (kbd.KeyIsPressed(VK_RIGHT))
-		{
-			pos.x += speed * dt;
+			else if (kbd.KeyIsPressed(VK_RIGHT))
+			{
+				pos.x += speed * dt;
+			}
 		}
 	}
 }
@@ -243,6 +245,11 @@ bool Ship::IsBlackHole() const
 bool Ship::ExitingBlackHole() const
 {
 	return state == TransitionBackState;
+}
+
+void Ship::EnableInput()
+{
+	inputEnabled = true;
 }
 
 RectF Ship::GetCollisionRect()
@@ -307,6 +314,21 @@ void Ship::CollidesWithHole(bool collides)
 		blackHoleSound.Play(0.8f, 1.0f);
 		state = BlackHoleTransitionState;
 	}	
+}
+
+void Ship::PrepareForBoss()
+{
+	inputEnabled = false;
+	const RectF rect = GetCollisionRect();
+	Vec2 resetPos = Vec2(400.0f, 500.0f);
+	Vec2 diff = rect.GetCenter() - resetPos;
+
+	if (diff.GetLengthSq() > 5.0f)
+	{
+		diff.Normalize();
+		diff *= 3.5f;
+		pos -= diff;
+	}
 }
 
 void Ship::Reset()

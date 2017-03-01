@@ -136,6 +136,16 @@ void World::Update(Keyboard& Kbd, float Dt)
 		UpdateStars(Dt);
 		boss.Update(Dt);
 
+		if (boss.IsEntering())
+		{
+			ship.PrepareForBoss();
+		}
+
+		if (boss.IsAliveState())
+		{
+			ship.EnableInput();
+		}
+
 		if (!ship.IsAlive())
 		{
 			bossSong.StopAll();

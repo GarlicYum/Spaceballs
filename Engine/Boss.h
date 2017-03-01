@@ -23,6 +23,8 @@ public:
 	void Move(float dt);
 	void HandleCollision(int dmg);
 	bool GetCoolDown() const;
+	bool IsEntering() const;
+	bool IsAliveState() const;
 	void Reset();
 
 private:

@@ -95,6 +95,16 @@ bool Boss::GetCoolDown() const
 	return coolDown;
 }
 
+bool Boss::IsEntering() const
+{
+	return state == EntranceState;
+}
+
+bool Boss::IsAliveState() const
+{
+	return state == AliveState;
+}
+
 void Boss::Reset()
 {
 	state = EntranceState;
