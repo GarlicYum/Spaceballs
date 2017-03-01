@@ -197,8 +197,8 @@ void World::Draw(Graphics& Gfx)
 		break;
 	case BossState:
 		DrawStars(Gfx);
-		ship.Draw(Gfx);
 		boss.Draw(Gfx);
+		ship.Draw(Gfx);
 		CheckCollisions();
 		break;
 	case GameOverState:
@@ -630,6 +630,7 @@ void World::CheckCollisions()
 				if (IsColliding(bulletRect, bossRect))
 				{
 					bullet.HandleCollision();
+					boss.HandleCollision(bullet.GetBossDmg());
 					break;
 				}
 			}

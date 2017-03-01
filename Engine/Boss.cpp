@@ -3,7 +3,8 @@
 Boss::Boss(AnimationFrames & bossAnim, BulletManager& BulletM)
 	:
 bossSprite(bossAnim, 2),
-bulletM(BulletM)
+bulletM(BulletM),
+health(healthX, healthY, 0)
 {}
 
 void Boss::Update(float dt)
@@ -37,6 +38,11 @@ void Boss::Update(float dt)
 				coolDownTimer = 0.0f;
 			}
 		}
+
+		if (!health.HasHealth())
+		{
+			state = ExplodingState;
+		}
 		break;
 
 	case ExplodingState:
@@ -57,6 +63,8 @@ void Boss::Draw(Graphics & gfx)
 	case ExplodingState:
 		break;
 	}
+
+	health.Draw(gfx);
 }
 
 int Boss::GetCollisionDmg() const
@@ -79,7 +87,7 @@ void Boss::Move(float dt)
 		}
 		else
 		{
-			// insert timer, to wait for health bar to fill etc
+			if (health.FillUp(hp, 2))
 			state = AliveState;
 		}
 	}
@@ -88,6 +96,7 @@ void Boss::Move(float dt)
 void Boss::HandleCollision(int dmg)
 {
 	coolDown = true;
+	health.Damage(dmg);
 }
 
 bool Boss::GetCoolDown() const
@@ -110,4 +119,5 @@ void Boss::Reset()
 	state = EntranceState;
 	pos.x = 315.0f;
 	pos.y = -250.0f;
+	health.Damage(health.GetHealthAmount());
 }

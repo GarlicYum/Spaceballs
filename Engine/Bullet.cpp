@@ -68,6 +68,11 @@ int Bullet::GetDamage()
 	return dmg;
 }
 
+int Bullet::GetBossDmg()
+{
+	return bossDmg;
+}
+
 void Bullet::DecreaseDmg()
 {
 	dmg = 1;

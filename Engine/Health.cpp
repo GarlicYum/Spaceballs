@@ -1,11 +1,11 @@
 #include "Health.h"
 
 
-Health::Health(int X, int Y, Color C)
+Health::Health(int X, int Y, int hp)
 	:
 	x(X),
 	y(Y),
-	c(C)
+	healthAmount(hp)
 {}
 
 void Health::Damage(int dmg)
@@ -44,6 +44,20 @@ void Health::Reset()
 {
 	healthAmount = maxHealth;
 	ColorMeter();
+}
+
+bool Health::FillUp(int amount, int increment)
+{
+	ColorMeter();
+	if (healthAmount < amount)
+	{
+		healthAmount += increment;
+	}
+	else
+	{
+		return true;
+	}
+	return false;
 }
 
 void Health::ColorMeter()

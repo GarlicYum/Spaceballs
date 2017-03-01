@@ -76,14 +76,6 @@ void BulletManager::DrawBullets(Graphics& Gfx, Animation& bulletSprite)
 	}
 }
 
-void BulletManager::DecreaseDmg()
-{
-	for (int i = 0; i < nBullets; ++i)
-	{
-		bullets[i].DecreaseDmg();
-	}
-}
-
 void BulletManager::Reset()
 {
 	for (int i = 0; i < nBullets; ++i)

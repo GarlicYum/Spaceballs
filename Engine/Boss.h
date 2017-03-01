@@ -44,13 +44,9 @@ private:
 	static constexpr float coolDownOver = 0.75f;
 	float bulletTimer = 0.0f;
 	static constexpr float newBullet = 1.5f;
+	int hp = 300;
+	int healthX = 475;
+	int healthY = 20;
 	Health health;
 };
 
-
-/*
-static constexpr int bulletHalfWidth = 30;
-static constexpr int bulletHalfHeight = 37;
-static constexpr int bulletRectSize = 15;
-static constexpr float bulletVel = -400.0f;
-*/
