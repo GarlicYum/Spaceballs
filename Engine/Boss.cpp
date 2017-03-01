@@ -28,6 +28,15 @@ void Boss::Update(float dt)
 		{
 			bossSprite.Reset();
 		}
+
+		if (coolDown)
+		{
+			if ((coolDownTimer += dt) > coolDownOver)
+			{
+				coolDown = false;
+				coolDownTimer = 0.0f;
+			}
+		}
 		break;
 
 	case ExplodingState:
@@ -74,6 +83,16 @@ void Boss::Move(float dt)
 			state = AliveState;
 		}
 	}
+}
+
+void Boss::HandleCollision(int dmg)
+{
+	coolDown = true;
+}
+
+bool Boss::GetCoolDown() const
+{
+	return coolDown;
 }
 
 void Boss::Reset()

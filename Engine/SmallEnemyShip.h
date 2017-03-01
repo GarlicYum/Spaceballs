@@ -28,7 +28,7 @@ public:
 
 private:
 	bool coolDown = false;
-	static constexpr float coolDownOver = 0.5f;
+	static constexpr float coolDownOver = 0.75f;
 	float coolDownTime = 0.0f;
 	Vec2 pos;
 	Vec2 leftCanon = Vec2(-9.0f, 30.0f);

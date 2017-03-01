@@ -21,7 +21,8 @@ public:
 	int GetCollisionDmg() const;
 	void Attack();
 	void Move(float dt);
-	void HandleCollision();
+	void HandleCollision(int dmg);
+	bool GetCoolDown() const;
 	void Reset();
 
 private:
@@ -36,7 +37,9 @@ private:
 	Animation bossSprite;
 	BulletManager& bulletM;
 	State state = EntranceState;
-
+	bool coolDown = false;
+	float coolDownTimer = 0.0f;
+	static constexpr float coolDownOver = 0.75f;
 	float bulletTimer = 0.0f;
 	static constexpr float newBullet = 1.5f;
 	Health health;

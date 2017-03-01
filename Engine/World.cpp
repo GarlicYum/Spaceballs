@@ -605,9 +605,10 @@ void World::CheckCollisions()
 
 		case BossState:
 			const auto& bossRect = boss.GetCollisionRect();
-			if (IsColliding(bossRect, shipRect) && ship.IsAlive())
+			if (IsColliding(bossRect, shipRect) && ship.IsAlive() && !boss.GetCoolDown())
 			{
 				ship.HandleCollision(boss.GetCollisionDmg());
+				boss.HandleCollision(0);
 			}
 
 			for (int i = 0; i < bulletM.GetNumBullets(); ++i)
