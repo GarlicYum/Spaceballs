@@ -1,11 +1,12 @@
 #include "Boss.h"
 
-Boss::Boss(AnimationFrames & bossAnim, BulletManager& LeftBulletM, BulletManager& RightBulletM, AnimationFrames& BulletAnim)
+Boss::Boss(AnimationFrames & bossAnim, BulletManager& LeftBulletM, BulletManager& RightBulletM, BulletManager& CenterBulletM, AnimationFrames& BulletAnim)
 	:
 bossSprite(bossAnim, 2.0f),
 bulletSprite(BulletAnim, 2.0f),
 rightBulletM(RightBulletM),
 leftBulletM(LeftBulletM),
+centerBulletM(CenterBulletM),
 health(healthX, healthY, 0)
 {}
 
@@ -56,6 +57,8 @@ break;
 
 void Boss::Draw(Graphics & gfx)
 {
+	leftBulletM.DrawBullets(gfx, bulletSprite);
+	rightBulletM.DrawBullets(gfx, bulletSprite);
 	switch (state)
 	{
 	case EntranceState:
@@ -67,8 +70,6 @@ void Boss::Draw(Graphics & gfx)
 	case ExplodingState:
 		break;
 	}
-	leftBulletM.DrawBullets(gfx, bulletSprite);
-	rightBulletM.DrawBullets(gfx, bulletSprite);
 	health.Draw(gfx);
 }
 
@@ -135,6 +136,13 @@ void Boss::Thrust(float dt, float playerPos)
 	{
 		BringBack(dt);
 	}
+}
+
+void Boss::BulletSpread(float dt)
+{
+	Vec2 canonPos = pos + centerCanon;
+	const Vec2 dir1 = Vec2(-400, 400.0f) + centerCanon;
+
 }
 
 void Boss::Move(float dt, float playerPos)
@@ -231,7 +239,7 @@ float Boss::GetBottom() const
 
 void Boss::BringBack(float dt)
 {
-	RectF bossRect = RectF(pos, width, height);
+	const RectF bossRect = GetCollisionRect();
 	bossCenter = bossRect.GetCenter();
 	Vec2 diff = bossCenter - midPoint;
 

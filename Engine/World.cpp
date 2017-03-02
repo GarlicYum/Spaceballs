@@ -309,6 +309,7 @@ void World::PlayerInput(Keyboard& Kbd)
 					bossRightBulletM.Reset();
 					boss.Reset();
 					ResetStarSpeed();
+					starsSpedUp = false;
 					gameOverSong.StopAll();
 					titleSong.Play();
 					gState = TitleState;

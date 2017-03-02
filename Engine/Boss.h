@@ -14,7 +14,7 @@ public:
 	{
 		EntranceState, AliveState, ExplodingState, DeadState
 	};
-	Boss(AnimationFrames& bossAnim, BulletManager& LeftBulletM, BulletManager& RightBulletM, AnimationFrames& BulletAnim);
+	Boss(AnimationFrames& bossAnim, BulletManager& LeftBulletM, BulletManager& RightBulletM, BulletManager& CenterBulletM, AnimationFrames& BulletAnim);
 	void Update(float dt, float playerPos);
 	void Draw(Graphics& gfx);
 	RectF GetBottomCollisionRect() const;
@@ -25,6 +25,8 @@ public:
 	int GetCollisionDmg() const;
 	void Attack();
 	void Thrust(float dt, float playerPos);
+	void BulletSpread(float dt);
+	void Missile(float dt, float playerPos);
 	void Move(float dt, float playerPos);
 	void HandleCollision(int dmg);
 	bool GetCoolDown() const;
@@ -52,6 +54,7 @@ private:
 	bool hasPlayerPos = false;
 	Vec2 leftCanon = Vec2(25.0f, 200.0f);
 	Vec2 rightCanon = Vec2(90.0f, 200.0f);
+	Vec2 centerCanon = Vec2(57.5f, 200.0f);
 	float bulletVel = -300.0f;
 	static constexpr int bulletHalfWidth = 30;
 	static constexpr int bulletHalfHeight = 37;
@@ -69,6 +72,7 @@ private:
 	Animation bossSprite;
 	BulletManager& leftBulletM;
 	BulletManager& rightBulletM;
+	BulletManager& centerBulletM;
 	Animation bulletSprite;
 	State state = EntranceState;
 	bool coolDown = false;
