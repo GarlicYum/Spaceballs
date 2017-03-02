@@ -3,7 +3,7 @@
 Comet::Comet(float pos_in, AnimationFrames & cometFrames)
 	:
 	pos(pos_in, -80.0f),
-	cometAnim(cometFrames, 2)
+	cometAnim(cometFrames, 2.0f)
 {}
 
 void Comet::Draw(Graphics & gfx) 
@@ -23,7 +23,7 @@ void Comet::Update(float dt)
 	if (isActive)
 	{
 		pos.y += (vel * dt);
-		cometAnim.Advance();
+		cometAnim.Advance(dt);
 		if (cometAnim.AnimEnd())
 		{
 			cometAnim.Reset();

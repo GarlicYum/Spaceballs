@@ -2,8 +2,8 @@
 
 Boss::Boss(AnimationFrames & bossAnim, BulletManager& LeftBulletM, BulletManager& RightBulletM, AnimationFrames& BulletAnim)
 	:
-bossSprite(bossAnim, 2),
-bulletSprite(BulletAnim, 2),
+bossSprite(bossAnim, 2.0f),
+bulletSprite(BulletAnim, 2.0f),
 rightBulletM(RightBulletM),
 leftBulletM(LeftBulletM),
 health(healthX, healthY, 0)
@@ -16,7 +16,7 @@ void Boss::Update(float dt, float playerPos)
 	case EntranceState:
 		Move(dt, playerPos);
 
-		bossSprite.Advance();
+		bossSprite.Advance(dt);
 if (bossSprite.AnimEnd())
 {
 	bossSprite.Reset();
@@ -26,7 +26,7 @@ break;
 	case AliveState:
 		Move(dt, playerPos);
 
-		bossSprite.Advance();
+		bossSprite.Advance(dt);
 		if (bossSprite.AnimEnd())
 		{
 			bossSprite.Reset();
@@ -97,6 +97,11 @@ RectF Boss::GetRightCollisionRect() const
 	return RectF(Vec2(pos.x + width - 1, pos.y), 1, height);
 }
 
+RectF Boss::GetCollisionRect() const
+{
+	return RectF(pos, width, height);
+}
+
 void Boss::Thrust(float dt, float playerPos)
 {
 	if (((pos.y + height) < Graphics::ScreenHeight) && !attackOver)
@@ -128,7 +133,7 @@ void Boss::Thrust(float dt, float playerPos)
 	}
 	if (attackOver)
 	{
-		BringBack();
+		BringBack(dt);
 	}
 }
 
@@ -142,7 +147,7 @@ void Boss::Move(float dt, float playerPos)
 		}
 		else
 		{
-			if (health.FillUp(hp, 2))
+			if (health.FillUp(hp, 2, dt))
 				state = AliveState;
 		}
 	}
@@ -152,10 +157,16 @@ void Boss::Move(float dt, float playerPos)
 		if (!isAttacking)
 		{
 			pos.x -= vel.x * dt;
-			if (pos.x <= 0.0f || (pos.x + width) >= Graphics::ScreenWidth)
+			if (pos.x <= 0.0f)
 			{
+				pos.x = 0.0f;
 				vel.x = -vel.x;
 			}	
+			else if ((pos.x + width) >= Graphics::ScreenWidth)
+			{
+				pos.x = Graphics::ScreenWidth - width;
+				vel.x = -vel.x;
+			}
 
 			if ((attackTimer += dt) > attack)
 			{
@@ -218,7 +229,7 @@ float Boss::GetBottom() const
 	return pos.y + height;
 }
 
-void Boss::BringBack()
+void Boss::BringBack(float dt)
 {
 	RectF bossRect = RectF(pos, width, height);
 	bossCenter = bossRect.GetCenter();
@@ -227,8 +238,8 @@ void Boss::BringBack()
 	if (diff.GetLengthSq() > 5.0f)
 	{
 		diff.Normalize();
-		diff *= 3.5f;
-		pos -= diff;
+		diff *= 210.0f;
+		pos -= diff * dt;
 	}
 	else
 	{

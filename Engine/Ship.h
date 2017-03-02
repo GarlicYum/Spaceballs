@@ -19,7 +19,7 @@ public:
 		Surface& red, AnimationFrames& shiprekt, 
 		AnimationFrames& holeAnim, AnimationFrames& holeRektAnim, AnimationFrames& shipexplo, 
 		AnimationFrames& exhaustAnim, AnimationFrames& rektExhaustAnim, Sound& shipexplodesound, Sound& blackholesound, AnimationFrames& bulletAnim);
-	void HandleCollision(int Damage);
+	void HandleCollision(int Damage, float dt);
 	void Draw(Graphics& gfx);
 	void Update(Keyboard& wnd, float dt);
 	void Restore(int restore);
@@ -42,7 +42,7 @@ public:
 	void SetX(float X);
 	int GetDmg() const;
 	void CollidesWithHole(bool collides);
-	void PrepareForBoss();
+	void PrepareForBoss(float dt);
 	float GetRight() const;
 	float GetBottom() const;
 	void Reset();

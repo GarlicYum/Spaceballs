@@ -44,14 +44,19 @@ void Health::Reset()
 {
 	healthAmount = maxHealth;
 	ColorMeter();
+	timer = 0.0f;
 }
 
-bool Health::FillUp(int amount, int increment)
+bool Health::FillUp(int amount, int increment, float dt)
 {
 	ColorMeter();
 	if (healthAmount < amount)
 	{
-		healthAmount += increment;
+		if ((timer += dt) >= newincrement)
+		{
+			healthAmount += increment;
+			timer = 0.0f;
+		}
 	}
 	else
 	{

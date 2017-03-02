@@ -21,6 +21,7 @@ public:
 	RectF GetTopCollisionRect() const;
 	RectF GetLeftCollisionRect() const;
 	RectF GetRightCollisionRect() const;
+	RectF GetCollisionRect() const;
 	int GetCollisionDmg() const;
 	void Attack();
 	void Thrust(float dt, float playerPos);
@@ -33,7 +34,7 @@ public:
 	float GetRight() const;
 	float GetTop() const;
 	float GetBottom() const;
-	void BringBack();
+	void BringBack(float dt);
 
 	void Reset();
 

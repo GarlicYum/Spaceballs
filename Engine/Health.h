@@ -12,7 +12,7 @@ public:
 	bool HasHealth() const; 
 	int GetHealthAmount() const;
 	void Reset();
-	bool FillUp(int amount, int increment);
+	bool FillUp(int amount, int increment, float dt);
 	
 private:
 	void ColorMeter();
@@ -21,5 +21,7 @@ private:
 	int y = 570;
 	int healthAmount = 300;
 	static constexpr int maxHealth = 300;
+	float timer = 0.0f;
+	static constexpr float newincrement = 1.0f / 60.0f;
 	Color c = Colors::Green;
 };

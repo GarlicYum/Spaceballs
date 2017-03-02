@@ -4,8 +4,8 @@ Drone::Drone(float X, AnimationFrames & DroneAnim, AnimationFrames& DroneExplode
 	:
 	pos(X, -40.0f),
 	resetX(X),
-	droneAnim(DroneAnim, 2),
-	droneExplode(DroneExplode, 2),
+	droneAnim(DroneAnim, 2.0f),
+	droneExplode(DroneExplode, 2.0f),
 	exploSound(ExploSound)
 {}
 
@@ -30,7 +30,7 @@ void Drone::Update(float dt)
 	{
 	case AliveState:
 		Move(dt);
-		droneAnim.Advance();
+		droneAnim.Advance(dt);
 		if (droneAnim.AnimEnd())
 		{
 			droneAnim.Reset();
@@ -42,7 +42,7 @@ void Drone::Update(float dt)
 		break;
 
 	case DyingState:
-		droneExplode.Advance();
+		droneExplode.Advance(dt);
 		if (droneExplode.AnimEnd())
 		{
 			state = DeadState;

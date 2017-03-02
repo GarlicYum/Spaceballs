@@ -18,9 +18,9 @@ private:
 class Animation
 {
 public:
-	Animation(const AnimationFrames& Frames, int HoldFrameCount);
-	void Advance();
-	void Reverse();
+	Animation(const AnimationFrames& Frames, float HoldFrameCount);
+	void Advance(float dt);
+	void Reverse(float dt);
 	bool AnimEnd() const;
 	void Draw(int X, int Y, Graphics& Gfx);
 	void Reset();
@@ -28,9 +28,9 @@ public:
 private:
 	const AnimationFrames& frames;
 	int surfCount = 0;
-	int nHoldFrames = 0;
+	float nHoldFrames = 0.0f;
 	int curFrame = 0;
-	int frameCounter = 0;
+	float frameCounter = 0.0f;
 	bool isOver = false;
 	bool isReversed = false;
 };

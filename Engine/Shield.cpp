@@ -23,13 +23,13 @@ void Shield::Update(Ship& ship, Sound& shieldon, Sound& shieldoff)
 		{
 			sState = NoShield;
 			shieldoff.Play(0.9f, 1.1f);
-			shieldSize = 0;
-			holeSize = -5;
+			shieldSize = 0.0f;
+			holeSize = -5.0f;
 		}
 		if (shieldSize < radius)
 		{
-			shieldSize += 5;
-			holeSize += 5;
+			shieldSize += 0.083;
+			holeSize += 0.083;
 		}
 		break;
 	}
@@ -39,7 +39,7 @@ void Shield::Draw(Graphics& gfx) const
 {
 	if (sState == ActiveState)
 	{
-		gfx.DrawAnnulus(int(pos.x), int(pos.y), shieldSize, holeSize, c);
+		gfx.DrawAnnulus(int(pos.x), int(pos.y), int(shieldSize), int(holeSize), c);
 		DrawMeter(gfx);
 	}
 }

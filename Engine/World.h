@@ -37,7 +37,7 @@ public:
 private:
 	void UpdateStars(float dt);
 	void PlayerInput(Keyboard& Kbd);
-	void CheckCollisions();
+	void CheckCollisions(float dt);
 	void DrawStars(Graphics& Gfx);
 	void SpeedUpStars(float factor);
 

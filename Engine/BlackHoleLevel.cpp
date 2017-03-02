@@ -2,7 +2,7 @@
 
 BlackHoleLevel::BlackHoleLevel(AnimationFrames & background, AnimationFrames& cometAnim)
 	:
-	backGround(background, 2)
+	backGround(background, 2.0f)
 {
 	std::mt19937 rng;
 	std::uniform_real_distribution<float> xDist(0.0f, 765.0f);
@@ -24,7 +24,7 @@ void BlackHoleLevel::Draw(Graphics & gfx)
 
 void BlackHoleLevel::Update(float dt)
 {
-	backGround.Advance();
+	backGround.Advance(dt);
 	if (backGround.AnimEnd())
 	{
 		backGround.Reset();

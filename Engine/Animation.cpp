@@ -2,22 +2,21 @@
 
 // Constructor gets a constant reference to AnimationFrames and the HoldFrameCount
 // HoldFrame is the amount of frames I want to go by before changing between 2 pictures in an animation
-Animation::Animation(const AnimationFrames& Frames, int HoldFrameCount)
+Animation::Animation(const AnimationFrames& Frames, float HoldFrameCount)
 	:
 	frames(Frames),
-	nHoldFrames(HoldFrameCount)
+	nHoldFrames(HoldFrameCount / 60.0f)
 {}
 
 //This is the function that animates the picture
 //framecounter increases every frame
 // when framecounter = nHoldFrames then framecounter resets and the curent frame increases
 // if the current frame = number of frames  for the animation then current fram resests and the animation is over
-void Animation::Advance()
+void Animation::Advance(float dt)
 {
-	++frameCounter;
-	if (frameCounter >= nHoldFrames)
+	if ((frameCounter += dt) >= nHoldFrames)
 	{
-		frameCounter = 0;
+		frameCounter = 0.0f;
 		++curFrame;
 		if (curFrame == frames.GetFrameCount())
 		{
@@ -27,17 +26,16 @@ void Animation::Advance()
 	}
 }
 
-void Animation::Reverse()
+void Animation::Reverse(float dt)
 {
-	++frameCounter;
 	if (!isReversed)
 	{
 		curFrame = frames.GetFrameCount();
 		isReversed = true;
 	}
-	if (frameCounter >= nHoldFrames)
+	if ((frameCounter += dt) >= nHoldFrames)
 	{
-		frameCounter = 0;	
+		frameCounter = 0.0f;	
 		--curFrame;
 		
 		if (curFrame == 0)

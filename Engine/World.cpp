@@ -77,7 +77,7 @@ void World::Update(Keyboard& Kbd, float Dt)
 		eBoostM.Update(ship, Dt);
 		shieldM.Update(ship, Dt, shieldon, shieldoff);
 		obstacleM.Update(Dt);
-		CheckCollisions();
+		CheckCollisions(Dt);
 		smallEnemyM.Update(Dt, ship.GetX());
 		droneM.Update(Dt);
 		bigEnemy.Update(Dt);
@@ -109,7 +109,7 @@ void World::Update(Keyboard& Kbd, float Dt)
 	case BlackHoleState:
 		ship.Update(Kbd, Dt);
 		blackHoleLevel.Update(Dt);
-		CheckCollisions();
+		CheckCollisions(Dt);
 		if (ship.ExitingBlackHole())
 		{
 			gState = TransitionState;
@@ -135,10 +135,11 @@ void World::Update(Keyboard& Kbd, float Dt)
 		ship.Update(Kbd, Dt);
 		UpdateStars(Dt);
 		boss.Update(Dt, ship.GetX());
+		CheckCollisions(Dt);
 
 		if (boss.IsEntering())
 		{
-			ship.PrepareForBoss();
+			ship.PrepareForBoss(Dt);
 		}
 
 		if (boss.IsAliveState())
@@ -204,7 +205,6 @@ void World::Draw(Graphics& Gfx)
 		DrawStars(Gfx);
 		boss.Draw(Gfx);
 		ship.Draw(Gfx);
-		CheckCollisions();
 		break;
 	case GameOverState:
 		Gfx.DrawSprite(0, 0, gameOverSurface);
@@ -307,7 +307,7 @@ void World::PlayerInput(Keyboard& Kbd)
 	}
 }
 
-void World::CheckCollisions()
+void World::CheckCollisions(float dt)
 {
 	const auto shipRect = ship.GetCollisionRect();
 	const auto& blackholeRect = blackHoleLevel.GetCollisionRect();
@@ -334,7 +334,7 @@ void World::CheckCollisions()
 			else if (IsColliding(shipRect, mineRect) && ship.IsAlive())
 			{
 				mine.HandleCollision(ship.GetDmg());
-				ship.HandleCollision(mine.GetDamageCost());
+				ship.HandleCollision(mine.GetDamageCost(), dt);
 			}
 
 			for (int i = 0; i < bulletM.GetNumBullets(); ++i)
@@ -363,7 +363,7 @@ void World::CheckCollisions()
 			{
 				shipCollideSound.Play(1.1f, 0.9f);
 				smallShip.HandleCollision(0);
-				ship.HandleCollision(smallShip.GetCollisionDmg());
+				ship.HandleCollision(smallShip.GetCollisionDmg(), dt);
 			}
 
 			for (int i = 0; i < bulletM.GetNumBullets(); ++i)
@@ -399,7 +399,7 @@ void World::CheckCollisions()
 
 				else if (IsColliding(bulletLeftRect, shipRect))
 				{
-					ship.HandleCollision(bulletLeft.GetDamage());
+					ship.HandleCollision(bulletLeft.GetDamage(), dt);
 					bulletLeft.HandleCollision();
 					break;
 				}
@@ -424,7 +424,7 @@ void World::CheckCollisions()
 
 				else if (IsColliding(bulletRightRect, shipRect))
 				{
-					ship.HandleCollision(bulletRight.GetDamage());
+					ship.HandleCollision(bulletRight.GetDamage(), dt);
 					bulletRight.HandleCollision();
 					break;
 				}
@@ -444,7 +444,7 @@ void World::CheckCollisions()
 				{
 					blackhole.StopVy();
 					ship.CollidesWithHole(true);
-					ship.HandleCollision(ship.GetHealth());
+					ship.HandleCollision(ship.GetHealth(), dt);
 
 					if (ship.IsBlackHole())
 					{
@@ -542,7 +542,7 @@ void World::CheckCollisions()
 			else if (IsColliding(shipRect, droneRect) && ship.IsAlive())
 			{
 				drone.HandleCollision();
-				ship.HandleCollision(drone.GetCollisionDmg());
+				ship.HandleCollision(drone.GetCollisionDmg(), dt);
 			}
 
 			for (int i = 0; i < bulletM.GetNumBullets(); ++i)
@@ -567,7 +567,7 @@ void World::CheckCollisions()
 			{
 				shipCollideSound.Play(1.1f, 0.9f);
 				bigEnemy.HandleCollision(0);
-				ship.HandleCollision(bigEnemy.GetCollisionDmg());
+				ship.HandleCollision(bigEnemy.GetCollisionDmg(), dt);
 			}
 
 			for (int i = 0; i < bulletM.GetNumBullets(); ++i)
@@ -603,7 +603,7 @@ void World::CheckCollisions()
 
 				else if (IsColliding(bulletRect, shipRect))
 				{
-					ship.HandleCollision(bullet.GetDamage());
+					ship.HandleCollision(bullet.GetDamage(), dt);
 					bullet.HandleCollision();
 					break;
 				}
@@ -615,7 +615,7 @@ void World::CheckCollisions()
 			if (IsColliding(blackholeRect, shipRect))
 			{
 				ship.CollidesWithHole(true);
-				ship.HandleCollision(0);
+				ship.HandleCollision(0, dt);
 			}
 
 			for (int i = 0; i < blackHoleLevel.GetCometCount(); ++i)
@@ -627,7 +627,7 @@ void World::CheckCollisions()
 				if (IsColliding(shipRect, cometRect))
 				{
 					comet.HandleCollision();
-					ship.HandleCollision(comet.GetDmg());
+					ship.HandleCollision(comet.GetDmg(), dt);
 				}
 			}
 		break;
@@ -637,13 +637,14 @@ void World::CheckCollisions()
 			const auto& bossTopRect = boss.GetTopCollisionRect();
 			const auto& bossLeftRect = boss.GetLeftCollisionRect();
 			const auto& bossRightRect = boss.GetRightCollisionRect();
+			const auto& bossRect = boss.GetCollisionRect();
 			if (IsColliding(bossBottomRect, shipRect) && ship.IsAlive())
 			{	
 				ship.SetY(boss.GetBottom());
 				
 				if (!boss.GetCoolDown())
 				{
-					ship.HandleCollision(boss.GetCollisionDmg());
+					ship.HandleCollision(boss.GetCollisionDmg(), dt);
 					boss.HandleCollision(0);
 					shipCollideSound.Play(1.1f, 0.9f);
 				}
@@ -655,7 +656,7 @@ void World::CheckCollisions()
 
 				if (!boss.GetCoolDown())
 				{
-					ship.HandleCollision(boss.GetCollisionDmg());
+					ship.HandleCollision(boss.GetCollisionDmg(), dt);
 					boss.HandleCollision(0);
 					shipCollideSound.Play(1.1f, 0.9f);
 				}
@@ -667,7 +668,7 @@ void World::CheckCollisions()
 
 				if (!boss.GetCoolDown())
 				{
-					ship.HandleCollision(boss.GetCollisionDmg());
+					ship.HandleCollision(boss.GetCollisionDmg(), dt);
 					boss.HandleCollision(0);
 					shipCollideSound.Play(1.1f, 0.9f);
 				}
@@ -679,7 +680,7 @@ void World::CheckCollisions()
 
 				if (!boss.GetCoolDown())
 				{
-					ship.HandleCollision(boss.GetCollisionDmg());
+					ship.HandleCollision(boss.GetCollisionDmg(), dt);
 					boss.HandleCollision(0);
 					shipCollideSound.Play(1.1f, 0.9f);
 				}
@@ -691,7 +692,7 @@ void World::CheckCollisions()
 				if (!bullet.IsActive())
 					continue;
 				const auto bulletRect = bullet.GetCollisionRect();
-				if (IsColliding(bulletRect, bossBottomRect) || IsColliding(bulletRect, bossRightRect) || IsColliding(bulletRect, bossLeftRect))
+				if (IsColliding(bulletRect, bossRect))
 				{
 					bullet.HandleCollision();
 					boss.HandleCollision(bullet.GetBossDmg());
@@ -708,7 +709,7 @@ void World::CheckCollisions()
 				if (IsColliding(leftBulletRect, shipRect))
 				{
 					leftBullet.HandleCollision();
-					ship.HandleCollision(leftBullet.GetDamage());
+					ship.HandleCollision(leftBullet.GetDamage(), dt);
 					break;
 				}
 			}
@@ -722,7 +723,7 @@ void World::CheckCollisions()
 				if (IsColliding(rightBulletRect, shipRect))
 				{
 					rightBullet.HandleCollision();
-					ship.HandleCollision(rightBullet.GetDamage());
+					ship.HandleCollision(rightBullet.GetDamage(), dt);
 					break;
 				}
 			}

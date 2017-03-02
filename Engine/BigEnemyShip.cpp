@@ -6,9 +6,9 @@ BigEnemyShip::BigEnemyShip(float X, const Surface & surface, BulletManager& Bull
 	shipSurface(surface),
 	resetX(X),
 	bulletM(BulletM),
-	exploAnim(ExploAnim, 2),
+	exploAnim(ExploAnim, 2.0f),
 	exploSound(ExploSound),
-	bulletSprite(bulletAnim, 2)
+	bulletSprite(bulletAnim, 2.0f)
 {}
 
 void BigEnemyShip::Draw(Graphics & gfx)
@@ -48,7 +48,7 @@ void BigEnemyShip::Update(float dt)
 		break;
 
 	case DyingState:
-		exploAnim.Advance();
+		exploAnim.Advance(dt);
 		if (exploAnim.AnimEnd())
 		{
 			Reset();

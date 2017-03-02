@@ -10,29 +10,29 @@ Ship::Ship(BulletManager& Manager, Surface& ShipSurface,
 	bManager(Manager),
 	shipSurface(ShipSurface),
 	redSurface(red), 
-	shipRekt(shiprekt, 2),
-	blackHole(holeAnim, 1),
-	blackHoleRekt(holeRektAnim, 1),
-	shipExplo(shipexplo, 2),
-	exhaust(exhaustAnim, 2),
-	rektExhaust(rektExhaustAnim, 2),
+	shipRekt(shiprekt, 2.0f),
+	blackHole(holeAnim, 1.0f),
+	blackHoleRekt(holeRektAnim, 1.0f),
+	shipExplo(shipexplo, 2.0f),
+	exhaust(exhaustAnim, 2.0f),
+	rektExhaust(rektExhaustAnim, 2.0f),
 	shipExplodeSound(shipexplodesound),
 	blackHoleSound(blackholesound),
-	bulletSprite(bulletAnim, 2)
+	bulletSprite(bulletAnim, 2.0f)
 {}
 
-void Ship::HandleCollision(int Damage)
+void Ship::HandleCollision(int Damage, float dt)
 {
 	switch (state)
 	{
 	case BlackHoleTransitionState:
 		if (health.GetHealthAmount() > lowHealth)
 		{
-			blackHole.Advance();
+			blackHole.Advance(dt);
 		}
 		else
 		{
-			blackHoleRekt.Advance();
+			blackHoleRekt.Advance(dt);
 		}
 
 		if ((blackHole.AnimEnd() || blackHoleRekt.AnimEnd()) && firstTransition)
@@ -316,7 +316,7 @@ void Ship::CollidesWithHole(bool collides)
 	}	
 }
 
-void Ship::PrepareForBoss()
+void Ship::PrepareForBoss(float dt)
 {
 	inputEnabled = false;
 	const RectF rect = GetCollisionRect();
@@ -326,8 +326,8 @@ void Ship::PrepareForBoss()
 	if (diff.GetLengthSq() > 5.0f)
 	{
 		diff.Normalize();
-		diff *= 3.5f;
-		pos -= diff;
+		diff *= 210.0f;
+		pos -= diff * dt;
 	}
 }
 
@@ -378,7 +378,7 @@ void Ship::Update(Keyboard & wnd, float dt)
 		{
 			if (!isMoving)
 			{
-				shipRekt.Advance();
+				shipRekt.Advance(dt);
 				if (shipRekt.AnimEnd())
 				{
 					shipRekt.Reset();
@@ -386,7 +386,7 @@ void Ship::Update(Keyboard & wnd, float dt)
 			}
 			else
 			{
-				rektExhaust.Advance();
+				rektExhaust.Advance(dt);
 				if (rektExhaust.AnimEnd())
 				{
 					rektExhaust.Reset();
@@ -396,7 +396,7 @@ void Ship::Update(Keyboard & wnd, float dt)
 
 		else if (isMoving)
 		{
-			exhaust.Advance();
+			exhaust.Advance(dt);
 			if (exhaust.AnimEnd())
 			{
 				exhaust.Reset();
@@ -412,7 +412,7 @@ void Ship::Update(Keyboard & wnd, float dt)
 
 	case ExplodingState:
 		bManager.UpdateBullets(dt, bulletSprite);
-		shipExplo.Advance();
+		shipExplo.Advance(dt);
 		if (shipExplo.AnimEnd())
 		{
 			state = DeadState;
@@ -440,7 +440,7 @@ void Ship::Update(Keyboard & wnd, float dt)
 
 		else if (health.GetHealthAmount() <= lowHealth)
 		{
-			rektExhaust.Advance();
+			rektExhaust.Advance(dt);
 			if (rektExhaust.AnimEnd())
 			{
 				rektExhaust.Reset();
@@ -449,7 +449,7 @@ void Ship::Update(Keyboard & wnd, float dt)
 
 		else if (health.GetHealthAmount() > lowHealth)
 		{
-			exhaust.Advance();
+			exhaust.Advance(dt);
 			if (exhaust.AnimEnd())
 			{
 				exhaust.Reset();
@@ -460,11 +460,11 @@ void Ship::Update(Keyboard & wnd, float dt)
 	case TransitionBackState:
 		if (health.GetHealthAmount() > lowHealth)
 		{
-			blackHole.Reverse();
+			blackHole.Reverse(dt);
 		}
 		else
 		{
-			blackHoleRekt.Reverse();
+			blackHoleRekt.Reverse(dt);
 		}
 
 		if (blackHole.AnimEnd() || blackHoleRekt.AnimEnd())

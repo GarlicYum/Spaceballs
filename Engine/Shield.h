@@ -24,10 +24,10 @@ public:
 
 private:
 	Vec2 pos;
-	static constexpr int radius = 90;
+	static constexpr float radius = 90.0f;
 	ShieldState sState = NoShield;
-	int shieldSize = 0;
-	int holeSize = - 5;
+	float shieldSize = 0.0f;
+	float holeSize = - 5.0f;
 	int meterWidth;
 	static constexpr int meterHeight = 10;
 	int meterX = 400;

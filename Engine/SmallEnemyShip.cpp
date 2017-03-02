@@ -5,8 +5,8 @@ SmallEnemyShip::SmallEnemyShip(float x, AnimationFrames& smallexhaust, Animation
 	:
 	pos(x, -100.0f),
 	resetX(x),
-	smallExhaust(smallexhaust, 2),
-	smallExplode(smallexplode, 3),
+	smallExhaust(smallexhaust, 2.0f),
+	smallExplode(smallexplode, 3.0f),
 	smallExploSound(smallexplo),
 	smallLeftM(smallLeftManager),
 	smallRightM(smallRightManager)
@@ -67,7 +67,7 @@ void SmallEnemyShip::Update(float dt, float playerX)
 			}
 		}
 
-		smallExhaust.Advance();
+		smallExhaust.Advance(dt);
 		if (smallExhaust.AnimEnd())
 		{
 			smallExhaust.Reset();
@@ -82,7 +82,7 @@ void SmallEnemyShip::Update(float dt, float playerX)
 		break;
 
 	case DyingState:
-		smallExplode.Advance();
+		smallExplode.Advance(dt);
 
 		if (smallExplode.AnimEnd())
 		{

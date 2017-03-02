@@ -6,7 +6,7 @@
 Mine::Mine(float X, const Surface& MineSurface, Sound& Explosion, AnimationFrames& Anim)
 	:
 	surface(MineSurface),
-	explo(Anim, 2),
+	explo(Anim, 2.0f),
 	explosion(Explosion),
 	pos(X, resetY)
 {}
@@ -38,7 +38,7 @@ void Mine::Update(float Dt)
 		pos.y += vy * Dt;
 		break;
 	case MineState::DetonateState:
-		explo.Advance();
+		explo.Advance(Dt);
 		if (explo.AnimEnd())
 			mState = InActiveState;
 		break;
