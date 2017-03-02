@@ -293,6 +293,8 @@ void World::PlayerInput(Keyboard& Kbd)
 					droneM.Reset();
 					bigEnemy.Reset();
 					bigEnemyBulletM.Reset();
+					bossLeftBulletM.Reset();
+					bossRightBulletM.Reset();
 					boss.Reset();
 					gameOverSong.StopAll();
 					titleSong.Play();

@@ -247,4 +247,7 @@ void Boss::Reset()
 	attackTimer = 0.0f;
 	specialAttackTimer = 0.0f;
 	health.Damage(health.GetHealthAmount());
+	isAttacking = false;
+	attackOver = false;
+	hasPlayerPos = false;
 }
