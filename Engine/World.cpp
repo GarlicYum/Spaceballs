@@ -147,7 +147,7 @@ void World::Update(Keyboard& Kbd, float Dt)
 			ship.EnableInput();
 			if (!starsSpedUp)
 			{
-				SpeedUpStars(2.0f);
+				SpeedUpStars(3.0f);
 				starsSpedUp = true;
 			}
 		}
@@ -250,6 +250,18 @@ void World::SpeedUpStars(float factor)
 	}
 }
 
+void World::ResetStarSpeed()
+{
+	for (int i = 0; i < nBigStars; ++i)
+	{
+		starB[i].ResetSpeed();
+	}
+	for (int i = 0; i < nStars; ++i)
+	{
+		star[i].ResetSpeed();
+	}
+}
+
 void World::PlayerInput(Keyboard& Kbd)
 {
 	switch (gState)
@@ -296,6 +308,7 @@ void World::PlayerInput(Keyboard& Kbd)
 					bossLeftBulletM.Reset();
 					bossRightBulletM.Reset();
 					boss.Reset();
+					ResetStarSpeed();
 					gameOverSong.StopAll();
 					titleSong.Play();
 					gState = TitleState;

@@ -97,3 +97,8 @@ void Star::SpeedUp(float factor)
 {
 	vy *= factor;
 }
+
+void Star::ResetSpeed()
+{
+	vy = 120.0f;
+}

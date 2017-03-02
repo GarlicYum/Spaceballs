@@ -12,6 +12,7 @@ public:
 	void Draw(Graphics& gfx);
 	void DrawBig(Graphics& gfx);
 	void SpeedUp(float factor);
+	void ResetSpeed();
 	
 private:
 	Vec2 pos;

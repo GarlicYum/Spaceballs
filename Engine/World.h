@@ -40,6 +40,7 @@ private:
 	void CheckCollisions(float dt);
 	void DrawStars(Graphics& Gfx);
 	void SpeedUpStars(float factor);
+	void ResetStarSpeed();
 
 private:
 	Sound titleSong = L"War.wav";
