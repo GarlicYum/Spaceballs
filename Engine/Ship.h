@@ -59,6 +59,7 @@ private:
 	float speed = 360.0f;
 	float width = 90.0f;
 	float height = 90.0f;
+	static constexpr float hitOver = 10.0f / 60.0f;
 	Health health;
 	float padding = 35.0f;
 	BulletManager& bManager;
@@ -66,7 +67,7 @@ private:
 	Surface& redSurface;
 	bool isMoving = false;
 	static constexpr int dmg = 60;
-	int isHitCounter = 0;
+	float isHitCounter = 0.0f;
 	Animation shipRekt;
 	static constexpr int lowHealth = 75;
 	bool isHit = false;

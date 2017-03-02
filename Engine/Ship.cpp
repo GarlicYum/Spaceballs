@@ -347,6 +347,7 @@ void Ship::Reset()
 	pos.y = 300.0f;
 	health.Reset();
 	isHit = false;
+	isHitCounter = 0.0f;
 	blackHole.Reset();
 	blackHoleRekt.Reset();
 	shipExplo.Reset();
@@ -366,10 +367,9 @@ void Ship::Update(Keyboard & wnd, float dt)
 
 		if (isHit)
 		{
-			isHitCounter++;
-			if (isHitCounter >= 10)
+			if ((isHitCounter += dt) >= hitOver)
 			{
-				isHitCounter = 0;
+				isHitCounter = 0.0f;
 				isHit = false;
 			}
 		}
@@ -424,10 +424,9 @@ void Ship::Update(Keyboard & wnd, float dt)
 
 		if (isHit)
 		{
-			isHitCounter++;
-			if (isHitCounter >= 10)
+			if ((isHitCounter += dt) >= hitOver)
 			{
-				isHitCounter = 0;
+				isHitCounter = 0.0f;
 				isHit = false;
 			}
 		}
