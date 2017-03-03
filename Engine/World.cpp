@@ -32,7 +32,8 @@ World::World()
 	smallBulletAnim(L"smallbullet\\", 18),
 	bossAnim(L"boss\\", 8),
 	boss(bossAnim, bossLeftBulletM, bossRightBulletM, bossCenterBulletM, bigBulletAnim, lightBallAnim),
-	lightBallAnim(L"lightball\\", 28)
+	lightBallAnim(L"lightball\\", 28),
+	bossExplo
 	
 {
 	std::mt19937 rng;
@@ -308,6 +309,7 @@ void World::PlayerInput(Keyboard& Kbd)
 					bigEnemyBulletM.Reset();
 					bossLeftBulletM.Reset();
 					bossRightBulletM.Reset();
+					bossCenterBulletM.Reset();
 					boss.Reset();
 					ResetStarSpeed();
 					starsSpedUp = false;

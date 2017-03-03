@@ -130,4 +130,6 @@ private:
 	Sound bossSong = L"bossmusic.wav";
 	AnimationFrames lightBallAnim;
 	bool starsSpedUp = false;
+	AnimationFrames bossExplo;
+	AnimationFrames bossPreExplo;
 };
