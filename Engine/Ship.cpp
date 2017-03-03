@@ -159,8 +159,11 @@ void Ship::Draw(Graphics& gfx)
 
 void Ship::ClampScreen()
 {
-	pos.x = std::max(0.f, std::min(pos.x, float(Graphics::ScreenWidth) - (width + 1.f)));
-	pos.y = std::max(0.f, std::min(pos.y, float(Graphics::ScreenHeight) - (height + 1.f)));
+	if (!gameComplete)
+	{
+		pos.x = std::max(0.f, std::min(pos.x, float(Graphics::ScreenWidth) - (width + 1.f)));
+		pos.y = std::max(0.f, std::min(pos.y, float(Graphics::ScreenHeight) - (height + 1.f)));
+	}
 }
 
 void Ship::PlayerInput(Keyboard& kbd, float dt)
@@ -341,6 +344,16 @@ float Ship::GetBottom() const
 	return pos.y + height;
 }
 
+void Ship::FlyOffScreen(float dt)
+{
+	gameComplete = true;
+	if ((pos.y + height) > -20.0f)
+	{
+		isMoving = true;
+		pos.y -= speed * dt;
+	}
+}
+
 void Ship::Reset()
 {
 	pos.x = 300.0f;
@@ -352,6 +365,7 @@ void Ship::Reset()
 	blackHoleRekt.Reset();
 	shipExplo.Reset();
 	state = AliveState;
+	gameComplete = false;
 }
 
 void Ship::Update(Keyboard & wnd, float dt)

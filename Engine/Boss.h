@@ -41,6 +41,7 @@ public:
 	void BringBack(float dt);
 	void BringToCenter(float dt);
 	bool IsExploding() const;
+	bool IsDead() const;
 
 	void Reset();
 
@@ -99,5 +100,7 @@ private:
 	Animation bossPreExplo;
 	bool isNotExploding = true;
 	int exploCounter = 0;
+	float bossWait = 0.5f;
+	float bossWaitTimer = 0.0f;
 };
 

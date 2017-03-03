@@ -55,7 +55,10 @@ break;
 	case ExplodingState:
 		if (isNotExploding)
 		{
-			BringToCenter(dt);
+			if ((bossWaitTimer += dt) >= bossWait)
+			{
+				BringToCenter(dt);
+			}
 		}
 		else
 		{
@@ -67,8 +70,8 @@ break;
 					bossPreExplo.Reset();
 					++exploCounter;
 				}
-				
 			}
+
 			else
 			{
 				bossExplo.Advance(dt);
@@ -78,10 +81,7 @@ break;
 					state = DeadState;
 				}
 			}
-			
-			
-		}
-		
+		}		
 		break;
 	}
 	leftBulletM.UpdateBullets(dt, bulletSprite);
@@ -381,13 +381,19 @@ void Boss::BringToCenter(float dt)
 	}
 	else
 	{
-		isNotExploding = false;;
+		bossWaitTimer = 0.0f;
+		isNotExploding = false;
 	}
 }
 
 bool Boss::IsExploding() const
 {
 	return state == ExplodingState;
+}
+
+bool Boss::IsDead() const
+{
+	return state == DeadState;
 }
 
 void Boss::Reset()
@@ -407,4 +413,5 @@ void Boss::Reset()
 	lightBallTimer = 0.0f;
 	isNotExploding = true;
 	exploCounter = 0;
+	bossWaitTimer = 0.0f;
 }

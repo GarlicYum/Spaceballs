@@ -170,6 +170,10 @@ void World::Update(Keyboard& Kbd, float Dt)
 			ship.PrepareForBoss(Dt);
 			ResetStarSpeed();
 		}
+		if (boss.IsDead())
+		{
+			ship.FlyOffScreen(Dt);
+		}
 		break;
 
 	case GameOverState:
@@ -658,112 +662,116 @@ void World::CheckCollisions(float dt)
 		break;
 
 		case BossState:
-			const auto& bossBottomRect = boss.GetBottomCollisionRect();
-			const auto& bossTopRect = boss.GetTopCollisionRect();
-			const auto& bossLeftRect = boss.GetLeftCollisionRect();
-			const auto& bossRightRect = boss.GetRightCollisionRect();
-			const auto& bossRect = boss.GetCollisionRect();
-			if (IsColliding(bossBottomRect, shipRect) && ship.IsAlive())
-			{	
-				ship.SetY(boss.GetBottom());
-				
-				if (!boss.GetCoolDown())
-				{
-					ship.HandleCollision(boss.GetCollisionDmg(), dt);
-					boss.HandleCollision(0);
-					shipCollideSound.Play(1.1f, 0.9f);
-				}
-			}
 
-			else if (IsColliding(bossLeftRect, shipRect) && ship.IsAlive())
+			if (boss.IsAliveState())
 			{
-				ship.SetX(boss.GetLeft() - ship.GetWidth());
-
-				if (!boss.GetCoolDown())
+				const auto& bossBottomRect = boss.GetBottomCollisionRect();
+				const auto& bossTopRect = boss.GetTopCollisionRect();
+				const auto& bossLeftRect = boss.GetLeftCollisionRect();
+				const auto& bossRightRect = boss.GetRightCollisionRect();
+				const auto& bossRect = boss.GetCollisionRect();
+				if (IsColliding(bossBottomRect, shipRect) && ship.IsAlive())
 				{
-					ship.HandleCollision(boss.GetCollisionDmg(), dt);
-					boss.HandleCollision(0);
-					shipCollideSound.Play(1.1f, 0.9f);
+					ship.SetY(boss.GetBottom());
+
+					if (!boss.GetCoolDown())
+					{
+						ship.HandleCollision(boss.GetCollisionDmg(), dt);
+						boss.HandleCollision(0);
+						shipCollideSound.Play(1.1f, 0.9f);
+					}
 				}
-			}
 
-			else if (IsColliding(bossRightRect, shipRect) && ship.IsAlive())
-			{
-				ship.SetX(boss.GetRight());
-
-				if (!boss.GetCoolDown())
+				else if (IsColliding(bossLeftRect, shipRect) && ship.IsAlive())
 				{
-					ship.HandleCollision(boss.GetCollisionDmg(), dt);
-					boss.HandleCollision(0);
-					shipCollideSound.Play(1.1f, 0.9f);
+					ship.SetX(boss.GetLeft() - ship.GetWidth());
+
+					if (!boss.GetCoolDown())
+					{
+						ship.HandleCollision(boss.GetCollisionDmg(), dt);
+						boss.HandleCollision(0);
+						shipCollideSound.Play(1.1f, 0.9f);
+					}
 				}
-			}
 
-			else if (IsColliding(bossTopRect, shipRect) && ship.IsAlive())
-			{
-				ship.SetY(boss.GetTop() - ship.GetHeight());
-
-				if (!boss.GetCoolDown())
+				else if (IsColliding(bossRightRect, shipRect) && ship.IsAlive())
 				{
-					ship.HandleCollision(boss.GetCollisionDmg(), dt);
-					boss.HandleCollision(0);
-					shipCollideSound.Play(1.1f, 0.9f);
+					ship.SetX(boss.GetRight());
+
+					if (!boss.GetCoolDown())
+					{
+						ship.HandleCollision(boss.GetCollisionDmg(), dt);
+						boss.HandleCollision(0);
+						shipCollideSound.Play(1.1f, 0.9f);
+					}
 				}
-			}
 
-			for (int i = 0; i < bulletM.GetNumBullets(); ++i)
-			{
-				auto& bullet = bulletM.GetBullet(i);
-				if (!bullet.IsActive())
-					continue;
-				const auto bulletRect = bullet.GetCollisionRect();
-				if (IsColliding(bulletRect, bossRect))
+				else if (IsColliding(bossTopRect, shipRect) && ship.IsAlive())
 				{
-					bullet.HandleCollision();
-					boss.HandleCollision(bullet.GetBossDmg());
-					break;
+					ship.SetY(boss.GetTop() - ship.GetHeight());
+
+					if (!boss.GetCoolDown())
+					{
+						ship.HandleCollision(boss.GetCollisionDmg(), dt);
+						boss.HandleCollision(0);
+						shipCollideSound.Play(1.1f, 0.9f);
+					}
 				}
-			}
 
-			for (int i = 0; i < bossLeftBulletM.GetNumBullets(); ++i)
-			{
-				auto& leftBullet = bossLeftBulletM.GetBullet(i);
-				if (!leftBullet.IsActive())
-					continue;
-				const auto leftBulletRect = leftBullet.GetCollisionRect();
-				if (IsColliding(leftBulletRect, shipRect))
+				for (int i = 0; i < bulletM.GetNumBullets(); ++i)
 				{
-					leftBullet.HandleCollision();
-					ship.HandleCollision(leftBullet.GetDamage(), dt);
-					break;
+					auto& bullet = bulletM.GetBullet(i);
+					if (!bullet.IsActive())
+						continue;
+					const auto bulletRect = bullet.GetCollisionRect();
+					if (IsColliding(bulletRect, bossRect))
+					{
+						bullet.HandleCollision();
+						boss.HandleCollision(bullet.GetBossDmg());
+						break;
+					}
 				}
-			}
 
-			for (int i = 0; i < bossRightBulletM.GetNumBullets(); ++i)
-			{
-				auto& rightBullet = bossRightBulletM.GetBullet(i);
-				if (!rightBullet.IsActive())
-					continue;
-				const auto rightBulletRect = rightBullet.GetCollisionRect();
-				if (IsColliding(rightBulletRect, shipRect))
+				for (int i = 0; i < bossLeftBulletM.GetNumBullets(); ++i)
 				{
-					rightBullet.HandleCollision();
-					ship.HandleCollision(rightBullet.GetDamage(), dt);
-					break;
+					auto& leftBullet = bossLeftBulletM.GetBullet(i);
+					if (!leftBullet.IsActive())
+						continue;
+					const auto leftBulletRect = leftBullet.GetCollisionRect();
+					if (IsColliding(leftBulletRect, shipRect))
+					{
+						leftBullet.HandleCollision();
+						ship.HandleCollision(leftBullet.GetDamage(), dt);
+						break;
+					}
 				}
-			}
 
-			for (int i = 0; i < bossCenterBulletM.GetNumBullets(); ++i)
-			{
-				auto& centerBullet = bossCenterBulletM.GetBullet(i);
-				if (!centerBullet.IsActive())
-					continue;
-				const auto centerBulletRect = centerBullet.GetCollisionRect();
-				if (IsColliding(centerBulletRect, shipRect))
+				for (int i = 0; i < bossRightBulletM.GetNumBullets(); ++i)
 				{
-					centerBullet.HandleCollision();
-					ship.HandleCollision(centerBullet.GetDamage(), dt);
-					break;
+					auto& rightBullet = bossRightBulletM.GetBullet(i);
+					if (!rightBullet.IsActive())
+						continue;
+					const auto rightBulletRect = rightBullet.GetCollisionRect();
+					if (IsColliding(rightBulletRect, shipRect))
+					{
+						rightBullet.HandleCollision();
+						ship.HandleCollision(rightBullet.GetDamage(), dt);
+						break;
+					}
+				}
+
+				for (int i = 0; i < bossCenterBulletM.GetNumBullets(); ++i)
+				{
+					auto& centerBullet = bossCenterBulletM.GetBullet(i);
+					if (!centerBullet.IsActive())
+						continue;
+					const auto centerBulletRect = centerBullet.GetCollisionRect();
+					if (IsColliding(centerBulletRect, shipRect))
+					{
+						centerBullet.HandleCollision();
+						ship.HandleCollision(centerBullet.GetDamage(), dt);
+						break;
+					}
 				}
 			}
 			break;

@@ -45,6 +45,7 @@ public:
 	void PrepareForBoss(float dt);
 	float GetRight() const;
 	float GetBottom() const;
+	void FlyOffScreen(float dt);
 	void Reset();
 
 private:
@@ -86,4 +87,5 @@ private:
 	bool firstTransition = true;
 	Animation bulletSprite;
 	bool inputEnabled = true;
+	bool gameComplete = false;
 };
