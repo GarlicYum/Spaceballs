@@ -178,7 +178,7 @@ void Boss::BulletSpread(float dt, float playerPos)
 
 		Vec2 dest = Vec2(lightBallDir, 600.0f);
 		Vec2 diff = centerCanon - dest;
-		diff *= 1.5f;
+		diff *= 1.3f;
 
 		centerBulletM.FireBullet(canonPos, diff, bulletHalfWidth, bulletHalfHeight, bulletRectSize, bulletDmg, bulletPitch);
 		centerBulletM.ResetShotsFired();
@@ -333,4 +333,7 @@ void Boss::Reset()
 	isAttacking = false;
 	attackOver = false;
 	hasPlayerPos = false;
+	choiceWasMade = false;
+	lightBallCounter = 0;
+	lightBallTimer = 0.0f;
 }
