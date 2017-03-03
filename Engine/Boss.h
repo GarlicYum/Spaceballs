@@ -16,7 +16,8 @@ public:
 		EntranceState, AliveState, ExplodingState, DeadState
 	};
 	Boss(AnimationFrames& bossAnim, BulletManager& LeftBulletM, BulletManager& RightBulletM, BulletManager& CenterBulletM,
-		AnimationFrames& BulletAnim, AnimationFrames& lightBallAnim, AnimationFrames& bossExploAnim, AnimationFrames& bossPreExploAnim);
+		AnimationFrames& BulletAnim, AnimationFrames& lightBallAnim, AnimationFrames& bossExploAnim, AnimationFrames& bossPreExploAnim,
+		Sound& shipExplodeSound);
 	void Update(float dt, float playerPos);
 	void Draw(Graphics& gfx);
 	RectF GetBottomCollisionRect() const;
@@ -48,6 +49,7 @@ public:
 private:
 	Vec2 pos = Vec2(315.0f, -250.0f);
 	Vec2 vel = Vec2(100.0f, 100.0f);
+	float speedFactor = 1.0f;
 	Vec2 midPoint = Vec2(400.0f, 140.0f);
 	Vec2 screenCenter = Vec2(400.0f, 300.0f);
 	Vec2 bossCenter;
@@ -102,5 +104,7 @@ private:
 	int exploCounter = 0;
 	float bossWait = 0.5f;
 	float bossWaitTimer = 0.0f;
+	Sound& bigExploSound;
+	bool bigExploSoundPlayed = false;
 };
 

@@ -32,7 +32,7 @@ World::World()
 	smallBulletAnim(L"smallbullet\\", 18),
 	bossAnim(L"boss\\", 8),
 	boss(bossAnim, bossLeftBulletM, bossRightBulletM, bossCenterBulletM, bigBulletAnim, lightBallAnim,
-		bossExplo, bossPreExplo),
+		bossExplo, bossPreExplo, shipExplodeSound),
 	lightBallAnim(L"lightball\\", 28),
 	bossExplo(L"bossexplo\\", 85),
 	bossPreExplo(L"bosspreexplo\\", 15)

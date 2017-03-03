@@ -1,7 +1,8 @@
 #include "Boss.h"
 
 Boss::Boss(AnimationFrames & bossAnim, BulletManager& LeftBulletM, BulletManager& RightBulletM, BulletManager& CenterBulletM, 
-	AnimationFrames& BulletAnim, AnimationFrames& lightBallAnim, AnimationFrames& bossExploAnim, AnimationFrames& bossPreExploAnim)
+	AnimationFrames& BulletAnim, AnimationFrames& lightBallAnim, AnimationFrames& bossExploAnim, AnimationFrames& bossPreExploAnim,
+	Sound& shipExplodeSound)
 	:
 bossSprite(bossAnim, 2.0f),
 bulletSprite(BulletAnim, 2.0f),
@@ -11,7 +12,8 @@ centerBulletM(CenterBulletM),
 health(healthX, healthY, 0),
 lightBall(lightBallAnim, 2.0f),
 bossExplo(bossExploAnim, 2.0f),
-bossPreExplo(bossPreExploAnim, 2.0f)
+bossPreExplo(bossPreExploAnim, 2.0f),
+bigExploSound(shipExplodeSound)
 {}
 
 void Boss::Update(float dt, float playerPos)
@@ -46,6 +48,23 @@ break;
 			}
 		}
 
+		if (health.GetHealthAmount() <= 100)
+		{
+			specialAttack = 3.0f;
+			thrustY = 450.0f;
+			thrustLeft = -450.0f;
+			thrustRight = 450.0f;
+			speedFactor = 2.0f;
+		}
+		else if (health.GetHealthAmount() <= 200)
+		{
+			specialAttack = 4.0f;
+			thrustY = 375.0f;
+			thrustLeft = -375.0f;
+			thrustRight = 375.0f;
+			speedFactor = 1.5f;
+		}
+
 		if (!health.HasHealth())
 		{
 			state = ExplodingState;
@@ -74,6 +93,11 @@ break;
 
 			else
 			{
+				if (!bigExploSoundPlayed)
+				{
+					bigExploSoundPlayed = true;
+					bigExploSound.Play(0.9f, 1.0f);
+				}
 				bossExplo.Advance(dt);
 				if (bossExplo.AnimEnd())
 				{
@@ -264,7 +288,7 @@ void Boss::Move(float dt, float playerPos)
 	{
 		if (!isAttacking)
 		{
-			pos.x -= vel.x * dt;
+			pos.x -= ((vel.x * dt) * speedFactor);
 			if (pos.x <= 0.0f)
 			{
 				pos.x = 0.0f;
@@ -414,4 +438,10 @@ void Boss::Reset()
 	isNotExploding = true;
 	exploCounter = 0;
 	bossWaitTimer = 0.0f;
+	specialAttack= 5.0f;
+	thrustY = 300.0f;
+	thrustLeft = -300.0f;
+	thrustRight = 3000.0f;
+	speedFactor = 1.0f;
+	bigExploSoundPlayed = false;
 }
