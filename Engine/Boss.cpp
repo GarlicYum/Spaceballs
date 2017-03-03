@@ -1,7 +1,7 @@
 #include "Boss.h"
 
 Boss::Boss(AnimationFrames & bossAnim, BulletManager& LeftBulletM, BulletManager& RightBulletM, BulletManager& CenterBulletM, 
-	AnimationFrames& BulletAnim, AnimationFrames& lightBallAnim)
+	AnimationFrames& BulletAnim, AnimationFrames& lightBallAnim, AnimationFrames& bossExploAnim, AnimationFrames& bossPreExploAnim)
 	:
 bossSprite(bossAnim, 2.0f),
 bulletSprite(BulletAnim, 2.0f),
@@ -9,7 +9,9 @@ rightBulletM(RightBulletM),
 leftBulletM(LeftBulletM),
 centerBulletM(CenterBulletM),
 health(healthX, healthY, 0),
-lightBall(lightBallAnim, 2.0f)
+lightBall(lightBallAnim, 2.0f),
+bossExplo(bossExploAnim, 2.0f),
+bossPreExplo(bossPreExploAnim, 2.0f)
 {}
 
 void Boss::Update(float dt, float playerPos)
@@ -51,6 +53,35 @@ break;
 		break;
 
 	case ExplodingState:
+		if (isNotExploding)
+		{
+			BringToCenter(dt);
+		}
+		else
+		{
+			if (exploCounter < 6)
+			{
+				bossPreExplo.Advance(dt);
+				if (bossPreExplo.AnimEnd())
+				{
+					bossPreExplo.Reset();
+					++exploCounter;
+				}
+				
+			}
+			else
+			{
+				bossExplo.Advance(dt);
+				if (bossExplo.AnimEnd())
+				{
+					bossExplo.Reset();
+					state = DeadState;
+				}
+			}
+			
+			
+		}
+		
 		break;
 	}
 	leftBulletM.UpdateBullets(dt, bulletSprite);
@@ -72,6 +103,21 @@ void Boss::Draw(Graphics & gfx)
 		bossSprite.Draw(int(pos.x), int(pos.y), gfx);
 		break;
 	case ExplodingState:
+		if (isNotExploding)
+		{
+			bossSprite.Draw(int(pos.x), int(pos.y), gfx);
+		}
+		else
+		{
+			if (exploCounter < 6)
+			{
+				bossPreExplo.Draw(int(pos.x), int(pos.y), gfx);
+			}
+			else
+			{
+				bossExplo.Draw(-1, 0, gfx);
+			}
+		}
 		break;
 	}
 	health.Draw(gfx);
@@ -321,6 +367,29 @@ void Boss::BringBack(float dt)
 	}
 }
 
+void Boss::BringToCenter(float dt)
+{
+	const RectF bossRect = GetCollisionRect();
+	bossCenter = bossRect.GetCenter();
+	Vec2 diff = bossCenter - screenCenter;
+
+	if (diff.GetLengthSq() > 5.0f)
+	{
+		diff.Normalize();
+		diff *= 210.0f;
+		pos -= diff * dt;
+	}
+	else
+	{
+		isNotExploding = false;;
+	}
+}
+
+bool Boss::IsExploding() const
+{
+	return state == ExplodingState;
+}
+
 void Boss::Reset()
 {
 	state = EntranceState;
@@ -336,4 +405,6 @@ void Boss::Reset()
 	choiceWasMade = false;
 	lightBallCounter = 0;
 	lightBallTimer = 0.0f;
+	isNotExploding = true;
+	exploCounter = 0;
 }

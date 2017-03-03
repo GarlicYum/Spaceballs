@@ -16,7 +16,7 @@ public:
 		EntranceState, AliveState, ExplodingState, DeadState
 	};
 	Boss(AnimationFrames& bossAnim, BulletManager& LeftBulletM, BulletManager& RightBulletM, BulletManager& CenterBulletM,
-		AnimationFrames& BulletAnim, AnimationFrames& lightBallAnim);
+		AnimationFrames& BulletAnim, AnimationFrames& lightBallAnim, AnimationFrames& bossExploAnim, AnimationFrames& bossPreExploAnim);
 	void Update(float dt, float playerPos);
 	void Draw(Graphics& gfx);
 	RectF GetBottomCollisionRect() const;
@@ -39,6 +39,8 @@ public:
 	float GetTop() const;
 	float GetBottom() const;
 	void BringBack(float dt);
+	void BringToCenter(float dt);
+	bool IsExploding() const;
 
 	void Reset();
 
@@ -46,6 +48,7 @@ private:
 	Vec2 pos = Vec2(315.0f, -250.0f);
 	Vec2 vel = Vec2(100.0f, 100.0f);
 	Vec2 midPoint = Vec2(400.0f, 140.0f);
+	Vec2 screenCenter = Vec2(400.0f, 300.0f);
 	Vec2 bossCenter;
 	float attackTimer = 0.0f;
 	float attack = 1.0f;
@@ -92,5 +95,9 @@ private:
 	bool choiceWasMade = false;
 	short AttackChoice;
 	float lightBallIncrement;
+	Animation bossExplo;
+	Animation bossPreExplo;
+	bool isNotExploding = true;
+	int exploCounter = 0;
 };
 

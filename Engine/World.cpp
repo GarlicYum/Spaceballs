@@ -31,9 +31,11 @@ World::World()
 	bigBulletAnim(L"bigbullet\\", 26),
 	smallBulletAnim(L"smallbullet\\", 18),
 	bossAnim(L"boss\\", 8),
-	boss(bossAnim, bossLeftBulletM, bossRightBulletM, bossCenterBulletM, bigBulletAnim, lightBallAnim),
+	boss(bossAnim, bossLeftBulletM, bossRightBulletM, bossCenterBulletM, bigBulletAnim, lightBallAnim,
+		bossExplo, bossPreExplo),
 	lightBallAnim(L"lightball\\", 28),
-	bossExplo
+	bossExplo(L"bossexplo\\", 85),
+	bossPreExplo(L"bosspreexplo\\", 15)
 	
 {
 	std::mt19937 rng;
@@ -162,6 +164,12 @@ void World::Update(Keyboard& Kbd, float Dt)
 		{
 			gState = GameOverState;
 		}
+		if (boss.IsExploding())
+		{
+			bossSong.StopAll();
+			ship.PrepareForBoss(Dt);
+			ResetStarSpeed();
+		}
 		break;
 
 	case GameOverState:
@@ -205,8 +213,8 @@ void World::Draw(Graphics& Gfx)
 		break;
 	case BossState:
 		DrawStars(Gfx);
-		boss.Draw(Gfx);
 		ship.Draw(Gfx);
+		boss.Draw(Gfx);
 		break;
 	case GameOverState:
 		Gfx.DrawSprite(0, 0, gameOverSurface);
