@@ -31,7 +31,8 @@ World::World()
 	bigBulletAnim(L"bigbullet\\", 26),
 	smallBulletAnim(L"smallbullet\\", 18),
 	bossAnim(L"boss\\", 8),
-	boss(bossAnim, bossLeftBulletM, bossRightBulletM, bigBulletAnim)
+	boss(bossAnim, bossLeftBulletM, bossRightBulletM, bossCenterBulletM, bigBulletAnim, lightBallAnim),
+	lightBallAnim(L"lightball\\", 28)
 	
 {
 	std::mt19937 rng;
@@ -738,6 +739,20 @@ void World::CheckCollisions(float dt)
 				{
 					rightBullet.HandleCollision();
 					ship.HandleCollision(rightBullet.GetDamage(), dt);
+					break;
+				}
+			}
+
+			for (int i = 0; i < bossCenterBulletM.GetNumBullets(); ++i)
+			{
+				auto& centerBullet = bossCenterBulletM.GetBullet(i);
+				if (!centerBullet.IsActive())
+					continue;
+				const auto centerBulletRect = centerBullet.GetCollisionRect();
+				if (IsColliding(centerBulletRect, shipRect))
+				{
+					centerBullet.HandleCollision();
+					ship.HandleCollision(centerBullet.GetDamage(), dt);
 					break;
 				}
 			}

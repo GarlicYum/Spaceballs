@@ -49,7 +49,7 @@ private:
 	float fireBullet = 0.5f;
 	float bulletTimer = 0.0f;
 	static constexpr int bulletDmg = 25;
-	static constexpr float bulletVel = -600.0f;
+	Vec2 bulletVel = Vec2(0.0f, -600.0f);
 	static constexpr int bulletHalfWidth = 15;
 	static constexpr int bulletHalfHeight = 20;
 	static constexpr int bulletRectSize = 10;

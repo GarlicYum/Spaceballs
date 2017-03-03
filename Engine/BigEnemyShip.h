@@ -37,7 +37,7 @@ private:
 	static constexpr int bulletHalfWidth = 30;
 	static constexpr int bulletHalfHeight = 37;
 	static constexpr int bulletRectSize = 15;
-	static constexpr float bulletVel = -400.0f;
+	Vec2 bulletVel = Vec2(0.0f, -400.0f);
 	static constexpr int bulletDmg = 50;
 	static constexpr int collisionDmg = 75;
 	int hp = 600;

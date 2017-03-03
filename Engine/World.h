@@ -126,7 +126,8 @@ private:
 	Boss boss;
 	BulletManager bossLeftBulletM;
 	BulletManager bossRightBulletM;
+	BulletManager bossCenterBulletM;
 	Sound bossSong = L"bossmusic.wav";
-
+	AnimationFrames lightBallAnim;
 	bool starsSpedUp = false;
 };

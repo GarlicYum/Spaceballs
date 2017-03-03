@@ -7,12 +7,12 @@ Bullet::Bullet(Vec2& pos_in)
 	bState(AliveState)
 {}
 
-Bullet::Bullet(Vec2 & pos_in, float VY, int Width, int Height, int bulletRectSize, int Dmg)
+Bullet::Bullet(Vec2 & pos_in, Vec2& Vel, int Width, int Height, int bulletRectSize, int Dmg)
 	:
 	pos(pos_in),
 	halfWidth(Width),
 	halfHeight(Height),
-	vy(VY),
+	vel(Vel),
 	dmg(Dmg),
 	bState(AliveState),
 	rectSize(bulletRectSize)
@@ -21,7 +21,7 @@ Bullet::Bullet(Vec2 & pos_in, float VY, int Width, int Height, int bulletRectSiz
 //Update makes the bullet move in y direction and changes state to deadstate if it reaches the end of the screen
 void Bullet::Update(float dt, Animation& bulletSprite)
 {
-	pos.y -= vy * dt;
+	pos -= vel * dt;
 
 	bulletSprite.Advance(dt);
 	if (bulletSprite.AnimEnd())

@@ -1,13 +1,15 @@
 #include "Boss.h"
 
-Boss::Boss(AnimationFrames & bossAnim, BulletManager& LeftBulletM, BulletManager& RightBulletM, BulletManager& CenterBulletM, AnimationFrames& BulletAnim)
+Boss::Boss(AnimationFrames & bossAnim, BulletManager& LeftBulletM, BulletManager& RightBulletM, BulletManager& CenterBulletM, 
+	AnimationFrames& BulletAnim, AnimationFrames& lightBallAnim)
 	:
 bossSprite(bossAnim, 2.0f),
 bulletSprite(BulletAnim, 2.0f),
 rightBulletM(RightBulletM),
 leftBulletM(LeftBulletM),
 centerBulletM(CenterBulletM),
-health(healthX, healthY, 0)
+health(healthX, healthY, 0),
+lightBall(lightBallAnim, 2.0f)
 {}
 
 void Boss::Update(float dt, float playerPos)
@@ -53,10 +55,12 @@ break;
 	}
 	leftBulletM.UpdateBullets(dt, bulletSprite);
 	rightBulletM.UpdateBullets(dt, bulletSprite);
+	centerBulletM.UpdateBullets(dt, lightBall);
 }
 
 void Boss::Draw(Graphics & gfx)
 {
+	centerBulletM.DrawBullets(gfx, lightBall);
 	leftBulletM.DrawBullets(gfx, bulletSprite);
 	rightBulletM.DrawBullets(gfx, bulletSprite);
 	switch (state)
@@ -76,6 +80,19 @@ void Boss::Draw(Graphics & gfx)
 int Boss::GetCollisionDmg() const
 {
 	return collisionDmg;
+}
+
+void Boss::Attack(float dt, float playerPos, short choice)
+{
+	switch (choice)
+	{
+	case 1:
+		Thrust(dt, playerPos);
+		break;
+	case 2:
+		BulletSpread(dt, playerPos);
+		break;
+	}
 }
 
 RectF Boss::GetBottomCollisionRect() const
@@ -138,11 +155,48 @@ void Boss::Thrust(float dt, float playerPos)
 	}
 }
 
-void Boss::BulletSpread(float dt)
+void Boss::BulletSpread(float dt, float playerPos)
 {
 	Vec2 canonPos = pos + centerCanon;
-	const Vec2 dir1 = Vec2(-400, 400.0f) + centerCanon;
 
+	if ((lightBallTimer += dt) >= fireLightball)
+	{
+		if (!hasPlayerPos)
+		{
+			if (playerPos <= GetCollisionRect().GetCenterX())
+			{
+				lightBallDir = -400.0f;
+				lightBallIncrement = 126.0f;
+			}
+			else
+			{
+				lightBallDir = 400.0f;
+				lightBallIncrement = -126.0f;
+			}
+			hasPlayerPos = true;
+		}
+
+		Vec2 dest = Vec2(lightBallDir, 600.0f);
+		Vec2 diff = centerCanon - dest;
+		diff *= 1.5f;
+
+		centerBulletM.FireBullet(canonPos, diff, bulletHalfWidth, bulletHalfHeight, bulletRectSize, bulletDmg, bulletPitch);
+		centerBulletM.ResetShotsFired();
+		lightBallTimer = 0.0f;
+		++lightBallCounter;
+		lightBallDir += lightBallIncrement;
+	}
+
+	if (lightBallCounter == 8)
+	{
+		lightBallCounter = 0;
+		lightBallTimer = 0.0f;
+		isAttacking = false;
+		lightBallDir = -400.0f;
+		specialAttackTimer = 0.0f;
+		choiceWasMade = false;
+		hasPlayerPos = false;
+	}
 }
 
 void Boss::Move(float dt, float playerPos)
@@ -190,8 +244,17 @@ void Boss::Move(float dt, float playerPos)
 
 		if ((specialAttackTimer += dt) > specialAttack)
 		{
+			if (!choiceWasMade)
+			{
+				std::random_device rd;
+				std::mt19937 rng(rd());
+				std::uniform_int_distribution<short> Choice(1, 2);
+				AttackChoice = Choice(rng);
+				choiceWasMade = true;
+			}
 			isAttacking = true;
-			Thrust(dt, playerPos);
+			Attack(dt, playerPos, AttackChoice);
+			attackTimer = 0.0f;
 		}
 	}
 }
@@ -254,6 +317,7 @@ void Boss::BringBack(float dt)
 		attackOver = false;
 		isAttacking = false;
 		specialAttackTimer = 0.0f;
+		choiceWasMade = false;
 	}
 }
 

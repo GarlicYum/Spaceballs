@@ -6,6 +6,7 @@
 #include "Animation.h"
 #include "BulletManager.h"
 #include "Health.h"
+#include <random>
 
 class Boss
 {
@@ -14,7 +15,8 @@ public:
 	{
 		EntranceState, AliveState, ExplodingState, DeadState
 	};
-	Boss(AnimationFrames& bossAnim, BulletManager& LeftBulletM, BulletManager& RightBulletM, BulletManager& CenterBulletM, AnimationFrames& BulletAnim);
+	Boss(AnimationFrames& bossAnim, BulletManager& LeftBulletM, BulletManager& RightBulletM, BulletManager& CenterBulletM,
+		AnimationFrames& BulletAnim, AnimationFrames& lightBallAnim);
 	void Update(float dt, float playerPos);
 	void Draw(Graphics& gfx);
 	RectF GetBottomCollisionRect() const;
@@ -23,9 +25,9 @@ public:
 	RectF GetRightCollisionRect() const;
 	RectF GetCollisionRect() const;
 	int GetCollisionDmg() const;
-	void Attack();
+	void Attack(float dt, float playerPos, short choice);
 	void Thrust(float dt, float playerPos);
-	void BulletSpread(float dt);
+	void BulletSpread(float dt, float playerPos);
 	void Missile(float dt, float playerPos);
 	void Move(float dt, float playerPos);
 	void HandleCollision(int dmg);
@@ -49,27 +51,28 @@ private:
 	float attack = 1.0f;
 	float specialAttackTimer = 0.0f;
 	float specialAttack = 5.0f;
+	float lightBallTimer = 0.0f;
+	float fireLightball = 0.3f;
+	int lightBallCounter = 0;
+	float lightBallDir = -400.0f;
 	bool isAttacking = false;
 	bool attackOver = false;
 	bool hasPlayerPos = false;
 	Vec2 leftCanon = Vec2(25.0f, 200.0f);
 	Vec2 rightCanon = Vec2(90.0f, 200.0f);
-	Vec2 centerCanon = Vec2(57.5f, 200.0f);
-	float bulletVel = -300.0f;
+	Vec2 centerCanon = Vec2(57.5f, 220.0f);
+	Vec2 bulletVel = Vec2(0.0f, -300.0f);
 	static constexpr int bulletHalfWidth = 30;
 	static constexpr int bulletHalfHeight = 37;
 	static constexpr int bulletRectSize = 15;
 	static constexpr float bulletPitch = 0.3f;
-
-
-
-
 	static constexpr float entranceSpeed = 50.0f;
 	static constexpr float width = 170.0f;
 	static constexpr float height = 250.0f;
 	static constexpr int collisionDmg = 75;
 	static constexpr int bulletDmg = 50;
 	Animation bossSprite;
+	Animation lightBall;
 	BulletManager& leftBulletM;
 	BulletManager& rightBulletM;
 	BulletManager& centerBulletM;
@@ -86,5 +89,8 @@ private:
 	float thrustLeft = -300.0f;
 	float thrustRight = 300.0f;
 	Health health;
+	bool choiceWasMade = false;
+	short AttackChoice;
+	float lightBallIncrement;
 };
 

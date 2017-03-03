@@ -13,7 +13,7 @@ public:
 	};
 	Bullet() = default;
 	Bullet(Vec2& pos_in);
-	Bullet(Vec2& pos_in, float VY, int Width, int Height, int bulletRectSize, int Dmg);
+	Bullet(Vec2& pos_in, Vec2& Vel, int Width, int Height, int bulletRectSize, int Dmg);
 	void Update(float dt, Animation& bulletSprite);
 	bool HasSpawned() const;
 	void Draw(Graphics & gfx, Animation& bulletSprite);
@@ -31,7 +31,7 @@ private:
 	int halfWidth = 20;
 	int halfHeight = 25;
 	int rectSize = 10;
-	float vy = 15.0f * 60.0f;
+	Vec2 vel = Vec2(0.0f, 900.0f);
 	int dmg = 20;
 	int bossDmg = 2;
 };
