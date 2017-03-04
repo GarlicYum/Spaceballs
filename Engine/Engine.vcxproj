@@ -179,6 +179,7 @@
     <ClInclude Include="SoundEffect.h" />
     <ClInclude Include="Star.h" />
     <ClInclude Include="Surface.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="TitleScreen.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="World.h" />
@@ -221,6 +222,7 @@
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Star.cpp" />
     <ClCompile Include="Surface.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TitleScreen.cpp" />
     <ClCompile Include="Vec2.cpp" />
     <ClCompile Include="World.cpp" />

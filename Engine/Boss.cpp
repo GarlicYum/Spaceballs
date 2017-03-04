@@ -13,7 +13,12 @@ health(healthX, healthY, 0),
 lightBall(lightBallAnim, 2.0f),
 bossExplo(bossExploAnim, 2.0f),
 bossPreExplo(bossPreExploAnim, 2.0f),
-bigExploSound(shipExplodeSound)
+bigExploSound(shipExplodeSound),
+attackTimer(1.0f),
+specAttackTimer(5.0f),
+lightBallTimer(0.3f),
+coolDownTimer(0.75f),
+waitTimer(0.5f)
 {}
 
 void Boss::Update(float dt, float playerPos)
@@ -41,16 +46,16 @@ break;
 
 		if (coolDown)
 		{
-			if ((coolDownTimer += dt) > coolDownOver)
+			if (coolDownTimer.Pause(dt))
 			{
 				coolDown = false;
-				coolDownTimer = 0.0f;
+				coolDownTimer.Reset();
 			}
 		}
 
 		if (health.GetHealthAmount() <= 100)
 		{
-			specialAttack = 3.0f;
+			specAttackTimer.SetWaitTime(3.0f);
 			thrustY = 450.0f;
 			thrustLeft = -450.0f;
 			thrustRight = 450.0f;
@@ -58,7 +63,7 @@ break;
 		}
 		else if (health.GetHealthAmount() <= 200)
 		{
-			specialAttack = 4.0f;
+			specAttackTimer.SetWaitTime(4.0f);
 			thrustY = 375.0f;
 			thrustLeft = -375.0f;
 			thrustRight = 375.0f;
@@ -74,7 +79,7 @@ break;
 	case ExplodingState:
 		if (isNotExploding)
 		{
-			if ((bossWaitTimer += dt) >= bossWait)
+			if (waitTimer.Pause(dt))
 			{
 				BringToCenter(dt);
 			}
@@ -229,7 +234,7 @@ void Boss::BulletSpread(float dt, float playerPos)
 {
 	Vec2 canonPos = pos + centerCanon;
 
-	if ((lightBallTimer += dt) >= fireLightball)
+	if (lightBallTimer.Pause(dt))
 	{
 		if (!hasPlayerPos)
 		{
@@ -252,7 +257,7 @@ void Boss::BulletSpread(float dt, float playerPos)
 
 		centerBulletM.FireBullet(canonPos, diff, bulletHalfWidth, bulletHalfHeight, bulletRectSize, bulletDmg, bulletPitch);
 		centerBulletM.ResetShotsFired();
-		lightBallTimer = 0.0f;
+		lightBallTimer.Reset();
 		++lightBallCounter;
 		lightBallDir += lightBallIncrement;
 	}
@@ -260,10 +265,10 @@ void Boss::BulletSpread(float dt, float playerPos)
 	if (lightBallCounter == 8)
 	{
 		lightBallCounter = 0;
-		lightBallTimer = 0.0f;
+		lightBallTimer.Reset();
 		isAttacking = false;
 		lightBallDir = -400.0f;
-		specialAttackTimer = 0.0f;
+		specAttackTimer.Reset();
 		choiceWasMade = false;
 		hasPlayerPos = false;
 	}
@@ -300,7 +305,7 @@ void Boss::Move(float dt, float playerPos)
 				vel.x = -vel.x;
 			}
 
-			if ((attackTimer += dt) > attack)
+			if (attackTimer.Pause(dt))
 			{
 				Vec2 leftCanonPos = pos + leftCanon;
 				Vec2 rightCanonPos = pos + rightCanon;
@@ -308,11 +313,11 @@ void Boss::Move(float dt, float playerPos)
 				rightBulletM.FireBullet(rightCanonPos, bulletVel, bulletHalfWidth, bulletHalfHeight, bulletRectSize, bulletDmg, bulletPitch);
 				leftBulletM.ResetShotsFired();
 				rightBulletM.ResetShotsFired();
-				attackTimer = 0.0f;
+				attackTimer.Reset();
 			}
 		}
 
-		if ((specialAttackTimer += dt) > specialAttack)
+		if (specAttackTimer.Pause(dt))
 		{
 			if (!choiceWasMade)
 			{
@@ -324,7 +329,7 @@ void Boss::Move(float dt, float playerPos)
 			}
 			isAttacking = true;
 			Attack(dt, playerPos, AttackChoice);
-			attackTimer = 0.0f;
+			attackTimer.Reset();
 		}
 	}
 }
@@ -386,7 +391,7 @@ void Boss::BringBack(float dt)
 	{
 		attackOver = false;
 		isAttacking = false;
-		specialAttackTimer = 0.0f;
+		specAttackTimer.Reset();
 		choiceWasMade = false;
 	}
 }
@@ -405,7 +410,7 @@ void Boss::BringToCenter(float dt)
 	}
 	else
 	{
-		bossWaitTimer = 0.0f;
+		waitTimer.Reset();
 		isNotExploding = false;
 	}
 }
@@ -426,19 +431,19 @@ void Boss::Reset()
 	pos.x = 315.0f;
 	pos.y = -250.0f;
 	vel.x = 100.0f;
-	attackTimer = 0.0f;
-	specialAttackTimer = 0.0f;
+	attackTimer.Reset();
+	specAttackTimer.Reset();
 	health.Damage(health.GetHealthAmount());
 	isAttacking = false;
 	attackOver = false;
 	hasPlayerPos = false;
 	choiceWasMade = false;
 	lightBallCounter = 0;
-	lightBallTimer = 0.0f;
+	lightBallTimer.Reset();
 	isNotExploding = true;
 	exploCounter = 0;
-	bossWaitTimer = 0.0f;
-	specialAttack= 5.0f;
+	waitTimer.Reset();
+	specAttackTimer.SetWaitTime(5.0f);
 	thrustY = 300.0f;
 	thrustLeft = -300.0f;
 	thrustRight = 300.0f;

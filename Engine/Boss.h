@@ -7,6 +7,7 @@
 #include "BulletManager.h"
 #include "Health.h"
 #include <random>
+#include "Timer.h"
 
 class Boss
 {
@@ -53,12 +54,6 @@ private:
 	Vec2 midPoint = Vec2(400.0f, 140.0f);
 	Vec2 screenCenter = Vec2(400.0f, 300.0f);
 	Vec2 bossCenter;
-	float attackTimer = 0.0f;
-	float attack = 1.0f;
-	float specialAttackTimer = 0.0f;
-	float specialAttack = 5.0f;
-	float lightBallTimer = 0.0f;
-	float fireLightball = 0.3f;
 	int lightBallCounter = 0;
 	float lightBallDir = -400.0f;
 	bool isAttacking = false;
@@ -85,8 +80,6 @@ private:
 	Animation bulletSprite;
 	State state = EntranceState;
 	bool coolDown = false;
-	float coolDownTimer = 0.0f;
-	static constexpr float coolDownOver = 0.75f;
 	int hp = 300;
 	int healthX = 475;
 	int healthY = 20;
@@ -102,9 +95,12 @@ private:
 	Animation bossPreExplo;
 	bool isNotExploding = true;
 	int exploCounter = 0;
-	float bossWait = 0.5f;
-	float bossWaitTimer = 0.0f;
 	Sound& bigExploSound;
 	bool bigExploSoundPlayed = false;
+	Timer attackTimer;
+	Timer specAttackTimer;
+	Timer lightBallTimer;
+	Timer coolDownTimer;
+	Timer waitTimer;
 };
 
