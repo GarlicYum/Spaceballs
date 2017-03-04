@@ -37,7 +37,7 @@ public:
 	int GetHealth() const;
 	
 	void SethitTarget(bool hit);
-	void AddGravity(Vec2& gravity);
+	void AddGravity(Vec2& gravity, float dt);
 	void SetY(float Y);
 	void SetX(float X);
 	int GetDmg() const;

@@ -16,11 +16,11 @@ void Drone::Move(float dt)
 
 	if (pos.x >= resetX)
 	{
-		vel.x -= 12.0f;
+		vel.x -= 2.5f;
 	}
 	else
 	{
-		vel.x += 12.0f;
+		vel.x += 2.5f;
 	}
 }
 

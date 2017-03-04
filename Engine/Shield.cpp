@@ -28,8 +28,8 @@ void Shield::Update(Ship& ship, Sound& shieldon, Sound& shieldoff)
 		}
 		if (shieldSize < radius)
 		{
-			shieldSize += 0.083;
-			holeSize += 0.083;
+			shieldSize += 0.5;
+			holeSize += 0.5;
 		}
 		break;
 	}

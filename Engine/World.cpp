@@ -289,9 +289,9 @@ void World::PlayerInput(Keyboard& Kbd)
 			{
 				if (event.GetCode() == VK_RETURN)
 				{
-					gState = BossState; //////////////////////////////////////////////////////////////////////////temporary, normally PlayState
-				//	mainSong.Play(1.0f, 0.5f);
-					bossSong.Play(1.0f, 0.5f);
+					gState = PlayState; //////////////////////////////////////////////////////////////////////////temporary, normally PlayState
+					mainSong.Play(1.0f, 0.5f);
+				//	bossSong.Play(1.0f, 0.5f);
 				}
 			}
 		}
@@ -485,8 +485,8 @@ void World::CheckCollisions(float dt)
 				else if (blackholeM.GetBlackHole(i).GetIsActive())
 				{
 					gravity.Normalize();
-					gravity *= 3.5f;
-					ship.AddGravity(gravity);
+					gravity *= 210.0f;
+					ship.AddGravity(gravity, dt);
 				}
 			}
 		}
