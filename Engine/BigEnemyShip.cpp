@@ -8,7 +8,9 @@ BigEnemyShip::BigEnemyShip(float X, const Surface & surface, BulletManager& Bull
 	bulletM(BulletM),
 	exploAnim(ExploAnim, 2.0f),
 	exploSound(ExploSound),
-	bulletSprite(bulletAnim, 2.0f)
+	bulletSprite(bulletAnim, 2.0f),
+	bulletTimer(1.5f),
+	waitTimer(15.0f)
 {}
 
 void BigEnemyShip::Draw(Graphics & gfx)
@@ -32,9 +34,9 @@ void BigEnemyShip::Update(float dt)
 	switch (state)
 	{
 	case WaitState:
-		if ((shipTimer += dt) > waitOver)
+		if (waitTimer.Pause(dt))
 		{
-			shipTimer = 0.0f;
+			waitTimer.Reset();
 			state = AliveState;
 		}
 		break;
@@ -64,10 +66,10 @@ void BigEnemyShip::Reset()
 	pos.x = resetX;
 	hp = 600;
 	state = WaitState;
-	bulletTimer = 0.0f;
+	bulletTimer.Reset();
 	exploAnim.Reset();
 	vel.x = 100.0f;
-	shipTimer = 0.0f;
+	waitTimer.Reset();
 }
 
 RectF BigEnemyShip::GetCollisionRect() const
@@ -95,10 +97,10 @@ void BigEnemyShip::HandleCollision(int dmg)
 
 void BigEnemyShip::Attack(float dt)
 {
-	if ((bulletTimer += dt) > newBullet)
+	if (bulletTimer.Pause(dt))
 	{
 		Vec2 canonPos = pos + canon;
-		bulletTimer = 0.0;
+		bulletTimer.Reset();
 		bulletM.FireBullet(canonPos, bulletVel, bulletHalfWidth, bulletHalfHeight, bulletRectSize, bulletDmg, bulletPitch);
 		bulletM.ResetShotsFired();
 	}
@@ -106,18 +108,18 @@ void BigEnemyShip::Attack(float dt)
 
 void BigEnemyShip::Move(float dt)
 {
-	if (pos.y < 25.0f && shipTimer < waitOver)
+	if (pos.y < 25.0f && !waitTimer.Pause(dt))
 	{
 		pos.y += vel.y * dt;
 	}
-	else if (shipTimer < waitOver)
+	else if (!waitTimer.Pause(dt))
 	{
 		pos.x += vel.x * dt;
 		Attack(dt);
 
-		shipTimer += dt;
+		waitTimer.Increment(dt);
 	}
-	if ((pos.y > -100.0f) && shipTimer > waitOver)
+	if ((pos.y > -100.0f) && waitTimer.PauseOver())
 	{
 		pos.y -= vel.y * dt;
 	}

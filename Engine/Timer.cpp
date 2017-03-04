@@ -19,3 +19,13 @@ void Timer::SetWaitTime(float newTime)
 {
 	waitTime = newTime;
 }
+
+void Timer::Increment(float dt)
+{
+	timer += dt;
+}
+
+bool Timer::PauseOver()
+{
+	return timer >= waitTime;
+}

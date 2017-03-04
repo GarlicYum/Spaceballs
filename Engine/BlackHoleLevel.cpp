@@ -2,7 +2,8 @@
 
 BlackHoleLevel::BlackHoleLevel(AnimationFrames & background, AnimationFrames& cometAnim)
 	:
-	backGround(background, 2.0f)
+	backGround(background, 2.0f),
+	cometTimer(0.35)
 {
 	std::mt19937 rng;
 	std::uniform_real_distribution<float> xDist(0.0f, 765.0f);
@@ -38,10 +39,10 @@ void BlackHoleLevel::Update(float dt)
 			comet[i].Update(dt);
 	}
 
-	if (((cometTimer += dt) > newComet) && nComets != nCometsMax)
+	if (cometTimer.Pause(dt) && nComets != nCometsMax)
 	{
 		++nComets;
-		cometTimer = 0.0f;
+		cometTimer.Reset();
 	}
 }
 
@@ -71,6 +72,6 @@ void BlackHoleLevel::Reset()
 	{
 		comet[i].Reset();
 		nComets = 0;
-		cometTimer = 0.0f;
+		cometTimer.Reset();
 	}
 }

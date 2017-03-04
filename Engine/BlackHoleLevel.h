@@ -5,6 +5,7 @@
 #include "Comet.h"
 #include <random>
 #include <vector>
+#include "Timer.h"
 
 class BlackHoleLevel
 {
@@ -22,9 +23,8 @@ private:
 	Animation backGround;
 	Vec2 holePos = Vec2(380.0f, 200.0f);
 	static constexpr float dimension = 40.0f;
-	static constexpr int nCometsMax = 10;
+	static constexpr int nCometsMax = 100;
 	int nComets = 0;
-	float cometTimer = 0.0f;
-	static constexpr float newComet = 0.25f;
 	std::vector<Comet> comet;
+	Timer cometTimer;
 };

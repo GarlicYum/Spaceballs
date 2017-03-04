@@ -5,6 +5,7 @@
 #include "BulletManager.h"
 #include "Graphics.h"
 #include "Animation.h"
+#include "Timer.h"
 
 class SmallEnemyShip
 {
@@ -28,8 +29,6 @@ public:
 
 private:
 	bool coolDown = false;
-	static constexpr float coolDownOver = 0.75f;
-	float coolDownTime = 0.0f;
 	Vec2 pos;
 	Vec2 leftCanon = Vec2(-9.0f, 30.0f);
 	Vec2 rightCanon = Vec2(68.0f, 30.0f);
@@ -46,13 +45,12 @@ private:
 	Sound& smallExploSound;
 	BulletManager& smallLeftM;
 	BulletManager& smallRightM;
-	float fireBullet = 0.5f;
-	float bulletTimer = 0.0f;
 	static constexpr int bulletDmg = 25;
 	Vec2 bulletVel = Vec2(0.0f, -600.0f);
 	static constexpr int bulletHalfWidth = 15;
 	static constexpr int bulletHalfHeight = 20;
 	static constexpr int bulletRectSize = 10;
 	static constexpr float bulletPitch = 0.7f;
-
+	Timer bulletTimer;
+	Timer coolDownTimer;
 };

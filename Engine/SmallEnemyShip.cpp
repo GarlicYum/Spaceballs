@@ -9,7 +9,9 @@ SmallEnemyShip::SmallEnemyShip(float x, AnimationFrames& smallexhaust, Animation
 	smallExplode(smallexplode, 3.0f),
 	smallExploSound(smallexplo),
 	smallLeftM(smallLeftManager),
-	smallRightM(smallRightManager)
+	smallRightM(smallRightManager),
+	bulletTimer(0.5f),
+	coolDownTimer(0.75f)
 {}
 
 void SmallEnemyShip::Attack(float dt)
@@ -18,13 +20,13 @@ void SmallEnemyShip::Attack(float dt)
 	{
 		Vec2 leftCanonPos = pos + leftCanon;
 		Vec2 rightCanonPos = pos + rightCanon;
-		if ((bulletTimer += dt) > fireBullet)
+		if (bulletTimer.Pause(dt))
 		{
 			smallLeftM.FireBullet(leftCanonPos, bulletVel, bulletHalfWidth, bulletHalfHeight, bulletRectSize, bulletDmg, bulletPitch);
 			smallRightM.FireBullet(rightCanonPos, bulletVel, bulletHalfWidth, bulletHalfHeight, bulletRectSize, bulletDmg, bulletPitch);
 			smallLeftM.ResetShotsFired();
 			smallRightM.ResetShotsFired();
-			bulletTimer = 0.0f;
+			bulletTimer.Reset();
 		}
 	}
 }
@@ -60,9 +62,9 @@ void SmallEnemyShip::Update(float dt, float playerX)
 		Move(dt, playerX);
 		if (coolDown)
 		{
-			if ((coolDownTime += dt) > coolDownOver)
+			if (coolDownTimer.Pause(dt))
 			{
-				coolDownTime = 0.0f;
+				coolDownTimer.Reset();
 				coolDown = false;
 			}
 		}
@@ -119,7 +121,8 @@ void SmallEnemyShip::Reset()
 	smallExplode.Reset();
 	state = AliveState;
 	hp = 80;
-	bulletTimer = 0.0f;
+	bulletTimer.Reset();
+	coolDownTimer.Reset();
 }
 
 void SmallEnemyShip::HandleCollision(int dmg)

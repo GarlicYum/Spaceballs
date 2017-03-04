@@ -4,6 +4,7 @@
 #include "Vec2.h"
 #include "RectF.h"
 #include "BulletManager.h"
+#include "Timer.h"
 
 class BigEnemyShip
 {
@@ -41,13 +42,10 @@ private:
 	static constexpr int bulletDmg = 50;
 	static constexpr int collisionDmg = 75;
 	int hp = 600;
-	float bulletTimer = 0.0f;
-	static constexpr float newBullet = 1.5f;
 	Animation exploAnim;
-	float shipTimer = 0.0f;
-	static constexpr float waitOver = 15.0f;
 	Sound& exploSound;
 	static constexpr float bulletPitch = 0.3f;
-
+	Timer waitTimer;
+	Timer bulletTimer;
 	Animation bulletSprite;
 };
