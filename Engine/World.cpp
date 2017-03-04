@@ -289,9 +289,9 @@ void World::PlayerInput(Keyboard& Kbd)
 			{
 				if (event.GetCode() == VK_RETURN)
 				{
-					gState = PlayState; //////////////////////////////////////////////////////////////////////////temporary, normally PlayState
-					mainSong.Play(1.0f, 0.5f);
-				//	bossSong.Play(1.0f, 0.5f);
+					gState = BossState; //////////////////////////////////////////////////////////////////////////temporary, normally PlayState
+				//	mainSong.Play(1.0f, 0.5f);
+					bossSong.Play(1.0f, 0.5f);
 				}
 			}
 		}

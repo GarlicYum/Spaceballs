@@ -30,7 +30,7 @@ void Animation::Reverse(float dt)
 {
 	if (!isReversed)
 	{
-		curFrame = frames.GetFrameCount();
+		curFrame = frames.GetFrameCount() - 1;
 		isReversed = true;
 	}
 	if ((frameCounter += dt) >= nHoldFrames)
