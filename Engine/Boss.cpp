@@ -441,7 +441,7 @@ void Boss::Reset()
 	specialAttack= 5.0f;
 	thrustY = 300.0f;
 	thrustLeft = -300.0f;
-	thrustRight = 3000.0f;
+	thrustRight = 300.0f;
 	speedFactor = 1.0f;
 	bigExploSoundPlayed = false;
 }
