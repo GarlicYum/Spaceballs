@@ -187,7 +187,7 @@ void World::Update(Keyboard& Kbd, float Dt)
 	case CreditState:
 		PlayerInput(Kbd);
 		UpdateStars(Dt);
-		if (creditY > -1420)
+		if (creditY > -1400)
 		{
 			creditY -= creditSpeed * Dt;
 		}
