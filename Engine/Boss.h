@@ -45,7 +45,6 @@ public:
 	bool IsExploding() const;
 	bool IsDead() const;
 	void Vibrate(float dt);
-
 	void Reset();
 
 private:
