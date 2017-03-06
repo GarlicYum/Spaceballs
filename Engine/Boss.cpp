@@ -18,7 +18,8 @@ attackTimer(1.0f),
 specAttackTimer(5.0f),
 lightBallTimer(0.3f),
 coolDownTimer(0.75f),
-waitTimer(0.5f)
+waitTimer(0.5f),
+vibrationTimer(0.05f)
 {}
 
 void Boss::Update(float dt, float playerPos)
@@ -88,6 +89,7 @@ break;
 		{
 			if (exploCounter < 6)
 			{
+				Vibrate(dt);
 				bossPreExplo.Advance(dt);
 				if (bossPreExplo.AnimEnd())
 				{
@@ -425,9 +427,20 @@ bool Boss::IsDead() const
 	return state == DeadState;
 }
 
+void Boss::Vibrate(float dt)
+{
+	pos.x += vel.x * dt;
+	if (vibrationTimer.Pause(dt))
+	{
+		vel.x = -vel.x;
+		vibrationTimer.Reset();
+	}
+}
+
 void Boss::Reset()
 {
 	state = EntranceState;
+	vibrationTimer.Reset();
 	pos.x = 315.0f;
 	pos.y = -250.0f;
 	vel.x = 100.0f;

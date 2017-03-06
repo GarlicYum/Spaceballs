@@ -44,6 +44,7 @@ public:
 	void BringToCenter(float dt);
 	bool IsExploding() const;
 	bool IsDead() const;
+	void Vibrate(float dt);
 
 	void Reset();
 
@@ -102,5 +103,6 @@ private:
 	Timer lightBallTimer;
 	Timer coolDownTimer;
 	Timer waitTimer;
+	Timer vibrationTimer;
 };
 
