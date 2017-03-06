@@ -344,18 +344,22 @@ float Ship::GetBottom() const
 	return pos.y + height;
 }
 
-void Ship::FlyOffScreen(float dt)
+bool Ship::FlyOffScreen(float dt)
 {
 	gameComplete = true;
 	if ((pos.y + height) > -20.0f)
 	{
 		isMoving = true;
 		pos.y -= speed * dt;
+		return false;
 	}
+	else
+		return true;
 }
 
 void Ship::Reset()
 {
+	isMoving = false;
 	pos.x = 300.0f;
 	pos.y = 300.0f;
 	health.Reset();

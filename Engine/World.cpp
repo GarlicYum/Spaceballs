@@ -172,13 +172,25 @@ void World::Update(Keyboard& Kbd, float Dt)
 		}
 		if (boss.IsDead())
 		{
-			ship.FlyOffScreen(Dt);
+			if (ship.FlyOffScreen(Dt))
+			{
+				gState = CreditState;
+				creditSong.Play(1.0f, 0.5f);
+			}
 		}
 		break;
 
 	case GameOverState:
 		PlayerInput(Kbd);
 		break;
+
+	case CreditState:
+		PlayerInput(Kbd);
+		UpdateStars(Dt);
+		if (creditY > -1420)
+		{
+			creditY -= creditSpeed * Dt;
+		}
 	}
 }
 
@@ -223,6 +235,9 @@ void World::Draw(Graphics& Gfx)
 	case GameOverState:
 		Gfx.DrawSprite(0, 0, gameOverSurface);
 		break;
+	case CreditState:
+		DrawStars(Gfx);
+		Gfx.DrawSpriteKey(0, int(creditY), creditSurface, creditSurface.GetPixel(0, 0));
 	}
 }
 
@@ -324,6 +339,7 @@ void World::PlayerInput(Keyboard& Kbd)
 					bossCenterBulletM.Reset();
 					boss.Reset();
 					ResetStarSpeed();
+					creditY = 800;
 					starsSpedUp = false;
 					gameOverSong.StopAll();
 					titleSong.Play();
@@ -332,6 +348,43 @@ void World::PlayerInput(Keyboard& Kbd)
 			}
 		}
 		
+		break;
+
+	case CreditState:
+		while (!Kbd.KeyIsEmpty())
+		{
+			event = Kbd.ReadKey();
+			if (event.IsPress())
+			{
+				if (event.GetCode() == VK_RETURN)
+				{
+					ship.Reset();
+					mineM.Reset();
+					shieldM.Reset();
+					obstacleM.Reset();
+					eBoostM.Reset();
+					bulletM.Reset();
+					smallLeftBulletM.Reset();
+					smallRightBulletM.Reset();
+					blackholeM.Reset();
+					smallEnemyM.Reset();
+					droneM.Reset();
+					bigEnemy.Reset();
+					bigEnemyBulletM.Reset();
+					bossLeftBulletM.Reset();
+					bossRightBulletM.Reset();
+					bossCenterBulletM.Reset();
+					boss.Reset();
+					ResetStarSpeed();
+					creditY = 800;
+					starsSpedUp = false;
+					creditSong.StopAll();
+					titleSong.Play();
+					gState = TitleState;
+				}
+			}
+		}
+
 		break;
 	}
 }

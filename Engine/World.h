@@ -26,7 +26,7 @@ class World
 public:
 	enum GameState
 	{
-		TitleState, PlayState, BlackHoleState, TransitionState, BossState, GameOverState
+		TitleState, PlayState, BlackHoleState, TransitionState, BossState, GameOverState, CreditState
 	};
 	World();
 	~World();
@@ -132,4 +132,9 @@ private:
 	bool starsSpedUp = false;
 	AnimationFrames bossExplo;
 	AnimationFrames bossPreExplo;
+
+	Surface creditSurface = Surface::FromFile(L"credit.png");
+	float creditY = 800.0f;
+	static constexpr float creditSpeed = 40.0f;
+	Sound creditSong = L"credit.wav";
 };

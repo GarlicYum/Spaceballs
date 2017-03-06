@@ -45,7 +45,7 @@ public:
 	void PrepareForBoss(float dt);
 	float GetRight() const;
 	float GetBottom() const;
-	void FlyOffScreen(float dt);
+	bool FlyOffScreen(float dt);
 	void Reset();
 
 private:
