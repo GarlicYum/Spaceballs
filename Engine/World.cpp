@@ -2,6 +2,16 @@
 
 World::World()
 	:
+	droneM(droneAnim, droneExplo, droneExploSound),
+	bigEnemyExplo(L"bigshipexplo\\", 16),
+	bigEnemy(350.0f, bigEnemySurface, bigEnemyBulletM, bigEnemyExplo, bigEnemyExploSound, bigBulletAnim),
+	bulletAnim(L"bullet\\", 18),
+	bigBulletAnim(L"bigbullet\\", 26),
+	smallBulletAnim(L"smallbullet\\", 18),
+	bossAnim(L"boss\\", 8),
+	boss(bossAnim, bossLeftBulletM, bossRightBulletM, bossCenterBulletM, bigBulletAnim, lightBallAnim,
+		bossExplo, bossPreExplo, shipExplodeSound),
+	lightBallAnim(L"lightball\\", 28),
 	animExplosion(L"mineExplo\\", 8),
 	ship(bulletM, shipSurface, redSurface, shipRekt, shipHoleAnim, shipHoleRektAnim, shipExploAnim, 
 		shipExhaustAnim, rektExhaustAnim, shipExplodeSound, blackHoleSound, bulletAnim),
@@ -24,16 +34,6 @@ World::World()
 	cometAnim(L"comet\\", 6),
 	droneAnim(L"drone\\", 8),
 	droneExplo(L"dronexplo\\", 8),
-	droneM(droneAnim, droneExplo, droneExploSound),
-	bigEnemyExplo(L"bigshipexplo\\", 16),
-	bigEnemy(350.0f, bigEnemySurface, bigEnemyBulletM, bigEnemyExplo, bigEnemyExploSound, bigBulletAnim),
-	bulletAnim(L"bullet\\", 18),
-	bigBulletAnim(L"bigbullet\\", 26),
-	smallBulletAnim(L"smallbullet\\", 18),
-	bossAnim(L"boss\\", 8),
-	boss(bossAnim, bossLeftBulletM, bossRightBulletM, bossCenterBulletM, bigBulletAnim, lightBallAnim,
-		bossExplo, bossPreExplo, shipExplodeSound),
-	lightBallAnim(L"lightball\\", 28),
 	bossExplo(L"bossexplo\\", 69),
 	bossPreExplo(L"bosspreexplo\\", 15)
 	
