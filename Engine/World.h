@@ -43,10 +43,10 @@ private:
 	void ResetStarSpeed();
 
 private:
-	Sound titleSong = L"War.wav";
+	Sound titleSong = L"War.mp3";
 	TitleScreen title;
 	
-	Sound mainSong = L"actionnd.wav";
+	Sound mainSong = L"actionnd.mp3";
 	Sound shieldon = L"shieldon.wav";
 	Sound shieldoff = L"shieldoff.wav";
 	ShieldManager shieldM;
@@ -73,7 +73,7 @@ private:
 	ObstacleManager obstacleM;
 
 	Surface gameOverSurface = Surface::FromFile(L"gameover.png");
-	Sound gameOverSong = L"64.wav";
+	Sound gameOverSong = L"64.mp3";
 
 	AnimationFrames bHoleAnim;
 	BlackHoleManager blackholeM;
@@ -127,7 +127,7 @@ private:
 	BulletManager bossLeftBulletM;
 	BulletManager bossRightBulletM;
 	BulletManager bossCenterBulletM;
-	Sound bossSong = L"bossmusic.wav";
+	Sound bossSong = L"bossmusic.mp3";
 	AnimationFrames lightBallAnim;
 	bool starsSpedUp = false;
 	AnimationFrames bossExplo;
@@ -136,5 +136,5 @@ private:
 	Surface creditSurface = Surface::FromFile(L"credit.png");
 	float creditY = 800.0f;
 	static constexpr float creditSpeed = 40.0f;
-	Sound creditSong = L"credit.wav";
+	Sound creditSong = L"credit.mp3";
 };

@@ -150,6 +150,7 @@
     <ClInclude Include="ChiliWin.h" />
     <ClInclude Include="Colors.h" />
     <ClInclude Include="Comet.h" />
+    <ClInclude Include="COMInitializer.h" />
     <ClInclude Include="Drone.h" />
     <ClInclude Include="DroneManager.h" />
     <ClInclude Include="DXErr.h" />
@@ -195,6 +196,7 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletManager.cpp" />
     <ClCompile Include="Comet.cpp" />
+    <ClCompile Include="COMInitializer.cpp" />
     <ClCompile Include="Drone.cpp" />
     <ClCompile Include="DroneManager.cpp" />
     <ClCompile Include="DXErr.cpp" />
