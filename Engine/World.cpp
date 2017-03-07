@@ -162,6 +162,7 @@ void World::Update(Keyboard& Kbd, float Dt)
 		}
 		if (ship.IsDead())
 		{
+			gameOverSong.Play(1.0f, 0.5f);
 			gState = GameOverState;
 		}
 		if (boss.IsExploding())

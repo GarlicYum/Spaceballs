@@ -155,6 +155,7 @@
     <ClInclude Include="DroneManager.h" />
     <ClInclude Include="DXErr.h" />
     <ClInclude Include="Missile.h" />
+    <ClInclude Include="PolyClosed.h" />
     <ClInclude Include="SmallEnemyManager.h" />
     <ClInclude Include="EnergyBoost.h" />
     <ClInclude Include="EnergyBoostManager.h" />
