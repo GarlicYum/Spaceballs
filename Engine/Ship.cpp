@@ -78,7 +78,7 @@ void Ship::Draw(Graphics& gfx)
 		{
 			if (!isMoving)
 			{
-				gfx.DrawSpriteKey(int(pos.x), int(pos.y), shipSurface, shipSurface.GetPixel(0, 0));
+				gfx.DrawSpriteAlpha(int(pos.x), int(pos.y), shipSurface);
 			}
 			
 			else
@@ -102,7 +102,7 @@ void Ship::Draw(Graphics& gfx)
 
 		if (isHit)
 		{
-			gfx.DrawSpriteKey(int(pos.x), int(pos.y), redSurface, redSurface.GetPixel(0, 0));
+			gfx.DrawSpriteAlpha(int(pos.x), int(pos.y), redSurface);
 		}
 		bManager.DrawBullets(gfx, bulletSprite);
 		break;
@@ -149,7 +149,7 @@ void Ship::Draw(Graphics& gfx)
 
 		if (isHit)
 		{
-			gfx.DrawSpriteKey(int(pos.x), int(pos.y), redSurface, redSurface.GetPixel(0, 0));
+			gfx.DrawSpriteAlpha(int(pos.x), int(pos.y), redSurface);
 		}
 		break;
 	}	

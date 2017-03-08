@@ -2,10 +2,13 @@
 
 BlackHoleManager::BlackHoleManager(AnimationFrames & bHoleAnim)
 {
-	std::mt19937 rng;
-	std::uniform_real_distribution<float> xDist(0.0f, 750.0f);
-	for (int i = 0; i < nHolesMax; ++i)
-		bHole.emplace_back<BlackHole>(BlackHole{ xDist(rng), bHoleAnim });
+//	std::mt19937 rng;
+//	std::uniform_real_distribution<float> xDist(0.0f, 750.0f);
+//	for (int i = 0; i < nHolesMax; ++i)
+		bHole.emplace_back<BlackHole>(BlackHole{ 15.0f, bHoleAnim });
+		bHole.emplace_back<BlackHole>(BlackHole{ 15.0f, bHoleAnim });
+		bHole.emplace_back<BlackHole>(BlackHole{ 15.0f, bHoleAnim });
+		bHole.emplace_back<BlackHole>(BlackHole{ 350.0f, bHoleAnim });
 }
 
 void BlackHoleManager::Reset()

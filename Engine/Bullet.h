@@ -33,5 +33,5 @@ private:
 	int rectSize = 10;
 	Vec2 vel = Vec2(0.0f, 900.0f);
 	int dmg = 20;
-	int bossDmg = 100;
+	int bossDmg = 1;
 };

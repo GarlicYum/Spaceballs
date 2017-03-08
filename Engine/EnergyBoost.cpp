@@ -20,7 +20,7 @@ void EnergyBoost::Draw(Graphics& gfx)
 {
 	if (!isObtained && pos.y < Graphics::ScreenHeight)
 	{
-		gfx.DrawSpriteKey(int(pos.x), int(pos.y), heart, heart.GetPixel(0, 0));
+		gfx.DrawSpriteAlpha(int(pos.x), int(pos.y), heart);
 	}
 }
 

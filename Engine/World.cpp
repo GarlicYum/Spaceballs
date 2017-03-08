@@ -34,8 +34,9 @@ World::World()
 	cometAnim(L"comet\\", 6),
 	droneAnim(L"drone\\", 8),
 	droneExplo(L"dronexplo\\", 8),
-	bossExplo(L"bossexplo\\", 69),
-	bossPreExplo(L"bosspreexplo\\", 15)
+	bossExplo(L"bossexplo\\", 85),
+	bossPreExplo(L"bosspreexplo\\", 15),
+	levelTimer(108.0f)
 	
 {
 	std::mt19937 rng;
@@ -73,6 +74,11 @@ void World::Update(Keyboard& Kbd, float Dt)
 		PlayerInput(Kbd);
 		break;
 	case PlayState:
+		if (levelTimer.Pause(Dt))
+		{
+			bossSong.Play(1.0f, 0.5f);
+			gState = BossState;
+		}
 		titleSong.StopAll();
 		ship.Update(Kbd, Dt);
 		UpdateStars(Dt);
@@ -305,9 +311,9 @@ void World::PlayerInput(Keyboard& Kbd)
 			{
 				if (event.GetCode() == VK_RETURN)
 				{
-					gState = BossState; //////////////////////////////////////////////////////////////////////////temporary, normally PlayState
-				//	mainSong.Play(1.0f, 0.5f);
-					bossSong.Play(1.0f, 0.5f);
+					gState = PlayState; //////////////////////////////////////////////////////////////////////////temporary, normally PlayState
+					mainSong.Play(1.0f, 0.5f);
+				//	bossSong.Play(1.0f, 0.5f);
 				}
 			}
 		}
@@ -339,6 +345,7 @@ void World::PlayerInput(Keyboard& Kbd)
 					bossRightBulletM.Reset();
 					bossCenterBulletM.Reset();
 					boss.Reset();
+					levelTimer.Reset();
 					ResetStarSpeed();
 					creditY = 800;
 					starsSpedUp = false;

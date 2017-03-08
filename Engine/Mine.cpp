@@ -52,7 +52,7 @@ void Mine::Draw(Graphics& gfx)
 	case ActiveState:
 		if (pos.y < gfx.ScreenHeight)
 		{
-			gfx.DrawSpriteKey(int(pos.x), int(pos.y), surface, surface.GetPixel(0, 0));
+			gfx.DrawSpriteAlpha(int(pos.x), int(pos.y), surface);
 		}
 		break;
 	case DetonateState:

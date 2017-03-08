@@ -18,7 +18,7 @@ void BigEnemyShip::Draw(Graphics & gfx)
 	switch (state)
 	{
 	case AliveState:
-		gfx.DrawSpriteKey(int(pos.x), int(pos.y), shipSurface, shipSurface.GetPixel(0, 0));
+		gfx.DrawSpriteAlpha(int(pos.x), int(pos.y), shipSurface);
 		bulletM.DrawBullets(gfx, bulletSprite);
 		break;
 		

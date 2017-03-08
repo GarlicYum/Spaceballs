@@ -79,6 +79,6 @@ int AnimationFrames::GetFrameCount() const
 
 void AnimationFrames::Draw(int X, int Y, int Idx, Graphics& Gfx) const
 {
-	Gfx.DrawSpriteKey(X, Y, surfaces[Idx], surfaces[Idx].GetPixel(0, 0));
+	Gfx.DrawSpriteAlpha(X, Y, surfaces[Idx]);
 }
 
