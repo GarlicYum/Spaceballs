@@ -39,7 +39,7 @@ public:
 	};
 public:
 	Surface() = default;
-	Surface( unsigned int width,unsigned int height,unsigned int pitch )
+	Surface( unsigned int width,unsigned int height )
 		:
 		pBuffer( std::make_unique<Color[]>( width * height ) ),
 		width( width ),

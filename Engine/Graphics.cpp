@@ -257,8 +257,8 @@ void Graphics::EndFrame()
 		throw CHILI_GFX_EXCEPTION(hr, L"Mapping sysbuffer");
 	}
 	// perform the copy line-by-line
-	sysBuffer.Present(mappedSysBufferTexture.RowPitch,
-		reinterpret_cast<BYTE*>(mappedSysBufferTexture.pData));
+//	sysBuffer.Present(mappedSysBufferTexture.RowPitch,
+//		reinterpret_cast<BYTE*>(mappedSysBufferTexture.pData));
 	// release the adapter memory
 	pImmediateContext->Unmap(pSysBufferTexture.Get(), 0u);
 
