@@ -57,6 +57,7 @@ public:
 	void EndFrame();
 	void BeginFrame();
 	void DrawTriangle(const Vec2& v0, const Vec2& v1, const Vec2& v2, Color c);
+	void DrawSquare(int x, int y, int width, int height, Color c);
 	void DrawLine(const Vec2& p1, const Vec2& p2, Color c)
 	{
 		DrawLine(p1.x, p1.y, p2.x, p2.y, c);

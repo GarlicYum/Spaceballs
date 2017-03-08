@@ -244,7 +244,7 @@ void World::Draw(Graphics& Gfx)
 		break;
 	case CreditState:
 		DrawStars(Gfx);
-		Gfx.DrawSpriteKey(0, int(creditY), creditSurface, creditSurface.GetPixel(0, 0));
+		Gfx.DrawSpriteAlpha(0, int(creditY), creditSurface);
 	}
 }
 

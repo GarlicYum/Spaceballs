@@ -329,6 +329,17 @@ std::wstring Graphics::Exception::GetExceptionType() const
 	return L"Chili Graphics Exception";
 }
 
+void Graphics::DrawSquare(int x, int y, int width, int height, Color c)
+{
+	for (int i = x; i < x + width; i++)
+	{
+		for (int j = y; j < y + height; j++)
+		{
+			PutPixel(i, j, c);
+		}
+	}
+}
+
 void Graphics::DrawLine(float x1, float y1, float x2, float y2, Color c)
 {
 	const float dx = x2 - x1;
