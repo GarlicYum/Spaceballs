@@ -20,6 +20,7 @@
 #include "DroneManager.h"
 #include "BigEnemyShip.h"
 #include "Boss.h"
+#include "Level.h"
 
 class World
 {
@@ -137,4 +138,5 @@ private:
 	float creditY = 800.0f;
 	static constexpr float creditSpeed = 40.0f;
 	Sound creditSong = L"credit.mp3";
+	Level level;
 };

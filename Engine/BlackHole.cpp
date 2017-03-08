@@ -1,8 +1,8 @@
 #include "BlackHole.h"
 
-BlackHole::BlackHole(float X, AnimationFrames & bHoleAnim)
+BlackHole::BlackHole(float X, float Y, AnimationFrames & bHoleAnim)
 	:
-	pos(X, -50.0f),
+	pos(X, Y),
 	bHoleSpin(bHoleAnim, 5.0f)
 {}
 

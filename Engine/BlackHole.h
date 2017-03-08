@@ -7,7 +7,7 @@
 class BlackHole
 {
 public:
-	BlackHole(float X, AnimationFrames& bHoleAnim);
+	BlackHole(float X, float Y, AnimationFrames& bHoleAnim);
 	void Reset();
 	void Update(float dt);
 	void Draw(Graphics& gfx);

@@ -1,33 +1,35 @@
 #include "BlackHoleManager.h"
 
 BlackHoleManager::BlackHoleManager(AnimationFrames & bHoleAnim)
+	:
+	blackHoleAnim(bHoleAnim)
 {
-	std::mt19937 rng;
-	std::uniform_real_distribution<float> xDist(0.0f, 750.0f);
-	for (int i = 0; i < nHolesMax; ++i)
-		bHole.emplace_back<BlackHole>(BlackHole{ xDist(rng), bHoleAnim });
+//	std::mt19937 rng;
+//	std::uniform_real_distribution<float> xDist(0.0f, 750.0f);
+//	for (int i = 0; i < nHolesMax; ++i)
+//		bHole.emplace_back<BlackHole>(BlackHole{ xDist(rng), bHoleAnim });
 }
 
 void BlackHoleManager::Reset()
 {
 	nHoles = 0;
-	holeCounter = 0;
-	for (int i = 0; i < nHolesMax; ++i)
-	{
-		bHole[i].Reset();
-	}
+//	holeCounter = 0;
+//	for (int i = 0; i < nHolesMax; ++i)
+//	{
+//		bHole[i].Reset();
+//	}
 }
 
 void BlackHoleManager::Update(float dt)
 {
-	if (nHoles != nHolesMax)
-	{
-		if ((holeCounter += dt) > newHole)
-		{
-			holeCounter = 0.0f;
-			nHoles++;
-		}
-	}
+//	if (nHoles != nHolesMax)
+//	{
+//		if ((holeCounter += dt) > newHole)
+//		{
+//			holeCounter = 0.0f;
+//			nHoles++;
+//		}
+//	}
 	
 	for (int i = 0; i < nHoles; ++i)
 	{
@@ -41,6 +43,12 @@ void BlackHoleManager::Draw(Graphics& gfx)
 	{
 		bHole[i].Draw(gfx);
 	}
+}
+
+void BlackHoleManager::SpawnBlackHole(float X, float Y)
+{
+	nHoles++;
+	bHole.emplace_back<BlackHole>(BlackHole{ X, Y, blackHoleAnim });
 }
 
 int BlackHoleManager::GetBlackHoleCount() const

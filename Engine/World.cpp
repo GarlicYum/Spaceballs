@@ -35,7 +35,8 @@ World::World()
 	droneAnim(L"drone\\", 8),
 	droneExplo(L"dronexplo\\", 8),
 	bossExplo(L"bossexplo\\", 69),
-	bossPreExplo(L"bosspreexplo\\", 15)
+	bossPreExplo(L"bosspreexplo\\", 15),
+	level(blackholeM)
 	
 {
 	std::mt19937 rng;
@@ -49,6 +50,7 @@ World::World()
 	{
 		starB[i].Spawn(Vec2(xDist(rng), yDist(rng)), 6.0f);
 	}
+	level.ReadLevel();
 }
 
 World::~World()
