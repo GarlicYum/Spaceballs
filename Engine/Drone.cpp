@@ -12,16 +12,20 @@ Drone::Drone(float X, float Y, AnimationFrames & DroneAnim, AnimationFrames& Dro
 void Drone::Move(float dt)
 {
 	pos.y += vel.y *dt;
-	pos.x += vel.x *dt;
+	if (pos.y + height >= 0.0f)
+	{
+		pos.x += vel.x *dt;
+		if (pos.x >= resetX)
+		{
+			vel.x -= 2.5f;
+		}
+		else
+		{
+			vel.x += 2.5f;
+		}
+	}
 
-	if (pos.x >= resetX)
-	{
-		vel.x -= 2.5f;
-	}
-	else
-	{
-		vel.x += 2.5f;
-	}
+	
 }
 
 void Drone::Update(float dt)
