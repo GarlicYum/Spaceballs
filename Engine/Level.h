@@ -1,12 +1,13 @@
 #pragma once
 
 #include "BlackHoleManager.h"
+#include "DroneManager.h"
 #include <fstream>
 
 class Level
 {
 public:
-	Level(BlackHoleManager& BHM);
+	Level(BlackHoleManager& BHM, DroneManager& DroneM);
 	void ReadLevel();
 	
 private:
@@ -16,4 +17,5 @@ private:
 	int level[height][width];
 	std::ifstream read;
 	BlackHoleManager& bHoleM;
+	DroneManager& droneM;
 };

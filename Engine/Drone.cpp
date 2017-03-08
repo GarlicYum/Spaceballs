@@ -1,8 +1,8 @@
 #include "Drone.h"
 
-Drone::Drone(float X, AnimationFrames & DroneAnim, AnimationFrames& DroneExplode, Sound& ExploSound)
+Drone::Drone(float X, float Y, AnimationFrames & DroneAnim, AnimationFrames& DroneExplode, Sound& ExploSound)
 	:
-	pos(X, -40.0f),
+	pos(X, Y),
 	resetX(X),
 	droneAnim(DroneAnim, 2.0f),
 	droneExplode(DroneExplode, 2.0f),

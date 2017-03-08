@@ -13,7 +13,7 @@ public:
 	{
 		AliveState, DyingState, DeadState
 	};
-	Drone(float X, AnimationFrames& DroneAnim, AnimationFrames& DroneExplode, Sound& ExploSound);
+	Drone(float X, float Y, AnimationFrames& DroneAnim, AnimationFrames& DroneExplode, Sound& ExploSound);
 	void Move(float dt);
 	void Update(float dt);
 	void Draw(Graphics& gfx);

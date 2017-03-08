@@ -36,7 +36,7 @@ World::World()
 	droneExplo(L"dronexplo\\", 8),
 	bossExplo(L"bossexplo\\", 69),
 	bossPreExplo(L"bosspreexplo\\", 15),
-	level(blackholeM)
+	level(blackholeM, droneM)
 	
 {
 	std::mt19937 rng;

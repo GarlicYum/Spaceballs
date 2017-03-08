@@ -15,7 +15,7 @@ void BlackHole::Reset()
 
 void BlackHole::Update(float dt)
 {
-	if (pos.y + height > 0.0f && pos.y < Graphics::ScreenHeight)
+	if (pos.y < Graphics::ScreenHeight)
 	{
 		pos.y += vy * dt;
 		bHoleSpin.Advance(dt);

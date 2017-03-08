@@ -1,8 +1,9 @@
 #include "Level.h"
 
-Level::Level(BlackHoleManager & BHM)
+Level::Level(BlackHoleManager & BHM, DroneManager& DroneM)
 	:
-	bHoleM(BHM)
+	bHoleM(BHM),
+	droneM(DroneM)
 {}
 
 void Level::ReadLevel()
@@ -24,7 +25,11 @@ void Level::ReadLevel()
 			switch (level[i][j])
 			{
 			case 1:
-				bHoleM.SpawnBlackHole(float(j * cellDimension), float(i * cellDimension));
+				bHoleM.SpawnBlackHole(float(j * cellDimension), float(-i * cellDimension));
+				break;
+
+			case 2:
+				droneM.SpawnDrone(float(j * cellDimension), float(-i * cellDimension));
 				break;
 			}
 		}
