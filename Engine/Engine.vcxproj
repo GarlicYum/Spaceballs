@@ -154,6 +154,7 @@
     <ClInclude Include="Drone.h" />
     <ClInclude Include="DroneManager.h" />
     <ClInclude Include="DXErr.h" />
+    <ClInclude Include="Level.h" />
     <ClInclude Include="Missile.h" />
     <ClInclude Include="PolyClosed.h" />
     <ClInclude Include="SmallEnemyManager.h" />
@@ -201,6 +202,7 @@
     <ClCompile Include="Drone.cpp" />
     <ClCompile Include="DroneManager.cpp" />
     <ClCompile Include="DXErr.cpp" />
+    <ClCompile Include="Level.cpp" />
     <ClCompile Include="Missile.cpp" />
     <ClCompile Include="SmallEnemyManager.cpp" />
     <ClCompile Include="EnergyBoost.cpp" />
