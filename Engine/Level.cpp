@@ -17,7 +17,7 @@ void Level::ReadLevel()
 	}
 	read.close();
 
-	for (int i = 0; i < height; i--)
+	for (int i = 0; i < height; i++)
 	{
 		for (int j = 0; j < width; j++)
 		{
