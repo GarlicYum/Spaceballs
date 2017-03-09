@@ -1,15 +1,10 @@
 #include "BlackHoleLevel.h"
 
-BlackHoleLevel::BlackHoleLevel(AnimationFrames & background, AnimationFrames& cometAnim)
+BlackHoleLevel::BlackHoleLevel(AnimationFrames & background, AnimationFrames& CometAnim)
 	:
 	backGround(background, 2.0f),
-	cometTimer(0.35)
-{
-	std::mt19937 rng;
-	std::uniform_real_distribution<float> xDist(0.0f, 765.0f);
-	for (int i = 0; i < nCometsMax; ++i)
-		comet.emplace_back<Comet>(Comet{ xDist(rng), cometAnim });
-}
+	cometAnim(CometAnim)
+{}
 
 void BlackHoleLevel::Draw(Graphics & gfx)
 {
@@ -38,12 +33,6 @@ void BlackHoleLevel::Update(float dt)
 		else
 			comet[i].Update(dt);
 	}
-
-	if (cometTimer.Pause(dt) && nComets != nCometsMax)
-	{
-		++nComets;
-		cometTimer.Reset();
-	}
 }
 
 RectF BlackHoleLevel::GetCollisionRect()
@@ -68,10 +57,14 @@ int BlackHoleLevel::GetCometCount() const
 
 void BlackHoleLevel::Reset()
 {
-	for (int i = 0; i < nCometsMax; ++i)
+	for (int i = 0; i < nComets; ++i)
 	{
 		comet[i].Reset();
-		nComets = 0;
-		cometTimer.Reset();
 	}
+}
+
+void BlackHoleLevel::Spawn(float X, float Y)
+{
+	nComets++;
+	comet.emplace_back<Comet>(Comet{ X, Y, cometAnim });
 }

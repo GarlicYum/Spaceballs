@@ -8,7 +8,7 @@
 class Comet
 {
 public:
-	Comet(float pos_in, AnimationFrames& cometFrames);
+	Comet(float X, float Y, AnimationFrames& cometFrames);
 	void Draw(Graphics& gfx);
 	void Update(float dt);
 	RectF GetCollisionRect() const;
@@ -19,6 +19,7 @@ public:
 
 private:
 	Vec2 pos;
+	Vec2 resetPos;
 	static constexpr float vel = 200.0f;
 	static constexpr float width = 35.0f;
 	static constexpr float height = 80.0f;

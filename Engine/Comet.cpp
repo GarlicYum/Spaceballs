@@ -1,8 +1,9 @@
 #include "Comet.h"
 
-Comet::Comet(float pos_in, AnimationFrames & cometFrames)
+Comet::Comet(float X, float Y, AnimationFrames & cometFrames)
 	:
-	pos(pos_in, -80.0f),
+	pos(X, Y),
+	resetPos(X, Y),
 	cometAnim(cometFrames, 2.0f)
 {}
 
@@ -43,7 +44,7 @@ void Comet::HandleCollision()
 
 void Comet::Reset()
 {
-	pos.y = -80.0f;
+	pos = resetPos;
 	isActive = true;
 }
 
