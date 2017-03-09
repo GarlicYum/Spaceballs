@@ -139,6 +139,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="BigEnemyManager.h" />
     <ClInclude Include="BigEnemyShip.h" />
     <ClInclude Include="BlackHole.h" />
     <ClInclude Include="BlackHoleLevel.h" />
@@ -188,6 +189,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="BigEnemyManager.cpp" />
     <ClCompile Include="BigEnemyShip.cpp" />
     <ClCompile Include="BlackHole.cpp" />
     <ClCompile Include="BlackHoleLevel.cpp" />

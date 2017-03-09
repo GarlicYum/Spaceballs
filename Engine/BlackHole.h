@@ -19,7 +19,7 @@ public:
 
 private:
 	Vec2 pos;
-	float vy = 80.0f;
+	float vy = 200.0f;
 	static constexpr float resetVy = 80.0f;
 	static constexpr float width = 100.0f;
 	static constexpr float height = 100.0f;

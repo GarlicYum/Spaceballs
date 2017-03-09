@@ -4,7 +4,7 @@ World::World()
 	:
 	droneM(droneAnim, droneExplo, droneExploSound),
 	bigEnemyExplo(L"bigshipexplo\\", 16),
-	bigEnemy(350.0f, bigEnemySurface, bigEnemyBulletM, bigEnemyExplo, bigEnemyExploSound, bigBulletAnim),
+	bigEnemyM(bigEnemySurface, bigEnemyBulletM, bigEnemyExplo, bigEnemyExploSound, bigBulletAnim),
 	bulletAnim(L"bullet\\", 18),
 	bigBulletAnim(L"bigbullet\\", 26),
 	smallBulletAnim(L"smallbullet\\", 18),
@@ -36,7 +36,7 @@ World::World()
 	droneExplo(L"dronexplo\\", 8),
 	bossExplo(L"bossexplo\\", 69),
 	bossPreExplo(L"bosspreexplo\\", 15),
-	level(blackholeM, droneM, eBoostM, mineM, obstacleM)
+	level(blackholeM, droneM, eBoostM, mineM, obstacleM, shieldM, smallEnemyM, bigEnemyM)
 	
 {
 	std::mt19937 rng;
@@ -86,7 +86,7 @@ void World::Update(Keyboard& Kbd, float Dt)
 		CheckCollisions(Dt);
 		smallEnemyM.Update(Dt, ship.GetX());
 		droneM.Update(Dt);
-		bigEnemy.Update(Dt);
+		bigEnemyM.Update(Dt);
 
 		if (!ship.IsAlive())
 		{
@@ -214,7 +214,7 @@ void World::Draw(Graphics& Gfx)
 		obstacleM.Draw(Gfx);
 		smallEnemyM.Draw(Gfx);
 		droneM.Draw(Gfx);
-		bigEnemy.Draw(Gfx);
+		bigEnemyM.Draw(Gfx);
 		break;
 	case BlackHoleState:
 		blackHoleLevel.Draw(Gfx);
@@ -335,7 +335,7 @@ void World::PlayerInput(Keyboard& Kbd)
 					blackholeM.Reset();
 					smallEnemyM.Reset();
 					droneM.Reset();
-					bigEnemy.Reset();
+		//			bigEnemyM.Reset();
 					bigEnemyBulletM.Reset();
 					bossLeftBulletM.Reset();
 					bossRightBulletM.Reset();
@@ -372,7 +372,7 @@ void World::PlayerInput(Keyboard& Kbd)
 					blackholeM.Reset();
 					smallEnemyM.Reset();
 					droneM.Reset();
-					bigEnemy.Reset();
+			//		bigEnemyM.Reset();
 					bigEnemyBulletM.Reset();
 					bossLeftBulletM.Reset();
 					bossRightBulletM.Reset();
@@ -645,55 +645,62 @@ void World::CheckCollisions(float dt)
 			}
 		}
 
-		const auto bigShipRect = bigEnemy.GetCollisionRect();
-		if (bigEnemy.IsAlive())
+		for (int i = 0; i < bigEnemyM.GetBigCount(); ++i)
 		{
-			if (IsColliding(shipRect, bigShipRect) && ship.IsAlive())
+			auto& bigEnemy = bigEnemyM.GetBigShip(i);
+			if (!bigEnemy.IsAlive())
+				continue;
+			const auto bigShipRect = bigEnemy.GetCollisionRect();
+			if (bigEnemy.IsAlive())
 			{
-				shipCollideSound.Play(1.1f, 0.9f);
-				bigEnemy.HandleCollision(0);
-				ship.HandleCollision(bigEnemy.GetCollisionDmg(), dt);
-			}
-
-			for (int i = 0; i < bulletM.GetNumBullets(); ++i)
-			{
-				auto& bullet = bulletM.GetBullet(i);
-				if (!bullet.IsActive())
-					continue;
-				const auto bulletRect = bullet.GetCollisionRect();
-				if (IsColliding(bulletRect, bigShipRect))
+				if (IsColliding(shipRect, bigShipRect) && ship.IsAlive() && !bigEnemy.GetCoolDown())
 				{
-					bigEnemy.HandleCollision(bullet.GetDamage());
-					bullet.HandleCollision();
-					break;
+					shipCollideSound.Play(1.1f, 0.9f);
+					bigEnemy.HandleCollision(0);
+					ship.HandleCollision(bigEnemy.GetCollisionDmg(), dt);
 				}
-			}
 
-			for (int i = 0; i < bigEnemyBulletM.GetNumBullets(); ++i)
-			{
-				auto& bullet = bigEnemyBulletM.GetBullet(i);
-				if (!bullet.IsActive())
-					continue;
-				const auto bulletRect = bullet.GetCollisionRect();
-
-				if (shield.GetisActive())
+				for (int i = 0; i < bulletM.GetNumBullets(); ++i)
 				{
-					const auto shieldRect = shield.GetCollisionRect();
-					if (IsColliding(shieldRect, bulletRect))
+					auto& bullet = bulletM.GetBullet(i);
+					if (!bullet.IsActive())
+						continue;
+					const auto bulletRect = bullet.GetCollisionRect();
+					if (IsColliding(bulletRect, bigShipRect))
 					{
+						bigEnemy.HandleCollision(bullet.GetDamage());
 						bullet.HandleCollision();
-						shield.HandleCollision(bullet.GetDamage());
+						break;
 					}
 				}
 
-				else if (IsColliding(bulletRect, shipRect))
+				for (int i = 0; i < bigEnemyBulletM.GetNumBullets(); ++i)
 				{
-					ship.HandleCollision(bullet.GetDamage(), dt);
-					bullet.HandleCollision();
-					break;
+					auto& bullet = bigEnemyBulletM.GetBullet(i);
+					if (!bullet.IsActive())
+						continue;
+					const auto bulletRect = bullet.GetCollisionRect();
+
+					if (shield.GetisActive())
+					{
+						const auto shieldRect = shield.GetCollisionRect();
+						if (IsColliding(shieldRect, bulletRect))
+						{
+							bullet.HandleCollision();
+							shield.HandleCollision(bullet.GetDamage());
+						}
+					}
+
+					else if (IsColliding(bulletRect, shipRect))
+					{
+						ship.HandleCollision(bullet.GetDamage(), dt);
+						bullet.HandleCollision();
+						break;
+					}
 				}
 			}
 		}
+		
 		break;
 		
 		case BlackHoleState:

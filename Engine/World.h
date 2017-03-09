@@ -18,7 +18,7 @@
 #include "SmallEnemyManager.h"
 #include "BlackHoleLevel.h"
 #include "DroneManager.h"
-#include "BigEnemyShip.h"
+#include "BigEnemyManager.h"
 #include "Boss.h"
 #include "Level.h"
 
@@ -115,7 +115,7 @@ private:
 
 	Surface bigEnemySurface = Surface::FromFile(L"bigenemy.png");
 	AnimationFrames bigEnemyExplo;
-	BigEnemyShip bigEnemy;
+	BigEnemyManager bigEnemyM;
 	BulletManager bigEnemyBulletM;
 	Sound bigEnemyExploSound = L"bigenemyexplo.wav";
 

@@ -1,5 +1,11 @@
 #include "SmallShield.h"
 
+SmallShield::SmallShield(float X, float Y)
+	:
+	pos(X, Y)
+{
+}
+
 void SmallShield::Draw(Graphics & gfx)
 {
 	if (!isObtained)
@@ -30,13 +36,7 @@ void SmallShield::HandleCollision(Shield& shield)
 	}
 }
 
-void SmallShield::SetPos(float X)
-{
-	pos.x = X;
-}
-
 void SmallShield::Reset()
 {
-	pos.y = -40.0f;
 	isObtained = false;
 }

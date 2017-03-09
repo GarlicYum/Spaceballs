@@ -11,9 +11,9 @@ class BigEnemyShip
 public:
 	enum State
 	{
-		WaitState, AliveState, DyingState
+		AliveState, DyingState, DeadState
 	};
-	BigEnemyShip(float X, const Surface& surface, BulletManager& BulletM, AnimationFrames& ExploAnim, Sound& ExploSound, AnimationFrames& bulletAnim);
+	BigEnemyShip(float X, float Y, const Surface& surface, BulletManager& BulletM, AnimationFrames& ExploAnim, Sound& ExploSound);
 	void Draw(Graphics& gfx);
 	void Update(float dt);
 	void Reset();
@@ -24,16 +24,17 @@ public:
 	void Attack(float dt);
 	void Move(float dt);
 	bool IsAlive() const;
+	bool GetCoolDown() const;
 
 private:
 	Vec2 pos;
 	Vec2 canon = Vec2(42.5f, 75.0f);
-	Vec2 vel = Vec2(100.0f, 100.0f);
+	Vec2 vel = Vec2(100.0f, 200.0f);
 	static constexpr float width = 145.0f;
 	static constexpr float height = 90.0f;
-	float resetX;
+//	float resetX;
 	const Surface& shipSurface;
-	State state = WaitState;
+	State state = AliveState;
 	BulletManager& bulletM;
 	static constexpr int bulletHalfWidth = 30;
 	static constexpr int bulletHalfHeight = 37;
@@ -41,11 +42,12 @@ private:
 	Vec2 bulletVel = Vec2(0.0f, -400.0f);
 	static constexpr int bulletDmg = 50;
 	static constexpr int collisionDmg = 75;
-	int hp = 600;
+	int hp = 400;
 	Animation exploAnim;
 	Sound& exploSound;
 	static constexpr float bulletPitch = 0.3f;
-	Timer waitTimer;
 	Timer bulletTimer;
-	Animation bulletSprite;
+	Timer timer;
+	Timer coolDownTimer;
+	bool coolDown = false;
 };

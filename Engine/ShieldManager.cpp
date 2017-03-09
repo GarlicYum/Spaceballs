@@ -3,12 +3,13 @@
 
 ShieldManager::ShieldManager()
 {	
-	std::mt19937 rng;
-	std::uniform_real_distribution<float> xDist(0.0f, 700.0f);
-	for (int i = 0; i < nSmallMax; i++)
-	{
-		s_shield[i].SetPos(xDist(rng));
-	}	
+//	std::mt19937 rng;
+//	std::uniform_real_distribution<float> xDist(0.0f, 700.0f);
+//	for (int i = 0; i < nSmallMax; i++)
+//	{
+//		s_shield[i].SetPos(xDist(rng));
+//	}	
+
 }
 
 void ShieldManager::Update(Ship & ship, float dt, Sound& shieldon, Sound& shieldoff)
@@ -19,8 +20,6 @@ void ShieldManager::Update(Ship & ship, float dt, Sound& shieldon, Sound& shield
 	{
 		s_shield[i].Update(ship, dt, shield);
 	}
-
-	SpawnShieldPowerup(dt);
 }
 
 void ShieldManager::Draw(Graphics& gfx)
@@ -56,19 +55,22 @@ const SmallShield& ShieldManager::GetSmallShield(int Idx) const
 void ShieldManager::Reset()
 {
 	nSmall = 0;
-	smallCounter = 0;
-	for (int i = 0; i < nSmallMax; ++i)
-	{
-		s_shield[i].Reset();
-	}
-	shield.Reset();
+//	smallCounter = 0;
+//	for (int i = 0; i < nSmallMax; ++i)
+//	{
+//		s_shield[i].Reset();
+//	}
+//	shield.Reset();
 }
 
-void ShieldManager::SpawnShieldPowerup(float dt)
+void ShieldManager::SpawnShield(float X, float Y)
 {
-	if ((smallCounter += dt) > newSmall && nSmall != nSmallMax)
-	{
-		nSmall++;
-		smallCounter = 0.0f;
-	}
+//	if ((smallCounter += dt) > newSmall && nSmall != nSmallMax)
+//	{
+//		nSmall++;
+//		smallCounter = 0.0f;
+//	}
+
+	nSmall++;
+	s_shield.emplace_back<SmallShield>(SmallShield{ X, Y });
 }

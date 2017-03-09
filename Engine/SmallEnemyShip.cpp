@@ -1,9 +1,9 @@
 #include "SmallEnemyShip.h"
 
-SmallEnemyShip::SmallEnemyShip(float x, AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo, 
-	BulletManager& smallLeftManager, BulletManager& smallRightManager, AnimationFrames& bulletAnim)
+SmallEnemyShip::SmallEnemyShip(float x, float y, AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo, 
+	BulletManager& smallLeftManager, BulletManager& smallRightManager)
 	:
-	pos(x, -100.0f),
+	pos(x, y),
 	resetX(x),
 	smallExhaust(smallexhaust, 2.0f),
 	smallExplode(smallexplode, 3.0f),
@@ -34,23 +34,26 @@ void SmallEnemyShip::Attack(float dt)
 void SmallEnemyShip::Move(float dt, float playerX)
 {
 	pos.y += vel.y * dt;
-	pos.x += vel.x * dt;
-	if ((playerX - 200.0f) > pos.x)
+	if (pos.y + height >= 0.0f)
 	{
-		vel.x = 200.0f;
-	}
-	else if ((playerX + 200.0f) < pos.x)
-	{
-		vel.x = -200.0f;
-	}
-	else
-	{
-		Attack(dt);
-	}
-	
-	if (pos.x < 0.0f || (pos.x + width) > int(Graphics::ScreenWidth))
-	{
-		vel.x = -vel.x;
+		pos.x += vel.x * dt;
+		if ((playerX - 200.0f) > pos.x)
+		{
+			vel.x = 200.0f;
+		}
+		else if ((playerX + 200.0f) < pos.x)
+		{
+			vel.x = -200.0f;
+		}
+		else
+		{
+			Attack(dt);
+		}
+
+		if (pos.x < 0.0f || (pos.x + width) > int(Graphics::ScreenWidth))
+		{
+			vel.x = -vel.x;
+		}
 	}
 }
 
@@ -81,6 +84,10 @@ void SmallEnemyShip::Update(float dt, float playerX)
 			smallExploSound.Play(0.7f, 2.0f);
 		}
 
+		if (pos.y > Graphics::ScreenHeight)
+		{
+			state = DeadState;
+		}
 		break;
 
 	case DyingState:
@@ -116,8 +123,8 @@ RectF SmallEnemyShip::GetCollisionRect() const
 
 void SmallEnemyShip::Reset()
 {
-	pos.y = -100.0f;
-	pos.x = resetX;
+//	pos.y = -100.0f;
+//	pos.x = resetX;
 	smallExplode.Reset();
 	state = AliveState;
 	hp = 80;

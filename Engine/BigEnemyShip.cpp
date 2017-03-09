@@ -1,16 +1,16 @@
 #include "BigEnemyShip.h"
 
-BigEnemyShip::BigEnemyShip(float X, const Surface & surface, BulletManager& BulletM, AnimationFrames& ExploAnim, Sound& ExploSound, AnimationFrames& bulletAnim)
+BigEnemyShip::BigEnemyShip(float X, float Y, const Surface & surface, BulletManager& BulletM, AnimationFrames& ExploAnim, Sound& ExploSound)
 	:
-	pos(X, -100.0f),
+	pos(X, Y),
 	shipSurface(surface),
-	resetX(X),
+//	resetX(X),
 	bulletM(BulletM),
 	exploAnim(ExploAnim, 2.0f),
 	exploSound(ExploSound),
-	bulletSprite(bulletAnim, 2.0f),
 	bulletTimer(1.5f),
-	waitTimer(15.0f)
+	timer(15.0f),
+	coolDownTimer(0.75f)
 {}
 
 void BigEnemyShip::Draw(Graphics & gfx)
@@ -19,7 +19,6 @@ void BigEnemyShip::Draw(Graphics & gfx)
 	{
 	case AliveState:
 		gfx.DrawSpriteKey(int(pos.x), int(pos.y), shipSurface, shipSurface.GetPixel(0, 0));
-		bulletM.DrawBullets(gfx, bulletSprite);
 		break;
 		
 	case DyingState:
@@ -30,18 +29,18 @@ void BigEnemyShip::Draw(Graphics & gfx)
 
 void BigEnemyShip::Update(float dt)
 {
-	bulletM.UpdateBullets(dt, bulletSprite);
 	switch (state)
 	{
-	case WaitState:
-		if (waitTimer.Pause(dt))
-		{
-			waitTimer.Reset();
-			state = AliveState;
-		}
-		break;
 	case AliveState:
 		Move(dt);
+		if (coolDown)
+		{
+			if (coolDownTimer.Pause(dt))
+			{
+				coolDown = false;
+				coolDownTimer.Reset();
+			}
+		}
 		if (hp <= 0)
 		{
 			exploSound.Play();
@@ -54,7 +53,7 @@ void BigEnemyShip::Update(float dt)
 		if (exploAnim.AnimEnd())
 		{
 			Reset();
-			state = WaitState;
+			state = DeadState;
 		}
 		break;
 	}
@@ -62,14 +61,14 @@ void BigEnemyShip::Update(float dt)
 
 void BigEnemyShip::Reset()
 {
-	pos.y = -100.0f;
-	pos.x = resetX;
-	hp = 600;
-	state = WaitState;
+//	pos.y = -100.0f;
+//	pos.x = resetX;
+	hp = 400;
+//	state = WaitState;
 	bulletTimer.Reset();
 	exploAnim.Reset();
 	vel.x = 100.0f;
-	waitTimer.Reset();
+//	timer.Reset();
 }
 
 RectF BigEnemyShip::GetCollisionRect() const
@@ -92,6 +91,7 @@ void BigEnemyShip::HandleCollision(int dmg)
 	if (state == AliveState)
 	{
 		hp -= dmg;
+		coolDown = true;
 	}
 }
 
@@ -108,25 +108,25 @@ void BigEnemyShip::Attack(float dt)
 
 void BigEnemyShip::Move(float dt)
 {
-	if (pos.y < 25.0f && !waitTimer.Pause(dt))
+	if (pos.y < 25.0f)
 	{
 		pos.y += vel.y * dt;
 	}
-	else if (!waitTimer.Pause(dt))
+	else if (!timer.Pause(dt))
 	{
 		pos.x += vel.x * dt;
 		Attack(dt);
 
-		waitTimer.Increment(dt);
+		timer.Increment(dt);
 	}
-	if ((pos.y > -100.0f) && waitTimer.PauseOver())
+	if ((pos.y < Graphics::ScreenHeight) && timer.PauseOver())
 	{
-		pos.y -= vel.y * dt;
+		pos.y += vel.y * dt;
 	}
-	else if (pos.y <= -100.0f)
+	else if (pos.y > Graphics::ScreenHeight)
 	{
 		Reset();
-		state = WaitState;
+		state = DeadState;
 	}
 
 	if ((pos.x <= 0 && vel.x < 0.0f) ||
@@ -139,4 +139,9 @@ void BigEnemyShip::Move(float dt)
 bool BigEnemyShip::IsAlive() const
 {
 	return state == AliveState;
+}
+
+bool BigEnemyShip::GetCoolDown() const
+{
+	return coolDown;
 }

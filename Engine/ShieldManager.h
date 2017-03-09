@@ -5,7 +5,7 @@
 #include "SmallShield.h"
 #include "Graphics.h"
 #include <random>
-
+#include <vector>
 
 class ShieldManager
 {
@@ -18,15 +18,14 @@ public:
 	SmallShield& GetSmallShield(int Idx);
 	const SmallShield& GetSmallShield(int Idx) const;
 	void Reset();
-
+	void SpawnShield(float X, float Y);
+	
 private:
-	void SpawnShieldPowerup(float dt);
-private:
-	static constexpr int nSmallMax = 2;
+//	static constexpr int nSmallMax = 2;
 	Shield shield;
-	SmallShield s_shield[nSmallMax];
+	std::vector<SmallShield>s_shield;
  	int nSmall = 0;
- 	float smallCounter = 0.0f;
- 	static constexpr float newSmall = 19.5f;
+ //	float smallCounter = 0.0f;
+ //	static constexpr float newSmall = 19.5f;
 };
 

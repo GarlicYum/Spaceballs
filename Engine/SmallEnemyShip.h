@@ -14,8 +14,8 @@ public:
 	{
 		AliveState, DyingState, DeadState
 	};
-	SmallEnemyShip(float x, AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo, 
-		BulletManager& smallLeftmanager, BulletManager& smallRightManager, AnimationFrames& bulletAnim);
+	SmallEnemyShip(float x, float y, AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo, 
+		BulletManager& smallLeftmanager, BulletManager& smallRightManager);
 	void Attack(float dt);
 	void Move(float dt, float playerX);
 	void Update(float dt, float playerX);

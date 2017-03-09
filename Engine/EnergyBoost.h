@@ -17,7 +17,7 @@ public:
 
 private:
 	Vec2 pos;
-	static constexpr float vy = 4.0f * 60.0f;
+	static constexpr float vy = 200.0f;
 	bool isObtained = false;
 	bool isRestored = false;
 	static constexpr float width = 40.0f;
