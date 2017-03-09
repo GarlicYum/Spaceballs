@@ -11,6 +11,7 @@ void BlackHole::Reset()
 {
 	pos = resetPos;
 	isActive = true;
+	StartVy();
 }
 
 void BlackHole::Update(float dt)
