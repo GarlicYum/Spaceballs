@@ -19,7 +19,7 @@ public:
 	
 private:
 	static constexpr int width = 16;
-	static constexpr int height = 120;
+	static constexpr int height = 360;
 	static constexpr int cellWidth = 50;
 	static constexpr int cellHeight = -60;
 	int level[height][width];

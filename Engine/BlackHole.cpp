@@ -16,7 +16,11 @@ void BlackHole::Reset()
 
 void BlackHole::Update(float dt)
 {
-	if (pos.y < Graphics::ScreenHeight)
+	if (pos.y + height <= 0.0f)
+	{
+		pos.y += offScreenVy * dt;
+	}
+	else if (pos.y < Graphics::ScreenHeight)
 	{
 		pos.y += vy * dt;
 		bHoleSpin.Advance(dt);
@@ -58,5 +62,5 @@ void BlackHole::StopVy()
 
 void BlackHole::StartVy()
 {
-	vy = 200.0f;
+	vy = 80.0f;
 }

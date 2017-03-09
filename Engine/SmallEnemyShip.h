@@ -33,7 +33,8 @@ private:
 	Vec2 resetPos;
 	Vec2 leftCanon = Vec2(-9.0f, 30.0f);
 	Vec2 rightCanon = Vec2(68.0f, 30.0f);
-	Vec2 vel = Vec2(200.0f, 100.0f);
+	Vec2 vel = Vec2(90.0f, 150.0f);
+	float offScreenVel = 200.0f;
 	BulletManager bulletM;
 	int hp = 80;
 	static constexpr float width = 90.0f;

@@ -19,6 +19,7 @@ private:
 	Vec2 pos;
 	Vec2 resetPos;
 	static constexpr float vy = 200.0f;
+	static constexpr float offScreenVel = 200.0f;
 	bool isObtained = false;
 	bool isRestored = false;
 	static constexpr float width = 40.0f;

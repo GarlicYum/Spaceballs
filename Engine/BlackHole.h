@@ -20,7 +20,8 @@ public:
 private:
 	Vec2 pos;
 	Vec2 resetPos;
-	float vy = 200.0f;
+	float vy = 80.0f;
+	float offScreenVy = 200.0f;
 	static constexpr float width = 100.0f;
 	static constexpr float height = 100.0f;
 	static constexpr float range = 250.0f;

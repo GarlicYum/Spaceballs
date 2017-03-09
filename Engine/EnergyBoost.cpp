@@ -13,7 +13,14 @@ void EnergyBoost::Update(Ship& ship, float dt)
 {
 	if (!isObtained)
 	{
-		pos.y += vy * dt;
+		if (pos.y + height <= 0.0f)
+		{
+			pos.y += offScreenVel * dt;
+		}
+		else
+		{
+			pos.y += vy * dt;
+		}
 	}
 }
 

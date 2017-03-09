@@ -36,7 +36,15 @@ void Mine::Update(float Dt)
 	switch (mState)
 	{
 	case MineState::ActiveState:
-		pos.y += vy * Dt;
+		if (pos.y + height <= 0.0f)
+		{
+			pos.y += offScreenVel * Dt;
+		}
+		else
+		{
+			pos.y += vy * Dt;
+		}
+		
 		break;
 	case MineState::DetonateState:
 		explo.Advance(Dt);

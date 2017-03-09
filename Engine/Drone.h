@@ -27,6 +27,7 @@ private:
 	Vec2 pos;
 	Vec2 resetPos;
 	Vec2 vel = Vec2(360.0f, 300.0f);
+	float offScreenVel = 200.0f;
 	static constexpr float width = 80.0f;
 	static constexpr float height = 40.0f;
 	static constexpr int collisionDmg = 50;

@@ -11,9 +11,10 @@ Drone::Drone(float X, float Y, AnimationFrames & DroneAnim, AnimationFrames& Dro
 
 void Drone::Move(float dt)
 {
-	pos.y += vel.y *dt;
+	
 	if (pos.y + height >= 0.0f)
 	{
+		pos.y += vel.y *dt;
 		pos.x += vel.x *dt;
 		if (pos.x >= resetPos.x)
 		{
@@ -24,7 +25,10 @@ void Drone::Move(float dt)
 			vel.x += 2.5f;
 		}
 	}
-
+	else
+	{
+		pos.y += offScreenVel * dt;
+	}
 	
 }
 

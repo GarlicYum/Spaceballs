@@ -17,7 +17,14 @@ void Obstacle::Draw(Graphics & gfx)
 
 void Obstacle::Update(float dt)
 {
-	pos.y += vy * dt;
+	if (pos.y + height <= 0.0f)
+	{
+		pos.y += offScreenVel * dt;
+	}
+	else
+	{
+		pos.y += vy * dt;
+	}
 }
 
 void Obstacle::HandleBottomCollision(Ship& ship)

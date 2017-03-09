@@ -24,6 +24,7 @@ private:
 	Vec2 pos;
 	Vec2 resetPos;
 	float vy = 200.0f;
+	float offScreenVel = 200.0f;
 	static constexpr float width = 255;
 	static constexpr float height = 115;
 	const Surface& surface;

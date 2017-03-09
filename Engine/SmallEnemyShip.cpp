@@ -33,17 +33,18 @@ void SmallEnemyShip::Attack(float dt)
 
 void SmallEnemyShip::Move(float dt, float playerX)
 {
-	pos.y += vel.y * dt;
+	
 	if (pos.y + height >= 0.0f)
 	{
+		pos.y += vel.y * dt;
 		pos.x += vel.x * dt;
 		if ((playerX - 200.0f) > pos.x)
 		{
-			vel.x = 200.0f;
+			vel.x = 90.0f;
 		}
 		else if ((playerX + 200.0f) < pos.x)
 		{
-			vel.x = -200.0f;
+			vel.x = -90.0f;
 		}
 		else
 		{
@@ -54,6 +55,10 @@ void SmallEnemyShip::Move(float dt, float playerX)
 		{
 			vel.x = -vel.x;
 		}
+	}
+	else
+	{
+		pos.y += offScreenVel * dt;
 	}
 }
 

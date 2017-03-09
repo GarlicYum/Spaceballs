@@ -34,6 +34,7 @@ private:
 	Vec2 pos;
 	Vec2 resetPos;
 	static constexpr float vy = 200.0f;
+	static constexpr float offScreenVel = 200.0f;
 	MineState mState = ActiveState;
 	const Surface& surface;
 	Sound& explosion;
