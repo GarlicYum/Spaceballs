@@ -36,7 +36,7 @@ World::World()
 	droneExplo(L"dronexplo\\", 8),
 	bossExplo(L"bossexplo\\", 69),
 	bossPreExplo(L"bosspreexplo\\", 15),
-	level(blackholeM, droneM)
+	level(blackholeM, droneM, eBoostM, mineM, obstacleM)
 	
 {
 	std::mt19937 rng;
@@ -308,7 +308,7 @@ void World::PlayerInput(Keyboard& Kbd)
 				if (event.GetCode() == VK_RETURN)
 				{
 					gState = PlayState; //////////////////////////////////////////////////////////////////////////temporary, normally PlayState
-					mainSong.Play(1.0f, 0.5f);
+			//		mainSong.Play(1.0f, 0.5f);
 				//	bossSong.Play(1.0f, 0.5f);
 				}
 			}

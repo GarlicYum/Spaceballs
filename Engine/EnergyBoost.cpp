@@ -1,11 +1,11 @@
 #include "EnergyBoost.h"
 #include "Surface.h"
 
-EnergyBoost::EnergyBoost(float X, Sound& BoostSound, Surface& BoostSurface)
+EnergyBoost::EnergyBoost(float X, float Y, Sound& BoostSound, Surface& BoostSurface)
 	:
 	boostSound(BoostSound),
 	heart(BoostSurface),
-	pos(X, resetY)
+	pos(X, Y)
 {}
 
 void EnergyBoost::Update(Ship& ship, float dt)
@@ -42,7 +42,6 @@ void EnergyBoost::HandleCollision(Ship& ship)
 
 void EnergyBoost::Reset()
 {
-	pos.y = resetY;
 	isObtained = false;
 	isRestored = false;
 }

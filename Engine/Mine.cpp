@@ -3,12 +3,12 @@
 #include "Ship.h"
 #include "Surface.h"
 
-Mine::Mine(float X, const Surface& MineSurface, Sound& Explosion, AnimationFrames& Anim)
+Mine::Mine(float X, float Y, const Surface& MineSurface, Sound& Explosion, AnimationFrames& Anim)
 	:
 	surface(MineSurface),
 	explo(Anim, 2.0f),
 	explosion(Explosion),
-	pos(X, resetY)
+	pos(X, Y)
 {}
 
 void Mine::HandleCollision(int dmg)
@@ -83,7 +83,7 @@ bool Mine::IsActive() const
 
 void Mine::Reset()
 {
-	pos.y = resetY;
+//	pos.y = resetY;
 	hp = 60;
 	mState = ActiveState;
 	explo.Reset();

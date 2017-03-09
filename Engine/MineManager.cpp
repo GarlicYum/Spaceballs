@@ -2,13 +2,17 @@
 #include "Ship.h"
 
 MineManager::MineManager(Sound& Explosion, const Surface& MineSurface, AnimationFrames& ExplosionFrames)
+	:
+	explosion(Explosion),
+	mineSurface(MineSurface),
+	exploFrames(ExplosionFrames)
 {
-	std::mt19937 rng;
-	std::uniform_real_distribution<float> xDist(0.0f, 750.0f);
-	for (int i = 0; i < nMinesMax; ++i)
-	{
-		mine.emplace_back<Mine>(Mine{ xDist(rng), MineSurface, Explosion, ExplosionFrames });
-	}
+//	std::mt19937 rng;
+//	std::uniform_real_distribution<float> xDist(0.0f, 750.0f);
+//	for (int i = 0; i < nMinesMax; ++i)
+//	{
+//		mine.emplace_back<Mine>(Mine{ xDist(rng), MineSurface, Explosion, ExplosionFrames });
+//	}
 }
 
 void MineManager::Update(float Dt)
@@ -17,8 +21,6 @@ void MineManager::Update(float Dt)
 	{
 		mine[i].Update(Dt);
 	}
-
-	SpawnMine(Dt);
 }
 
 void MineManager::Draw(Graphics& gfx)
@@ -29,13 +31,15 @@ void MineManager::Draw(Graphics& gfx)
 	}
 }
 
-void MineManager::SpawnMine(float Dt)
+void MineManager::SpawnMine(float X, float Y)
 {
-	if ((mineCounter += Dt) > newMine && nMines != nMinesMax)
-	{
-		nMines++;
-		mineCounter = 0.0f;
-	}
+//	if ((mineCounter += Dt) > newMine && nMines != nMinesMax)
+//	{
+//		nMines++;
+//		mineCounter = 0.0f;
+//	}
+	nMines++;
+	mine.emplace_back<Mine>(Mine{ X, Y, mineSurface, explosion, exploFrames });
 }
 
 Mine& MineManager::GetMine(int Idx)
@@ -56,9 +60,9 @@ int MineManager::GetMineCount() const
 void MineManager::Reset()
 {
 	nMines = 0;
-	mineCounter = 0;
-	for (int i = 0; i < nMinesMax; ++i)
-	{
-		mine[i].Reset();
-	}
+//	mineCounter = 0;
+//	for (int i = 0; i < nMinesMax; ++i)
+//	{
+//		mine[i].Reset();
+//	}
 }

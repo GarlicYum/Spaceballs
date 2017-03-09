@@ -1,8 +1,8 @@
 #include "Obstacle.h"
 
-Obstacle::Obstacle(float X, const Surface & obstacleSurface)
+Obstacle::Obstacle(float X, float Y, const Surface & obstacleSurface)
 	:
-	pos(X, resetY),
+	pos(X, Y),
 	surface(obstacleSurface)
 {}
 
@@ -61,5 +61,5 @@ RectF Obstacle::GetTopCollisionRect() const
 
 void Obstacle::Reset()
 {
-	pos.y = resetY;
+//	pos.y = resetY;
 }

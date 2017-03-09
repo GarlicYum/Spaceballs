@@ -17,7 +17,7 @@ public:
 	{
 		ActiveState, DetonateState, InActiveState
 	};
-	Mine(float X, const Surface& MineSurface, Sound& Explosion, AnimationFrames& Anim);
+	Mine(float X, float Y, const Surface& MineSurface, Sound& Explosion, AnimationFrames& Anim);
 	void HandleCollision(int dmg);
 	void Update(float Dt);
 	void Draw(Graphics& gfx);
@@ -32,7 +32,7 @@ private:
 	static constexpr float width = 50.0f;
 	static constexpr float height = 50.0f;
 	Vec2 pos;
-	static constexpr float resetY = -50.0f;
+//	static constexpr float resetY = -50.0f;
 	static constexpr float vy = 5.0f * 60.0f;
 	MineState mState = ActiveState;
 	const Surface& surface;

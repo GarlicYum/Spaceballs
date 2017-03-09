@@ -6,12 +6,12 @@ EnergyBoostManager::EnergyBoostManager(Sound& BoostSound, Surface& BoostSurface)
 	boostSound(BoostSound),
 	boostSurface(BoostSurface)
 {
-	std::mt19937 rng;
-	std::uniform_real_distribution<float> xDist(0.0f, 700.0f);
-	for (int i = 0; i < nEBoostMax; ++i)
-	{
-		eBoost.push_back(EnergyBoost(xDist(rng), boostSound, boostSurface));
-	}
+//	std::mt19937 rng;
+//	std::uniform_real_distribution<float> xDist(0.0f, 700.0f);
+//	for (int i = 0; i < nEBoostMax; ++i)
+//	{
+//		eBoost.push_back(EnergyBoost(xDist(rng), boostSound, boostSurface));
+//	}
 }
 
 void EnergyBoostManager::Update(Ship& ship, float dt)
@@ -21,11 +21,11 @@ void EnergyBoostManager::Update(Ship& ship, float dt)
 		eBoost[i].Update(ship, dt);
 	}
 
-	if ((eBoostCounter += dt) > newEBoost && nEBoost != nEBoostMax)
-	{
-		nEBoost++;
-		eBoostCounter = 0.0f;
-	}
+//	if ((eBoostCounter += dt) > newEBoost && nEBoost != nEBoostMax)
+//	{
+//		nEBoost++;
+//		eBoostCounter = 0.0f;
+//	}
 }
 
 void EnergyBoostManager::Draw(Graphics& gfx, Ship& ship)
@@ -54,9 +54,15 @@ int EnergyBoostManager::GetBoostCount() const
 void EnergyBoostManager::Reset()
 {
 	nEBoost = 0;
-	eBoostCounter = 0;
-	for (int i = 0; i < nEBoostMax; ++i)
-	{
-		eBoost[i].Reset();
-	}
+//	eBoostCounter = 0;
+//	for (int i = 0; i < nEBoostMax; ++i)
+//	{
+//		eBoost[i].Reset();
+//	}
+}
+
+void EnergyBoostManager::SpawnEnergyBoost(float X, float Y)
+{
+	eBoost.push_back(EnergyBoost(X, Y, boostSound, boostSurface));
+	nEBoost++;
 }

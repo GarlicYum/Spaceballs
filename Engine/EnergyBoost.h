@@ -8,7 +8,7 @@
 class EnergyBoost
 {
 public:
-	EnergyBoost(float X, Sound& BoostSound, Surface& BoostSurface);
+	EnergyBoost(float X, float Y, Sound& BoostSound, Surface& BoostSurface);
 	void Update(Ship& ship, float dt);
 	void Draw(Graphics& gfx);
 	RectF GetCollisionRect() const;
@@ -17,7 +17,6 @@ public:
 
 private:
 	Vec2 pos;
-	static constexpr float resetY = -40.0f;
 	static constexpr float vy = 4.0f * 60.0f;
 	bool isObtained = false;
 	bool isRestored = false;

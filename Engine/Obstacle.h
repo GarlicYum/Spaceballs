@@ -7,7 +7,7 @@
 class Obstacle
 {
 public:
-	Obstacle(float X, const Surface& obstacleSurface);
+	Obstacle(float X, float Y, const Surface& obstacleSurface);
 	void Draw(Graphics& gfx);
 	void Update(float dt);
 	void HandleBottomCollision(Ship& ship);
@@ -22,7 +22,7 @@ public:
 
 private:
 	Vec2 pos;
-	static constexpr float resetY = -120.0f;
+//	static constexpr float resetY = -120.0f;
 	float vy = 120.0f;
 	static constexpr float width = 255;
 	static constexpr float height = 115;
