@@ -14,6 +14,7 @@ public:
 	BigEnemyShip& GetBigShip(int Idx);
 	const BigEnemyShip& GetBigShip(int Idx) const;
 	int GetBigCount() const;
+	void Reset();
 
 private:
 	std::vector<BigEnemyShip>bigEnemy;

@@ -48,3 +48,11 @@ int BigEnemyManager::GetBigCount() const
 {
 	return nBigEnemy;
 }
+
+void BigEnemyManager::Reset()
+{
+	for (int i = 0; i < nBigEnemy; ++i)
+	{
+		bigEnemy[i].Reset();
+	}
+}

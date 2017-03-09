@@ -4,7 +4,7 @@ SmallEnemyShip::SmallEnemyShip(float x, float y, AnimationFrames& smallexhaust, 
 	BulletManager& smallLeftManager, BulletManager& smallRightManager)
 	:
 	pos(x, y),
-	resetX(x),
+	resetPos(x, y),
 	smallExhaust(smallexhaust, 2.0f),
 	smallExplode(smallexplode, 3.0f),
 	smallExploSound(smallexplo),
@@ -123,8 +123,7 @@ RectF SmallEnemyShip::GetCollisionRect() const
 
 void SmallEnemyShip::Reset()
 {
-//	pos.y = -100.0f;
-//	pos.x = resetX;
+	pos = resetPos;
 	smallExplode.Reset();
 	state = AliveState;
 	hp = 80;

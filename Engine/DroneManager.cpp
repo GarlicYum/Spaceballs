@@ -25,12 +25,10 @@ void DroneManager::Draw(Graphics & gfx)
 
 void DroneManager::Reset()
 {
-	nDrones = 0;
-//	droneCounter = 0.0f;
-//	for (int i = 0; i < nDronesMax; ++i)
-//	{
-//		drone[i].Reset();
-//	}
+	for (int i = 0; i < nDrones; ++i)
+	{
+		drone[i].Reset();
+	}
 }
 
 void DroneManager::Update(float dt)

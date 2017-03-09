@@ -59,10 +59,8 @@ int MineManager::GetMineCount() const
 
 void MineManager::Reset()
 {
-	nMines = 0;
-//	mineCounter = 0;
-//	for (int i = 0; i < nMinesMax; ++i)
-//	{
-//		mine[i].Reset();
-//	}
+	for (int i = 0; i < nMines; ++i)
+	{
+		mine[i].Reset();
+	}
 }

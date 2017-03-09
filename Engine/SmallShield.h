@@ -16,6 +16,7 @@ public:
 
 private:
 	Vec2 pos;
+	Vec2 resetPos;
 	float vy = 200.0f;
 	static constexpr int radius = 20;
 	static constexpr int hole = 18;

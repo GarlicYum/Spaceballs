@@ -22,7 +22,7 @@ public:
 
 private:
 	Vec2 pos;
-//	static constexpr float resetY = -120.0f;
+	Vec2 resetPos;
 	float vy = 200.0f;
 	static constexpr float width = 255;
 	static constexpr float height = 115;

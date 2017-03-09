@@ -17,10 +17,7 @@ public:
 	void Reset();
 
 private:
-//	static constexpr int nObstaclesMax = 4;
 	int nObstacles = 0;
-//	static constexpr float newObstacle = 9.0f;
-//	float obstacleCounter = 0.0f;
 	std::vector<Obstacle> obstacle;
 	const Surface& surface;
 };

@@ -3,13 +3,13 @@
 BlackHole::BlackHole(float X, float Y, AnimationFrames & bHoleAnim)
 	:
 	pos(X, Y),
+	resetPos(X, Y),
 	bHoleSpin(bHoleAnim, 5.0f)
 {}
 
 void BlackHole::Reset()
 {
-	pos.y = -50.0f;
-	vy = resetVy;
+	pos = resetPos;
 	isActive = true;
 }
 
@@ -57,5 +57,5 @@ void BlackHole::StopVy()
 
 void BlackHole::StartVy()
 {
-	vy = 80.0f;
+	vy = 200.0f;
 }

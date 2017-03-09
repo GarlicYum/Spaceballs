@@ -32,7 +32,7 @@ private:
 	static constexpr float width = 50.0f;
 	static constexpr float height = 50.0f;
 	Vec2 pos;
-//	static constexpr float resetY = -50.0f;
+	Vec2 resetPos;
 	static constexpr float vy = 5.0f * 60.0f;
 	MineState mState = ActiveState;
 	const Surface& surface;

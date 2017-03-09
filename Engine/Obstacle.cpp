@@ -3,6 +3,7 @@
 Obstacle::Obstacle(float X, float Y, const Surface & obstacleSurface)
 	:
 	pos(X, Y),
+	resetPos(X, Y),
 	surface(obstacleSurface)
 {}
 
@@ -61,5 +62,5 @@ RectF Obstacle::GetTopCollisionRect() const
 
 void Obstacle::Reset()
 {
-//	pos.y = resetY;
+	pos = resetPos;
 }

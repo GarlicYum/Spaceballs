@@ -2,9 +2,9 @@
 
 SmallShield::SmallShield(float X, float Y)
 	:
-	pos(X, Y)
-{
-}
+	pos(X, Y),
+	resetPos(X, Y)
+{}
 
 void SmallShield::Draw(Graphics & gfx)
 {
@@ -38,5 +38,6 @@ void SmallShield::HandleCollision(Shield& shield)
 
 void SmallShield::Reset()
 {
+	pos = resetPos;
 	isObtained = false;
 }

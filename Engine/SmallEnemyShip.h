@@ -30,9 +30,9 @@ public:
 private:
 	bool coolDown = false;
 	Vec2 pos;
+	Vec2 resetPos;
 	Vec2 leftCanon = Vec2(-9.0f, 30.0f);
 	Vec2 rightCanon = Vec2(68.0f, 30.0f);
-	float resetX;
 	Vec2 vel = Vec2(200.0f, 100.0f);
 	BulletManager bulletM;
 	int hp = 80;

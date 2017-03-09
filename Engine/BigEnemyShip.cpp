@@ -3,8 +3,8 @@
 BigEnemyShip::BigEnemyShip(float X, float Y, const Surface & surface, BulletManager& BulletM, AnimationFrames& ExploAnim, Sound& ExploSound)
 	:
 	pos(X, Y),
+	resetPos(X, Y),
 	shipSurface(surface),
-//	resetX(X),
 	bulletM(BulletM),
 	exploAnim(ExploAnim, 2.0f),
 	exploSound(ExploSound),
@@ -61,14 +61,14 @@ void BigEnemyShip::Update(float dt)
 
 void BigEnemyShip::Reset()
 {
-//	pos.y = -100.0f;
-//	pos.x = resetX;
+	pos = resetPos;
 	hp = 400;
-//	state = WaitState;
+	state = AliveState;
 	bulletTimer.Reset();
 	exploAnim.Reset();
 	vel.x = 100.0f;
-//	timer.Reset();
+	timer.Reset();
+	coolDownTimer.Reset();
 }
 
 RectF BigEnemyShip::GetCollisionRect() const

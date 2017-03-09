@@ -3,7 +3,7 @@
 Drone::Drone(float X, float Y, AnimationFrames & DroneAnim, AnimationFrames& DroneExplode, Sound& ExploSound)
 	:
 	pos(X, Y),
-	resetX(X),
+	resetPos(X, Y),
 	droneAnim(DroneAnim, 2.0f),
 	droneExplode(DroneExplode, 2.0f),
 	exploSound(ExploSound)
@@ -15,7 +15,7 @@ void Drone::Move(float dt)
 	if (pos.y + height >= 0.0f)
 	{
 		pos.x += vel.x *dt;
-		if (pos.x >= resetX)
+		if (pos.x >= resetPos.x)
 		{
 			vel.x -= 2.5f;
 		}
@@ -76,8 +76,7 @@ RectF Drone::GetCollisionRect() const
 void Drone::Reset()
 {
 	state = AliveState;
-	pos.x = resetX;
-	pos.y = -40.0f;
+	pos = resetPos;
 	vel.x = 360.0f;
 	droneAnim.Reset();
 	droneExplode.Reset();

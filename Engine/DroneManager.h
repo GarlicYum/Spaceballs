@@ -17,10 +17,7 @@ public:
 	void SpawnDrone(float X, float Y);
 
 private:
-//	static constexpr int nDronesMax = 6;
 	int nDrones = 0;
-//	float droneCounter = 0.0f;
-//	static constexpr float newDrone = 0.3f;
 	std::vector<Drone> drone;
 	AnimationFrames& droneAnim;
 	Sound& exploSound;

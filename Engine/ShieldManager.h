@@ -21,11 +21,8 @@ public:
 	void SpawnShield(float X, float Y);
 	
 private:
-//	static constexpr int nSmallMax = 2;
 	Shield shield;
 	std::vector<SmallShield>s_shield;
  	int nSmall = 0;
- //	float smallCounter = 0.0f;
- //	static constexpr float newSmall = 19.5f;
 };
 

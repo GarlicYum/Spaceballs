@@ -17,6 +17,7 @@ public:
 
 private:
 	Vec2 pos;
+	Vec2 resetPos;
 	static constexpr float vy = 200.0f;
 	bool isObtained = false;
 	bool isRestored = false;

@@ -335,7 +335,7 @@ void World::PlayerInput(Keyboard& Kbd)
 					blackholeM.Reset();
 					smallEnemyM.Reset();
 					droneM.Reset();
-		//			bigEnemyM.Reset();
+					bigEnemyM.Reset();
 					bigEnemyBulletM.Reset();
 					bossLeftBulletM.Reset();
 					bossRightBulletM.Reset();

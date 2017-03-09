@@ -28,11 +28,11 @@ public:
 
 private:
 	Vec2 pos;
+	Vec2 resetPos;
 	Vec2 canon = Vec2(42.5f, 75.0f);
 	Vec2 vel = Vec2(100.0f, 200.0f);
 	static constexpr float width = 145.0f;
 	static constexpr float height = 90.0f;
-//	float resetX;
 	const Surface& shipSurface;
 	State state = AliveState;
 	BulletManager& bulletM;

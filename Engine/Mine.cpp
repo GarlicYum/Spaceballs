@@ -8,7 +8,8 @@ Mine::Mine(float X, float Y, const Surface& MineSurface, Sound& Explosion, Anima
 	surface(MineSurface),
 	explo(Anim, 2.0f),
 	explosion(Explosion),
-	pos(X, Y)
+	pos(X, Y),
+	resetPos(X, Y)
 {}
 
 void Mine::HandleCollision(int dmg)
@@ -83,28 +84,8 @@ bool Mine::IsActive() const
 
 void Mine::Reset()
 {
-//	pos.y = resetY;
+	pos = resetPos;
 	hp = 60;
 	mState = ActiveState;
 	explo.Reset();
 }
-
-//float Mine::GetX() const
-//{
-//	return x;
-//}
-//
-//float Mine::GetY() const
-//{
-//	return y;
-//}
-//
-//float Mine::GetWidth() const
-//{
-//	return width;
-//}
-//
-//float Mine::GetHeight() const
-//{
-//	return height;
-//}

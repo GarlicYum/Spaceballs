@@ -16,10 +16,7 @@ public:
 	void SpawnEnergyBoost(float X, float Y);
 
 private:
-//	static constexpr int nEBoostMax = 3;
 	int nEBoost = 0;
-//	float eBoostCounter = 0.0f;
-//	static constexpr float newEBoost = 16.0f;
 	std::vector<EnergyBoost> eBoost;
 	Sound& boostSound;
 	Surface& boostSurface;
