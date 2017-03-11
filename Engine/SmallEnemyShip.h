@@ -33,10 +33,10 @@ private:
 	Vec2 resetPos;
 	Vec2 leftCanon = Vec2(-9.0f, 30.0f);
 	Vec2 rightCanon = Vec2(68.0f, 30.0f);
-	Vec2 vel = Vec2(150.0f, 300.0f);
+	Vec2 vel = Vec2(100.0f, 250.0f);
 	float offScreenVel = 200.0f;
 	BulletManager bulletM;
-	int hp = 2;
+	int hp = 3;
 	static constexpr float width = 90.0f;
 	static constexpr float height = 70.0f;
 	static constexpr int collisionDmg = 50;

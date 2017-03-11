@@ -112,12 +112,12 @@ void World::Update(Keyboard& Kbd, float Dt)
 			}
 		}
 
-		if (boss.IsEntering())
-		{
-			mainSong.StopAll();
-			bossSong.Play(1.0f, 0.5f);
-			gState = BossState;
-		}
+//		if (boss.IsEntering())
+//		{
+//			mainSong.StopAll();
+//			bossSong.Play(1.0f, 0.5f);
+//			gState = BossState;
+//		}
 		break;
 
 	case BlackHoleState:
@@ -440,7 +440,7 @@ void World::CheckCollisions(float dt)
 				const auto bulletRect = bullet.GetCollisionRect();
 				if (IsColliding(bulletRect, mineRect))
 				{
-					mine.HandleCollision(bullet.GetDamage());
+					mine.HandleCollision(0);
 					bullet.HandleCollision();
 					break;
 				}

@@ -40,11 +40,11 @@ void SmallEnemyShip::Move(float dt, float playerX)
 		pos.x += vel.x * dt;
 		if ((playerX - 200.0f) > pos.x)
 		{
-			vel.x = 90.0f;
+			vel.x = 100.0f;
 		}
 		else if ((playerX + 200.0f) < pos.x)
 		{
-			vel.x = -90.0f;
+			vel.x = -100.0f;
 		}
 		else
 		{
@@ -131,7 +131,7 @@ void SmallEnemyShip::Reset()
 	pos = resetPos;
 	smallExplode.Reset();
 	state = AliveState;
-	hp = 2;
+	hp = 3;
 	bulletTimer.Reset();
 	coolDownTimer.Reset();
 }
