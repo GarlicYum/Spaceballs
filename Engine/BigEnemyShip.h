@@ -42,7 +42,7 @@ private:
 	Vec2 bulletVel = Vec2(0.0f, -400.0f);
 	static constexpr int bulletDmg = 50;
 	static constexpr int collisionDmg = 75;
-	int hp = 400;
+	int hp = 20;
 	Animation exploAnim;
 	Sound& exploSound;
 	static constexpr float bulletPitch = 0.3f;

@@ -14,13 +14,14 @@ class Boss
 public:
 	enum State
 	{
-		EntranceState, AliveState, ExplodingState, DeadState
+		 PreEntranceState, EntranceState, AliveState, ExplodingState, DeadState
 	};
 	Boss(AnimationFrames& bossAnim, BulletManager& LeftBulletM, BulletManager& RightBulletM, BulletManager& CenterBulletM,
 		AnimationFrames& BulletAnim, AnimationFrames& lightBallAnim, AnimationFrames& bossExploAnim, AnimationFrames& bossPreExploAnim,
 		Sound& shipExplodeSound);
 	void Update(float dt, float playerPos);
 	void Draw(Graphics& gfx);
+	float offScreenVel = 200.0f;
 	RectF GetBottomCollisionRect() const;
 	RectF GetTopCollisionRect() const;
 	RectF GetLeftCollisionRect() const;
@@ -30,7 +31,6 @@ public:
 	void Attack(float dt, float playerPos, short choice);
 	void Thrust(float dt, float playerPos);
 	void BulletSpread(float dt, float playerPos);
-	void Missile(float dt, float playerPos);
 	void Move(float dt, float playerPos);
 	void HandleCollision(int dmg);
 	bool GetCoolDown() const;
@@ -46,9 +46,11 @@ public:
 	bool IsDead() const;
 	void Vibrate(float dt);
 	void Reset();
+	void SetY(float Y);
 
 private:
 	Vec2 pos = Vec2(315.0f, -250.0f);
+	float resetY;
 	Vec2 vel = Vec2(100.0f, 100.0f);
 	float speedFactor = 1.0f;
 	Vec2 midPoint = Vec2(400.0f, 140.0f);
@@ -78,7 +80,7 @@ private:
 	BulletManager& rightBulletM;
 	BulletManager& centerBulletM;
 	Animation bulletSprite;
-	State state = EntranceState;
+	State state = PreEntranceState;
 	bool coolDown = false;
 	int hp = 300;
 	int healthX = 475;

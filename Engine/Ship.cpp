@@ -370,6 +370,7 @@ void Ship::Reset()
 	shipExplo.Reset();
 	state = AliveState;
 	gameComplete = false;
+	EnableInput();
 }
 
 void Ship::Update(Keyboard & wnd, float dt)

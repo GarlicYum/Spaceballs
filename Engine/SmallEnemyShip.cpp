@@ -131,7 +131,7 @@ void SmallEnemyShip::Reset()
 	pos = resetPos;
 	smallExplode.Reset();
 	state = AliveState;
-	hp = 80;
+	hp = 2;
 	bulletTimer.Reset();
 	coolDownTimer.Reset();
 }

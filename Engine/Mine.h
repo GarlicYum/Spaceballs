@@ -41,5 +41,5 @@ private:
 	Animation explo;
 	bool gotPosition = false;
 	int damage = 0;
-	int hp = 60;
+	int hp = 3;
 };

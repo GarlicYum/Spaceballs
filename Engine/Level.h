@@ -8,18 +8,19 @@
 #include "ShieldManager.h"
 #include "SmallEnemyManager.h"
 #include "BigEnemyManager.h"
+#include "Boss.h"
 #include <fstream>
 
 class Level
 {
 public:
 	Level(BlackHoleManager& BHM, DroneManager& DroneM, EnergyBoostManager& EBoostM, MineManager& MineM, ObstacleManager& ObstacleM, ShieldManager& ShieldM,
-		SmallEnemyManager& SmallEnemyM, BigEnemyManager& bBigEnemyM);
+		SmallEnemyManager& SmallEnemyM, BigEnemyManager& bBigEnemyM, Boss& Boss);
 	void ReadLevel();
 	
 private:
 	static constexpr int width = 16;
-	static constexpr int height = 360;
+	static constexpr int height = 370;
 	static constexpr int cellWidth = 50;
 	static constexpr int cellHeight = -60;
 	int level[height][width];
@@ -32,4 +33,5 @@ private:
 	ShieldManager& shieldM;
 	SmallEnemyManager& smallEnemyM;
 	BigEnemyManager& bigEnemyM;
+	Boss& boss;
 };

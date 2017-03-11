@@ -93,7 +93,7 @@ bool Mine::IsActive() const
 void Mine::Reset()
 {
 	pos = resetPos;
-	hp = 60;
+	hp = 3;
 	mState = ActiveState;
 	explo.Reset();
 }

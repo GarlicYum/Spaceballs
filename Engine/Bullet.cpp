@@ -68,11 +68,6 @@ int Bullet::GetDamage()
 	return dmg;
 }
 
-int Bullet::GetBossDmg()
-{
-	return bossDmg;
-}
-
 void Bullet::Reset()
 {
 	bState = DeadState;

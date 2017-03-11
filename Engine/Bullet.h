@@ -21,7 +21,6 @@ public:
 	RectF GetCollisionRect() const;
 	void HandleCollision();
 	int GetDamage();
-	int GetBossDmg();
 	void Reset();
 
 private:
@@ -32,6 +31,5 @@ private:
 	int halfHeight = 25;
 	int rectSize = 10;
 	Vec2 vel = Vec2(0.0f, 900.0f);
-	int dmg = 20;
-	int bossDmg = 100;
+	int dmg = 1;
 };

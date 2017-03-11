@@ -1,7 +1,7 @@
 #include "Level.h"
 
 Level::Level(BlackHoleManager & BHM, DroneManager& DroneM, EnergyBoostManager& EBoostM, MineManager& MineM, ObstacleManager& ObstacleM, ShieldManager& ShieldM,
-	SmallEnemyManager& SmallEnemyM, BigEnemyManager& BigEnemyM)
+	SmallEnemyManager& SmallEnemyM, BigEnemyManager& BigEnemyM, Boss& Boss)
 	:
 	bHoleM(BHM),
 	droneM(DroneM),
@@ -10,7 +10,8 @@ Level::Level(BlackHoleManager & BHM, DroneManager& DroneM, EnergyBoostManager& E
 	obstacleM(ObstacleM),
 	shieldM(ShieldM),
 	smallEnemyM(SmallEnemyM),
-	bigEnemyM(BigEnemyM)
+	bigEnemyM(BigEnemyM),
+	boss(Boss)
 {}
 
 void Level::ReadLevel()
@@ -61,6 +62,10 @@ void Level::ReadLevel()
 
 			case 8:
 				bigEnemyM.Spawn(float(j * cellWidth), float(i * cellHeight));
+				break;
+
+			case 9:
+				boss.SetY(float(i * cellHeight));
 				break;
 			}
 		}

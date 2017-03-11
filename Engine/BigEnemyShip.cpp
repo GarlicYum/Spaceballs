@@ -62,7 +62,7 @@ void BigEnemyShip::Update(float dt)
 void BigEnemyShip::Reset()
 {
 	pos = resetPos;
-	hp = 400;
+	hp = 20;
 	state = AliveState;
 	bulletTimer.Reset();
 	exploAnim.Reset();

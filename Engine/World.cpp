@@ -36,7 +36,7 @@ World::World()
 	droneExplo(L"dronexplo\\", 8),
 	bossExplo(L"bossexplo\\", 69),
 	bossPreExplo(L"bosspreexplo\\", 15),
-	level(blackholeM, droneM, eBoostM, mineM, obstacleM, shieldM, smallEnemyM, bigEnemyM)
+	level(blackholeM, droneM, eBoostM, mineM, obstacleM, shieldM, smallEnemyM, bigEnemyM, boss)
 	
 {
 	std::mt19937 rng;
@@ -87,6 +87,7 @@ void World::Update(Keyboard& Kbd, float Dt)
 		smallEnemyM.Update(Dt, ship.GetX());
 		droneM.Update(Dt);
 		bigEnemyM.Update(Dt);
+		boss.Update(Dt, ship.GetX());
 
 		if (!ship.IsAlive())
 		{
@@ -109,6 +110,13 @@ void World::Update(Keyboard& Kbd, float Dt)
 				gameOverSong.Play(1.0f, 0.5f);
 				gState = GameOverState;
 			}
+		}
+
+		if (boss.IsEntering())
+		{
+			mainSong.StopAll();
+			bossSong.Play(1.0f, 0.5f);
+			gState = BossState;
 		}
 		break;
 
@@ -372,7 +380,7 @@ void World::PlayerInput(Keyboard& Kbd)
 					blackholeM.Reset();
 					smallEnemyM.Reset();
 					droneM.Reset();
-			//		bigEnemyM.Reset();
+					bigEnemyM.Reset();
 					bigEnemyBulletM.Reset();
 					bossLeftBulletM.Reset();
 					bossRightBulletM.Reset();
@@ -790,7 +798,7 @@ void World::CheckCollisions(float dt)
 					if (IsColliding(bulletRect, bossRect))
 					{
 						bullet.HandleCollision();
-						boss.HandleCollision(bullet.GetBossDmg());
+						boss.HandleCollision(bullet.GetDamage());
 						break;
 					}
 				}

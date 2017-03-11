@@ -26,6 +26,14 @@ void Boss::Update(float dt, float playerPos)
 {
 	switch (state)
 	{
+	case PreEntranceState:
+		pos.y += offScreenVel * dt;
+		if (pos.y + height >= 0.0f)
+		{
+			state = EntranceState;
+		}
+		break;
+
 	case EntranceState:
 		Move(dt, playerPos);
 
@@ -439,10 +447,10 @@ void Boss::Vibrate(float dt)
 
 void Boss::Reset()
 {
-	state = EntranceState;
+	state = PreEntranceState;
 	vibrationTimer.Reset();
 	pos.x = 315.0f;
-	pos.y = -250.0f;
+	pos.y = resetY;
 	vel.x = 100.0f;
 	attackTimer.Reset();
 	specAttackTimer.Reset();
@@ -462,4 +470,10 @@ void Boss::Reset()
 	thrustRight = 300.0f;
 	speedFactor = 1.0f;
 	bigExploSoundPlayed = false;
+}
+
+void Boss::SetY(float Y)
+{
+	pos.y = Y;
+	resetY = Y;
 }
