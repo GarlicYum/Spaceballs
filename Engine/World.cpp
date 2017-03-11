@@ -565,7 +565,7 @@ void World::CheckCollisions(float dt)
 			const auto& obstacleLeftRect = obstacle.GetLeftCollisionRect();
 			const auto& obstacleRightRect = obstacle.GetRightCollisionRect();
 
-			if (!ship.IsTransition())
+			if (!ship.IsTransition() && !ship.IsBlackHole())
 			{
 				if (IsColliding(shipRect, obstacleBottomRect))
 				{

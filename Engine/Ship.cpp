@@ -41,7 +41,7 @@ void Ship::HandleCollision(int Damage, float dt)
 			blackHole.Reset();
 			oldX = pos.x;
 			oldY = pos.y;
-			pos.x = 350.0f;
+			pos.x = 355.0f;
 			pos.y = 500.0f;
 			state = BlackHoleState;
 			firstTransition = false;
@@ -444,7 +444,10 @@ void Ship::Update(Keyboard & wnd, float dt)
 		break;
 
 	case BlackHoleState:
-		pos.y -= (speed / 30.0f) * dt;
+		if (GetCollisionRect().GetCenterY() > 275.0f)
+		{
+			pos.y -= (speed / 30.0f) * dt;
+		}
 
 		if (isHit)
 		{
