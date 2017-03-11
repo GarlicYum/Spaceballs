@@ -565,36 +565,39 @@ void World::CheckCollisions(float dt)
 			const auto& obstacleLeftRect = obstacle.GetLeftCollisionRect();
 			const auto& obstacleRightRect = obstacle.GetRightCollisionRect();
 
-			if (IsColliding(shipRect, obstacleBottomRect))
+			if (!ship.IsTransition())
 			{
-				obstacle.HandleBottomCollision(ship);
-			}
-
-			else if (IsColliding(shipRect, obstacleTopRect))
-			{
-				obstacle.HandleTopCollision(ship);
-			}
-
-			else if (IsColliding(shipRect, obstacleLeftRect))
-			{
-				obstacle.HandleLeftCollision(ship);
-			}
-
-			else if (IsColliding(shipRect, obstacleRightRect))
-			{
-				obstacle.HandleRightCollision(ship);
-			}
-
-			for (int i = 0; i < bulletM.GetNumBullets(); ++i)
-			{
-				auto& bullet = bulletM.GetBullet(i);
-				if (!bullet.IsActive())
-					continue;
-				const auto bulletRect = bullet.GetCollisionRect();
-
-				if (IsColliding(bulletRect, obstacleBottomRect))
+				if (IsColliding(shipRect, obstacleBottomRect))
 				{
-					bullet.HandleCollision();
+					obstacle.HandleBottomCollision(ship);
+				}
+
+				else if (IsColliding(shipRect, obstacleTopRect))
+				{
+					obstacle.HandleTopCollision(ship);
+				}
+
+				else if (IsColliding(shipRect, obstacleLeftRect))
+				{
+					obstacle.HandleLeftCollision(ship);
+				}
+
+				else if (IsColliding(shipRect, obstacleRightRect))
+				{
+					obstacle.HandleRightCollision(ship);
+				}
+
+				for (int i = 0; i < bulletM.GetNumBullets(); ++i)
+				{
+					auto& bullet = bulletM.GetBullet(i);
+					if (!bullet.IsActive())
+						continue;
+					const auto bulletRect = bullet.GetCollisionRect();
+
+					if (IsColliding(bulletRect, obstacleBottomRect))
+					{
+						bullet.HandleCollision();
+					}
 				}
 			}
 		}

@@ -29,6 +29,7 @@ public:
 	bool ExitingBlackHole() const;
 	void EnableInput();
 	RectF GetCollisionRect();
+	bool IsTransition() const;
 	
 	float GetX() const;
 	float GetWidth() const;

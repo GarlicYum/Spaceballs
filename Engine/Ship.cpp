@@ -260,6 +260,11 @@ RectF Ship::GetCollisionRect()
 	return RectF(pos, width, height);
 }
 
+bool Ship::IsTransition() const
+{
+	return state == BlackHoleTransitionState;
+}
+
 float Ship::GetX() const
 {
 	return pos.x;
