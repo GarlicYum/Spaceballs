@@ -149,6 +149,7 @@ void World::Update(Keyboard& Kbd, float Dt)
 		ship.Update(Kbd, Dt);
 		UpdateStars(Dt);
 		boss.Update(Dt, ship.GetX());
+		shieldM.Update(ship, Dt, shieldon, shieldoff);
 		CheckCollisions(Dt);
 
 		if (boss.IsEntering())
@@ -242,6 +243,7 @@ void World::Draw(Graphics& Gfx)
 		DrawStars(Gfx);
 		ship.Draw(Gfx);
 		boss.Draw(Gfx);
+		shieldM.Draw(Gfx);
 		break;
 	case GameOverState:
 		Gfx.DrawSprite(0, 0, gameOverSurface);
@@ -809,7 +811,18 @@ void World::CheckCollisions(float dt)
 					if (!leftBullet.IsActive())
 						continue;
 					const auto leftBulletRect = leftBullet.GetCollisionRect();
-					if (IsColliding(leftBulletRect, shipRect))
+
+					if (shield.GetisActive())
+					{
+						const auto shieldRect = shield.GetCollisionRect();
+						if (IsColliding(shieldRect, leftBulletRect))
+						{
+							leftBullet.HandleCollision();
+							shield.HandleCollision(leftBullet.GetDamage());
+						}
+					}
+
+					else if (IsColliding(leftBulletRect, shipRect))
 					{
 						leftBullet.HandleCollision();
 						ship.HandleCollision(leftBullet.GetDamage(), dt);
@@ -823,7 +836,18 @@ void World::CheckCollisions(float dt)
 					if (!rightBullet.IsActive())
 						continue;
 					const auto rightBulletRect = rightBullet.GetCollisionRect();
-					if (IsColliding(rightBulletRect, shipRect))
+
+					if (shield.GetisActive())
+					{
+						const auto shieldRect = shield.GetCollisionRect();
+						if (IsColliding(shieldRect, rightBulletRect))
+						{
+							rightBullet.HandleCollision();
+							shield.HandleCollision(rightBullet.GetDamage());
+						}
+					}
+
+					else if (IsColliding(rightBulletRect, shipRect))
 					{
 						rightBullet.HandleCollision();
 						ship.HandleCollision(rightBullet.GetDamage(), dt);
@@ -837,7 +861,18 @@ void World::CheckCollisions(float dt)
 					if (!centerBullet.IsActive())
 						continue;
 					const auto centerBulletRect = centerBullet.GetCollisionRect();
-					if (IsColliding(centerBulletRect, shipRect))
+
+					if (shield.GetisActive())
+					{
+						const auto shieldRect = shield.GetCollisionRect();
+						if (IsColliding(shieldRect, centerBulletRect))
+						{
+							centerBullet.HandleCollision();
+							shield.HandleCollision(centerBullet.GetDamage());
+						}
+					}
+
+					else if (IsColliding(centerBulletRect, shipRect))
 					{
 						centerBullet.HandleCollision();
 						ship.HandleCollision(centerBullet.GetDamage(), dt);
