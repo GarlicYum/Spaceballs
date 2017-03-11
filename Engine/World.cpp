@@ -36,7 +36,7 @@ World::World()
 	droneExplo(L"dronexplo\\", 8),
 	bossExplo(L"bossexplo\\", 69),
 	bossPreExplo(L"bosspreexplo\\", 15),
-	level(blackholeM, droneM, eBoostM, mineM, obstacleM, shieldM, smallEnemyM, bigEnemyM, boss)
+	level(blackholeM, droneM, eBoostM, mineM, obstacleM, shieldM, smallEnemyM, bigEnemyM, boss, blackHoleLevel)
 	
 {
 	std::mt19937 rng;
@@ -51,6 +51,7 @@ World::World()
 		starB[i].Spawn(Vec2(xDist(rng), yDist(rng)), 6.0f);
 	}
 	level.ReadLevel();
+	level.ReadComets();
 }
 
 World::~World()
@@ -317,9 +318,8 @@ void World::PlayerInput(Keyboard& Kbd)
 			{
 				if (event.GetCode() == VK_RETURN)
 				{
-					gState = PlayState; //////////////////////////////////////////////////////////////////////////temporary, normally PlayState
+					gState = PlayState;
 					mainSong.Play(1.0f, 0.5f);
-				//	bossSong.Play(1.0f, 0.5f);
 				}
 			}
 		}

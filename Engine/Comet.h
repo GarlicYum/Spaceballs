@@ -20,7 +20,7 @@ public:
 private:
 	Vec2 pos;
 	Vec2 resetPos;
-	static constexpr float vel = 200.0f;
+	static constexpr float vel = 300.0f;
 	static constexpr float width = 35.0f;
 	static constexpr float height = 80.0f;
 	static constexpr int dmg = 50;

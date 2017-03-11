@@ -1,7 +1,7 @@
 #include "Level.h"
 
 Level::Level(BlackHoleManager & BHM, DroneManager& DroneM, EnergyBoostManager& EBoostM, MineManager& MineM, ObstacleManager& ObstacleM, ShieldManager& ShieldM,
-	SmallEnemyManager& SmallEnemyM, BigEnemyManager& BigEnemyM, Boss& Boss)
+	SmallEnemyManager& SmallEnemyM, BigEnemyManager& BigEnemyM, Boss& Boss, BlackHoleLevel& bHoleLevel)
 	:
 	bHoleM(BHM),
 	droneM(DroneM),
@@ -11,7 +11,8 @@ Level::Level(BlackHoleManager & BHM, DroneManager& DroneM, EnergyBoostManager& E
 	shieldM(ShieldM),
 	smallEnemyM(SmallEnemyM),
 	bigEnemyM(BigEnemyM),
-	boss(Boss)
+	boss(Boss),
+	blackHoleLevel(bHoleLevel)
 {}
 
 void Level::ReadLevel()
@@ -66,6 +67,32 @@ void Level::ReadLevel()
 
 			case 9:
 				boss.SetY(float(i * cellHeight));
+				break;
+			}
+		}
+	}
+}
+
+void Level::ReadComets()
+{
+	read.open("comets.txt");
+	for (int i = 0; i < cometHeight; i++)
+	{
+		for (int j = 0; j < width; j++)
+		{
+			read >> comets[i][j];
+		}
+	}
+	read.close();
+
+	for (int i = 0; i < cometHeight; i++)
+	{
+		for (int j = 0; j < width; j++)
+		{
+			switch (comets[i][j])
+			{
+			case 1:
+				blackHoleLevel.Spawn(float(j * cellWidth), float(i * cellHeight));
 				break;
 			}
 		}
