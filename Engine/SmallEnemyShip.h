@@ -47,7 +47,7 @@ private:
 	BulletManager& smallLeftM;
 	BulletManager& smallRightM;
 	static constexpr int bulletDmg = 25;
-	Vec2 bulletVel = Vec2(0.0f, -600.0f);
+	Vec2 bulletVel = Vec2(0.0f, -400.0f);
 	static constexpr int bulletHalfWidth = 15;
 	static constexpr int bulletHalfHeight = 20;
 	static constexpr int bulletRectSize = 10;

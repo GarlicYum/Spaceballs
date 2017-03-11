@@ -55,7 +55,7 @@ private:
 
 private:
 	bool hitTarget = false;
-	Vec2 pos = Vec2(300.0f, 300.0f);
+	Vec2 pos = Vec2(355.0f, 400.0f);
 	static constexpr float canonX = 25.0f;
 	static constexpr float canonY = -20.0f;
 	float speed = 360.0f;

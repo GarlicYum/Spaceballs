@@ -365,8 +365,8 @@ bool Ship::FlyOffScreen(float dt)
 void Ship::Reset()
 {
 	isMoving = false;
-	pos.x = 300.0f;
-	pos.y = 300.0f;
+	pos.x = 355.0f;
+	pos.y = 400.0f;
 	health.Reset();
 	isHit = false;
 	isHitCounter = 0.0f;
