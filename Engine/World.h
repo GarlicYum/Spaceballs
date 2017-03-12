@@ -139,4 +139,8 @@ private:
 	static constexpr float creditSpeed = 40.0f;
 	Sound creditSong = L"credit.mp3";
 	Level level;
+	
+	Surface smallEnemyFlash = Surface::FromFile(L"smallshipflash.png");
+	Surface bigEnemyFlash = Surface::FromFile(L"bigenemyflash.png");
+	Surface bossFlash = Surface::FromFile(L"bossflash.png");
 };

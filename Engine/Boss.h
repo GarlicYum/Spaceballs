@@ -18,7 +18,7 @@ public:
 	};
 	Boss(AnimationFrames& bossAnim, BulletManager& LeftBulletM, BulletManager& RightBulletM, BulletManager& CenterBulletM,
 		AnimationFrames& BulletAnim, AnimationFrames& lightBallAnim, AnimationFrames& bossExploAnim, AnimationFrames& bossPreExploAnim,
-		Sound& shipExplodeSound);
+		Sound& shipExplodeSound, const Surface& BossFlash);
 	void Update(float dt, float playerPos);
 	void Draw(Graphics& gfx);
 	float offScreenVel = 200.0f;
@@ -99,11 +99,14 @@ private:
 	int exploCounter = 0;
 	Sound& bigExploSound;
 	bool bigExploSoundPlayed = false;
+	bool isHit = false;
 	Timer attackTimer;
 	Timer specAttackTimer;
 	Timer lightBallTimer;
 	Timer coolDownTimer;
 	Timer waitTimer;
 	Timer vibrationTimer;
+	Timer hitTimer;
+	const Surface& bossFlash;
 };
 

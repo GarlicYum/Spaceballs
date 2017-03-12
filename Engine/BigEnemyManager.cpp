@@ -1,13 +1,15 @@
 #include "BigEnemyManager.h"
 
-BigEnemyManager::BigEnemyManager(const Surface & Surface, BulletManager & BulletM, AnimationFrames & ExploAnim, Sound & ExploSound, AnimationFrames & BulletAnim)
+BigEnemyManager::BigEnemyManager(const Surface & ShipSurface, BulletManager & BulletM, AnimationFrames & ExploAnim, Sound & ExploSound, 
+	AnimationFrames & BulletAnim, const Surface& ShipFlash)
 	:
-	surface(Surface),
+	shipSurface(ShipSurface),
 	bulletM(BulletM),
 	exploAnim(ExploAnim),
 	exploSound(ExploSound),
 	bulletAnim(BulletAnim),
-	bulletSprite(bulletAnim, 2.0f)
+	bulletSprite(bulletAnim, 2.0f),
+	shipFlash(ShipFlash)
 {}
 
 void BigEnemyManager::Update(float dt)
@@ -31,7 +33,7 @@ void BigEnemyManager::Draw(Graphics & gfx)
 void BigEnemyManager::Spawn(float X, float Y)
 {
 	nBigEnemy++;
-	bigEnemy.emplace_back<BigEnemyShip>(BigEnemyShip{ X, Y, surface, bulletM, exploAnim, exploSound });
+	bigEnemy.emplace_back<BigEnemyShip>(BigEnemyShip{ X, Y, shipSurface, bulletM, exploAnim, exploSound, shipFlash });
 }
 
 BigEnemyShip & BigEnemyManager::GetBigShip(int Idx)

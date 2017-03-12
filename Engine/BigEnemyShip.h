@@ -13,7 +13,7 @@ public:
 	{
 		AliveState, DyingState, DeadState
 	};
-	BigEnemyShip(float X, float Y, const Surface& surface, BulletManager& BulletM, AnimationFrames& ExploAnim, Sound& ExploSound);
+	BigEnemyShip(float X, float Y, const Surface& surface, BulletManager& BulletM, AnimationFrames& ExploAnim, Sound& ExploSound, const Surface& ShipFlash);
 	void Draw(Graphics& gfx);
 	void Update(float dt);
 	void Reset();
@@ -49,5 +49,8 @@ private:
 	Timer bulletTimer;
 	Timer timer;
 	Timer coolDownTimer;
+	Timer hitTimer;
+	bool isHit = false;
 	bool coolDown = false;
+	const Surface& shipFlash;
 };

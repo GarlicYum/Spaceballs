@@ -15,7 +15,7 @@ public:
 		AliveState, DyingState, DeadState
 	};
 	SmallEnemyShip(float x, float y, AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo, 
-		BulletManager& smallLeftmanager, BulletManager& smallRightManager);
+		BulletManager& smallLeftmanager, BulletManager& smallRightManager, const Surface& FlashSurface);
 	void Attack(float dt);
 	void Move(float dt, float playerX);
 	void Update(float dt, float playerX);
@@ -54,4 +54,7 @@ private:
 	static constexpr float bulletPitch = 0.7f;
 	Timer bulletTimer;
 	Timer coolDownTimer;
+	Timer hitTimer;
+	bool isHit = false;
+	const Surface& flashSurface;
 };

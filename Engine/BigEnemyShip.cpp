@@ -1,6 +1,6 @@
 #include "BigEnemyShip.h"
 
-BigEnemyShip::BigEnemyShip(float X, float Y, const Surface & surface, BulletManager& BulletM, AnimationFrames& ExploAnim, Sound& ExploSound)
+BigEnemyShip::BigEnemyShip(float X, float Y, const Surface & surface, BulletManager& BulletM, AnimationFrames& ExploAnim, Sound& ExploSound, const Surface& ShipFlash)
 	:
 	pos(X, Y),
 	resetPos(X, Y),
@@ -10,7 +10,10 @@ BigEnemyShip::BigEnemyShip(float X, float Y, const Surface & surface, BulletMana
 	exploSound(ExploSound),
 	bulletTimer(1.5f),
 	timer(15.0f),
-	coolDownTimer(0.75f)
+	coolDownTimer(0.75f),
+	shipFlash(ShipFlash),
+	hitTimer(0.05f)
+	
 {}
 
 void BigEnemyShip::Draw(Graphics & gfx)
@@ -19,6 +22,10 @@ void BigEnemyShip::Draw(Graphics & gfx)
 	{
 	case AliveState:
 		gfx.DrawSpriteKey(int(pos.x), int(pos.y), shipSurface, shipSurface.GetPixel(0, 0));
+		if (isHit)
+		{
+			gfx.DrawSpriteKey(int(pos.x), int(pos.y), shipFlash, shipFlash.GetPixel(0, 0));
+		}
 		break;
 		
 	case DyingState:
@@ -41,6 +48,16 @@ void BigEnemyShip::Update(float dt)
 				coolDownTimer.Reset();
 			}
 		}
+
+		if (isHit)
+		{
+			if (hitTimer.Pause(dt))
+			{
+				isHit = false;
+				hitTimer.Reset();
+			}
+		}
+
 		if (hp <= 0)
 		{
 			exploSound.Play();
@@ -92,6 +109,7 @@ void BigEnemyShip::HandleCollision(int dmg)
 	{
 		hp -= dmg;
 		coolDown = true;
+		isHit = true;
 	}
 }
 

@@ -7,7 +7,7 @@ class SmallEnemyManager
 {
 public:
 	SmallEnemyManager(AnimationFrames& SmallExhaust, AnimationFrames& SmallExplode, Sound& SmallExplo, 
-		BulletManager& smallLeftBulletM, BulletManager& smallRightBulletM, AnimationFrames& bulletAnim);
+		BulletManager& smallLeftBulletM, BulletManager& smallRightBulletM, AnimationFrames& bulletAnim, const Surface& ShipFlash);
 	void Draw(Graphics& gfx);
 	void Reset();
 	void Update(float dt, float playerX);
@@ -26,5 +26,6 @@ private:
 	BulletManager& rightM;
 	AnimationFrames& smallExhaust;
 	AnimationFrames& smallExplode;
+	const Surface& shipFlash;
 	Sound& exploSound;
 };

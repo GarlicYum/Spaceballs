@@ -1,7 +1,7 @@
 #include "SmallEnemyShip.h"
 
 SmallEnemyShip::SmallEnemyShip(float x, float y, AnimationFrames& smallexhaust, AnimationFrames& smallexplode, Sound& smallexplo, 
-	BulletManager& smallLeftManager, BulletManager& smallRightManager)
+	BulletManager& smallLeftManager, BulletManager& smallRightManager, const Surface& FlashSurface)
 	:
 	pos(x, y),
 	resetPos(x, y),
@@ -11,7 +11,9 @@ SmallEnemyShip::SmallEnemyShip(float x, float y, AnimationFrames& smallexhaust, 
 	smallLeftM(smallLeftManager),
 	smallRightM(smallRightManager),
 	bulletTimer(0.5f),
-	coolDownTimer(0.75f)
+	coolDownTimer(0.75f),
+	hitTimer(0.05f),
+	flashSurface(FlashSurface)
 {}
 
 void SmallEnemyShip::Attack(float dt)
@@ -77,6 +79,15 @@ void SmallEnemyShip::Update(float dt, float playerX)
 			}
 		}
 
+		if (isHit)
+		{
+			if (hitTimer.Pause(dt))
+			{
+				isHit = false;
+				hitTimer.Reset();
+			}
+		}
+
 		smallExhaust.Advance(dt);
 		if (smallExhaust.AnimEnd())
 		{
@@ -113,6 +124,10 @@ void SmallEnemyShip::Draw(Graphics & gfx)
 	{
 	case AliveState:
 		smallExhaust.Draw(int(pos.x), int(pos.y), gfx);
+		if (isHit)
+		{
+			gfx.DrawSpriteKey(int(pos.x), int(pos.y), flashSurface, flashSurface.GetPixel(0, 0));
+		}
 		break;
 
 	case DyingState:
@@ -140,6 +155,7 @@ void SmallEnemyShip::HandleCollision(int dmg)
 {
 	hp -= dmg;
 	coolDown = true;
+	isHit = true;
 }
 
 int SmallEnemyShip::GetCollisionDmg() const

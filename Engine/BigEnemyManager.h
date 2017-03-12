@@ -7,7 +7,7 @@
 class BigEnemyManager
 {
 public:
-	BigEnemyManager(const Surface& Surface, BulletManager& BulletM, AnimationFrames& ExploAnim, Sound& ExploSound, AnimationFrames& BulletAnim);
+	BigEnemyManager(const Surface& ShipSurface, BulletManager& BulletM, AnimationFrames& ExploAnim, Sound& ExploSound, AnimationFrames& BulletAnim, const Surface& ShipFlash);
 	void Update(float dt);
 	void Draw(Graphics& gfx);
 	void Spawn(float X, float Y);
@@ -18,11 +18,12 @@ public:
 
 private:
 	std::vector<BigEnemyShip>bigEnemy;
-	const Surface& surface;
+	const Surface& shipSurface;
 	BulletManager& bulletM;
 	AnimationFrames& exploAnim;
 	Sound& exploSound;
 	AnimationFrames& bulletAnim;
 	Animation bulletSprite;
 	int nBigEnemy = 0;
+	const Surface& shipFlash;
 };

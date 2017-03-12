@@ -1,7 +1,7 @@
 #include "SmallEnemyManager.h"
 
 SmallEnemyManager::SmallEnemyManager(AnimationFrames& SmallExhaust, AnimationFrames& SmallExplode, Sound& SmallExplo, 
-	BulletManager& smallLeftBulletM, BulletManager& smallRightBulletM, AnimationFrames& bulletAnim)
+	BulletManager& smallLeftBulletM, BulletManager& smallRightBulletM, AnimationFrames& bulletAnim, const Surface& ShipFlash)
 	:
 	bulletSprite(bulletAnim, 2),
 	leftM(smallLeftBulletM),
@@ -9,7 +9,8 @@ SmallEnemyManager::SmallEnemyManager(AnimationFrames& SmallExhaust, AnimationFra
 	smallExhaust(SmallExhaust),
 	smallExplode(SmallExplode),
 	exploSound(SmallExplo),
-	bulletFrames(bulletAnim)
+	bulletFrames(bulletAnim),
+	shipFlash(ShipFlash)
 {}
 
 void SmallEnemyManager::Draw(Graphics & gfx)
@@ -59,5 +60,5 @@ const SmallEnemyShip & SmallEnemyManager::GetSmallShip(int Idx) const
 void SmallEnemyManager::SpawnSmallShip(float X, float Y)
 {
 	nSmallShip++;
-	smallShip.emplace_back<SmallEnemyShip>(SmallEnemyShip{ X, Y, smallExhaust, smallExplode, exploSound, leftM, rightM});
+	smallShip.emplace_back<SmallEnemyShip>(SmallEnemyShip{ X, Y, smallExhaust, smallExplode, exploSound, leftM, rightM, shipFlash});
 }

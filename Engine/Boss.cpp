@@ -2,7 +2,7 @@
 
 Boss::Boss(AnimationFrames & bossAnim, BulletManager& LeftBulletM, BulletManager& RightBulletM, BulletManager& CenterBulletM, 
 	AnimationFrames& BulletAnim, AnimationFrames& lightBallAnim, AnimationFrames& bossExploAnim, AnimationFrames& bossPreExploAnim,
-	Sound& shipExplodeSound)
+	Sound& shipExplodeSound, const Surface& BossFlash)
 	:
 bossSprite(bossAnim, 2.0f),
 bulletSprite(BulletAnim, 2.0f),
@@ -19,7 +19,9 @@ specAttackTimer(5.0f),
 lightBallTimer(0.3f),
 coolDownTimer(0.75f),
 waitTimer(0.5f),
-vibrationTimer(0.05f)
+vibrationTimer(0.05f),
+bossFlash(BossFlash),
+hitTimer(0.05f)
 {}
 
 void Boss::Update(float dt, float playerPos)
@@ -46,6 +48,15 @@ break;
 
 	case AliveState:
 		Move(dt, playerPos);
+
+		if (isHit)
+		{
+			if (hitTimer.Pause(dt))
+			{
+				isHit = false;
+				hitTimer.Reset();
+			}
+		}
 
 		bossSprite.Advance(dt);
 		if (bossSprite.AnimEnd())
@@ -140,6 +151,10 @@ void Boss::Draw(Graphics & gfx)
 		break;
 	case AliveState:
 		bossSprite.Draw(int(pos.x), int(pos.y), gfx);
+		if (isHit)
+		{
+			gfx.DrawSpriteKey(int(pos.x), int(pos.y), bossFlash, bossFlash.GetPixel(0, 0));
+		}
 		break;
 	case ExplodingState:
 		if (isNotExploding)
@@ -348,6 +363,7 @@ void Boss::HandleCollision(int dmg)
 {
 	coolDown = true;
 	health.Damage(dmg);
+	isHit = true;
 }
 
 bool Boss::GetCoolDown() const
@@ -448,6 +464,8 @@ void Boss::Vibrate(float dt)
 void Boss::Reset()
 {
 	state = PreEntranceState;
+	isHit = false;
+	hitTimer.Reset();
 	vibrationTimer.Reset();
 	pos.x = 315.0f;
 	pos.y = resetY;
