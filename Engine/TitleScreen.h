@@ -4,7 +4,8 @@
 class TitleScreen
 {
 public:
-	void Draw(Graphics& gfx);
+	void DrawNormal(Graphics& gfx);
+	void DrawEasy(Graphics& gfx);
 private:
 	int x = 0;
 	int y = 0;

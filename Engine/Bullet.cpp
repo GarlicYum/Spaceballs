@@ -1,9 +1,10 @@
 #include "Bullet.h"
 
 //constructor get the position of the bullet and sets the state to alive
-Bullet::Bullet(Vec2& pos_in)
+Bullet::Bullet(Vec2& pos_in, int Dmg)
 	:
 	pos(pos_in),
+	dmg(Dmg),
 	bState(AliveState)
 {}
 

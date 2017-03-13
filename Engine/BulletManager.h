@@ -16,6 +16,8 @@ public:
 	void UpdateBullets(float Dt, Animation& bulletSprite);
 	void ResetShotsFired();
 	void DrawBullets(class Graphics& Gfx, Animation& bulletSprite);
+	void NormalDmg();
+	void EasyDmg();
 	void Reset();
 
 private:
@@ -24,4 +26,5 @@ private:
 	Bullet bullets[nBullets];
 	bool shotsFired = false;
 	Sound gun = L"shitgun.wav";
+	int dmg;
 };

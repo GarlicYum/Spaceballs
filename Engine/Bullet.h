@@ -12,7 +12,7 @@ public:
 		AliveState, DeadState
 	};
 	Bullet() = default;
-	Bullet(Vec2& pos_in);
+	Bullet(Vec2& pos_in, int Dmg);
 	Bullet(Vec2& pos_in, Vec2& Vel, int Width, int Height, int bulletRectSize, int Dmg);
 	void Update(float dt, Animation& bulletSprite);
 	bool HasSpawned() const;
@@ -31,5 +31,5 @@ private:
 	int halfHeight = 25;
 	int rectSize = 10;
 	Vec2 vel = Vec2(0.0f, 900.0f);
-	int dmg = 1;
+	int dmg;
 };

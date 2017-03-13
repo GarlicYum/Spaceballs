@@ -19,6 +19,8 @@ public:
 		SmallEnemyManager& SmallEnemyM, BigEnemyManager& bBigEnemyM, Boss& Boss, BlackHoleLevel& bHoleLevel);
 	void ReadLevel();
 	void ReadComets();
+	void ReadLevelEasy();
+	void ReadCometsEasy();
 	
 private:
 	static constexpr int width = 16;

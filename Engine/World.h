@@ -143,4 +143,6 @@ private:
 	Surface smallEnemyFlash = Surface::FromFile(L"smallshipflash.png");
 	Surface bigEnemyFlash = Surface::FromFile(L"bigenemyflash.png");
 	Surface bossFlash = Surface::FromFile(L"bossflash.png");
+	enum Difficulty {easy, normal};
+	Difficulty difficulty = normal;
 };

@@ -25,7 +25,7 @@ void BulletManager::FireBullet(Vec2& canonPos)
 			auto& bullet = bullets[i];
 			if (!bullet.HasSpawned())
 			{
-				bullet = Bullet(canonPos);
+				bullet = Bullet(canonPos, dmg);
 				gun.Play(0.5f, 0.5f);
 				shotsFired = true;
 				break;
@@ -74,6 +74,16 @@ void BulletManager::DrawBullets(Graphics& Gfx, Animation& bulletSprite)
 			bullet.Draw(Gfx, bulletSprite);
 		}
 	}
+}
+
+void BulletManager::NormalDmg()
+{
+	dmg = 1;
+}
+
+void BulletManager::EasyDmg()
+{
+	dmg = 2;
 }
 
 void BulletManager::Reset()

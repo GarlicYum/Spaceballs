@@ -50,8 +50,6 @@ World::World()
 	{
 		starB[i].Spawn(Vec2(xDist(rng), yDist(rng)), 6.0f);
 	}
-	level.ReadLevel();
-	level.ReadComets();
 }
 
 World::~World()
@@ -211,7 +209,17 @@ void World::Draw(Graphics& Gfx)
 	switch (gState)
 	{
 	case TitleState:
-		title.Draw(Gfx);
+		switch (difficulty)
+		{
+		case normal:
+			title.DrawNormal(Gfx);
+			break;
+			
+		case easy:
+			title.DrawEasy(Gfx);
+			break;
+		}
+
 		break;
 	case PlayState:
 		DrawStars(Gfx);
@@ -317,8 +325,31 @@ void World::PlayerInput(Keyboard& Kbd)
 			{
 				if (event.GetCode() == VK_RETURN)
 				{
+					switch(difficulty)
+					{
+					case normal:
+						level.ReadLevel();
+						level.ReadComets();
+						bulletM.NormalDmg();
+						break;
+
+					case easy:
+						level.ReadLevelEasy();
+						level.ReadCometsEasy();
+						bulletM.EasyDmg();
+						break;
+					}
+					
 					gState = PlayState;
 					mainSong.Play(1.0f, 0.5f);
+				}
+				else if (event.GetCode() == VK_UP)
+				{
+					difficulty = easy;
+				}
+				else if (event.GetCode() == VK_DOWN)
+				{
+					difficulty = normal;
 				}
 			}
 		}
