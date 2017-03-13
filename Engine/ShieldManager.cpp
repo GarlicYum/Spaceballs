@@ -2,15 +2,7 @@
 #include "Ship.h"
 
 ShieldManager::ShieldManager()
-{	
-//	std::mt19937 rng;
-//	std::uniform_real_distribution<float> xDist(0.0f, 700.0f);
-//	for (int i = 0; i < nSmallMax; i++)
-//	{
-//		s_shield[i].SetPos(xDist(rng));
-//	}	
-
-}
+{}
 
 void ShieldManager::Update(Ship & ship, float dt, Sound& shieldon, Sound& shieldoff)
 {
@@ -63,12 +55,6 @@ void ShieldManager::Reset()
 
 void ShieldManager::SpawnShield(float X, float Y)
 {
-//	if ((smallCounter += dt) > newSmall && nSmall != nSmallMax)
-//	{
-//		nSmall++;
-//		smallCounter = 0.0f;
-//	}
-
 	nSmall++;
 	s_shield.emplace_back<SmallShield>(SmallShield{ X, Y });
 }

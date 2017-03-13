@@ -6,14 +6,7 @@ MineManager::MineManager(Sound& Explosion, const Surface& MineSurface, Animation
 	explosion(Explosion),
 	mineSurface(MineSurface),
 	exploFrames(ExplosionFrames)
-{
-//	std::mt19937 rng;
-//	std::uniform_real_distribution<float> xDist(0.0f, 750.0f);
-//	for (int i = 0; i < nMinesMax; ++i)
-//	{
-//		mine.emplace_back<Mine>(Mine{ xDist(rng), MineSurface, Explosion, ExplosionFrames });
-//	}
-}
+{}
 
 void MineManager::Update(float Dt)
 {
@@ -33,11 +26,6 @@ void MineManager::Draw(Graphics& gfx)
 
 void MineManager::SpawnMine(float X, float Y)
 {
-//	if ((mineCounter += Dt) > newMine && nMines != nMinesMax)
-//	{
-//		nMines++;
-//		mineCounter = 0.0f;
-//	}
 	nMines++;
 	mine.emplace_back<Mine>(Mine{ X, Y, mineSurface, explosion, exploFrames });
 }

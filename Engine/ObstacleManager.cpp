@@ -3,14 +3,7 @@
 ObstacleManager::ObstacleManager(const Surface & obstacleSurface)
 	:
 	surface(obstacleSurface)
-{
-//	std::mt19937 rng;
-//	std::uniform_real_distribution<float> xDist(0.0f, 545.0f);
-//	for (int i = 0; i < nObstaclesMax; ++i)
-//	{
-//		obstacle.emplace_back<Obstacle>(Obstacle{ xDist(rng), obstacleSurface });
-//	}
-}
+{}
 
 void ObstacleManager::Draw(Graphics & gfx)
 {
@@ -30,11 +23,6 @@ void ObstacleManager::Update(float dt)
 
 void ObstacleManager::SpawnObstacle(float X, float Y)
 {
-//	if ((obstacleCounter += dt) > newObstacle && nObstacles != nObstaclesMax)
-//	{
-//		obstacleCounter = 0.0f;
-//		nObstacles++;
-//	}
 	nObstacles++;
 	obstacle.emplace_back<Obstacle>(Obstacle{ X, Y, surface });
 }

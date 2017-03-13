@@ -5,15 +5,7 @@ DroneManager::DroneManager(AnimationFrames & DroneAnim, AnimationFrames& DroneEx
 	droneAnim(DroneAnim),
 	exploSound(ExploSound),
 	droneExplode(DroneExplode)
-{
-//	std::mt19937 rng;
-//	std::uniform_real_distribution<float> xDist(40.0f, 750.0f);
-
-//	for (int i = 0; i < nDronesMax; ++i)
-//	{
-//		drone.emplace_back<Drone>(Drone{ 250.0f, DroneAnim, DroneExplode, ExploSound });
-//	}
-}
+{}
 
 void DroneManager::Draw(Graphics & gfx)
 {
@@ -33,11 +25,6 @@ void DroneManager::Reset()
 
 void DroneManager::Update(float dt)
 {
-//	if ((droneCounter += dt) >= newDrone && (nDrones != nDronesMax))
-//	{
-//		nDrones++;
-//		droneCounter = 0.0f;
-//	}
 	for (int i = 0; i < nDrones; ++i)
 	{
 		drone[i].Update(dt);
