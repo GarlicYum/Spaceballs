@@ -7,6 +7,7 @@
 #include "Sound.h"
 #include "Vec2.h"
 #include "Animation.h"
+#include "Timer.h"
 
 class Ship
 {
@@ -89,4 +90,5 @@ private:
 	Animation bulletSprite;
 	bool inputEnabled = true;
 	bool gameComplete = false;
+	Timer bulletTimer;
 };

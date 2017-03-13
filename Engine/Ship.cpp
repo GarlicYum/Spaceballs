@@ -18,7 +18,8 @@ Ship::Ship(BulletManager& Manager, Surface& ShipSurface,
 	rektExhaust(rektExhaustAnim, 2.0f),
 	shipExplodeSound(shipexplodesound),
 	blackHoleSound(blackholesound),
-	bulletSprite(bulletAnim, 2.0f)
+	bulletSprite(bulletAnim, 2.0f),
+	bulletTimer(0.15f)
 {}
 
 void Ship::HandleCollision(int Damage, float dt)
@@ -202,11 +203,19 @@ void Ship::PlayerInput(Keyboard& kbd, float dt)
 			if (kbd.KeyIsPressed(VK_SPACE))
 			{
 				bManager.FireBullet(Vec2(pos.x + canonX, pos.y + canonY));
+
+				if (bulletTimer.Pause(dt))
+				{
+					bManager.ResetShotsFired();
+					bManager.FireBullet(Vec2(pos.x + canonX, pos.y + canonY));
+					bulletTimer.Reset();
+				}
 			}
 
 			else
 			{
 				bManager.ResetShotsFired();
+				bulletTimer.Reset();
 			}
 		}
 
