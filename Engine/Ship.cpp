@@ -376,6 +376,7 @@ void Ship::Reset()
 	state = AliveState;
 	gameComplete = false;
 	EnableInput();
+	firstTransition = true;
 }
 
 void Ship::Update(Keyboard & wnd, float dt)
