@@ -142,7 +142,6 @@ void World::Update(Keyboard& Kbd, float Dt)
 			gState = PlayState;
 			mainSong.Play(1.0f, 0.5f);
 		}
-		blackHoleLevel.Reset();
 		break;
 
 	case BossState:
@@ -351,6 +350,7 @@ void World::PlayerInput(Keyboard& Kbd)
 					bossRightBulletM.Reset();
 					bossCenterBulletM.Reset();
 					boss.Reset();
+					blackHoleLevel.Reset();
 					ResetStarSpeed();
 					creditY = 800;
 					starsSpedUp = false;
