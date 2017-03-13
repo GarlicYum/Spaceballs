@@ -387,6 +387,7 @@ void World::PlayerInput(Keyboard& Kbd)
 					bossLeftBulletM.Reset();
 					bossRightBulletM.Reset();
 					bossCenterBulletM.Reset();
+					blackHoleLevel.Reset();
 					boss.Reset();
 					ResetStarSpeed();
 					creditY = 800;
