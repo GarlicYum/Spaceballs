@@ -49,6 +49,8 @@ void MineManager::Reset()
 {
 	for (int i = 0; i < nMines; ++i)
 	{
-		mine[i].Reset();
+		mine.pop_back();
+	//	mine[i].Reset();
 	}
+	nMines = 0;
 }

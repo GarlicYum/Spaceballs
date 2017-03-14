@@ -27,8 +27,10 @@ void SmallEnemyManager::Reset()
 {
 	for (int i = 0; i < nSmallShip; ++i)
 	{
-		smallShip[i].Reset();
+		smallShip.pop_back();
+	//	smallShip[i].Reset();
 	}
+	nSmallShip = 0;
 }
 
 void SmallEnemyManager::Update(float dt, float playerX)

@@ -9,8 +9,10 @@ void BlackHoleManager::Reset()
 {
 	for (int i = 0; i < nHoles; ++i)
 	{
-		bHole[i].Reset();
+		bHole.pop_back();
+	//	bHole[i].Reset();
 	}
+	nHoles = 0;
 }
 
 void BlackHoleManager::Update(float dt)

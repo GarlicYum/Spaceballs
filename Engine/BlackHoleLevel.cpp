@@ -59,8 +59,10 @@ void BlackHoleLevel::Reset()
 {
 	for (int i = 0; i < nComets; ++i)
 	{
-		comet[i].Reset();
+		comet.pop_back();
+	//	comet[i].Reset();
 	}
+	nComets = 0;
 }
 
 void BlackHoleLevel::Spawn(float X, float Y)

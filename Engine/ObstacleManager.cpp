@@ -46,6 +46,8 @@ void ObstacleManager::Reset()
 {
 	for (int i = 0; i < nObstacles; ++i)
 	{
-		obstacle[i].Reset();
+		obstacle.pop_back();
+	//	obstacle[i].Reset();
 	}
+	nObstacles = 0;
 }

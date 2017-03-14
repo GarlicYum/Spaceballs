@@ -19,8 +19,10 @@ void DroneManager::Reset()
 {
 	for (int i = 0; i < nDrones; ++i)
 	{
-		drone[i].Reset();
+	//	drone[i].Reset();
+		drone.pop_back();
 	}
+	nDrones = 0;
 }
 
 void DroneManager::Update(float dt)

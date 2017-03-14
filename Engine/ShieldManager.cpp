@@ -48,8 +48,10 @@ void ShieldManager::Reset()
 {
 	for (int i = 0; i < nSmall; ++i)
 	{
-		s_shield[i].Reset();
+		s_shield.pop_back();
+	//	s_shield[i].Reset();
 	}
+	nSmall = 0;
 	shield.Reset();
 }
 

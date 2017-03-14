@@ -55,6 +55,8 @@ void BigEnemyManager::Reset()
 {
 	for (int i = 0; i < nBigEnemy; ++i)
 	{
-		bigEnemy[i].Reset();
+		bigEnemy.pop_back();
+	//	bigEnemy[i].Reset();
 	}
+	nBigEnemy = 0;
 }

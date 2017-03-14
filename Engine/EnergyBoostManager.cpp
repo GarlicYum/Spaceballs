@@ -42,8 +42,10 @@ void EnergyBoostManager::Reset()
 {
 	for (int i = 0; i < nEBoost; ++i)
 	{
-		eBoost[i].Reset();
+		eBoost.pop_back();
+	//	eBoost[i].Reset();
 	}
+	nEBoost = 0;
 }
 
 void EnergyBoostManager::SpawnEnergyBoost(float X, float Y)
