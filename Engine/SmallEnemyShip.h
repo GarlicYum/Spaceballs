@@ -21,7 +21,6 @@ public:
 	void Update(float dt, float playerX);
 	void Draw(Graphics& gfx);
 	RectF GetCollisionRect() const;
-	void Reset();
 	void HandleCollision(int dmg);
 	int GetCollisionDmg() const;
 	bool IsAlive() const;
@@ -30,7 +29,6 @@ public:
 private:
 	bool coolDown = false;
 	Vec2 pos;
-	Vec2 resetPos;
 	Vec2 leftCanon = Vec2(-9.0f, 30.0f);
 	Vec2 rightCanon = Vec2(68.0f, 30.0f);
 	Vec2 vel = Vec2(100.0f, 250.0f);

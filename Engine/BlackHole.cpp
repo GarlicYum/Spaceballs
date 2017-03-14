@@ -3,16 +3,8 @@
 BlackHole::BlackHole(float X, float Y, AnimationFrames & bHoleAnim)
 	:
 	pos(X, Y),
-	resetPos(X, Y),
 	bHoleSpin(bHoleAnim, 5.0f)
 {}
-
-void BlackHole::Reset()
-{
-	pos = resetPos;
-	isActive = true;
-	StartVy();
-}
 
 void BlackHole::Update(float dt)
 {

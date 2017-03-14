@@ -42,7 +42,6 @@ void EnergyBoostManager::Reset()
 {
 
 	eBoost.clear();
-	//	eBoost[i].Reset();
 	nEBoost = 0;
 }
 

@@ -16,7 +16,6 @@ public:
 	BigEnemyShip(float X, float Y, const Surface& surface, BulletManager& BulletM, AnimationFrames& ExploAnim, Sound& ExploSound, const Surface& ShipFlash);
 	void Draw(Graphics& gfx);
 	void Update(float dt);
-	void Reset();
 	RectF GetCollisionRect() const;
 	int GetCollisionDmg() const;
 	int GetBulletDmg() const;
@@ -28,7 +27,6 @@ public:
 
 private:
 	Vec2 pos;
-	Vec2 resetPos;
 	Vec2 canon = Vec2(42.5f, 75.0f);
 	Vec2 vel = Vec2(100.0f, 200.0f);
 	static constexpr float width = 145.0f;

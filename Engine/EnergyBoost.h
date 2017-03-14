@@ -13,11 +13,9 @@ public:
 	void Draw(Graphics& gfx);
 	RectF GetCollisionRect() const;
 	void HandleCollision(Ship& ship);
-	void Reset();
 
 private:
 	Vec2 pos;
-	Vec2 resetPos;
 	static constexpr float vy = 200.0f;
 	static constexpr float offScreenVel = 200.0f;
 	bool isObtained = false;

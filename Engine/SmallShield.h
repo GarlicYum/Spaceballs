@@ -12,11 +12,9 @@ public:
 	void Update(Ship& ship, float dt, Shield& shield);
 	RectF GetCollisionRect() const;
 	void HandleCollision(Shield& shield);
-	void Reset();
 
 private:
 	Vec2 pos;
-	Vec2 resetPos;
 	float vy = 200.0f;
 	static constexpr int radius = 20;
 	static constexpr int hole = 18;

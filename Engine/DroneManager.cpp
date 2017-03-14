@@ -17,7 +17,6 @@ void DroneManager::Draw(Graphics & gfx)
 
 void DroneManager::Reset()
 {
-	//	drone[i].Reset();
 	drone.clear();
 	nDrones = 0;
 }

@@ -5,8 +5,7 @@ EnergyBoost::EnergyBoost(float X, float Y, Sound& BoostSound, Surface& BoostSurf
 	:
 	boostSound(BoostSound),
 	heart(BoostSurface),
-	pos(X, Y),
-	resetPos(X, Y)
+	pos(X, Y)
 {}
 
 void EnergyBoost::Update(Ship& ship, float dt)
@@ -46,11 +45,4 @@ void EnergyBoost::HandleCollision(Ship& ship)
 		ship.Restore(restoreAmount);
 		isRestored = true;
 	}
-}
-
-void EnergyBoost::Reset()
-{
-	isObtained = false;
-	isRestored = false;
-	pos = resetPos;
 }

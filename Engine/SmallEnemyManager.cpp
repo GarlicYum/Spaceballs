@@ -26,7 +26,6 @@ void SmallEnemyManager::Draw(Graphics & gfx)
 void SmallEnemyManager::Reset()
 {
 	smallShip.clear();
-	//	smallShip[i].Reset();
 	nSmallShip = 0;
 }
 

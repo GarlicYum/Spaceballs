@@ -47,7 +47,6 @@ const SmallShield& ShieldManager::GetSmallShield(int Idx) const
 void ShieldManager::Reset()
 {
 	s_shield.clear();
-	//	s_shield[i].Reset();
 	nSmall = 0;
 	shield.Reset();
 }

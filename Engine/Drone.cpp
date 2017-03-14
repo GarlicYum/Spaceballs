@@ -77,15 +77,6 @@ RectF Drone::GetCollisionRect() const
 	return RectF(pos, width, height);
 }
 
-void Drone::Reset()
-{
-	state = AliveState;
-	pos = resetPos;
-	vel.x = 360.0f;
-	droneAnim.Reset();
-	droneExplode.Reset();
-}
-
 void Drone::HandleCollision()
 {
 	if (state == AliveState)

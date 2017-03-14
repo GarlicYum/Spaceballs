@@ -18,11 +18,9 @@ public:
 	RectF GetLeftCollisionRect() const;
 	RectF GetRightCollisionRect() const;
 	RectF GetTopCollisionRect() const;
-	void Reset();
 
 private:
 	Vec2 pos;
-	Vec2 resetPos;
 	float vy = 200.0f;
 	float offScreenVel = 200.0f;
 	static constexpr float width = 255;

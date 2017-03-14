@@ -8,8 +8,7 @@ Mine::Mine(float X, float Y, const Surface& MineSurface, Sound& Explosion, Anima
 	surface(MineSurface),
 	explo(Anim, 2.0f),
 	explosion(Explosion),
-	pos(X, Y),
-	resetPos(X, Y)
+	pos(X, Y)
 {}
 
 void Mine::HandleCollision(int dmg)
@@ -88,12 +87,4 @@ RectF Mine::GetCollisionRect() const
 bool Mine::IsActive() const
 {
 	return mState == ActiveState;
-}
-
-void Mine::Reset()
-{
-	pos = resetPos;
-	hp = 3;
-	mState = ActiveState;
-	explo.Reset();
 }

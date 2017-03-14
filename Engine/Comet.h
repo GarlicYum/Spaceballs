@@ -13,13 +13,11 @@ public:
 	void Update(float dt);
 	RectF GetCollisionRect() const;
 	void HandleCollision();
-	void Reset();
 	int GetDmg() const;
 	bool IsActive() const;
 
 private:
 	Vec2 pos;
-	Vec2 resetPos;
 	static constexpr float vel = 300.0f;
 	static constexpr float width = 35.0f;
 	static constexpr float height = 80.0f;

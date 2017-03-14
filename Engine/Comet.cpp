@@ -3,7 +3,6 @@
 Comet::Comet(float X, float Y, AnimationFrames & cometFrames)
 	:
 	pos(X, Y),
-	resetPos(X, Y),
 	cometAnim(cometFrames, 2.0f)
 {}
 
@@ -40,12 +39,6 @@ RectF Comet::GetCollisionRect() const
 void Comet::HandleCollision()
 {
 	isActive = false;
-}
-
-void Comet::Reset()
-{
-	pos = resetPos;
-	isActive = true;
 }
 
 int Comet::GetDmg() const

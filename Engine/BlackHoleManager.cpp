@@ -8,7 +8,6 @@ BlackHoleManager::BlackHoleManager(AnimationFrames & bHoleAnim)
 void BlackHoleManager::Reset()
 {
 	bHole.clear();
-	//	bHole[i].Reset();
 	nHoles = 0;
 }
 

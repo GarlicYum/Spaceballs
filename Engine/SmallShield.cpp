@@ -2,8 +2,7 @@
 
 SmallShield::SmallShield(float X, float Y)
 	:
-	pos(X, Y),
-	resetPos(X, Y)
+	pos(X, Y)
 {}
 
 void SmallShield::Draw(Graphics & gfx)
@@ -34,10 +33,4 @@ void SmallShield::HandleCollision(Shield& shield)
 		isObtained = true;
 		shield.SetisActive(true);
 	}
-}
-
-void SmallShield::Reset()
-{
-	pos = resetPos;
-	isObtained = false;
 }

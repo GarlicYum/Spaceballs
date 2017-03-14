@@ -3,7 +3,6 @@
 BigEnemyShip::BigEnemyShip(float X, float Y, const Surface & surface, BulletManager& BulletM, AnimationFrames& ExploAnim, Sound& ExploSound, const Surface& ShipFlash)
 	:
 	pos(X, Y),
-	resetPos(X, Y),
 	shipSurface(surface),
 	bulletM(BulletM),
 	exploAnim(ExploAnim, 2.0f),
@@ -69,23 +68,10 @@ void BigEnemyShip::Update(float dt)
 		exploAnim.Advance(dt);
 		if (exploAnim.AnimEnd())
 		{
-			Reset();
 			state = DeadState;
 		}
 		break;
 	}
-}
-
-void BigEnemyShip::Reset()
-{
-	pos = resetPos;
-	hp = 20;
-	state = AliveState;
-	bulletTimer.Reset();
-	exploAnim.Reset();
-	vel.x = 100.0f;
-	timer.Reset();
-	coolDownTimer.Reset();
 }
 
 RectF BigEnemyShip::GetCollisionRect() const
@@ -143,7 +129,6 @@ void BigEnemyShip::Move(float dt)
 	}
 	else if (pos.y > Graphics::ScreenHeight)
 	{
-		Reset();
 		state = DeadState;
 	}
 

@@ -4,7 +4,6 @@ SmallEnemyShip::SmallEnemyShip(float x, float y, AnimationFrames& smallexhaust, 
 	BulletManager& smallLeftManager, BulletManager& smallRightManager, const Surface& FlashSurface)
 	:
 	pos(x, y),
-	resetPos(x, y),
 	smallExhaust(smallexhaust, 2.0f),
 	smallExplode(smallexplode, 3.0f),
 	smallExploSound(smallexplo),
@@ -139,16 +138,6 @@ void SmallEnemyShip::Draw(Graphics & gfx)
 RectF SmallEnemyShip::GetCollisionRect() const
 {
 	return RectF(pos, width, height);
-}
-
-void SmallEnemyShip::Reset()
-{
-	pos = resetPos;
-	smallExplode.Reset();
-	state = AliveState;
-	hp = 3;
-	bulletTimer.Reset();
-	coolDownTimer.Reset();
 }
 
 void SmallEnemyShip::HandleCollision(int dmg)

@@ -18,7 +18,6 @@ public:
 	void Update(float dt);
 	void Draw(Graphics& gfx);
 	RectF GetCollisionRect() const;
-	void Reset();
 	void HandleCollision();
 	int GetCollisionDmg() const;
 	bool IsAlive() const;

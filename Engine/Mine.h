@@ -25,14 +25,12 @@ public:
 	void SetState(MineState State);
 	RectF GetCollisionRect() const;
 	bool IsActive() const;
-	void Reset();
 
 private:
 	static constexpr int explDamage = 75;
 	static constexpr float width = 50.0f;
 	static constexpr float height = 50.0f;
 	Vec2 pos;
-	Vec2 resetPos;
 	static constexpr float vy = 200.0f;
 	static constexpr float offScreenVel = 200.0f;
 	MineState mState = ActiveState;
