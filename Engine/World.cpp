@@ -103,6 +103,16 @@ void World::Update(Keyboard& Kbd, float Dt)
 		{
 			mainSong.StopAll();
 			gState = BlackHoleState;
+			switch (difficulty)
+			{
+			case normal:
+				level.ReadComets();
+				break;
+
+			case easy:
+				level.ReadCometsEasy();
+				break;
+			}
 
 			if (ship.IsDead())
 			{
@@ -329,13 +339,11 @@ void World::PlayerInput(Keyboard& Kbd)
 					{
 					case normal:
 						level.ReadLevel();
-						level.ReadComets();
 						bulletM.NormalDmg();
 						break;
 
 					case easy:
 						level.ReadLevelEasy();
-						level.ReadCometsEasy();
 						bulletM.EasyDmg();
 						break;
 					}
