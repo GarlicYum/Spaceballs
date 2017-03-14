@@ -44,10 +44,7 @@ const Obstacle & ObstacleManager::GetObstacle(int Idx) const
 
 void ObstacleManager::Reset()
 {
-	for (int i = 0; i < nObstacles; ++i)
-	{
-		obstacle.pop_back();
+	obstacle.clear();
 	//	obstacle[i].Reset();
-	}
 	nObstacles = 0;
 }

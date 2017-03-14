@@ -47,10 +47,7 @@ int MineManager::GetMineCount() const
 
 void MineManager::Reset()
 {
-	for (int i = 0; i < nMines; ++i)
-	{
-		mine.pop_back();
+	mine.clear();
 	//	mine[i].Reset();
-	}
 	nMines = 0;
 }

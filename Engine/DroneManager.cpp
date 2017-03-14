@@ -17,11 +17,8 @@ void DroneManager::Draw(Graphics & gfx)
 
 void DroneManager::Reset()
 {
-	for (int i = 0; i < nDrones; ++i)
-	{
 	//	drone[i].Reset();
-		drone.pop_back();
-	}
+	drone.clear();
 	nDrones = 0;
 }
 

@@ -40,11 +40,9 @@ int EnergyBoostManager::GetBoostCount() const
 
 void EnergyBoostManager::Reset()
 {
-	for (int i = 0; i < nEBoost; ++i)
-	{
-		eBoost.pop_back();
+
+	eBoost.clear();
 	//	eBoost[i].Reset();
-	}
 	nEBoost = 0;
 }
 

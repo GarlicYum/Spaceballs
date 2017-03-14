@@ -57,11 +57,8 @@ int BlackHoleLevel::GetCometCount() const
 
 void BlackHoleLevel::Reset()
 {
-	for (int i = 0; i < nComets; ++i)
-	{
-		comet.pop_back();
+	comet.clear();
 	//	comet[i].Reset();
-	}
 	nComets = 0;
 }
 

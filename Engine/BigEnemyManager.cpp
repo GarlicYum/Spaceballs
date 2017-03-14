@@ -53,10 +53,8 @@ int BigEnemyManager::GetBigCount() const
 
 void BigEnemyManager::Reset()
 {
-	for (int i = 0; i < nBigEnemy; ++i)
-	{
-		bigEnemy.pop_back();
+	
+	bigEnemy.clear();
 	//	bigEnemy[i].Reset();
-	}
 	nBigEnemy = 0;
 }

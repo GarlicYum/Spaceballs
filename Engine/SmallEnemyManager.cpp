@@ -25,11 +25,8 @@ void SmallEnemyManager::Draw(Graphics & gfx)
 
 void SmallEnemyManager::Reset()
 {
-	for (int i = 0; i < nSmallShip; ++i)
-	{
-		smallShip.pop_back();
+	smallShip.clear();
 	//	smallShip[i].Reset();
-	}
 	nSmallShip = 0;
 }
 

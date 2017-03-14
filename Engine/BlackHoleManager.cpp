@@ -7,11 +7,8 @@ BlackHoleManager::BlackHoleManager(AnimationFrames & bHoleAnim)
 
 void BlackHoleManager::Reset()
 {
-	for (int i = 0; i < nHoles; ++i)
-	{
-		bHole.pop_back();
+	bHole.clear();
 	//	bHole[i].Reset();
-	}
 	nHoles = 0;
 }
 
